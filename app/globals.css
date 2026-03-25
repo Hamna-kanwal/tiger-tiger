@@ -18,9 +18,26 @@
     --foreground: #ededed;
   }
 }
-
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.eczar {
+  font-family: "fields", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.image-height {
+  /* Jo bhi height aapko chahiye yahan likhein */
+  height: 1000px !important; 
+  width: auto !important;
+  max-width: 100%;
+}
+
+/* Mobile ke liye agar choti karni ho */
+@media (max-width: 768px) {
+  .image-height {
+    height: 1000px !important;
+  }
 }
