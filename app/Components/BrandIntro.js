@@ -9,26 +9,30 @@ const BrandIntro = () => {
     { number: "Bulk", label: "Orders" },
   ];
 
+  // Brand Purple Constant
+  const brandPurple = "#4e1a51";
+
   return (
-    // Reduced vertical padding from py-20 to py-12
-    <section className="w-full bg-white py-12 px-6 md:px-12 font-sans">
+    <section className="w-full bg-white py-16 px-6 md:px-12 font-sans">
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
         
-        {/* Smaller Logo Container */}
-        <div className="mb-6">
+        {/* Logo Container */}
+        <div className="mb-8">
           <Image 
             src="/logo.png" 
             alt="Tiger Tiger Logo" 
-            width={200} // Reduced from 280
-            height={60} 
+            width={240} 
+            height={80} 
             priority 
             className="object-contain"
           />
         </div>
 
-        {/* Brand Description - More compact text and margin */}
-        <div className="max-w-3xl mb-12">
-          <p className="text-[#4A5D23] text-[15px] md:text-[17px] leading-relaxed font-normal">
+        {/* Brand Description - Now font-normal for a cleaner look */}
+        <div className="max-w-3xl mb-16">
+          <p 
+            className="text-black text-[16px] md:text-[19px] leading-relaxed font-normal"
+          >
             If big flavours are your vibe, Tiger Tiger Foods is your new best friend. 
             We&apos;ve packed your pantry with iconic Asian flavours that slap—Japanese faves, 
             Thai spice bombs, Chinese classics, and Indian comfort hits. Only premium 
@@ -39,14 +43,21 @@ const BrandIntro = () => {
           </p>
         </div>
 
-        {/* Stats Grid - Smaller numbers and tighter gap */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 w-full">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 w-full">
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center">
-              <span className="text-[#4A5D23] text-[28px] md:text-[34px] font-bold block">
+              {/* Numbers remain Bold to stand out */}
+              <span 
+                style={{ color: brandPurple }} 
+                className="text-[32px] md:text-[42px] font-bold block eczar"
+              >
                 {stat.number}
               </span>
-              <span className="text-[#4A5D23] text-[16px] md:text-[18px] font-bold leading-tight max-w-[140px]">
+              {/* Labels - Switched to font-medium and removed uppercase for a softer look */}
+              <span 
+                className="text-black text-[15px] md:text-[17px] font-medium leading-tight max-w-[160px] tracking-wide"
+              >
                 {stat.label}
               </span>
             </div>

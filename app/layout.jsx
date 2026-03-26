@@ -1,7 +1,7 @@
 // app/layout.jsx
 import { Outfit, Eczar } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
+import Header from "./Components/Header";
 
 // 1. Fonts setup
 const outfit = Outfit({

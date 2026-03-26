@@ -41,7 +41,7 @@ export default function AmazingFlavour() {
   return (
        <section 
       className="relative py-16 md:py-24 bg-cover bg-center overflow-hidden"
-      style={{ backgroundImage: "url('/pulp-Bg.jpg')" }} // APNI BG IMAGE KA PATH YAHAN LIKHEIN
+      style={{ backgroundImage: "url('/pulp-Bg2.png')" }} // APNI BG IMAGE KA PATH YAHAN LIKHEIN
     >
       {/* Background complex image ko brand color se replace kiya beginners ke liye */}
       

@@ -1,26 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-purple: #4e1a51;
+  --brand-gold: #EED697;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  /* This tells Tailwind to create 'text-brand-purple' and 'bg-brand-gold' */
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-gold: var(--brand-gold);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-body {
-  background: var(--background);
-  font-family: var(--font-outfit), sans-serif;
+/* Force all links in the header to use the variable if they are stubborn */
+nav a {
+  color: var(--brand-purple) !important;
 }
 
 .eczar {
@@ -40,4 +33,21 @@ body {
   .image-height {
     height: 1000px !important;
   }
+}
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+/* Add this to the bottom of your globals.css */
+.nav-link-purple {
+  color: #4e1a51 !important;
+}
+
+.search-bg-gold {
+  background-color: #d2bf7f !important;
 }

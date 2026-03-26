@@ -17,37 +17,48 @@ export default function CategoryMarquee() {
     { name: "Sauces", slug: "sauces", image: "/Sauces.png" },
   ];
 
-  // Exactly two sets for a perfect loop
-  const repeated = [...categories, ...categories];
+  const brandPurple = "#4e1a51";
+  const crownGold = "#d2bf7f";
+  
+  const repeated = [...categories, ...categories, ...categories, ...categories];
 
   return (
     <section className="py-12 w-full bg-white overflow-hidden">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4 max-w-7xl mx-auto px-6">
         <div>
-          <h2 className="text-4xl font-serif font-bold mb-2 text-[#30523E]">
+          <h2 style={{ color: brandPurple }} className="text-4xl md:text-5xl font-serif font-bold mb-2 eczar">
             Flavours for Every Craving
           </h2>
-          <p className="text-gray-600 font-medium">
+          {/* Second text is now Black */}
+          <p className="text-black font-medium text-lg">
             Drinks? Noodles? Frozen? If It's Delicious, It's in Our Range.
           </p>
         </div>
-        <button className="bg-[#E9D68F] hover:bg-[#dec66b] text-[#30523E] font-bold py-3 px-8 rounded-2xl transition-all text-lg">
+        
+        {/* Button: Purple background, White text, No border */}
+        <button 
+          suppressHydrationWarning
+          style={{ backgroundColor: brandPurple }}
+          className="text-white hover:brightness-125 font-bold py-4 px-10 rounded-2xl transition-all text-xl shadow-md eczar"
+        >
           All Categories
         </button>
       </div>
 
       {/* Marquee Wrapper */}
-      <div className="relative w-full overflow-hidden">
-        <div className="animate-marquee flex">
+      <div className="relative w-full overflow-hidden pt-4 pb-8">
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+        <div className="animate-marquee flex items-center">
           {repeated.map((item, i) => (
             <Link
               href={`/categories/${item.slug}`}
               key={i}
-              // Reduced padding from px-4 to px-2 to bring circles closer
-              className="flex flex-col items-center flex-shrink-0 px-2 md:px-3"
+              className="flex flex-col items-center flex-shrink-0 px-4 md:px-6"
             >
-              <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-[3px] border-white shadow-md transition-transform duration-300 hover:scale-105">
+              <div className="relative w-28 h-28 md:w-44 md:h-44 rounded-full overflow-hidden border-[4px] border-white shadow-xl transition-all duration-500 hover:scale-110 hover:border-[#d2bf7f] bg-gray-50">
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -55,7 +66,11 @@ export default function CategoryMarquee() {
                   className="object-cover"
                 />
               </div>
-              <p className="mt-3 text-center text-[10px] md:text-xs font-black uppercase tracking-tight text-[#2F5D27]">
+              
+              <p 
+                style={{ color: brandPurple }}
+                className="mt-5 text-center text-[12px] md:text-sm font-black uppercase tracking-[0.15em] eczar"
+              >
                 {item.name}
               </p>
             </Link>
@@ -66,12 +81,12 @@ export default function CategoryMarquee() {
       <style jsx>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-25%); }
         }
         .animate-marquee {
           display: flex;
-          width: max-content; /* Critical for seamless loop */
-          animation: marquee 30s linear infinite;
+          width: max-content;
+          animation: marquee 45s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
