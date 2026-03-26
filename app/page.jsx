@@ -9,8 +9,10 @@ import Crammed from "./Crammed/page";
 import CrammedSlider from "./Components/CrammedSlider";
 import Wowchow from "./Components/Wowchow";
 import Choice from "./Choices/page"
-
-
+import CategorySlider from "./Components/CategorySlider";
+import BrandIntro from "./Components/BrandIntro";
+import SmoothSlider from "./Components/SmoothSlider";
+import Footer from "./Components/Footer";
 export default function Home() {
   return (
     <>
@@ -24,7 +26,10 @@ export default function Home() {
       <CrammedSlider/>
       <Wowchow/>
       <Choice/>
-
+<CategorySlider/>
+<BrandIntro/>
+<SmoothSlider/>
+<Footer/>
     </>
   );
 }

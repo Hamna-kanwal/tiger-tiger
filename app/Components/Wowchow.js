@@ -2,68 +2,77 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import Image from "next/image"; 
 import "swiper/css";
 
 export default function WowchowSlider() {
   const wowchowData = [
+    { name: "VITETNAMESE AROMATIC CHICKEN PHO", images: "/wowchow4.jpeg" },
     { name: "BANGKOK HOT & SOUR TOM YUM", images: "/wowchow1.jpeg" },
-    { name: "KOREAN SPICY BEEF", images: "/wowchow2.jpeg"  },
+    { name: "KOREAN SPICY BEEF", images: "/wowchow2.jpeg" },
     { name: "SZECHAUN FIERY PEPPER & SPICE", images: "/wowchow3.jpeg" },
     { name: "VITETNAMESE AROMATIC CHICKEN PHO", images: "/wowchow4.jpeg" },
     { name: "BANGKOK HOT & SOUR TOM YUM", images: "/wowchow1.jpeg" },
-    { name: "KOREAN SPICY BEEF", images: "/wowchow2.jpeg"  },
-    { name: "SZECHAUN FIERY PEPPER & SPICE", images: "/wowchow3.jpeg" },
-    { name: "VITETNAMESE AROMATIC CHICKEN PHO", images: "/wowchow4.jpeg" },
-   
   ];
 
   return (
-    <>
-      <div className="max-w-7xl mx-auto px-4 py-10">
-        <Swiper
-          modules={[Autoplay]}
-          spaceBetween={24}
-          slidesPerView={2}
-          loop={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 4 },
-          }}
-          className="!overflow-hidden"
-        >
-          {wowchowData.map((p, i) => (
-            <SwiperSlide key={i}>
-              <div className="w-full flex flex-col items-center group">
-                {/* Image Container */}
-                <div className="w-[200px] h-[250px] md:w-[300px] md:h-[300px] flex items-end justify-center">
-                  <img
-                    src={p.images}
-                    alt={p.name}
-                    className="max-h-full max-w-full object-contain transform transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
+    <div className="w-full bg-[#f3f4f6]">
+      
+      {/* --- WOW CHOW TOP BANNER --- */}
+      <section className="w-full overflow-hidden leading-[0] block">
+        <Image
+          src="/wow_chow_bg.webp" 
+          alt="Wow Chow Banner"
+          width={1920}
+          height={600}
+          className="w-full h-auto block" 
+          priority
+          unoptimized
+        />
+      </section>
+
+      {/* --- SLIDER SECTION --- */}
+      {/* Keeping your py-16 md:py-24 for that perfect spacing */}
+      <div className="py-16 md:py-24 px-4 overflow-visible"> 
+        <div className="max-w-5xl mx-auto overflow-visible">
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={20}
+            slidesPerView={2}
+            loop={true}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            breakpoints={{
+              640: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            /* FIX: !pb-10 adds internal space so the shadow isn't cut.
+               FIX: -mb-10 pulls the bottom of the section back up so your 'purrfect' spacing stays equal.
+            */
+            className="overflow-visible !pb-10 -mb-10" 
+          >
+            {wowchowData.map((p, i) => (
+              <SwiperSlide key={i} className="py-2"> {/* py-2 prevents top/bottom edge clipping */}
+                <div className="bg-white rounded-[2rem] overflow-hidden flex flex-col h-full border border-gray-100 shadow-md transition-all hover:shadow-xl hover:-translate-y-1">
+                  
+                  <div className="bg-[#fcfcfc] flex items-center justify-center p-6 aspect-square">
+                    <img
+                      src={p.images}
+                      alt={p.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  <div className="bg-white p-4 flex items-center justify-center min-h-[80px]">
+                    <p className="text-center text-[11px] md:text-[13px] font-black text-[#1a1a1a] uppercase tracking-tighter leading-tight">
+                      {p.name}
+                    </p>
+                  </div>
                 </div>
-
-                {/* Title */}
-                <span className="mt-4 text-[12px] uppercase tracking-widest text-gray-400 font-bold">
-                  {p.title}
-                </span>
-
-                {/* Product Name */}
-                <p className="mt-1 text-center text-[14px] md:text-[16px] eczar font-semibold text-[#405305] max-w-[200px] line-clamp-2">
-                  {p.name}
-                </p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
-
-   
-    </>
+    </div>
   );
 }

@@ -2,72 +2,70 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import Image from "next/image"; // Added for potential banners
 import "swiper/css";
 
 export default function CrammidSlider() {
   const crammidData = [
     { name: "MIXED SEED AND PEANUT BAR", images: "/1.jpg" },
-    { name: "PUMPKIN SEED AND PEANUT BAR", images: "/2.jpg"  },
+    { name: "PUMPKIN SEED AND PEANUT BAR", images: "/2.jpg" },
     { name: "SESAMED AND PEANUT BAR", images: "/3.jpg" },
     { name: "CHICK PEAS SRIRACHA FLAVOUR", images: "/5.jpg" },
-    { name: "CHICK PEAS BBQ FLAVOUR", images: "/6.jpg"},
+    { name: "CHICK PEAS BBQ FLAVOUR", images: "/6.jpg" },
     { name: "CHICK PEAS SWEET CHILLI FLAVOUR", images: "/8.jpg" },
+    { name: "MIXED SEED AND PEANUT BAR", images: "/1.jpg" },
+    { name: "PUMPKIN SEED AND PEANUT BAR", images: "/2.jpg" },
   ];
 
   return (
-    <>
-      <div className="max-w-7xl mx-auto px-4 py-10">
+    /* 1. BALANCED VERTICAL SPACE: Using py-16 md:py-24 for equal top and bottom gaps */
+    <div className="w-full bg-[#f3f4f6] py-16 md:py-24 px-4 overflow-visible">
+      <div className="max-w-5xl mx-auto overflow-visible">
         <Swiper
           modules={[Autoplay]}
-          spaceBetween={24}
+          spaceBetween={20}
           slidesPerView={2}
           loop={true}
           autoplay={{
-            delay: 2500,
+            delay: 2000,
             disableOnInteraction: false,
           }}
           breakpoints={{
-            768: { slidesPerView: 3 },
+            640: { slidesPerView: 3 },
             1024: { slidesPerView: 4 },
           }}
-          className="!overflow-hidden"
+          /* 2. CROP FIX: 
+             !pb-10 adds space inside the slider box so shadows aren't cut.
+             -mb-10 pulls the bottom of the section back up to keep the spacing equal. 
+          */
+          className="overflow-visible !pb-10 -mb-10"
         >
           {crammidData.map((p, i) => (
-            <SwiperSlide key={i}>
-              <div className="w-full flex flex-col items-center group">
-                {/* Image Container */}
-                <div className="w-[200px] h-[250px] md:w-[300px] md:h-[300px] flex items-end justify-center">
+            <SwiperSlide key={i} className="h-full py-2">
+              {/* Professional Card Styling */}
+              <div className="bg-white rounded-[2rem] overflow-hidden flex flex-col h-full border border-gray-100 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group">
+                
+                {/* Image Container - Square Aspect Ratio */}
+                <div className="bg-[#fcfcfc] flex items-center justify-center p-6 aspect-square">
                   <img
                     src={p.images}
                     alt={p.name}
-                    className="max-h-full max-w-full object-contain transform transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-contain transform transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
 
-                {/* Title */}
-                <span className="mt-4 text-[12px] uppercase tracking-widest text-gray-400 font-bold">
-                  {p.title}
-                </span>
-
-                {/* Product Name */}
-                <p className="mt-1 text-center text-[14px] md:text-[16px] eczar font-semibold text-[#405305] max-w-[200px] line-clamp-2">
-                  {p.name}
-                </p>
+                {/* Product Text Footer */}
+                <div className="bg-white p-4 flex items-center justify-center min-h-[80px]">
+                  <p className="text-center text-[12px] md:text-[13px] font-black text-[#1a1a1a] uppercase tracking-tighter leading-tight">
+                    {p.name}
+                  </p>
+                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-
-      {/* --- Slider ke Neeche Wali Image --- */}
-      <div className="w-full mt-8">
-        <img 
-          src="/wow_chow_bg.webp" // Apni image ka path yahan likhein
-          alt="Banner Description"
-          className="w-full h-auto block"
-        />
-      </div>
-    </>
+    </div>
   );
 }
