@@ -32,7 +32,7 @@ export default function AmazingFlavour() {
       name: "Coconut", 
       slug: "coconut", 
       SKU: "cc-01", 
-      featured_image: "/coconut.png" // dummy image path
+      featured_image: "/pulpco.jpg" // dummy image path
     },
   ];
 
