@@ -26,7 +26,7 @@ export default function Herosection() {
                 backgroundImage: 'none' 
               }}
               className="p-10 flex flex-col items-center justify-center text-center 
-                         rounded-[2rem] shadow-xl transition-all border-0
+                         rounded-2xl shadow-xl transition-all border-0
                          duration-500 hover:shadow-2xl transform hover:-translate-y-2 group"
             >
               {/* Value Text - Less Bold */}

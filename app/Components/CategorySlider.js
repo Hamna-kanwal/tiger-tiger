@@ -48,15 +48,15 @@ export default function CategoryMarquee() {
 
       {/* Marquee Wrapper */}
       <div className="relative w-full overflow-hidden pt-4 pb-8">
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
 
         <div className="animate-marquee flex items-center">
           {repeated.map((item, i) => (
             <Link
               href={`/categories/${item.slug}`}
               key={i}
-              className="flex flex-col items-center flex-shrink-0 px-4 md:px-6"
+              className="flex flex-col items-center shrink-0 px-4 md:px-6"
             >
               <div className="relative w-28 h-28 md:w-44 md:h-44 rounded-full overflow-hidden border-[4px] border-white shadow-xl transition-all duration-500 hover:scale-110 hover:border-[#d2bf7f] bg-gray-50">
                 <Image

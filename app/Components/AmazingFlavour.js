@@ -74,7 +74,7 @@ export default function AmazingFlavour() {
             src={flavour.featured_image}
             alt={flavour.name}
             // 5% rounding yahan apply ho rahi hai
-            className="w-auto h-[250px] object-cover rounded-[5%]"
+            className="w-auto h-62.5 object-cover rounded-[5%]"
           />
         </div>
       </Link>
