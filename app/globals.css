@@ -17,7 +17,8 @@ nav a {
 }
 
 .eczar {
-  font-family: "fields", sans-serif;
+  font-family: 'Recoleta', serif;
+
   font-weight: 700;
   font-style: normal;
 }
@@ -50,4 +51,15 @@ nav a {
 
 .search-bg-gold {
   background-color: #d2bf7f !important;
+}
+@font-face {
+  font-family: 'Recoleta';
+  src: url('/fonts/recoleta-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap; /* important */
+}
+
+h1, h2, h3 {
+  font-family: 'Recoleta', serif;
 }
