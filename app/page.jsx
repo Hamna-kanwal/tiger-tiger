@@ -4,7 +4,7 @@
 import HeroSlider from "./Components/Heroslider";
 import BrandSlider from "./Components/Brandslider";
 import ProductRangeSlider from "./Components/ProductRangeSlider";
-import Herosection from "./Components/Herosection";       // Ab direct file hai
+import Herosection from "./Components/HeroSection";       // Ab direct file hai
 import AmazingFlavour from "./Components/AmazingFlavour"; // Ab direct file hai
 import ProductRange from "./Components/ProductRange";     // Ab direct file hai
 import Crammed from "./Components/Crammed";               // Ab direct file hai
