@@ -3,38 +3,52 @@
 :root {
   --brand-purple: #4e1a51;
   --brand-gold: #EED697;
+  --subheading-grey: #333333;
 }
 
 @theme {
-  /* This tells Tailwind to create 'text-brand-purple' and 'bg-brand-gold' */
   --color-brand-purple: var(--brand-purple);
   --color-brand-gold: var(--brand-gold);
 }
 
-/* Force all links in the header to use the variable if they are stubborn */
-nav a {
+/* Headings aur Eczar class ke liye 'fields' font (Adobe Typekit wala) */
+h1, h2, h3, .eczar {
+  font-family: "fields", serif !important;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Sub-heading style */
+.subHeading {
+  color: var(--subheading-grey);
+  margin-top: 12px;
+  font-family: inherit; /* Ye Outfit font use karega jo layout mein set hai */
+}
+
+/* Header links color fix */
+nav a, .nav-link-purple {
   color: var(--brand-purple) !important;
 }
 
-.eczar {
-  font-family: 'Recoleta', serif;
-
-  font-weight: 700;
-  font-style: normal;
+/* Search bar gold background */
+.search-bg-gold {
+  background-color: #d2bf7f !important;
 }
+
+/* Image heights logic */
 .image-height {
-  /* Jo bhi height aapko chahiye yahan likhein */
   height: 1000px !important; 
   width: auto !important;
   max-width: 100%;
 }
 
-/* Mobile ke liye agar choti karni ho */
 @media (max-width: 768px) {
   .image-height {
-    height: 1000px !important;
+    height: 600px !important; /* Mobile par 1000px boht zyada ho jaye ga, isliye 600px kiya hai */
   }
 }
+
+/* Animations */
 @keyframes float {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-12px) rotate(5deg); }
@@ -43,28 +57,4 @@ nav a {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
-}
-/* Add this to the bottom of your globals.css */
-.nav-link-purple {
-  color: #4e1a51 !important;
-}
-
-.search-bg-gold {
-  background-color: #d2bf7f !important;
-}
-@font-face {
-  font-family: 'Recoleta';
-  src: url('/fonts/recoleta-bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap; /* important */
-}
-
-h1, h2, h3 {
-  font-family: 'Recoleta', serif;
-}
-
-.subHeading {
-  color: #333333; /* Dark Grey */
-  margin-top: 12px;
 }

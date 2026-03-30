@@ -42,7 +42,7 @@ export default function HeroSection() {
           Nature’s Best in Every Sip
         </p>
         
-        <h1 className="eczar text-[32px] md:text-[54px] lg:text-[74px] font-black tracking-tighter leading-[1.1] text-[#1a1a1a]">
+        <h1 className="eczar text-[32px] md:text-[54px] lg:text-[60px] font-black tracking-tighter leading-[1.1] text-[#1a1a1a]">
           The Champion of <span style={{ color: brandPurple }}>Pulp</span>
         </h1>
         
