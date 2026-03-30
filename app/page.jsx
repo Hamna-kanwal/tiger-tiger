@@ -1,27 +1,27 @@
 "use client";
 
 // Saare sections ab "Components" folder se directly aa rahe hain
-import HeroSlider from "./Components/Heroslider";
-import BrandSlider from "./Components/Brandslider";
-import ProductRangeSlider from "./Components/ProductRangeSlider";
-import Herosection from "./Components/HeroSection";       // Ab direct file hai
-import AmazingFlavour from "./Components/AmazingFlavour"; // Ab direct file hai
-import ProductRange from "./Components/ProductRange";     // Ab direct file hai
-import Crammed from "./Components/Crammed";               // Ab direct file hai
-import CrammedSlider from "./Components/CrammedSlider";
-import Wowchow from "./Components/Wowchow";
-import Choice from "./Components/Choices";                // Check karlein agar file name 'Choices' hai
-import CategorySlider from "./Components/CategorySlider";
-import BrandIntro from "./Components/BrandIntro";
-import SmoothSlider from "./Components/SmoothSlider";
-import Footer from "./Components/Footer";
+import HeroSlider from "./CompTest/Heroslider";
+import BrandSlider from "./CompTest/Brandslider";
+import ProductRangeSlider from "./CompTest/ProductRangeSlider";
+import HeroSection from "./CompTest/HeroSection";       // Ab direct file hai
+import AmazingFlavour from "./CompTest/AmazingFlavour"; // Ab direct file hai
+import ProductRange from "./CompTest/ProductRange";     // Ab direct file hai
+import Crammed from "./CompTest/Crammed";               // Ab direct file hai
+import CrammedSlider from "./CompTest/CrammedSlider";
+import Wowchow from "./CompTest/Wowchow";
+import Choice from "./CompTest/Choices";                // Check karlein agar file name 'Choices' hai
+import CategorySlider from "./CompTest/CategorySlider";
+import BrandIntro from "./CompTest/BrandIntro";
+import SmoothSlider from "./CompTest/SmoothSlider";
+import Footer from "./CompTest/Footer";
 
 export default function Home() {
   return (
     <>
       <HeroSlider />
       <BrandSlider />
-      <Herosection />
+      <HeroSection />
       <AmazingFlavour />
       <ProductRange />
       <ProductRangeSlider />

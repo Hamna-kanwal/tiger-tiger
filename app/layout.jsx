@@ -2,7 +2,7 @@
 
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Header from "./Components/Header";
+import Header from "../CompTest/Header";
 
 const outfit = Outfit({
   subsets: ["latin"],
