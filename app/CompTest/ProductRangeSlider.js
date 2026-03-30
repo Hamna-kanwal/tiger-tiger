@@ -5,25 +5,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Link from "next/link";
 
-export default function ProductRangerSlider() {
+export default function ProductRangeSlider() { // Fixed typo: Ranger -> Range
   const products = [
-    {
-      image: "/lychee.png",
-      title: "Pulp+",
-    },
-    {
-      image: "/wow chow.jpeg",
-      title: "Wow Chow",
-    },
-    {
-      image: "/crammed.png",
-      title: "Cramm'd",
-    },
-    
+    { image: "/lychee.png", title: "Pulp+" },
+    { image: "/wow chow.jpeg", title: "Wow Chow" },
+    { image: "/crammed.png", title: "Cramm'd" },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto">
+    // Added overflow-hidden to the parent to stop the whole page from shaking
+    <div className="max-w-7xl mx-auto px-4 overflow-hidden">
       <Swiper
         loop
         grabCursor
@@ -33,16 +24,16 @@ export default function ProductRangerSlider() {
           640: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        className="range-swiper pb-10 overflow-visible md:overflow-hidden"
+        // Added pt-10 to give space for the hover scale effect
+        className="range-swiper pb-10 pt-10"
       >
         {products.map((p, i) => (
-          <SwiperSlide key={i} className="!overflow-visible px-2">
-            {/* href ko sirf "#" kar diya hai taake specific link khatam ho jaye */}
+          <SwiperSlide key={i} className="px-2">
             <Link href="#">
               <motion.div
                 whileHover={{
-                  scale: 1.06,
-                  y: -6,
+                  scale: 1.05,
+                  y: -10,
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
                 className="cursor-pointer relative h-[320px] md:h-[420px] rounded-3xl overflow-hidden shadow-xl"
@@ -70,14 +61,7 @@ export default function ProductRangerSlider() {
         ))}
       </Swiper>
 
-      <style jsx global>{`
-        .range-swiper {
-          overflow: visible !important;
-        }
-        .swiper-slide {
-          overflow: visible !important;
-        }
-      `}</style>
+      {/* Removed the global overflow:visible styles as they were causing the issue */}
     </div>
   );
 }
