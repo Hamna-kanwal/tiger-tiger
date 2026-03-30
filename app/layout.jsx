@@ -2,7 +2,7 @@
 import { Outfit, Eczar } from "next/font/google";
 import "./globals.css";
 import Header from "./CompTest/Header"; 
-import Footer from "./CompTest/Footer";
+
 
 // 1. Google Fonts Configuration
 const outfit = Outfit({
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
         <main>
           {children}
         </main>
-        <Footer />
+      
       </body>
     </html>
   );
