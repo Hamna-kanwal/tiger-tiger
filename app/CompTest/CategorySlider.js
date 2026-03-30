@@ -5,14 +5,14 @@ import Link from "next/link";
 
 export default function CategoryMarquee() {
   const categories = [
-    { name: "NOODLES", slug: "noodles", image: "/noodles.png" },
+    { name: "NOODLES", slug: "noodles", image: "/Noodles.png" },
     { name: "Nuts & Seeds", slug: "nuts-seeds", image: "/Nuts_and_Seeds.png" },
-    { name: "Rice", slug: "rice", image: "/rice.png" },
-    { name: "Canned", slug: "canned", image: "/canned.png" },
-    { name: "Snacks", slug: "snacks", image: "/snacks.png" },
+    { name: "Rice", slug: "rice", image: "/Rice.png" },
+    { name: "Canned", slug: "canned", image: "/Canned.png" },
+    { name: "Snacks", slug: "snacks", image: "/Snacks.png" },
     { name: "Spices & Seasonings", slug: "spices", image: "/Spices_and_seasonings.png" },
-    { name: "Drinks", slug: "drinks", image: "/drinks.png" },
-    { name: "Frozen", slug: "frozen", image: "/frozen.png" },
+    { name: "Drinks", slug: "drinks", image: "/Drinks.png" },
+    { name: "Frozen", slug: "frozen", image: "/Frozen.png" },
     { name: "Taste japan", slug: "japan", image: "/Japanese.png" },
     { name: "Sauces", slug: "sauces", image: "/Sauces.png" },
   ];
