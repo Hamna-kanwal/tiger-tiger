@@ -1,15 +1,13 @@
 // app/layout.jsx
-
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Header from "../CompTest/Header";
+import Header from "./CompTest/Header"; // Path ab bilkul sahi hai (./)
 
 const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
 });
 
-// 2. SEO Metadata 
 export const metadata = {
   title: "Tiger Tiger Foods",
   description: "Nature's best in every sip",
@@ -17,8 +15,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-<html lang="en">
-  <body className={`${outfit.className} antialiased`}>
+    <html lang="en">
+      {/* className yahan body par sahi apply ho rahi hai */}
+      <body className={`${outfit.className} antialiased`}>
         <Header />
         <main>
           {children}
