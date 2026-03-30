@@ -18,7 +18,7 @@ export default function CategorySlider() {
           <h2 className="text-4xl font-serif font-bold text-emerald-900 mb-2">
             Flavours for Every Craving
           </h2>
-          <p className="text-gray-600 font-medium">
+          <p className="text-gray-600 text-[16px] md:text-[18px]">
             Drinks? Noodles? Frozen? If It's Delicious, It's in Our Range.
           </p>
         </div>

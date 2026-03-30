@@ -63,3 +63,8 @@ nav a {
 h1, h2, h3 {
   font-family: 'Recoleta', serif;
 }
+
+.subHeading {
+  color: #333333; /* Dark Grey */
+  margin-top: 12px;
+}

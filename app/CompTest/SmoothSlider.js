@@ -61,7 +61,7 @@ export default function ProductGallerySlider() {
         
         {/* Second text now Black and font-normal (less bold) */}
         <p 
-          className="text-black text-[16px] md:text-[18px] font-normal mt-3 text-center md:text-left max-w-lg md:max-w-full mx-auto md:mx-0"
+          className="text-black text-[16px] md:text-[18px] font-normal mt-3 text-center md:text-left max-w-lg md:max-w-full mx-auto md:mx-0 subHeading"
         >
           Discover our social media and connect with us
         </p>

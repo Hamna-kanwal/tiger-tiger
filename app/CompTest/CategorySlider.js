@@ -31,7 +31,7 @@ export default function CategoryMarquee() {
             Flavours for Every Craving
           </h2>
           {/* Second text is now Black */}
-          <p className="text-black font-medium text-lg">
+          <p className="text-black font-medium text-lg subHeading">
             Drinks? Noodles? Frozen? If It's Delicious, It's in Our Range.
           </p>
         </div>
