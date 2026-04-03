@@ -51,11 +51,11 @@ export default function AmazingFlavour() {
         <div className=" text-center md:text-left">
           {/* Eczar font standard sans/serif font se fallback ho jayega agar imported na ho */}
           <h1 className="text-center md:text-left eczar text-2xl md:text-3xl text-white mb-2">
-            4 Amazing Flavours
+      4 Amazing Flavours
           </h1>
        <p className="text-center md:text-left text-white text-[16px] md:text-[18px] mt-[12px] mb-10 subH">
-  Pulp+ now available in 4 amazing flavours: Mango, Lychee, Guava, and
-  Coconut water. Made with 100% real fruit with pulp. <br />  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  Pulp+ now available in 4 amazing flavours, Mango, Lychee, Guava and Coconut water. Made with real fruit with pulp.
+
 </p>
         </div>
 

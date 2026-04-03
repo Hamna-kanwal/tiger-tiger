@@ -57,14 +57,23 @@ const Footer = () => {
             <Image 
               src="/logo.png" 
               alt="Tiger Tiger Logo" 
-              width={220} 
+              width={150} 
               height={60} 
               priority 
-              className="object-contain -mt-2" 
+              className="object-contain" 
             />
           </Link>
-          <p style={{ color: brandPurple }} className="text-[14px] leading-relaxed font-normal opacity-90">
-            The UK&apos;s leading developer of authentic Asian cuisine. From Japanese and Thai to Chinese and Indian, we deliver premium ingredients and exceptional flavours.
+               {/* <h3 
+    style={{ color: brandPurple }} 
+    className="eczar text-[22px] md:text-[24px] font-black leading-[1.2] tracking-tight"
+  >
+    Your Trusted Asian Food <br className="hidden md:block" /> Supplier in the UK
+  </h3> */}
+          <p style={{ color: brandPurple }} className="text-[16px] leading-relaxed font-normal opacity-90">
+           Tiger Tiger is committed to delivering high-quality Asian ingredients to businesses across the UK.
+From Japanese and Thai to Chinese and Indian cuisine, our products bring authentic flavours to every kitchen.
+Partner with us to access premium ingredients, competitive pricing, and reliable supply.
+
           </p>
           
           {/* Social Icons - Now using Brand Purple & Gold Hover */}

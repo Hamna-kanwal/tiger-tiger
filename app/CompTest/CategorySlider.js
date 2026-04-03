@@ -18,25 +18,20 @@ export default function CategoryMarquee() {
   ];
 
   const brandPurple = "#4e1a51";
-  const crownGold = "#d2bf7f";
   
-  const repeated = [...categories, ...categories, ...categories, ...categories];
+  // Duplication handle karne ka behtar tareeqa
+  const repeated = Array(4).fill(categories).flat();
 
   return (
-    <section className="py-12 w-full bg-white overflow-hidden">
-      {/* Header */}
+    <section className="py-4 w-full bg-white overflow-hidden">
+      {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4 max-w-7xl mx-auto px-6">
         <div>
           <h2 style={{ color: brandPurple }} className="text-4xl md:text-5xl font-serif font-bold mb-2 eczar">
-            Flavours for Every Craving
+            Our Product Categories
           </h2>
-          {/* Second text is now Black */}
-          <p className="text-black font-medium text-lg subHeading">
-            Drinks? Noodles? Frozen? If It's Delicious, It's in Our Range.
-          </p>
         </div>
         
-        {/* Button: Purple background, White text, No border */}
         <button 
           suppressHydrationWarning
           style={{ backgroundColor: brandPurple }}
@@ -46,17 +41,17 @@ export default function CategoryMarquee() {
         </button>
       </div>
 
-      {/* Marquee Wrapper */}
+      {/* Marquee Wrapper - White Gradients Removed */}
       <div className="relative w-full overflow-hidden pt-4 pb-8">
-        <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        {/* Gradients divs (absolute) ko delete kar diya hai */}
 
         <div className="animate-marquee flex items-center">
           {repeated.map((item, i) => (
             <Link
               href={`/categories/${item.slug}`}
               key={i}
-              className="flex flex-col items-center shrink-0 px-4 md:px-6"
+              // Gap ko px-2/px-4 kar diya hai space kam karne ke liye
+              className="flex flex-col items-center shrink-0 px-2 md:px-4"
             >
               <div className="relative w-28 h-28 md:w-44 md:h-44 rounded-full overflow-hidden border-[4px] border-white shadow-xl transition-all duration-500 hover:scale-110 hover:border-[#d2bf7f] bg-gray-50">
                 <Image
@@ -69,7 +64,7 @@ export default function CategoryMarquee() {
               
               <p 
                 style={{ color: brandPurple }}
-                className="mt-5 text-center text-[12px] md:text-sm font-black uppercase tracking-[0.15em] eczar"
+                className="mt-5 text-center text-[12px] md:text-sm font-semibold  uppercase "
               >
                 {item.name}
               </p>

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Link from "next/link";
 
-export default function ProductRangeSlider() { // Fixed typo: Ranger -> Range
+export default function ProductRangeSlider() {
   const products = [
     { image: "/lychee.png", title: "Pulp+" },
     { image: "/wow chow.jpeg", title: "Wow Chow" },
@@ -13,8 +13,8 @@ export default function ProductRangeSlider() { // Fixed typo: Ranger -> Range
   ];
 
   return (
-    // Added overflow-hidden to the parent to stop the whole page from shaking
-    <div className="max-w-7xl mx-auto px-4 overflow-hidden">
+    // Outer wrapper mein thori extra padding di hai taaki visible overflow page se bahar na jaye
+    <div className="max-w-7xl mx-auto ">
       <Swiper
         loop
         grabCursor
@@ -24,8 +24,11 @@ export default function ProductRangeSlider() { // Fixed typo: Ranger -> Range
           640: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        // Added pt-10 to give space for the hover scale effect
-        className="range-swiper pb-10 pt-10"
+        /* CRITICAL FIX: 
+           1. !overflow-visible: Taaki hover effects boundary se bahar nazar ayein.
+           2. pt-12: Taaki upar se card lift hone ki jagah ho.
+        */
+        className="range-swiper !overflow-visible"
       >
         {products.map((p, i) => (
           <SwiperSlide key={i} className="px-2">
@@ -33,14 +36,11 @@ export default function ProductRangeSlider() { // Fixed typo: Ranger -> Range
               <motion.div
                 whileHover={{
                   scale: 1.05,
-                  y: -10,
+                  y: -15, // Ab aap zyada lift bhi kar sakti hain, ye nahi katega
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
                 className="cursor-pointer relative h-[320px] md:h-[420px] rounded-3xl overflow-hidden shadow-xl"
-                style={{
-                  cursor:
-                    'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiMwMDAwMDAiLz4KPHBhdGggZD0iTTEyIDEySDIwVjIwSDE4VjE1LjQxTDEzLjcxIDE5LjcxTDEyLjI5IDE4LjI5TDE2LjU5IDE0SDEyVjEyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+") 16 16, pointer',
-                }}
+               
               >
                 <img
                   src={p.image}
@@ -60,8 +60,6 @@ export default function ProductRangeSlider() { // Fixed typo: Ranger -> Range
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* Removed the global overflow:visible styles as they were causing the issue */}
     </div>
   );
 }

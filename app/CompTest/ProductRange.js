@@ -7,7 +7,7 @@ export default function Product() {
   const brandPurple = "#4e1a51";
 
   return (
-    <section className="py-4 md:py-8 px-6 bg-white overflow-hidden">
+    <section className="py-4 md:py-12 px-6 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Parent Container: flex-row aur items-center for vertical middle alignment */}

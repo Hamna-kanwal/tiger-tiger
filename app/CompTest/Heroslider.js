@@ -34,17 +34,12 @@ export default function HeroSection() {
       </div>
 
       {/* 3. TEXT CONTENT */}
-      <div className="relative z-20 flex flex-col items-center text-center px-6 max-w-5xl">
-        <p 
-          style={{ color: brandPurple }} 
-          className="text-[10px] md:text-xs font-outfit font-semibold tracking-[0.2em] uppercase mb-1"
-        >
-          Nature’s Best in Every Sip
-        </p>
+      <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl">
+       <p  style={{ color: brandPurple }} className="text-base lg:text-lg font-outfit mt-4 lg:mt-2 font-semibold mb-1">Nature’s Best in Every Sip</p>
         
-        <h1 className="eczar text-[32px] md:text-[54px] lg:text-[60px] font-black tracking-tighter leading-[1.1] text-[#1a1a1a]">
-          The Champion of <span style={{ color: brandPurple }}>Pulp</span>
-        </h1>
+      <h1 className="eczar text-[30px] md:text-[50px] lg:text-[50px] m-0 p-0 font-black  tracking-tighter text-[#1a1a1a]">
+  Leading <span style={{ color: brandPurple }}>Asian Food Brand</span> in the UK
+</h1>
         
         <p 
           style={{ color: brandPurple }} 
@@ -94,7 +89,6 @@ export default function HeroSection() {
     </section>
   );
 } 
-
 
 
 

@@ -21,7 +21,7 @@ export default function BrandsSlider() {
   ];
 
   return (
-    <section className="bg-[#FF9003] py-3 mt-0">
+    <section className="bg-[#4e1a51] py-3 mt-0">
       <div className="max-w-7xl mx-auto px-4">
         <Swiper
           modules={[Autoplay]}
