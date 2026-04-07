@@ -70,9 +70,7 @@ const Footer = () => {
     Your Trusted Asian Food <br className="hidden md:block" /> Supplier in the UK
   </h3> */}
           <p style={{ color: brandPurple }} className="text-[16px] leading-relaxed font-normal opacity-90">
-           Tiger Tiger is committed to delivering high-quality Asian ingredients to businesses across the UK.
-From Japanese and Thai to Chinese and Indian cuisine, our products bring authentic flavours to every kitchen.
-Partner with us to access premium ingredients, competitive pricing, and reliable supply.
+           Tiger Tiger brings premium Asian ingredients  Japanese, Thai, Chinese, Korean and more  to businesses across the UK. Authentic flavours, competitive pricing, reliable supply.
 
           </p>
           
