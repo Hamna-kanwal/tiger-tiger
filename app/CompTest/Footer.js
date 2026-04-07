@@ -52,7 +52,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12 lg:gap-16">
         
         {/* Column 1: Brand & Identity */}
-        <div className="flex-1 flex flex-col gap-6 md:max-w-[320px]">
+        <div className="flex-1 flex flex-col gap-6 md:max-w-[320px] -mt-4">
           <Link href="/" className="inline-block transition-opacity hover:opacity-80">
             <Image 
               src="/logo.png" 
