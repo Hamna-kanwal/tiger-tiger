@@ -28,7 +28,7 @@ export default function CategoryMarquee() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4 max-w-7xl mx-auto px-6">
         <div>
           <h2 style={{ color: brandPurple }} className="text-4xl md:text-5xl font-serif font-bold mb-2 eczar">
-            Our Product Categories
+            Our  Categories
           </h2>
         </div>
         

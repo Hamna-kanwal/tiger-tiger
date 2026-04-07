@@ -19,20 +19,6 @@ export default function HeroSection() {
       {/* Increased mobile padding to ensure header doesn't overlap text */}
       <div className="w-full pt-[100px] md:pt-[140px] lg:pt-[160px]" />
 
-      {/* 2. SCATTERED PULPS */}
-      {/* Added pointer-events-none so these don't block button clicks on small screens */}
-      <div className="absolute top-[12%] left-[5%] w-16 h-16 md:w-32 md:h-32 z-10 opacity-90 animate-float pointer-events-none">
-        <Image src="/red.png" alt="Red Pulp" width={120} height={120} className="object-contain" />
-      </div>
-
-      <div className="absolute top-[40%] right-[2%] w-16 h-16 md:w-32 md:h-32 z-10 opacity-90 animate-float [animation-delay:4s] pointer-events-none">
-        <Image src="/yello.png" alt="Yellow Pulp" width={120} height={120} className="object-contain -rotate-45" />
-      </div>
-
-      <div className="absolute bottom-[30%] left-[10%] w-12 h-12 md:w-24 md:h-24 z-10 opacity-80 animate-float [animation-delay:5.5s] pointer-events-none">
-        <Image src="/white.png" alt="White Pulp" width={90} height={90} className="object-contain rotate-[110deg]" />
-      </div>
-
       {/* 3. TEXT CONTENT */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl">
         <p

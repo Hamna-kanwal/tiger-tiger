@@ -14,6 +14,8 @@ import Choice from "./CompTest/Choices";
 import CategorySlider from "./CompTest/CategorySlider";
 import  Cuisine from  "./CompTest/Cuisine";
 import About from "./CompTest/About";
+import Sourcesection from "./CompTest/SourcseSection";
+import Innovationsection from "./CompTest/InnovationSection"
 import Work from "./CompTest/WorkSection"
 import Choose from "./CompTest/Choose"
 import SmoothSlider from "./CompTest/SmoothSlider";
@@ -39,6 +41,8 @@ export default function Home() {
       <Cuisine/>
       {/* <BrandIntro /> */}
       <About/>
+      <Sourcesection/>
+      <Innovationsection/>
       <Work/>
       <Choose/>
      

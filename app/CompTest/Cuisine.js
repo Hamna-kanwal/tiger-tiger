@@ -15,7 +15,7 @@ const CuisineSection = () => {
     { title: "CHINESE FOOD INGREDIENTS", desc: "Chopsticks, chinese food products, chinese pasta and more.", icon: <Plus size={35} /> },
     { title: "KOREAN FLAVOURS AND SAUCES", desc: "Key products, chili paste and sauces.", icon: <Search size={35} /> },
     { title: "VIETNAMESE COOKING INGREDIENTS", desc: "Phở and namese cooking ingredients.", icon: <Award size={35} /> },
-    { title: "INDIAN SPICES AND FOODS", desc: "Spice jars and authentic spice foods.", icon: <Target size={35} /> },
+    { title: "ETHNIC SPICES AND FOODS", desc: "Spice jars and authentic spice foods.", icon: <Target size={35} /> },
   ];
 
   // Sirf pehle 3 ya saare dikhane ke liye logic

@@ -56,7 +56,7 @@ export default function ProductGallerySlider() {
           style={{ color: brandPurple }}
           className="eczar font-bold text-[32px] md:text-[52px] leading-tight text-center md:text-left"
         >
-          What's Cooking?
+          Explore Our Social Media
         </h2>
         
         {/* Second text now Black and font-normal (less bold) */}
