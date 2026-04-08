@@ -60,7 +60,7 @@ export default function Header() {
 
         {/* Search & Mobile Menu */}
         <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center rounded-full px-4 py-2 w-40 lg:w-56 bg-[#EED697]/70">
+          <div className="hidden md:flex items-center rounded-full px-4 py-2 w-40 lg:w-56 bg-[#D2B57B]/70">
             <Search size={16} className="text-[#4e1a51]" />
             <input
               type="text"

@@ -7,9 +7,7 @@ export default function InnovationSection() {
         
         {/* 1. TOP: Main Heading (Still - No Motion) */}
         <div className="text-center mb-12">
-          <span className="outfit text-[#8b2d8e] font-bold tracking-[0.5em] text-[10px] uppercase block mb-6">
-            Future Focused
-          </span>
+        
           <h2 className="eczar text-[30px] md:text-[50px] font-black text-[#4e1a51] leading-none tracking-tighter md:whitespace-nowrap">
             INNOVATION IN ASIAN FOOD DEVELOPMENT
           </h2>

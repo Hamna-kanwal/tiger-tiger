@@ -1,11 +1,12 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 const LatestBlog = () => {
   const brandPurple = "#431A4F";
-  const brandGold = "#EED697";
+  const brandGold = "#D2B57B";
+  const [isMainBtnHovered, setIsMainBtnHovered] = useState(false);
 
   const blogs = [
     {
@@ -26,7 +27,7 @@ const LatestBlog = () => {
   ];
 
   return (
-    <section className="py-20- px-6 bg-white">
+    <section className="py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         
         {/* --- Header Section --- */}
@@ -34,42 +35,42 @@ const LatestBlog = () => {
           <h2 className="eczar text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
             Latest Blog
           </h2>
-        
         </div>
 
         {/* --- Blog Grid --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
-            <div key={index} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col">
+            <div key={index} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500">
               
-              {/* Image Container with Purple Overlay (As per your reference) */}
+              {/* Image Container */}
               <div className="relative h-64 overflow-hidden">
                 <img 
                   src={blog.image} 
                   alt={blog.title} 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                {/* Image Overlay: Purple with transparency */}
-                <div className="absolute inset-0 bg-[#431A4F]/70 flex flex-col items-center justify-center p-6 text-center opacity-100 group-hover:bg-[#431A4F]/80 transition-all">
+                <div className="absolute inset-0 bg-[#431A4F]/70 flex flex-col items-center justify-center p-6 text-center opacity-100 group-hover:bg-[#431A4F]/85 transition-all">
                   <h3 className="text-white font-black text-xl md:text-2xl leading-tight mb-2">
                     {blog.title}
                   </h3>
-             
                 </div>
               </div>
 
               {/* Text Content */}
-              <div className="p-8 flex flex-col flex-grow text-center">
-                <h4 className="font-extrabold text-[#431A4F] text-lg mb-3 uppercase tracking-tight line-clamp-1">
+              <div className="p-8 flex flex-col flex-grow text-center items-center">
+                <h4 className="font-extrabold text-[#431A4F] text-lg mb-3 uppercase tracking-tight">
                   {blog.title}
                 </h4>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
                   {blog.desc}
                 </p>
                 
-                {/* Read More Button */}
-                <button className="flex items-center justify-center gap-2 text-[#431A4F] font-black text-sm uppercase tracking-widest group-hover:text-[#EED697] transition-colors">
-                  Read More <ArrowRight size={16} />
+                {/* Read More Link Styling */}
+                <button 
+                  style={{ color: brandPurple }}
+                  className="flex items-center gap-2 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:tracking-[0.3em] group-hover:text-[#D2B57B]"
+                >
+                  Read More <ArrowRight size={14} />
                 </button>
               </div>
             </div>
@@ -78,7 +79,15 @@ const LatestBlog = () => {
 
         {/* --- Bottom Action Button --- */}
         <div className="text-center mt-16">
-          <button className="bg-[#431A4F] text-white px-10 py-4 rounded-full font-black uppercase tracking-widest hover:bg-[#5a246a] hover:shadow-2xl hover:shadow-[#431A4F]/30 transition-all duration-300">
+          <button 
+            onMouseEnter={() => setIsMainBtnHovered(true)}
+            onMouseLeave={() => setIsMainBtnHovered(false)}
+            style={{ 
+              borderColor: isMainBtnHovered ? brandGold : brandPurple,
+              color: isMainBtnHovered ? brandGold : brandPurple 
+            }}
+            className="inline-block px-12 py-4 rounded-full border-2 bg-transparent font-black uppercase tracking-widest text-sm transition-all duration-300 shadow-md active:scale-95"
+          >
             View All Blogs
           </button>
         </div>

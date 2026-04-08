@@ -4,8 +4,11 @@ import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
 const FAQSection = () => {
+  const brandPurple = "#431A4F";
+  const brandGold = "#D2B57B";
   const [openIndex, setOpenIndex] = useState(null);
-  const [showAll, setShowAll] = useState(false); // Baaki FAQs dikhane ke liye state
+  const [showAll, setShowAll] = useState(false);
+  const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -13,7 +16,7 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: " Where can I find a reliable Asian food supplier in the UK?",
+      question: "Where can I find a reliable Asian food supplier in the UK?",
       answer: "Finding a reliable Asian food supplier in the UK can be challenging, especially when consistency and authenticity matter. Tiger Tiger provides a trusted solution by offering a wide range of authentic Asian ingredients sourced from across Asia. We supply restaurants, retailers, and food businesses with high-quality products backed by decades of industry experience.",
     },
     {
@@ -38,7 +41,6 @@ const FAQSection = () => {
     }
   ];
 
-  // Sirf 3 dikhane hain ya saare, uska faisla yahan hoga
   const displayedFaqs = showAll ? faqs : faqs.slice(0, 3);
 
   return (
@@ -55,25 +57,31 @@ const FAQSection = () => {
         {displayedFaqs.map((faq, index) => (
           <div 
             key={index} 
-            className="border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md"
+            style={{ 
+              borderColor: openIndex === index ? brandGold : '#f3f4f6',
+              // Adding the 5px golden bar on the left when active
+              borderLeftWidth: openIndex === index ? '5px' : '1px'
+            }}
+            className="border rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md bg-white"
           >
             <button
               onClick={() => toggleAnswer(index)}
-              className="w-full flex items-center justify-between p-5 md:p-6 text-left bg-white hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-colors"
             >
               <span className={`text-base md:text-lg font-bold transition-colors duration-300 ${openIndex === index ? 'text-[#333333]' : 'text-[#431A4F]'}`}>
                 {faq.question}
               </span>
               
-              <div className={`flex-shrink-0 ml-4 transition-transform duration-300 ${openIndex === index ? 'rotate-180 text-[#431A4F]' : 'text-[#431A4F]'}`}>
-                {openIndex === index ? <Minus size={24} strokeWidth={3} /> : <Plus size={24} strokeWidth={3} />}
+              <div className="flex-shrink-0 ml-4 transition-transform duration-300" style={{ color: brandPurple }}>
+                {openIndex === index ? <Minus size={22} strokeWidth={3} className="rotate-180" /> : <Plus size={22} strokeWidth={3} />}
               </div>
             </button>
 
             <div 
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
             >
-              <div className="p-5 md:p-6 pt-0 text-gray-500 text-sm md:text-base leading-relaxed border-t border-gray-50">
+              <div className="p-5 md:p-6 pt-0 text-gray-500 text-sm md:text-base leading-relaxed">
+                <div className="w-full h-[1px] bg-gray-100 mb-4" />
                 {faq.answer}
               </div>
             </div>
@@ -83,10 +91,16 @@ const FAQSection = () => {
 
       {/* --- Read More Button --- */}
       {!showAll && (
-        <div className="mt-10">
+        <div className="mt-12">
           <button 
+            onMouseEnter={() => setIsBtnHovered(true)}
+            onMouseLeave={() => setIsBtnHovered(false)}
             onClick={() => setShowAll(true)}
-            className="px-12 py-4 border-2 border-[#431A4F] text-[#431A4F] rounded-full font-black uppercase tracking-widest text-sm hover:bg-[#431A4F] hover:text-white transition-all duration-300 shadow-md"
+            style={{ 
+              borderColor: isBtnHovered ? brandGold : brandPurple,
+              color: isBtnHovered ? brandGold : brandPurple 
+            }}
+            className="px-12 py-4 border-2 bg-transparent rounded-full font-black uppercase tracking-widest text-sm transition-all duration-300 shadow-md active:scale-95"
           >
             Read More FAQs
           </button>

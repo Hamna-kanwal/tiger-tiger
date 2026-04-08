@@ -1,8 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export default function B2BSection() {
+  const brandGold = "#d2bf7f";
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const supplyData = [
     { name: "Restaurants and takeaways" },
     { name: "Supermarkets and grocery stores" },
@@ -34,7 +38,13 @@ export default function B2BSection() {
           {supplyData.map((item, index) => (
             <div 
               key={index} 
-              className="flex items-center justify-center text-center p-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-md hover:bg-white/20 transition-all duration-300 shadow-lg min-h-[100px]"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              style={{ 
+                // Border changes to gold on hover
+                borderColor: hoveredIndex === index ? brandGold : "#431A4F"
+              }}
+              className="flex items-center justify-center text-center p-6 bg-white/10 backdrop-blur-sm border rounded-md hover:bg-white/20 transition-all duration-300 shadow-lg min-h-[100px]"
             >
               <h3 className="text-sm md:text-base font-semibold leading-tight text-white">
                 {item.name}
@@ -45,7 +55,10 @@ export default function B2BSection() {
 
         {/* Closing Statement */}
         <div className="max-w-4xl">
-          <p className="text-lg md:text-2xl text-white/90 leading-relaxed font-medium border-l-4 border-white/30 pl-6">
+          <p 
+            style={{ borderColor: brandGold }} // Dash (left border) made golden
+            className="text-lg md:text-2xl text-white/90 leading-relaxed font-medium border-l-4 pl-6"
+          >
             Our products help businesses improve efficiency, maintain quality, and deliver authentic dishes consistently.
           </p>
         </div>
