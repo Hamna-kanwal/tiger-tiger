@@ -12,29 +12,28 @@ const ProcessSection = () => {
     {
       title: "Market Demand",
       desc: "Studying traditional recipes and current market trends to identify what modern kitchens need.",
-      icon: <Search className="w-6 h-6" />,
+      icon: <Search className="w-8 h-8" />,
     },
     {
       title: "Collaboration",
       desc: "Working closely with professional chefs and food experts to refine authentic flavours.",
-      icon: <Users className="w-6 h-6" />,
+      icon: <Users className="w-8 h-8" />,
     },
     {
       title: "Authenticity",
       desc: "Ensuring every product stays true to its cultural origins and traditional taste profile.",
-      icon: <Settings className="w-6 h-6" />,
+      icon: <Settings className="w-8 h-8" />,
     },
     {
       title: "Quality Sourcing",
       desc: "Partnering with trusted global suppliers to source the finest natural ingredients.",
-      icon: <Globe className="w-6 h-6" />,
+      icon: <Globe className="w-8 h-8" />,
     },
   ];
 
   return (
     <section className="px-6 md:px-5">
-      <div className="py-20 w-full bg-gray-50/50 rounded-[3rem] px-8 mb-20 max-w-7xl mx-auto border border-gray-100">
-        
+<div className="py-20 w-full bg-gray-50/50 rounded-[3rem] px-8 mb-20 max-w-7xl mx-auto shadow-sm">        
         {/* --- Header --- */}
         <div className="text-center mb-16">
           <h2 className="eczar text-[32px] md:text-[45px] font-black text-[#431A4F] tracking-tighter mb-4 leading-tight uppercase">
@@ -52,28 +51,26 @@ const ProcessSection = () => {
           {steps.map((step, i) => (
             <div key={i} className="flex flex-col items-center text-center group">
               
-              {/* Icon Container with Static Glow Effect */}
-              <div className="relative mb-8">
+              {/* Icon Container with Concentrated Halo Glow */}
+              <div className="relative mb-8 flex-shrink-0">
                 
-                {/* 1. The Outer Glow (Halo Effect) */}
+                {/* 1. The Light Bloom (Radial Gradient Halo) */}
                 <div 
-                  style={{ backgroundColor: brandGold }}
-                  className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-all duration-700 scale-125"
+                  style={{
+                    background: `radial-gradient(circle, ${brandGold}B3 0%, ${brandGold}1A 60%, transparent 80%)`,
+                  }}
+                  className="absolute inset-[-30%] rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-125 pointer-events-none"
                 />
 
-                {/* 2. The Inner Glow (Bloom Effect) */}
-                <div 
-                  style={{ backgroundColor: brandGold }}
-                  className="absolute inset-0 rounded-2xl blur-md opacity-0 group-hover:opacity-60 transition-all duration-500 scale-110"
-                />
-
-                {/* 3. The Main Icon Box - No scaling or movement */}
+                {/* 2. The Main Icon Box */}
                 <div 
                   style={{ backgroundColor: brandPurple }}
-                  className="relative z-10 w-16 h-16 text-white rounded-2xl flex items-center justify-center shadow-lg transition-all duration-500 group-hover:bg-[#D2B57B] group-hover:shadow-[0_0_25px_rgba(210,181,123,0.5)]"
+                  className="relative z-10 w-20 h-20 rounded-2xl flex items-center justify-center border border-white/10 transition-all duration-500 group-hover:bg-[#D2B57B] group-hover:border-[#D2B57B] group-hover:shadow-[0_0_25px_rgba(210,181,123,0.4)]"
                 >
-                  {/* Icon stays perfectly still */}
-                  <div className="text-white">
+                  <div 
+                    style={{ color: brandGold }}
+                    className="transition-colors duration-500 group-hover:text-white"
+                  >
                     {step.icon}
                   </div>
                 </div>

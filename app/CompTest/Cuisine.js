@@ -85,7 +85,7 @@ const CuisineSection = () => {
           {visibleCuisines.map((item, index) => (
             <div
               key={index}
-              className="relative p-10 rounded-[2.5rem] text-white flex gap-6 items-start group shadow-xl transition-all duration-300 hover:-translate-y-2 bg-[#431A4F]"
+              className="relative p-10 rounded-[2.5rem] text-white flex gap-6 items-start group shadow-xl transition-all duration-500 hover:-translate-y-2 bg-[#431A4F]"
             >
               {/* Icon Container */}
               <div className="flex-shrink-0 p-3 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(210,191,127,0.5)]">
@@ -94,7 +94,10 @@ const CuisineSection = () => {
 
               {/* Content */}
               <div className="flex-grow space-y-3 relative z-10">
-                <h3 className="text-xl font-bold uppercase tracking-wide leading-tight">
+                {/* Title: Transitions to brandGold on hover */}
+                <h3 
+                  className="text-xl font-bold uppercase tracking-wide leading-tight transition-colors duration-300 group-hover:text-[#d2bf7f]"
+                >
                   {item.title}
                 </h3>
 
