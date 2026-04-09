@@ -1,41 +1,43 @@
 "use client";
 
 import React from 'react';
-import { Star, Flame, BadgePercent, LayoutGrid } from 'lucide-react';
+import { Award, Flame, HandCoins, Boxes } from 'lucide-react';
 
 const WhyChooseUs = () => {
+  const brandPurple = "#431A4F";
+  const brandGold = "#D2B57B";
+
   const features = [
     { 
       title: "Premium Quality Ingredients", 
       desc: "We source our ingredients from trusted suppliers across Asia to ensure authentic taste, consistency, and high standards.", 
-      icon: <Star className="w-8 h-8 text-[#EED697]" /> 
+      icon: <Award className="w-8 h-8" /> 
     },
     { 
       title: "Authentic Flavours", 
       desc: "Our products are inspired by traditional recipes and culinary techniques, helping businesses deliver genuine Asian flavours.", 
-      icon: <Flame className="w-8 h-8 text-[#EED697]" /> 
+      icon: <Flame className="w-8 h-8" /> 
     },
     { 
       title: "Competitive Wholesale Pricing", 
       desc: "We offer affordable pricing without compromising on quality, making us a reliable partner for restaurants and food businesses.", 
-      icon: <BadgePercent className="w-8 h-8 text-[#EED697]" /> 
+      icon: <HandCoins className="w-8 h-8" /> 
     },
     { 
       title: "Wide Product Range", 
       desc: "From everyday essentials to specialty ingredients, we provide everything needed for Asian cooking.", 
-      icon: <LayoutGrid className="w-8 h-8 text-[#EED697]" /> 
+      icon: <Boxes className="w-8 h-8" /> 
     }
   ];
 
   return (
-    <section className=" px-6 md:px-2 bg-white">
+    <section className="py-24 px-6 md:px-2 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* --- Header Section --- */}
-        <div className="text-center mb-16">
-          <h2 className="text-[32px] md:text-[45px] font-black text-[#431A4F] tracking-tighter leading-tight">
-            Why Choose Tiger Tiger Foods UK
+        <div className="text-center mb-20">
+          <h2 className="eczar text-[32px] md:text-[45px] font-black text-[#431A4F] tracking-tighter leading-tight uppercase">
+            Why Choose Tiger Tiger 
           </h2>
-       
         </div>
 
         {/* --- Cards Grid --- */}
@@ -43,20 +45,43 @@ const WhyChooseUs = () => {
           {features.map((feature, idx) => (
             <div 
               key={idx} 
-              className="group p-8 rounded-[2.5rem] bg-[#431A4F] text-white hover:bg-[#532163] transition-all duration-500 shadow-xl hover:-translate-y-3 text-center flex flex-col items-center"
+              style={{ backgroundColor: brandPurple }}
+              className="group relative p-10 rounded-[2.5rem] text-white flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 shadow-2xl border border-white/5 overflow-hidden"
             >
-              {/* Icon Container with Glassy Effect */}
-              <div className="mb-6 bg-white/10 p-5 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                {feature.icon}
+              {/* Icon Container with Concentrated Halo Glow */}
+              <div className="relative mb-8 flex-shrink-0">
+                
+                {/* 1. The Light Bloom (Radial Gradient Halo) */}
+                <div 
+                  style={{
+                    background: `radial-gradient(circle, ${brandGold}B3 0%, ${brandGold}1A 60%, transparent 80%)`,
+                  }}
+                  className="absolute inset-[-20%] rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-125"
+                />
+
+                {/* 2. The Main Icon Box */}
+                <div 
+                  className="relative z-10 w-20 h-20 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 transition-all duration-500 group-hover:bg-[#4d205c]"
+                >
+                  <div 
+                    style={{ color: brandGold }}
+                    className="transition-colors duration-500 group-hover:text-white"
+                  >
+                    {feature.icon}
+                  </div>
+                </div>
               </div>
 
               {/* Text Content */}
-              <h3 className="text-lg font-extrabold mb-4 uppercase tracking-tight leading-snug">
-                {feature.title}
-              </h3>
-              <p className="text-sm opacity-80 leading-relaxed font-light">
-                {feature.desc}
-              </p>
+              <div className="space-y-4 relative z-10">
+                <h3 className="text-xl font-bold uppercase tracking-wide leading-tight group-hover:text-[#D2B57B] transition-colors duration-300">
+                  {feature.title}
+                </h3>
+
+                <p className="text-white/70 text-sm font-medium leading-relaxed">
+                  {feature.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>
