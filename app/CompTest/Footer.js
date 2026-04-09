@@ -5,18 +5,29 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Instagram, Facebook, Linkedin, Plus, Minus } from 'lucide-react';
 
-// Brand Colors from your CSS
-const brandPurple = "#4e1a51";
-const crownGold = "#d2bf7f";
+const brandPurple = "#431A4F";
+const brandGold = "#D2B57B";
 
-const TikTokIcon = ({ size = 18 }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+// FIXED: Added props to the TikTok component so it can receive the color changes
+const TikTokIcon = ({ size = 18, className }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    width={size} 
+    height={size} 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    fill="none" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className={className} 
+  >
     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
   </svg>
 );
 
 const Footer = () => {
   const [openSection, setOpenSection] = useState(null);
+  const [hoveredIcon, setHoveredIcon] = useState(null);
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
@@ -63,27 +74,33 @@ const Footer = () => {
               className="object-contain" 
             />
           </Link>
-               {/* <h3 
-    style={{ color: brandPurple }} 
-    className="eczar text-[22px] md:text-[24px] font-black leading-[1.2] tracking-tight"
-  >
-    Your Trusted Asian Food <br className="hidden md:block" /> Supplier in the UK
-  </h3> */}
           <p style={{ color: brandPurple }} className="text-[16px] leading-relaxed font-normal opacity-90">
-           Tiger Tiger brings premium Asian ingredients  Japanese, Thai, Chinese, Korean and more  to businesses across the UK. Authentic flavours, competitive pricing, reliable supply.
-
+            Tiger Tiger brings premium Asian ingredients Japanese, Thai, Chinese, Korean and more to businesses across the UK. Authentic flavours, competitive pricing, reliable supply.
           </p>
           
-          {/* Social Icons - Now using Brand Purple & Gold Hover */}
+          {/* Social Icons */}
           <div className="flex gap-4 mt-2">
-            {[Instagram, Facebook, TikTokIcon, Linkedin].map((Icon, idx) => (
+            {[
+              { Icon: Instagram, id: 'ig' }, 
+              { Icon: Facebook, id: 'fb' }, 
+              { Icon: TikTokIcon, id: 'tt' }, 
+              { Icon: Linkedin, id: 'li' }
+            ].map(({ Icon, id }) => (
               <Link 
-                key={idx} 
+                key={id} 
                 href="#" 
-                style={{ color: brandPurple }}
-                className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#4e1a51] hover:bg-[#4e1a51] hover:text-white transition-all duration-300"
+                onMouseEnter={() => setHoveredIcon(id)}
+                onMouseLeave={() => setHoveredIcon(null)}
+                style={{ 
+                  // If hovered, icon is white, background is gold. Otherwise, icon is purple, background transparent.
+                  color: hoveredIcon === id ? '#fff' : brandPurple,
+                  backgroundColor: hoveredIcon === id ? brandGold : 'transparent',
+                  borderColor: hoveredIcon === id ? brandGold : '#e5e7eb'
+                }}
+                className="w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm"
               >
-                <Icon size={18} />
+                {/* We pass the 'text-white' class specifically when hovered to force the SVG to change */}
+                <Icon size={18} className={hoveredIcon === id ? 'text-white' : ''} />
               </Link>
             ))}
           </div>
@@ -95,7 +112,6 @@ const Footer = () => {
           {/* Useful Links Column */}
           <div className="border-b md:border-none border-gray-100 pb-4 md:pb-0">
             <button 
-              suppressHydrationWarning
               onClick={() => toggleSection('useful')}
               className="w-full flex justify-between items-center md:pointer-events-none mb-0 md:mb-6"
             >
@@ -107,11 +123,7 @@ const Footer = () => {
             <ul className={`${openSection === 'useful' ? 'flex' : 'hidden'} md:flex flex-col gap-3 mt-4 md:mt-0 text-[15px] font-normal`}>
               {sections.useful.links.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    href={link.href} 
-                    style={{ color: brandPurple }}
-                    className="hover:opacity-60 transition-colors duration-200"
-                  >
+                  <Link href={link.href} style={{ color: brandPurple }} className="hover:opacity-60 transition-colors duration-200">
                     {link.name}
                   </Link>
                 </li>
@@ -122,7 +134,6 @@ const Footer = () => {
           {/* Categories Column */}
           <div className="border-b md:border-none border-gray-100 pb-4 md:pb-0">
             <button 
-              suppressHydrationWarning
               onClick={() => toggleSection('categories')}
               className="w-full flex justify-between items-center md:pointer-events-none mb-0 md:mb-6"
             >
@@ -134,11 +145,7 @@ const Footer = () => {
             <ul className={`${openSection === 'categories' ? 'flex' : 'hidden'} md:flex flex-col gap-3 mt-4 md:mt-0 text-[15px] font-normal`}>
               {sections.categories.links.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    href={link.href} 
-                    style={{ color: brandPurple }}
-                    className="hover:opacity-60 transition-colors duration-200"
-                  >
+                  <Link href={link.href} style={{ color: brandPurple }} className="hover:opacity-60 transition-colors duration-200">
                     {link.name}
                   </Link>
                 </li>
@@ -149,7 +156,6 @@ const Footer = () => {
           {/* Contact Details Column */}
           <div className="pb-4 md:pb-0">
             <button 
-              suppressHydrationWarning
               onClick={() => toggleSection('contact')}
               className="w-full flex justify-between items-center md:pointer-events-none mb-0 md:mb-6"
             >
