@@ -16,9 +16,23 @@ export default function HeroCarousel() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 4000); 
+    }, 4000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const preloaded = slides.map((slide) => {
+      const img = new window.Image();
+      img.src = slide.src;
+      return img;
+    });
+
+    return () => {
+      preloaded.forEach((img) => {
+        img.src = "";
+      });
+    };
   }, []);
 
   const variants = {
