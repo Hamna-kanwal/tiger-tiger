@@ -12,49 +12,46 @@ const slides = [
 
 export default function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 4000); // Timer thora kam kiya hai (4s) taake fast lagay
+    }, 4000); 
 
     return () => clearInterval(timer);
   }, []);
 
   const variants = {
-    enter: (direction) => ({
-      x: direction > 0 ? "100%" : "-100%", // Poori width se enter hogi
-      opacity: 0,
-    }),
+    enter: {
+      x: "100%", // Right se aayegi
+      opacity: 1,
+    },
     center: {
       zIndex: 1,
       x: 0,
       opacity: 1,
     },
-    exit: (direction) => ({
+    exit: {
       zIndex: 0,
-      x: direction < 0 ? "100%" : "-100%", // Sath hi exit hogi
-      opacity: 0,
-    }),
+      x: "-100%", // Left se nikal jayegi
+      opacity: 1, // Opacity full rakhein taake gap na dikhay
+    },
   };
 
   return (
     <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10 px-4">
       <div className="relative w-full max-w-[1500px] h-[350px] md:h-[550px] lg:h-[650px] overflow-hidden">
-        {/* 'mode' ko remove kar diya hai taake blank screen na aaye */}
-        <AnimatePresence initial={false} custom={direction}>
+        
+        {/* mode="popLayout" se purani image aur nayi image aik sath move karti hain */}
+        <AnimatePresence initial={false} mode="popLayout">
           <motion.div
             key={currentIndex}
-            custom={direction}
             variants={variants}
             initial="enter"
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 }, // Snappy movement
-              opacity: { duration: 0.2 }
+              x: { type: "tween", duration: 0.8, ease: "easeInOut" }, // Smooth constant movement
             }}
             className="absolute w-full h-full"
           >
