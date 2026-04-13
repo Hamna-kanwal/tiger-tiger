@@ -30,10 +30,6 @@ nav a, .nav-link-purple {
   color: var(--brand-purple) !important;
 }
 
-/* Search bar gold background */
-.search-bg-gold {
-  background-color: #d2bf7f !important;
-}
 
 /* Image heights logic */
 .image-height {

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const [hoverApp, setHoverApp] = useState(false);
@@ -19,13 +18,9 @@ export default function HeroSection() {
   }, []);
 
   return (
-    /* Change 1: Removed min-h-screen to prevent forced empty space at the bottom */
     <section className="relative w-full bg-white flex flex-col items-center overflow-hidden">
-
-      {/* 1. TOP SPACING BUFFER */}
       <div className="w-full pt-[80px] md:pt-[100px] lg:pt-[120px]" />
 
-      {/* 2. TEXT CONTENT */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl">
         <p
           style={{ color: charcoalBlack }}
@@ -54,10 +49,11 @@ export default function HeroSection() {
             onMouseEnter={() => setHoverApp(true)}
             onMouseLeave={() => setHoverApp(false)}
             style={{ 
-              borderColor: hoverApp ? brandGold : brandPurple, 
-              color: hoverApp ? brandGold : brandPurple 
+              backgroundColor: hoverApp ? brandPurple : "transparent",
+              borderColor: brandPurple, 
+              color: hoverApp ? "white" : brandPurple 
             }}
-            className="border-2 px-8 py-3 rounded-full font-bold transition-all duration-300 text-sm md:text-base bg-white shadow-sm text-center"
+            className="border-2 px-8 py-3 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center"
           >
             View Our App
           </Link>
@@ -67,22 +63,20 @@ export default function HeroSection() {
             onMouseEnter={() => setHoverProducts(true)}
             onMouseLeave={() => setHoverProducts(false)}
             style={{ 
-              backgroundColor: hoverProducts ? brandGold : brandPurple,
-              borderColor: hoverProducts ? brandGold : "transparent"
+              backgroundColor: hoverProducts ? "transparent" : brandPurple,
+              borderColor: brandPurple,
+              color: hoverProducts ? brandPurple : "white"
             }}
-            className="text-white px-8 py-3 rounded-full font-bold border-2 transition-all duration-300 shadow-md text-sm md:text-base text-center"
+            className="px-8 py-3 rounded-full font-bold border-2 transition-all duration-300 shadow-md text-sm md:text-base text-center"
           >
             Discover all products
           </Link>
         </div>
       </div>
 
-      {/* 3. CAROUSEL COMPONENT */}
-      {/* Change 2: Margin bottom negative ko kam ya khatam kar sakte hain agar space phir bhi zyada lage */}
       <div className="w-full mt-6 md:mt-8">
-    
+        {/* Carousel Component Here */}
       </div>
-
     </section>
   );
 }

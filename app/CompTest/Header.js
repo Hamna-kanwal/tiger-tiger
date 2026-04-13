@@ -41,7 +41,7 @@ export default function Header() {
           />
         </Link>
 
-        {/* Desktop Links (Ab is mein Recipes bhi shamil hai) */}
+        {/* Desktop Links (Ab is mein Recipes seari shamil hai) */}
         <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
           {navLinks.map((link) => (
             <Link
@@ -59,23 +59,23 @@ export default function Header() {
         </nav>
 
         {/* Search & Mobile Menu */}
-        <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center rounded-full px-4 py-2 w-40 lg:w-56 bg-[#D2B57B]/70">
-            <Search size={16} className="text-[#4e1a51]" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="bg-transparent outline-none ml-2 w-full placeholder:text-[#4e1a51]/50 text-sm"
-            />
-          </div>
+       <div className="flex items-center gap-5">
+  <div className="hidden md:flex items-center rounded-full px-6 py-3 w-full lg:w-[250px] bg-[#4e1a51]">
+    <Search size={22} className="text-white shrink-0" />
+    <input
+      type="text"
+      placeholder="Search"
+      className="bg-transparent outline-none ml-4 w-full placeholder:text-white/80 text-lg text-white"
+    />
+  </div>
 
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            className="lg:hidden p-2"
-          >
-            <Menu size={26} className="text-[#4e1a51]" />
-          </button>
-        </div>
+  <button
+    onClick={() => setIsMenuOpen(true)}
+    className="lg:hidden p-2"
+  >
+    <Menu size={32} className="text-[#4e1a51]" />
+  </button>
+</div>
       </header>
 
       {/* Mobile Sidebar */}
