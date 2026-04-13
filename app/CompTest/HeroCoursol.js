@@ -18,7 +18,7 @@ const slides = [
   /* ID 2 - Isay niche karne ke liye object-center aur translation use karenge */
   { 
     id: 2, 
-    src: "/test.jpg.jpeg", 
+    src: "/test.jpeg", 
     alt: "Product 2", 
     /* Change 2: "object-center" removes default bottom alignment, 
        "translate-y-16" shifts it down. Adjust "16" as needed. */
