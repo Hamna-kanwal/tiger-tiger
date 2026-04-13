@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutSection = () => {
   const brandPurple = "#431A4F";
-  const brandGold = "#D2B57B"; 
+  const brandGold = "#d5be8b"; 
 
   return (
     <section className="py-16 px-4 md:px-10 bg-white">

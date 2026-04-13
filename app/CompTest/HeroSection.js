@@ -5,7 +5,7 @@ import { Star, Percent, ShieldCheck, Truck } from 'lucide-react';
 
 export default function Herosection() {
   const brandPurple = "#4e1a51";
-  const brandGold = "#d2bf7f";
+  const brandGold = "#d5be8b";
   const charcoalBlack = "#333333";
 
   // State for button hovers
