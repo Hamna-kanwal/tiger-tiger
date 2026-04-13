@@ -4,31 +4,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
-  
-  // Hover states for the buttons
   const [hoverApp, setHoverApp] = useState(false);
   const [hoverProducts, setHoverProducts] = useState(false);
 
   const brandPurple = "#4e1a51";
   const brandGold = "#d2bf7f";
-  const charcoalBlack = "#333333"; // New charcoal shade
+  const charcoalBlack = "#333333";
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden min-h-screen">
+    /* Change 1: Removed min-h-screen to prevent forced empty space at the bottom */
+    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden">
 
       {/* 1. TOP SPACING BUFFER */}
-      <div className="w-full pt-[100px] md:pt-[140px] lg:pt-[160px]" />
+      <div className="w-full pt-[80px] md:pt-[100px] lg:pt-[120px]" />
 
-      {/* 3. TEXT CONTENT */}
+      {/* 2. TEXT CONTENT */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl">
         <p
-          style={{ color: charcoalBlack }} // Applied charcoal black here
+          style={{ color: charcoalBlack }}
           className="text-base lg:text-lg font-outfit mt-4 lg:mt-2 font-semibold mb-1"
         >
           Nature’s Best in Every Sip
@@ -48,11 +48,9 @@ export default function HeroSection() {
           </span>.
         </p>
 
-        {/* Mobile-optimized button container */}
         <div className="flex flex-col sm:flex-row justify-center gap-3 mt-8 w-full px-4 sm:px-0">
           <Link
             href="/tt-app"
-            suppressHydrationWarning
             onMouseEnter={() => setHoverApp(true)}
             onMouseLeave={() => setHoverApp(false)}
             style={{ 
@@ -66,7 +64,6 @@ export default function HeroSection() {
 
           <Link
             href="/products"
-            suppressHydrationWarning
             onMouseEnter={() => setHoverProducts(true)}
             onMouseLeave={() => setHoverProducts(false)}
             style={{ 
@@ -80,17 +77,10 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* 4. PRODUCT IMAGE */}
-      <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10 px-4">
-        <div className="relative w-full max-w-[1500px] h-[300px] md:h-[550px] lg:h-[650px]">
-          <Image
-            src="/Hero_Bg.png"
-            alt="Pulp Family"
-            fill
-            className="object-contain object-bottom scale-125 md:scale-115 lg:scale-120 origin-bottom"
-            priority
-          />
-        </div>
+      {/* 3. CAROUSEL COMPONENT */}
+      {/* Change 2: Margin bottom negative ko kam ya khatam kar sakte hain agar space phir bhi zyada lage */}
+      <div className="w-full mt-6 md:mt-8">
+    
       </div>
 
     </section>
