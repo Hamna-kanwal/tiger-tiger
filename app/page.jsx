@@ -4,7 +4,7 @@
 import HeroSlider from "./CompTest/Heroslider";
 import HeroCoursol from "./CompTest/HeroCoursol";     
 import BrandSlider from "./CompTest/Brandslider";
-import ProductRangeSlider from "./CompTest/ProductRangeSlider";
+
 import HeroSection from "./CompTest/HeroSection";       
 import AmazingFlavour from "./CompTest/AmazingFlavour"; 
 import ProductRange from "./CompTest/ProductRange";     
@@ -34,7 +34,7 @@ export default function Home() {
       <HeroSection />
       <AmazingFlavour />
       <ProductRange />
-      <ProductRangeSlider />
+      
    
       {/* <CrammedSlider /> */}
       {/* <Wowchow /> */}
