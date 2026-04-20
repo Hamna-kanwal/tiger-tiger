@@ -12,10 +12,10 @@ const FeaturedProducts = () => {
   const brandPurple = "#4e1a51";
 
   const products = [
-    { id: 1, src: "/product_image.png", alt: "Lychee Pulp" },
-    { id: 2, src: "/product_image.png", alt: "Coconut Water" },
-    { id: 3, src: "/product_image.png", alt: "Guava Juice" },
-    { id: 4, src: "/product_image.png", alt: "Mango Juice" },
+    { id: 1, src: "/feature-banner-1.jpg", alt: "Lychee Pulp" },
+    { id: 2, src: "/feature-banner-2.jpg", alt: "Coconut Water" },
+    { id: 3, src: "/feature-banner-3.jpg", alt: "Guava Juice" },
+   
   ];
 
   return (
