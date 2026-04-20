@@ -15,7 +15,7 @@ const CategoryMarquee = () => {
     { name: "Snacks", slug: "snacks", image: "/Snacks.png" },
     { name: "Spices & Seasonings", slug: "spices", image: "/Spices_and_seasonings.png" },
     { name: "Drinks", slug: "drinks", image: "/Drinks.png" },
-    { name: "Frozen", slug: "frozen", image: "/Frozen.png" },
+    { name: "Frozen", slug: "frozen", image: "/frozen cat.jpg" },
     { name: "Taste Japan", slug: "japan", image: "/Japanese.png" },
     { name: "Sauces", slug: "sauces", image: "/Sauces.png" },
   ];
