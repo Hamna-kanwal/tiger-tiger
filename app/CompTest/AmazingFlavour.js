@@ -33,7 +33,7 @@ const WhoWeServe = () => {
         <div className="absolute -left-30 -bottom-70 rotate-[-15deg] w-72 md:w-96 lg:w-[450px] z-0 origin-bottom-left opacity-50 lg:opacity-100">
           <Image src="/pulpCan.png" alt="Can" width={1000} height={1200} className="object-contain" priority />
         </div>
-        <div className="absolute -right-40 -bottom-45 rotate-[15deg] w-72 md:w-96 lg:w-[450px] z-0 origin-bottom-right opacity-50 lg:opacity-100">
+        <div className="absolute -right-30 -bottom-40 rotate-[20deg] w-72 md:w-96 lg:w-[400px] z-0 origin-bottom-right opacity-50 lg:opacity-100">
           <Image src="/pulpCan2.png" alt="Can" width={1000} height={1200} className="object-contain" priority />
         </div>
 

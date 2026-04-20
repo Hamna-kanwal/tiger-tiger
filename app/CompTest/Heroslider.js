@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function HeroSection() {
+const HeroSlider = () => {
   const [mounted, setMounted] = useState(false);
   const [hoverApp, setHoverApp] = useState(false);
   const [hoverProducts, setHoverProducts] = useState(false);
@@ -17,8 +17,11 @@ export default function HeroSection() {
     setMounted(true);
   }, []);
 
+  if (!mounted) return null;
+
   return (
     <section className="relative w-full bg-white flex flex-col items-center overflow-hidden">
+      {/* Dynamic spacing for header height */}
       <div className="w-full pt-[80px] md:pt-[100px] lg:pt-[120px]" />
 
       <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl">
@@ -29,7 +32,10 @@ export default function HeroSection() {
           Nature’s Best in Every Sip
         </p>
 
-        <h1 className="eczar text-[30px] md:text-[50px] lg:text-[50px] m-0 p-0" style={{ color: brandPurple }}>
+        <h1 
+          className="eczar text-[30px] md:text-[50px] lg:text-[60px] m-0 p-0 font-bold leading-tight" 
+          style={{ color: brandPurple }}
+        >
           Leading Asian Food Brand in the UK
         </h1>
 
@@ -43,6 +49,7 @@ export default function HeroSection() {
           </span>.
         </p>
 
+        {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-3 mt-8 w-full px-4 sm:px-0">
           <Link
             href="/tt-app"
@@ -53,7 +60,7 @@ export default function HeroSection() {
               borderColor: brandPurple, 
               color: hoverApp ? "white" : brandPurple 
             }}
-            className="border-2 px-8 py-3 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center"
+            className="border-2 px-10 py-3.5 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center active:scale-95"
           >
             View Our App
           </Link>
@@ -67,7 +74,7 @@ export default function HeroSection() {
               borderColor: brandPurple,
               color: hoverProducts ? brandPurple : "white"
             }}
-            className="px-8 py-3 rounded-full font-bold border-2 transition-all duration-300 shadow-md text-sm md:text-base text-center"
+            className="px-10 py-3.5 rounded-full font-bold border-2 transition-all duration-300 shadow-md text-sm md:text-base text-center active:scale-95"
           >
             Discover all products
           </Link>
@@ -75,8 +82,10 @@ export default function HeroSection() {
       </div>
 
       <div className="w-full mt-6 md:mt-8">
-        {/* Carousel Component Here */}
+        {/* Carousel Component will go here */}
       </div>
     </section>
   );
-}
+};
+
+export default HeroSlider;

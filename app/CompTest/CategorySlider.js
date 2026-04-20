@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function CategoryMarquee() {
+const CategoryMarquee = () => {
   const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   const categories = [
@@ -48,7 +48,7 @@ export default function CategoryMarquee() {
         </button>
       </div>
 
-      {/* Marquee Wrapper - Slider logic remains untouched */}
+      {/* Marquee Wrapper */}
       <div className="relative w-full overflow-hidden pt-4 pb-8">
         <div className="animate-marquee flex items-center">
           {repeated.map((item, i) => (
@@ -95,4 +95,6 @@ export default function CategoryMarquee() {
       `}</style>
     </section>
   );
-}
+};
+
+export default CategoryMarquee;

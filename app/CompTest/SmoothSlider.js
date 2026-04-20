@@ -13,7 +13,7 @@ const media = [
   { src: "/reels/6.mp4", alt: "Wow Chow Tom Yum" },
 ];
 
-export default function ProductGallerySlider() {
+const ProductGallerySlider = () => {
   const [loaded, setLoaded] = useState(false);
   const timer = useRef(null);
 
@@ -59,7 +59,6 @@ export default function ProductGallerySlider() {
           Explore Our Social Media
         </h2>
         
-        {/* Second text now Black and font-normal (less bold) */}
         <p 
           className="text-black text-[16px] md:text-[18px] font-normal mt-3 text-center md:text-left max-w-lg md:max-w-full mx-auto md:mx-0 subHeading"
         >
@@ -82,7 +81,7 @@ export default function ProductGallerySlider() {
             >
               {/* Video Card with Gold Border on Hover */}
               <div 
-                className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group"
+                className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group cursor-pointer"
               >
                 <video
                   src={item.src}
@@ -106,4 +105,6 @@ export default function ProductGallerySlider() {
       </div>
     </section>
   );
-}
+};
+
+export default ProductGallerySlider;

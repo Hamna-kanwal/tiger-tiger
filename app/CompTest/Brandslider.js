@@ -8,7 +8,7 @@ import { Autoplay } from "swiper/modules";
 // Swiper styles
 import "swiper/css";
 
-export default function BrandsSlider() {
+const BrandsSlider = () => {
   const brands = [
     { src: "/brands/cococho.png", alt: "Coco Choo" },
     { src: "/brands/wowchow.png", alt: "Wow Chow" },
@@ -62,4 +62,6 @@ export default function BrandsSlider() {
       </div>
     </section>
   );
-}
+};
+
+export default BrandsSlider;

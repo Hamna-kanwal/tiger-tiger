@@ -1,45 +1,55 @@
 "use client";
 
-export default function InnovationSection() {
+import { UtensilsCrossed } from "lucide-react";
+
+const InnovationSection = () => {
+  const brandPurple = "#4e1a51";
+  const brandGold = "#eed697";
+
   return (
-    <section className="bg-white py-24 md:py-36 overflow-hidden relative border-y border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* 1. TOP: Main Heading (Still - No Motion) */}
-        <div className="text-center mb-12">
-        
-          <h2 className="eczar text-[30px] md:text-[50px] font-black text-[#4e1a51] leading-none tracking-tighter md:whitespace-nowrap">
+    <section className="bg-white pt-16 md:pt-20 overflow-hidden">
+      {/* 1. TOP Content (Centered) */}
+      <div className="max-w-7xl mx-auto px-6 mb-12">
+        <div className="text-center mb-8">
+          <div className="flex justify-center mb-4">
+            <UtensilsCrossed size={42} strokeWidth={1.5} className="text-[#4e1a51]" />
+          </div>
+          <h2 className="eczar text-[28px] md:text-[45px] font-bold text-[#4e1a51] tracking-tight leading-tight uppercase">
             INNOVATION IN ASIAN FOOD DEVELOPMENT
           </h2>
         </div>
 
-        {/* 2. MIDDLE: Paragraph Content (Still) */}
-        <div className="text-center space-y-4 mb-20 max-w-4xl mx-auto">
-          <p className="outfit text-gray-500 text-xl md:text-2xl font-light leading-relaxed italic">
+        <div className="text-center space-y-4 max-w-4xl mx-auto">
+          <p className="outfit text-gray-400 text-lg md:text-2xl font-light italic opacity-80">
             "We continuously adapt to changing food trends and customer needs."
           </p>
-          <p className="outfit text-[#4e1a51] text-lg md:text-xl leading-relaxed opacity-80 max-w-3xl mx-auto font-medium">
+          <p className="outfit text-[#4e1a51] text-[15px] md:text-[19px] leading-relaxed max-w-3xl mx-auto font-semibold">
             By combining traditional recipes with modern innovation, we develop products that help businesses stay competitive in the growing Asian food market.
           </p>
         </div>
-
-        {/* 3. BOTTOM: The Goal Box (Still) */}
-        <div className="relative bg-[#4e1a51] rounded-[40px] p-10 md:p-20 overflow-hidden shadow-2xl">
-          <div className="relative z-10 max-w-4xl mx-auto text-center">
-             <h3 className="eczar text-[24px] md:text-[32px] text-white font-bold italic leading-tight">
-              "Our goal is to provide ready-to-use ingredients that <span className="text-[#eed697]">simplify cooking</span> without sacrificing taste."
-             </h3>
-          </div>
-
-          {/* Corner Accents */}
-          <div className="absolute top-8 left-8 w-8 h-8 border-t-2 border-l-2 border-[#eed697]/30" />
-          <div className="absolute bottom-8 right-8 w-8 h-8 border-b-2 border-r-2 border-[#eed697]/30" />
-        </div>
-
       </div>
 
-      {/* Background Dots Texture (Still) */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-30 -z-10" />
+      {/* 2. BOTTOM: Full Width Purple Section */}
+      <div 
+        className="w-full py-12 md:py-20 text-center shadow-inner"
+        style={{ backgroundColor: brandPurple }}
+      >
+        <div className="max-w-6xl mx-auto px-6 space-y-10">
+          <h3 className="eczar text-[22px] md:text-[40px] text-white font-medium leading-tight">
+            "Our goal is to provide ready-to-use ingredients that <br className="hidden md:block" />
+            <span style={{ color: brandGold }}>simplify cooking</span> without sacrificing taste."
+          </h3>
+          
+          <button 
+            className="px-10 py-3.5 rounded-xl font-bold uppercase tracking-[0.1em] text-[13px] md:text-[15px] transition-all hover:brightness-110 active:scale-95 shadow-lg"
+            style={{ backgroundColor: brandGold, color: brandPurple }}
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
     </section>
   );
-}
+};
+
+export default InnovationSection;

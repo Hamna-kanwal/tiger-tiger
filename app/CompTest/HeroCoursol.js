@@ -10,9 +10,10 @@ const slides = [
   { id: 3, src: "/korean-range.jpeg", alt: "Product 3", className: "object-center translate-y-20" },
 ];
 
-export default function HeroCarousel() {
+const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Auto-slide logic
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -21,6 +22,7 @@ export default function HeroCarousel() {
     return () => clearInterval(timer);
   }, []);
 
+  // Preload images for smooth transition
   useEffect(() => {
     const preloaded = slides.map((slide) => {
       const img = new window.Image();
@@ -48,7 +50,7 @@ export default function HeroCarousel() {
     exit: {
       zIndex: 0,
       x: "-100%", // Left se nikal jayegi
-      opacity: 1, // Opacity full rakhein taake gap na dikhay
+      opacity: 1,
     },
   };
 
@@ -56,7 +58,7 @@ export default function HeroCarousel() {
     <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10 px-4">
       <div className="relative w-full max-w-[1500px] h-[350px] md:h-[550px] lg:h-[650px] overflow-hidden">
         
-        {/* mode="popLayout" se purani image aur nayi image aik sath move karti hain */}
+        {/* mode="popLayout" ensures images move together without gaps */}
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
             key={currentIndex}
@@ -65,7 +67,7 @@ export default function HeroCarousel() {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "tween", duration: 0.8, ease: "easeInOut" }, // Smooth constant movement
+              x: { type: "tween", duration: 0.8, ease: "easeInOut" },
             }}
             className="absolute w-full h-full"
           >
@@ -81,4 +83,6 @@ export default function HeroCarousel() {
       </div>
     </div>
   );
-}
+};
+
+export default HeroCarousel;

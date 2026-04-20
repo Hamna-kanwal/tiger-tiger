@@ -5,6 +5,7 @@ import { Award, Flame, HandCoins, Boxes } from 'lucide-react';
 
 const WhyChooseUs = () => {
   const brandPurple = "#431A4F";
+  const brandBeige = "#F8F1E5"; // Light beige color as seen in image
   const brandGold = "#D2B57B";
 
   const features = [
@@ -31,59 +32,56 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-2 bg-white">
+    <section className="py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
+        
         {/* --- Header Section --- */}
-        <div className="text-center mb-20">
-          <h2 className="eczar text-[32px] md:text-[45px] font-black text-[#431A4F] tracking-tighter leading-tight uppercase">
+        <div className="text-center mb-16">
+          <h2 
+            style={{ color: brandPurple }}
+            className="eczar text-[32px] md:text-[42px] font-bold tracking-tight uppercase"
+          >
             Why Choose Tiger Tiger 
           </h2>
         </div>
 
         {/* --- Cards Grid --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, idx) => (
-            <div 
-              key={idx} 
-              style={{ backgroundColor: brandPurple }}
-              className="group relative p-10 rounded-[2.5rem] text-white flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 shadow-2xl border border-white/5 overflow-hidden"
-            >
-              {/* Icon Container with Concentrated Halo Glow */}
-              <div className="relative mb-8 flex-shrink-0">
-                
-                {/* 1. The Light Bloom (Radial Gradient Halo) */}
-                <div 
-                  style={{
-                    background: `radial-gradient(circle, ${brandGold}B3 0%, ${brandGold}1A 60%, transparent 80%)`,
-                  }}
-                  className="absolute inset-[-20%] rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 scale-125"
-                />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, idx) => {
+            // Logic for alternating colors
+            const isEven = idx % 2 === 0;
+            const bgColor = isEven ? brandPurple : brandBeige;
+            const textColor = isEven ? "text-white" : "text-[#431A4F]";
+            const subTextColor = isEven ? "text-white/70" : "text-[#431A4F]/80";
+            const iconBoxBg = isEven ? "bg-white/10" : "bg-[#431A4F]/5";
+            const iconColor = isEven ? brandGold : brandPurple;
 
-                {/* 2. The Main Icon Box */}
-                <div 
-                  className="relative z-10 w-20 h-20 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 transition-all duration-500 group-hover:bg-[#4d205c]"
-                >
-                  <div 
-                    style={{ color: brandGold }}
-                    className="transition-colors duration-500 group-hover:text-white"
-                  >
+            return (
+              <div 
+                key={idx} 
+                style={{ backgroundColor: bgColor }}
+                className={`p-10 rounded-[2.5rem] flex flex-col items-center text-center shadow-xl transition-transform hover:-translate-y-2 duration-300`}
+              >
+                {/* Icon Container */}
+                <div className={`${iconBoxBg} w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-black/5`}>
+                  <div style={{ color: iconColor }}>
                     {feature.icon}
                   </div>
                 </div>
-              </div>
 
-              {/* Text Content */}
-              <div className="space-y-4 relative z-10">
-                <h3 className="text-xl font-bold uppercase tracking-wide leading-tight group-hover:text-[#D2B57B] transition-colors duration-300">
-                  {feature.title}
-                </h3>
+                {/* Text Content */}
+                <div className="space-y-4">
+                  <h3 className={`text-lg font-bold uppercase tracking-tight leading-tight ${textColor}`}>
+                    {feature.title}
+                  </h3>
 
-                <p className="text-white/70 text-sm font-medium leading-relaxed">
-                  {feature.desc}
-                </p>
+                  <p className={`text-[13px] font-medium leading-relaxed ${subTextColor}`}>
+                    {feature.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

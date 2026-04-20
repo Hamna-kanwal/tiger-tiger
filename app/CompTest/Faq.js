@@ -6,7 +6,8 @@ import { Plus, Minus } from 'lucide-react';
 const FAQSection = () => {
   const brandPurple = "#431A4F";
   const brandGold = "#D2B57B";
-  const [openIndex, setOpenIndex] = useState(null);
+  
+  const [openIndex, setOpenIndex] = useState(0); 
   const [showAll, setShowAll] = useState(false);
   const [isBtnHovered, setIsBtnHovered] = useState(false);
 
@@ -44,68 +45,77 @@ const FAQSection = () => {
   const displayedFaqs = showAll ? faqs : faqs.slice(0, 3);
 
   return (
-    <section className="w-full bg-white py-12 px-4 md:py-20 flex flex-col items-center">
-      {/* --- Heading --- */}
-      <div className="text-center mb-10 md:mb-16">
-        <h2 className="eczar text-3xl md:text-[45px] font-black text-[#431A4F] tracking-tighter uppercase leading-tight">
-          Frequently Asked Questions
-        </h2>
-      </div>
-
-      {/* --- FAQ List --- */}
-      <div className="w-full max-w-3xl space-y-4">
-        {displayedFaqs.map((faq, index) => (
-          <div 
-            key={index} 
-            style={{ 
-              borderColor: openIndex === index ? brandGold : '#f3f4f6',
-              // Adding the 5px golden bar on the left when active
-              borderLeftWidth: openIndex === index ? '5px' : '1px'
-            }}
-            className="border rounded-2xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md bg-white"
-          >
-            <button
-              onClick={() => toggleAnswer(index)}
-              className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-colors"
-            >
-              <span className={`text-base md:text-lg font-bold transition-colors duration-300 ${openIndex === index ? 'text-[#333333]' : 'text-[#431A4F]'}`}>
-                {faq.question}
-              </span>
-              
-              <div className="flex-shrink-0 ml-4 transition-transform duration-300" style={{ color: brandPurple }}>
-                {openIndex === index ? <Minus size={22} strokeWidth={3} className="rotate-180" /> : <Plus size={22} strokeWidth={3} />}
-              </div>
-            </button>
-
-            <div 
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
-            >
-              <div className="p-5 md:p-6 pt-0 text-gray-500 text-sm md:text-base leading-relaxed">
-                <div className="w-full h-[1px] bg-gray-100 mb-4" />
-                {faq.answer}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* --- Read More Button --- */}
-      {!showAll && (
-        <div className="mt-12">
-          <button 
-            onMouseEnter={() => setIsBtnHovered(true)}
-            onMouseLeave={() => setIsBtnHovered(false)}
-            onClick={() => setShowAll(true)}
-            style={{ 
-              borderColor: isBtnHovered ? brandGold : brandPurple,
-              color: isBtnHovered ? brandGold : brandPurple 
-            }}
-            className="px-12 py-4 border-2 bg-transparent rounded-full font-black uppercase tracking-widest text-sm transition-all duration-300 shadow-md active:scale-95"
-          >
-            Read More FAQs
-          </button>
+    <section className="w-full bg-white py-16 px-6 md:py-24">
+      {/* Width ko max-w-6xl tak restrict kiya hai taake ye thora compact lage */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        
+        {/* --- Left Side: Heading --- */}
+        <div className="lg:col-span-5 space-y-6">
+          <h2 className="eczar text-3xl md:text-[48px] font-bold text-[#431A4F] uppercase leading-[1.1] tracking-tight">
+            Frequently Asked <br className="hidden md:block" /> Questions
+          </h2>
+          <p className="text-gray-500 max-w-xs leading-relaxed text-base md:text-[17px] outfit font-light">
+            Find everything you need to know about our authentic Asian ingredients and wholesale services.
+          </p>
         </div>
-      )}
+
+        {/* --- Right Side: FAQ List --- */}
+        <div className="lg:col-span-7 flex flex-col space-y-4">
+          <div className="space-y-4">
+            {displayedFaqs.map((faq, index) => (
+              <div 
+                key={index} 
+                className={`border rounded-2xl transition-all duration-300 ${
+                  openIndex === index 
+                    ? 'shadow-md border-gray-200 bg-white' 
+                    : 'border-gray-100 bg-[#FAFAFA]'
+                }`}
+              >
+                <button
+                  onClick={() => toggleAnswer(index)}
+                  className="w-full flex items-center justify-between p-5 md:p-6 text-left transition-colors"
+                >
+                  <span className={`text-base md:text-lg font-bold leading-snug transition-colors duration-300 ${openIndex === index ? 'text-[#333333]' : 'text-[#431A4F]'}`}>
+                    {faq.question}
+                  </span>
+                  
+                  <div className="flex-shrink-0 ml-4" style={{ color: brandPurple }}>
+                    {openIndex === index ? <Minus size={20} strokeWidth={2.5} /> : <Plus size={20} strokeWidth={2.5} />}
+                  </div>
+                </button>
+
+                <div 
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                    openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <div className="px-5 md:px-6 pb-6 text-gray-500 text-sm md:text-base leading-relaxed border-t border-gray-50 pt-4">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* --- Read More Button --- */}
+          {!showAll && (
+            <div className="pt-6 flex justify-start">
+              <button 
+                onMouseEnter={() => setIsBtnHovered(true)}
+                onMouseLeave={() => setIsBtnHovered(false)}
+                onClick={() => setShowAll(true)}
+                style={{ 
+                  borderColor: isBtnHovered ? brandGold : brandPurple,
+                  color: isBtnHovered ? brandGold : brandPurple 
+                }}
+                className="px-8 py-3.5 border-2 bg-transparent rounded-full font-bold uppercase tracking-[0.1em] text-[11px] md:text-[12px] transition-all duration-300 active:scale-95 shadow-sm"
+              >
+                Read More FAQs
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 };

@@ -8,7 +8,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-export default function FeaturedProducts() {
+const FeaturedProducts = () => {
   const brandPurple = "#4e1a51";
 
   const products = [
@@ -20,13 +20,12 @@ export default function FeaturedProducts() {
 
   return (
     <section className="py-10 md:py-16 bg-white">
-      {/* Yahan 'max-w-7xl' aur paddings ko 'Who We Serve' ke section se 
-          exact match kiya hai taake vertical alignment ek jaisi ho.
+      {/* Container width aur padding ko consistent rakha gaya hai 
+          taake alignment page ke baaki sections se match kare.
       */}
       <div className="max-w-[1380px] mx-auto px-5 md:px-8 lg:px-12 w-full">
         
         <div className="text-center mb-4">
-         
           <h2 
             style={{ color: brandPurple }}
             className="eczar font-bold text-[32px] md:text-[52px] leading-tight"
@@ -47,8 +46,8 @@ export default function FeaturedProducts() {
           >
             {products.map((product) => (
               <SwiperSlide key={product.id}>
-                {/* Rounded corners aur border style ko navbar aur pichle 
-                    section ke design elements ke mutabiq rakha hai.
+                {/* Rounded corners aur subtle border shadow design 
+                    elements ko modern aesthetics ke mutabiq rakha gaya hai.
                 */}
                 <div className="relative overflow-hidden rounded-[40px] md:rounded-[50px] shadow-lg border border-purple-900/10 bg-white w-full h-auto">
                   <Image
@@ -79,4 +78,6 @@ export default function FeaturedProducts() {
       `}</style>
     </section>
   );
-}
+};
+
+export default FeaturedProducts;

@@ -1,138 +1,57 @@
-"use client";
+import React from 'react';
 
-import React, { useState } from "react";
-import {
-  Fish,
-  Soup,
-  Utensils,
-  Flame,
-  Salad,
-  Leaf,
-} from "lucide-react";
-
-const CuisineSection = () => {
-  const [showAll, setShowAll] = useState(false);
-  const [isBtnHovered, setIsBtnHovered] = useState(false);
-
-  const brandPurple = "#4e1a51";
-  const brandGold = "#d2bf7f";
-
+const RecipeSection = () => {
   const cuisines = [
-    {
-      title: "JAPANESE CUISINE INGREDIENTS",
-      desc: "Sushi products including sushi, nori sheets, wasabi and ingredients.",
-      icon: <Fish size={32} color={brandGold} />,
-    },
-    {
-      title: "KOREAN FLAVOURS AND SAUCES",
-      desc: "Key products, chili paste and sauces.",
-      icon: <Soup size={32} color={brandGold} />,
-    },
-    {
-      title: "CHINESE FOOD INGREDIENTS",
-      desc: "Chopsticks, Chinese food products, Chinese pasta and more.",
-      icon: <Utensils size={32} color={brandGold} />,
-    },
-    {
-      title: "THAI COOKING ESSENTIALS",
-      desc: "Lime and chili, pepperoncini, products lime and chili.",
-      icon: <Flame size={32} color={brandGold} />,
-    },
-    {
-      title: "VIETNAMESE COOKING INGREDIENTS",
-      desc: "Phở and Vietnamese cooking ingredients.",
-      icon: <Salad size={32} color={brandGold} />,
-    },
-    {
-      title: "ETHNIC SPICES AND FOODS",
-      desc: "Spice jars and authentic spice foods.",
-      icon: <Leaf size={32} color={brandGold} />,
-    },
+    // hum yahan specialized classes use karein ge grid position ke liye
+    { name: 'Japanese', image: '/japnese.png', gridClass: 'md:row-span-2' },
+    { name: 'Chinese', image: '/chinese.png' },
+    { name: 'Thai', image: '/thai.png' },
+    { name: 'Korean', image: '/korean.png' },
+    { name: 'Indian', image: '/indian.png' },
   ];
 
-  const visibleCuisines = showAll ? cuisines : cuisines.slice(0, 3);
-
   return (
-    <section className="py-24 px-6 md:px-12 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col items-center">
-        
-        {/* Header */}
-        <div className="text-center mb-16 space-y-8 w-full max-w-4xl">
-          <h2
-            style={{ color: brandPurple }}
-            className="eczar text-[22px] sm:text-[32px] md:text-[42px] lg:text-[52px] font-black tracking-tighter uppercase"
+    <section className="max-w-7xl mx-auto px-4 py-12 font-sans">
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-[#4B164C] mb-4">Explore Recipes</h2>
+        <p className="text-gray-600 max-w-2xl leading-relaxed">
+          We bring together the rich culinary traditions of Asia under one brand. Our product 
+          range supports a variety of cuisines, including:
+        </p>
+      </div>
+
+      {/* Grid Container Setup:
+          - grid-flow-col: is se items vertically fill hoty hain column-by-column.
+          - md:grid-cols-[1fr,1.3fr,1.3fr]: Custom columns. Pehla column (Japanese) chota hy, 
+            baqi dono (Chinese+Thai aur Korean+Indian) 1.3 guna bary hain.
+      */}
+      <div className="grid grid-cols-1 md:grid-cols-[1.8fr,1.1fr,1.1fr] grid-rows-2 gap-4 grid-flow-col-dense">
+        {cuisines.map((item) => (
+          <div 
+            key={item.name} 
+            className={`relative overflow-hidden rounded-2xl group ${item.gridClass || ''} 
+              ${item.name === 'Japanese' ? 'h-[400px] md:h-full' : 'h-[200px] md:h-full'} 
+              min-h-[180px] shadow-sm`}
           >
-            Explore Authentic Asian Cuisines
-          </h2>
-
-          <div className="space-y-4 text-gray-700">
-            <p className="text-[#333333] text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              We bring together the rich culinary traditions of Asia under one brand.
-              Our product range supports a variety of cuisines, including:
-            </p>
-
-            <p
-              style={{ color: brandPurple }}
-              className="font-black text-[14px] md:text-[16px] uppercase tracking-[0.2em]"
-            >
-              Popular Asian Cuisines We Cover
-            </p>
-          </div>
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {visibleCuisines.map((item, index) => (
-            <div
-              key={index}
-              className="relative p-10 rounded-[2.5rem] text-white flex gap-6 items-start group shadow-xl transition-all duration-500 hover:-translate-y-2 bg-[#431A4F]"
-            >
-              {/* Icon Container */}
-              <div className="flex-shrink-0 p-3 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(210,191,127,0.5)]">
-                {item.icon}
-              </div>
-
-              {/* Content */}
-              <div className="flex-grow space-y-3 relative z-10">
-                {/* Title: Transitions to brandGold on hover */}
-                <h3 
-                  className="text-xl font-bold uppercase tracking-wide leading-tight transition-colors duration-300 group-hover:text-[#d2bf7f]"
-                >
-                  {item.title}
-                </h3>
-
-                <p className="text-white/70 text-sm font-medium leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
+            <img 
+              src={item.image} 
+              alt={item.name} 
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            
+            {/* Overlay for better text visibility */}
+            <div className="absolute inset-0 bg-black/10 transition-colors duration-300 z-0" />
+            
+            <div className="absolute bottom-6 left-6 z-10">
+              <span className="bg-white text-[#4B164C] px-6 py-2 rounded-xl font-bold text-lg shadow-lg">
+                {item.name}
+              </span>
             </div>
-          ))}
-        </div>
-
-        {/* Button */}
-        <div className="mt-16 text-center w-full">
-          {!showAll ? (
-            <button
-              onClick={() => setShowAll(true)}
-              onMouseEnter={() => setIsBtnHovered(true)}
-              onMouseLeave={() => setIsBtnHovered(false)}
-              style={{
-                borderColor: isBtnHovered ? brandGold : brandPurple,
-                color: isBtnHovered ? brandGold : brandPurple,
-              }}
-              className="inline-block px-12 py-4 rounded-full border-2 bg-transparent font-black uppercase tracking-widest text-sm transition-all duration-300 shadow-md"
-            >
-              Load More Cuisines
-            </button>
-          ) : (
-            <p className="text-gray-600 font-bold italic text-base md:text-lg">
-              "Providing everything needed for an authentic Asian culinary experience."
-            </p>
-          )}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
 };
 
-export default CuisineSection;
+export default RecipeSection;
