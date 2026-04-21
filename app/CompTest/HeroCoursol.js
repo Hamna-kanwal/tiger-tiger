@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
-  { id: 1, src: "/pulp-banner-updated.png", alt: "Product 1", className: "object-bottom translate-y-8" },
-  { id: 2, src: "/test.jpeg", alt: "Product 2", className: "object-center translate-y-8" }, 
-  { id: 3, src: "/korean-range.jpeg", alt: "Product 3", className: "object-center translate-y-20" },
+  { id: 1, src: "/pulp-TIger-banner.png", alt: "Product 1", className: "object-bottom translate-y-8" },
+  { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "object-center translate-y-8" }, 
+  { id: 3, src: "/korean-hero-banner.png", alt: "Product 3", className: "object-center translate-y-20 px-2" },
 ];
 
 const HeroCarousel = () => {
@@ -17,7 +17,7 @@ const HeroCarousel = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 2000);
 
     return () => clearInterval(timer);
   }, []);
