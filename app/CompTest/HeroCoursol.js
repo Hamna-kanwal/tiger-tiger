@@ -8,6 +8,9 @@ const slides = [
   { id: 1, src: "/pulp-TIger-banner.png", alt: "Product 1", className: "object-bottom translate-y-8" },
   { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "object-center translate-y-8" }, 
   { id: 3, src: "/korean-hero-banner.png", alt: "Product 3", className: "object-center translate-y-20 px-2" },
+   { id: 1, src: "/pulp-TIger-banner.png", alt: "Product 1", className: "object-bottom translate-y-8" },
+  { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "object-center translate-y-8" }, 
+  { id: 3, src: "/korean-hero-banner.png", alt: "Product 3", className: "object-center translate-y-20 px-2" },
 ];
 
 const HeroCarousel = () => {
