@@ -66,7 +66,7 @@ const GlobalSourcing = () => {
           <div className="relative w-full">
             {/* The Main Map Image */}
             <img 
-              src="/group.png" 
+              src="/Group.png" 
               alt="World Map" 
               className="w-full h-auto object-contain md:opacity-100" 
             />
