@@ -13,8 +13,7 @@ export default function Header() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Products", href: "/products" },
-    { name: "Recipes", href: "/recipes" }, // Naya Seedha Link
-    { name: "Cuisines", href: "/cuisines" },
+    { name: "Recipes", href: "/recipes" },
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact" },
     { name: "About", href: "/about" },

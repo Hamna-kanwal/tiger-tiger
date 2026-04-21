@@ -33,10 +33,10 @@ const HeroSlider = () => {
         </p>
 
         <h1 
-          className="eczar text-[30px] md:text-[45px] lg:text-[55px] m-0 p-0 font-bold leading-tight" 
+          className="eczar text-[30px] md:text-[45px] lg:text-[50px] m-0 p-0 font-bold leading-tight" 
           style={{ color: brandPurple }}
         >
-          Leading Asian Food Brand in the UK
+          Leading Pan Asian Food Brand in the UK
         </h1>
 
         <p
