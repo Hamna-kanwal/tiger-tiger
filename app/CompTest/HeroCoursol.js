@@ -16,19 +16,17 @@ const slides = [
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-slide logic
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 4000);
-
     return () => clearInterval(timer);
   }, []);
 
   const variants = {
     enter: {
-      x: "100%", 
-      opacity: 0, // Opacity zero se start karein taake white jhatka na lage
+      x: "100%", // Side se slide hokar aayega
+      opacity: 0,
     },
     center: {
       zIndex: 1,
@@ -37,36 +35,38 @@ const HeroCarousel = () => {
     },
     exit: {
       zIndex: 0,
-      x: "-100%", 
-      opacity: 0, // Exit hote waqt halka sa fade out
+      x: "-20%", // Exit hote waqt thoda sa peeche move hoga
+      opacity: 0,
+      transition: { opacity: { duration: 0.3 } } // Fast exit taake gap na dikhe
     },
   };
 
   return (
     <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10">
-      {/* Background container color helps prevent white flashes */}
-      <div className="relative w-full h-[250px] md:h-[550px] lg:h-[750px] overflow-hidden bg-transparent">
+      {/* Container height fix aur background transparent ki jagah theme color rakhein agar white flash aa raha ho */}
+      <div className="relative w-full h-[300px] md:h-[550px] lg:h-[750px] overflow-hidden">
         
-        <AnimatePresence initial={false} mode="popLayout">
+        {/* 'mode' ko remove kar dein taake exit aur enter ek saath hon (overlap) */}
+        <AnimatePresence initial={false}>
           <motion.div
-            key={currentIndex} // Unique key ensures smooth transition
+            key={currentIndex}
             variants={variants}
             initial="enter"
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "tween", duration: 0.8, ease: "easeInOut" },
+              x: { type: "tween", duration: 0.8, ease: [0.4, 0, 0.2, 1] }, // Custom bezier for premium feel
               opacity: { duration: 0.4 }
             }}
-            className="absolute w-full h-full"
+            className="absolute inset-0 w-full h-full"
           >
             <Image
               src={slides[currentIndex].src}
               alt={slides[currentIndex].alt}
               fill
-              className={`object-contain scale-125 md:scale-115 lg:scale-120 origin-bottom ${slides[currentIndex].className}`}
-              priority // High priority loading
-              unoptimized={true} // Vercel optimization delay se bachne ke liye
+              className={`object-contain scale-110 origin-bottom ${slides[currentIndex].className}`}
+              priority
+              unoptimized
               sizes="100vw"
             />
           </motion.div>
