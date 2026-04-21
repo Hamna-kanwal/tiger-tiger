@@ -8,15 +8,15 @@ const CategoryMarquee = () => {
   const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   const categories = [
-    { name: "NOODLES", slug: "noodles", image: "/Noodles.png" },
-    { name: "Nuts & Seeds", slug: "nuts-seeds", image: "/Nuts_and_Seeds.png" },
-    { name: "Rice", slug: "rice", image: "/Rice.png" },
-    { name: "Canned", slug: "canned", image: "/Canned.png" },
-    { name: "Snacks", slug: "snacks", image: "/Snacks.png" },
+    { name: "NOODLES", slug: "noodles", image: "/Noodles.jpg" },
+    { name: "Nuts & Seeds", slug: "nuts-seeds", image: "/nuts and seeds.jpg" },
+    { name: "Rice", slug: "rice", image: "/rice.jpg" },
+    { name: "Canned", slug: "canned", image: "/Canned.jpg" },
+    { name: "Snacks", slug: "snacks", image: "/snacks.jpg" },
     { name: "Spices & Seasonings", slug: "spices", image: "/Spices_and_seasonings.png" },
     { name: "Drinks", slug: "drinks", image: "/Drinks.png" },
     { name: "Frozen", slug: "frozen", image: "/frozen cat.jpg" },
-    { name: "Taste Japan", slug: "japan", image: "/Japanese.png" },
+    { name: "Taste of Asia", slug: "japan", image: "/taste of asia.jpg" },
     { name: "Sauces", slug: "sauces", image: "/Sauces.png" },
   ];
 

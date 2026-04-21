@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
-  { id: 1, src: "/Hero_Bg.png", alt: "Product 1", className: "object-bottom" },
+  { id: 1, src: "/pulp-banner-updated.png", alt: "Product 1", className: "object-bottom translate-y-8" },
   { id: 2, src: "/test.jpeg", alt: "Product 2", className: "object-center translate-y-8" }, 
   { id: 3, src: "/korean-range.jpeg", alt: "Product 3", className: "object-center translate-y-20" },
 ];
@@ -55,8 +55,8 @@ const HeroCarousel = () => {
   };
 
   return (
-    <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10 px-4">
-      <div className="relative w-full max-w-[1500px] h-[350px] md:h-[550px] lg:h-[650px] overflow-hidden">
+    <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10">
+<div className="relative w-full h-[250px] md:h-[550px] lg:h-[700px] overflow-hidden">
         
         {/* mode="popLayout" ensures images move together without gaps */}
         <AnimatePresence initial={false} mode="popLayout">
