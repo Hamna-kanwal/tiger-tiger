@@ -24,29 +24,29 @@ const HeroCarousel = () => {
   }, []);
 
   const variants = {
-    enter: {
-      x: "100%", // Side se slide hokar aayega
-      opacity: 0,
-    },
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: {
-      zIndex: 0,
-      x: "-20%", // Exit hote waqt thoda sa peeche move hoga
-      opacity: 0,
-      transition: { opacity: { duration: 0.3 } } // Fast exit taake gap na dikhe
-    },
+    enter: { x: "100%", opacity: 0 },
+    center: { zIndex: 1, x: 0, opacity: 1 },
+    exit: { zIndex: 0, x: "-20%", opacity: 0 },
   };
 
   return (
     <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10">
-      {/* Container height fix aur background transparent ki jagah theme color rakhein agar white flash aa raha ho */}
+      
+      {/* 1. Preloading Logic: Ye images screen par nazar nahi aayengi lekin browser inhy 'save' kar ly ga */}
+      <div className="hidden">
+        {slides.map((slide) => (
+          <Image 
+            key={`preload-${slide.id}`} 
+            src={slide.src} 
+            alt="preload" 
+            width={10} 
+            height={10} 
+            priority 
+          />
+        ))}
+      </div>
+
       <div className="relative w-full h-[300px] md:h-[550px] lg:h-[750px] overflow-hidden">
-        
-        {/* 'mode' ko remove kar dein taake exit aur enter ek saath hon (overlap) */}
         <AnimatePresence initial={false}>
           <motion.div
             key={currentIndex}
@@ -55,7 +55,7 @@ const HeroCarousel = () => {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "tween", duration: 0.8, ease: [0.4, 0, 0.2, 1] }, // Custom bezier for premium feel
+              x: { type: "tween", duration: 0.8, ease: [0.4, 0, 0.2, 1] },
               opacity: { duration: 0.4 }
             }}
             className="absolute inset-0 w-full h-full"
@@ -66,7 +66,6 @@ const HeroCarousel = () => {
               fill
               className={`object-contain scale-110 origin-bottom ${slides[currentIndex].className}`}
               priority
-              unoptimized
               sizes="100vw"
             />
           </motion.div>
