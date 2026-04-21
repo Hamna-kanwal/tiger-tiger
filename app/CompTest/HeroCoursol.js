@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
-  { id: 1, src: "/pulp-TIger-banner.png", alt: "Product 1", className: "object-bottom translate-y-8" },
+  { id: 1, src: "/pulp-hero-section.png", alt: "Product 1", className: "object-bottom translate-y-8" },
   { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "object-center translate-y-8" }, 
   { id: 3, src: "/koreannnnnn.png", alt: "Product 3", className: "object-center translate-y-20 px-2" },
-  { id: 4, src: "/pulp-TIger-banner.png", alt: "Product 4", className: "object-bottom translate-y-8" },
+  { id: 4, src: "/pulp-hero-section.png", alt: "Product 4", className: "object-bottom translate-y-8" },
   { id: 5, src: "/japanese-hero.png", alt: "Product 5", className: "object-center translate-y-8" }, 
   { id: 6, src: "/koreannnnnn.png", alt: "Product 6", className: "object-center translate-y-20 px-2" },
 ];
