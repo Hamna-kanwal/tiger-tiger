@@ -56,7 +56,7 @@ const HeroCarousel = () => {
 
   return (
     <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10">
-<div className="relative w-full h-[250px] md:h-[550px] lg:h-[700px] overflow-hidden">
+<div className="relative w-full h-[250px] md:h-[550px] lg:h-[750px] overflow-hidden">
         
         {/* mode="popLayout" ensures images move together without gaps */}
         <AnimatePresence initial={false} mode="popLayout">
