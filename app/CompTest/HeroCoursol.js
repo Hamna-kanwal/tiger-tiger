@@ -8,9 +8,9 @@ const slides = [
   { id: 1, src: "/pulp-TIger-banner.png", alt: "Product 1", className: "object-bottom translate-y-8" },
   { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "object-center translate-y-8" }, 
   { id: 3, src: "/koreannnnnn.png", alt: "Product 3", className: "object-center translate-y-20 px-2" },
-   { id: 1, src: "/pulp-TIger-banner.png", alt: "Product 1", className: "object-bottom translate-y-8" },
-  { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "object-center translate-y-8" }, 
-  { id: 3, src: "/koreannnnnn.png", alt: "Product 3", className: "object-center translate-y-20 px-2" },
+  { id: 4, src: "/pulp-TIger-banner.png", alt: "Product 4", className: "object-bottom translate-y-8" },
+  { id: 5, src: "/japanese-hero.png", alt: "Product 5", className: "object-center translate-y-8" }, 
+  { id: 6, src: "/koreannnnnn.png", alt: "Product 6", className: "object-center translate-y-20 px-2" },
 ];
 
 const HeroCarousel = () => {
@@ -20,30 +20,15 @@ const HeroCarousel = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(timer);
   }, []);
 
-  // Preload images for smooth transition
-  useEffect(() => {
-    const preloaded = slides.map((slide) => {
-      const img = new window.Image();
-      img.src = slide.src;
-      return img;
-    });
-
-    return () => {
-      preloaded.forEach((img) => {
-        img.src = "";
-      });
-    };
-  }, []);
-
   const variants = {
     enter: {
-      x: "100%", // Right se aayegi
-      opacity: 1,
+      x: "100%", 
+      opacity: 0, // Opacity zero se start karein taake white jhatka na lage
     },
     center: {
       zIndex: 1,
@@ -52,25 +37,26 @@ const HeroCarousel = () => {
     },
     exit: {
       zIndex: 0,
-      x: "-100%", // Left se nikal jayegi
-      opacity: 1,
+      x: "-100%", 
+      opacity: 0, // Exit hote waqt halka sa fade out
     },
   };
 
   return (
     <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10">
-<div className="relative w-full h-[250px] md:h-[550px] lg:h-[750px] overflow-hidden">
+      {/* Background container color helps prevent white flashes */}
+      <div className="relative w-full h-[250px] md:h-[550px] lg:h-[750px] overflow-hidden bg-transparent">
         
-        {/* mode="popLayout" ensures images move together without gaps */}
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
-            key={currentIndex}
+            key={currentIndex} // Unique key ensures smooth transition
             variants={variants}
             initial="enter"
             animate="center"
             exit="exit"
             transition={{
               x: { type: "tween", duration: 0.8, ease: "easeInOut" },
+              opacity: { duration: 0.4 }
             }}
             className="absolute w-full h-full"
           >
@@ -79,7 +65,9 @@ const HeroCarousel = () => {
               alt={slides[currentIndex].alt}
               fill
               className={`object-contain scale-125 md:scale-115 lg:scale-120 origin-bottom ${slides[currentIndex].className}`}
-              priority
+              priority // High priority loading
+              unoptimized={true} // Vercel optimization delay se bachne ke liye
+              sizes="100vw"
             />
           </motion.div>
         </AnimatePresence>
