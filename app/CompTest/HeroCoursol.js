@@ -23,7 +23,7 @@ const slides = [
     src: "/koreannnnnn.png", 
     alt: "Product 3", 
     // Isko mobile par mt-16 diya hai (sirf mobile ke liye) aur desktop par mt-0
-    className: "scale-[1.0] md:scale-105 " 
+    className: "scale-[1.0] md:scale-105  md:translate-y-12 translate-y-3" 
   },
 ];
 
@@ -45,7 +45,7 @@ const HeroCarousel = () => {
           2. md:h-[750px]: Desktop ki height wapis wahi kar di jo aapki pehle thi.
           3. md:-mt-40: Ye desktop ko wapis upar khench lega.
       */}
-      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden md:-mt-40 mt-[17px]">
+      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden md:-mt-40 -mt-15">
         
         {slides.map((slide, index) => {
           const isActive = index === currentIndex;
