@@ -131,6 +131,21 @@ nav a, .nav-link-purple {
 
 
 
-body {
-    overflow-x: hidden;
+
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 2. Tamam elements ko box-sizing mein rakhne ke liye */
+* {
+  box-sizing: border-box;
+}
+
+/* 3. Images ko container se bahar nikalne se rokne ke liye */
+img {
+  max-width: 100%;
+  height: auto;
 }

@@ -8,13 +8,13 @@ const AboutSection = () => {
   const overlayImage = "/image 5.png";
 
   return (
-    <section className="py-16 px-4 md:px-10 bg-white overflow-hidden">
+    <section className="py-16 px-4 md:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
         {/* --- Left Side: Overlapping Images --- */}
         <div className="relative h-[400px] md:h-[500px]">
           {/* Main Large Image (Top Right) */}
-          <div className="absolute top-0 right-0 w-[85%] h-[75%] rounded-[2rem] overflow-hidden shadow-2xl z-10">
+          <div className="absolute top-0 right-0 w-[85%] h-[75%] overflow-hidden z-10">
             <img 
               src={mainImage} 
               alt="Asian Cuisine" 
@@ -23,7 +23,7 @@ const AboutSection = () => {
           </div>
 
           {/* Overlay Image (Bottom Left) */}
-          <div className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-[2rem] overflow-hidden shadow-2xl z-20 ">
+          <div className="absolute bottom-0 left-0 w-[55%] h-[55%] overflow-hidden z-20 ">
             <img 
               src={overlayImage} 
               alt="Tiger Tiger Products" 
