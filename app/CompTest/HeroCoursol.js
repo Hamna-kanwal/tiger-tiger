@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const slides = [
-  { id: 1, src: "/pulp-hero-section.png", alt: "Product 1", className: "object-bottom translate-y-8" },
-  { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "object-center translate-y-8" }, 
-  { id: 3, src: "/koreannnnnn.png", alt: "Product 3", className: "object-center translate-y-20 px-2" },
-  { id: 4, src: "/pulp-hero-section.png", alt: "Product 4", className: "object-bottom translate-y-8" },
-  { id: 5, src: "/japanese-hero.png", alt: "Product 5", className: "object-center translate-y-8" }, 
-  { id: 6, src: "/koreannnnnn.png", alt: "Product 6", className: "object-center translate-y-20 px-2" },
+  { id: 1, src: "/pulp-hero-section.png", alt: "Product 1", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" },
+  { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" }, 
+  // Koreannnnnn wali slide ka scale thora kam kar diya taake ye kate nahi
+  { id: 3, src: "/koreannnnnn.png", alt: "Product 3", className: "translate-y-0 md:translate-y-12 scale-[1.15] md:scale-105" },
+  { id: 4, src: "/pulp-hero-section.png", alt: "Product 4", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" },
+  { id: 5, src: "/japanese-hero.png", alt: "Product 5", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" }, 
+  { id: 6, src: "/koreannnnnn.png", alt: "Product 6", className: "translate-y-0 md:translate-y-12 scale-[1.15] md:scale-105" },
 ];
 
 const HeroCarousel = () => {
@@ -24,10 +25,12 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full flex justify-center items-end mt-10 md:-mt-36 lg:-mt-48 z-10">
-      <div className="relative w-full h-[300px] md:h-[550px] lg:h-[750px] overflow-hidden">
+    // mt-0 mobile ke liye taake koi faltu space na ho
+    <div className="relative w-full flex justify-center items-end mt-0 md:-mt-10 z-10">
+      
+      {/* Mobile height h-[300px] rakhi hai jo tight fit ke liye best hai */}
+      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden">
         
-        {/* Mapping all slides at once to keep them in memory */}
         {slides.map((slide, index) => {
           const isActive = index === currentIndex;
           
@@ -37,7 +40,7 @@ const HeroCarousel = () => {
               initial={false}
               animate={{
                 opacity: isActive ? 1 : 0,
-                x: isActive ? 0 : index > currentIndex ? "100%" : "-100%",
+                x: isActive ? "0%" : index > currentIndex ? "100%" : "-100%",
                 zIndex: isActive ? 10 : 0
               }}
               transition={{
@@ -50,8 +53,9 @@ const HeroCarousel = () => {
                 src={slide.src}
                 alt={slide.alt}
                 fill
-                className={`object-contain scale-110 origin-bottom ${slide.className}`}
-                priority={index === 0} // Pehli image ko fast load karein
+                // object-contain aur origin-bottom tight fit ke liye
+                className={`object-contain object-bottom origin-bottom transition-transform duration-500 ${slide.className}`}
+                priority={index === 0}
                 sizes="100vw"
                 unoptimized
               />
