@@ -5,13 +5,26 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const slides = [
-  { id: 1, src: "/pulp-hero-section.png", alt: "Product 1", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" },
-  { id: 2, src: "/japanese-hero.png", alt: "Product 2", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" }, 
-  // Koreannnnnn wali slide ka scale thora kam kar diya taake ye kate nahi
-  { id: 3, src: "/koreannnnnn.png", alt: "Product 3", className: "translate-y-0 md:translate-y-12 scale-[1.15] md:scale-105" },
-  { id: 4, src: "/pulp-hero-section.png", alt: "Product 4", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" },
-  { id: 5, src: "/japanese-hero.png", alt: "Product 5", className: "translate-y-0 md:translate-y-8 scale-[1.35] md:scale-140" }, 
-  { id: 6, src: "/koreannnnnn.png", alt: "Product 6", className: "translate-y-0 md:translate-y-12 scale-[1.15] md:scale-105" },
+  { 
+    id: 1, 
+    src: "/pulp-hero-section.png", 
+    alt: "Product 1", 
+    // Mobile: scale 1.5, Desktop: scale 140 aur wahi purani position
+    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
+  },
+  { 
+    id: 2, 
+    src: "/japanese-hero.png", 
+    alt: "Product 2", 
+    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
+  },
+  { 
+    id: 3, 
+    src: "/koreannnnnn.png", 
+    alt: "Product 3", 
+    // Isko mobile par mt-16 diya hai (sirf mobile ke liye) aur desktop par mt-0
+    className: "scale-[1.0] md:scale-105 " 
+  },
 ];
 
 const HeroCarousel = () => {
@@ -25,11 +38,14 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    // mt-0 mobile ke liye taake koi faltu space na ho
-    <div className="relative w-full flex justify-center items-end mt-0 md:-mt-10 z-10">
+    // mt-0 mobile ke liye, desktop par koi asar nahi
+    <div className="w-full flex justify-center items-end mt-0">
       
-      {/* Mobile height h-[300px] rakhi hai jo tight fit ke liye best hai */}
-      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden">
+      {/* 1. h-[320px]: Mobile ki height tight rakhi hai taake niche space na bane.
+          2. md:h-[750px]: Desktop ki height wapis wahi kar di jo aapki pehle thi.
+          3. md:-mt-40: Ye desktop ko wapis upar khench lega.
+      */}
+      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden md:-mt-40 mt-[17px]">
         
         {slides.map((slide, index) => {
           const isActive = index === currentIndex;
@@ -53,8 +69,8 @@ const HeroCarousel = () => {
                 src={slide.src}
                 alt={slide.alt}
                 fill
-                // object-contain aur origin-bottom tight fit ke liye
-                className={`object-contain object-bottom origin-bottom transition-transform duration-500 ${slide.className}`}
+                // object-bottom laptop/desktop par image ko sahi rakhta hai
+                className={`object-contain object-bottom origin-bottom transition-all duration-500 ${slide.className}`}
                 priority={index === 0}
                 sizes="100vw"
                 unoptimized
