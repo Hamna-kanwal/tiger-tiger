@@ -99,7 +99,7 @@ const FAQSection = () => {
 
           {/* --- Read More Button --- */}
           {!showAll && (
-            <div className="pt-6 flex justify-start">
+            <div className="pt-6 flex justify-center md:justify-start">
               <button 
                 onMouseEnter={() => setIsBtnHovered(true)}
                 onMouseLeave={() => setIsBtnHovered(false)}

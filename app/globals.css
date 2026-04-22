@@ -30,7 +30,6 @@ nav a, .nav-link-purple {
   color: var(--brand-purple) !important;
 }
 
-
 /* Image heights logic */
 .image-height {
   height: 1000px !important; 
@@ -54,6 +53,7 @@ nav a, .nav-link-purple {
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
 .faq-container {
   background-color: #fff;
   color: #333;
@@ -64,7 +64,7 @@ nav a, .nav-link-purple {
   align-items: center;
   box-sizing: border-box;
 }
- 
+
 .faq-heading {
   font-size: 36px;
   font-weight: 800;
@@ -75,7 +75,7 @@ nav a, .nav-link-purple {
   text-transform: uppercase;
   width: 100%;
 }
- 
+
 .faq-item {
   background-color: #fff;
   border-radius: 10px;
@@ -87,12 +87,12 @@ nav a, .nav-link-purple {
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   box-sizing: border-box;
 }
- 
+
 .faq-item:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
- 
+
 .faq-question {
   display: flex;
   align-items: center;
@@ -101,22 +101,22 @@ nav a, .nav-link-purple {
   font-weight: 700;
   color: #222;
 }
- 
+
 .faq-question p {
   margin-left: 15px;
 }
- 
+
 .faq-plus {
   font-size: 26px;
   font-weight: 900;
   color: #f77f00;
   transition: transform 0.3s ease;
 }
- 
+
 .faq-question.open .faq-plus {
   transform: rotate(180deg);
 }
- 
+
 .faq-answer {
   margin-top: 15px;
   font-size: 16px;
@@ -124,7 +124,13 @@ nav a, .nav-link-purple {
   color: #444;
   padding-left: 40px;
 }
- 
+
 .faq-answer p:first-child {
   margin-left: -20px;  
+}
+
+
+
+body {
+    overflow-x: hidden;
 }

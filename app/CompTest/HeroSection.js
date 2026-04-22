@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Star, Percent, ShieldCheck, Truck } from 'lucide-react';
+import { Star, HandCoins, ShieldCheck, Truck } from 'lucide-react'; 
 
 const Herosection = () => {
   const brandPurple = "#4e1a51";
   const brandGold = "#d5be8b";
   const charcoalBlack = "#333333";
 
-  // State for button hovers
   const [hoverExplore, setHoverExplore] = useState(false);
   const [hoverCuisines, setHoverCuisines] = useState(false);
 
@@ -20,7 +19,7 @@ const Herosection = () => {
       hasBorder: true
     },
     {
-      icon: <Percent className="w-6 h-6" />,
+      icon: <HandCoins className="w-6 h-6" />, // Value and Price icon
       title: "COMPETITIVE",
       sub: "PRICES",
       hasBorder: true
@@ -43,7 +42,7 @@ const Herosection = () => {
     <section className="relative bg-white py-12 md:py-20 px-4 overflow-hidden">
       <div className="container mx-auto relative z-10">
         
-        {/* --- SEO CONTENT SECTION --- */}
+        {/* Header Text Section */}
         <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
           <h4 
             style={{ color: charcoalBlack }}
@@ -60,11 +59,8 @@ const Herosection = () => {
             <button 
               onMouseEnter={() => setHoverExplore(true)}
               onMouseLeave={() => setHoverExplore(false)}
-              style={{ 
-                backgroundColor: hoverExplore ? brandGold : brandPurple 
-              }}
-              className="w-full sm:w-auto px-10 py-4 rounded-full text-white font-bold text-sm md:text-base 
-                         shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+              style={{ backgroundColor: hoverExplore ? brandGold : brandPurple }}
+              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full text-white font-bold text-sm md:text-base shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Explore Products
             </button>
@@ -76,43 +72,48 @@ const Herosection = () => {
                 borderColor: hoverCuisines ? brandGold : brandPurple, 
                 color: hoverCuisines ? brandGold : brandPurple 
               }}
-              className="w-full sm:w-auto px-10 py-4 rounded-full border-2 bg-transparent font-bold text-sm md:text-base 
-                         transition-all duration-300 active:scale-95"
+              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 bg-transparent font-bold text-sm md:text-base transition-all duration-300 active:scale-95"
             >
               Discover Cuisines
             </button>
           </div>
         </div>
 
-        {/* --- FEATURE BOX --- */}
+        {/* Feature Box with Separators */}
         <div className="w-full max-w-6xl mx-auto">
-          <div className="bg-[#4e1a51] border-2 border-[#4e1a51] rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center justify-between overflow-hidden">
-            
+          <div className="bg-[#4e1a51] rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center justify-between overflow-hidden">
             {features.map((feature, idx) => (
-              <div 
-                key={idx}
-                className={`flex-1 w-full py-12 flex flex-col items-center justify-center text-white 
-                  ${feature.hasBorder ? 'md:border-r-4 border-white/20' : ''}`}
-              >
-                <div className="mb-4 text-white scale-110">
-                  {feature.icon}
+              <React.Fragment key={idx}>
+                <div className={`flex-1 w-full py-8 md:py-12 flex flex-col items-center justify-center text-white ${feature.hasBorder ? 'md:border-r border-white/10' : ''}`}>
+                  <div className="mb-3 md:mb-4 text-white">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg md:text-2xl font-serif font-extrabold tracking-widest eczar text-center uppercase">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[10px] md:text-[13px] font-sans font-bold tracking-widest text-white/90 text-center px-4 leading-tight mb-3 md:mb-4 uppercase">
+                    {feature.sub}
+                  </p>
+                  <div className="flex gap-1.5 text-[#d5be8b]">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 md:w-3.5 h-3 md:h-3.5 fill-current" />
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-xl md:text-2xl font-serif font-extrabold tracking-widest eczar text-center uppercase">
-                  {feature.title}
-                </h3>
-                <p className="text-[11px] md:text-[13px] font-sans font-bold tracking-widest text-white/90 text-center px-4 leading-tight mb-4 uppercase">
-                  {feature.sub}
-                </p>
-                <div className="flex gap-1.5 mb-3 text-[#d2bf7f] scale-110">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                  ))}
-                </div>
-              </div>
-            ))}
 
+                {/* Mobile Separator Line + Star */}
+                {idx !== features.length - 1 && (
+                  <div className="flex md:hidden items-center w-[85%] mx-auto opacity-30">
+                    <div className="flex-grow h-[1px] bg-[#d5be8b]"></div>
+                    <Star className="w-2.5 h-2.5 mx-3 text-[#d5be8b] fill-current" />
+                    <div className="flex-grow h-[1px] bg-[#d5be8b]"></div>
+                  </div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
         </div>
+
       </div>
     </section>
   );

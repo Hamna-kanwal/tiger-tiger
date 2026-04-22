@@ -80,7 +80,7 @@ const WhoWeServe = () => {
           </div>
 
           {/* Bottom Line: Isko bhi right shift kiya 'lg:ml-24' se */}
-          <div className="border-l-[3px] border-[#4E1A51] lg:pl-4 py-4  max-w-2xl  lg:ml-24 relative z-10">
+          <div className="border-l-[3px] border-[#4E1A51] pl-4 py-4   max-w-2xl  lg:ml-24 relative z-10">
             <p className="text-gray-700 font-medium italic text-[17px]">
               Our products help businesses improve efficiency and deliver authentic dishes consistently.
             </p>

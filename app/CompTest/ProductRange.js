@@ -49,7 +49,7 @@ const FeaturedProducts = () => {
                 {/* Rounded corners aur subtle border shadow design 
                     elements ko modern aesthetics ke mutabiq rakha gaya hai.
                 */}
-                <div className="relative overflow-hidden rounded-[40px] md:rounded-[50px] shadow-lg border border-purple-900/10 bg-white w-full h-auto">
+                <div className="relative overflow-hidden  mt-6 bg-white w-full h-auto">
                   <Image
                     src={product.src}
                     alt={product.alt}
