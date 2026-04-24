@@ -19,7 +19,8 @@ const FeaturedProducts = () => {
 
   return (
     <section className="py-10 md:py-16 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 w-full">
+      {/* Width ko 'max-w-7xl' aur padding ko 'px-4' kiya gaya hai alignment ke liye */}
+      <div className="max-w-7xl mx-auto px-4 w-full">
         
         <div className="text-center mb-6">
           <h2 
@@ -40,15 +41,10 @@ const FeaturedProducts = () => {
             autoplay={{ delay: 3500, disableOnInteraction: false }}
             pagination={{ clickable: true, dynamicBullets: true }}
             className="pb-14"
-            // Yeh property transition ke waqt glitch ko rokti hai
             touchReleaseOnEdges={true}
           >
             {products.map((product) => (
               <SwiperSlide key={product.id}>
-                {/* IMPORTANT FIXES:
-                   1. 'isolate' class: Yeh ek naya stacking context banati hai jo rounded corners ko slide change ke waqt "leak" hone se rokti hai.
-                   2. 'mask-image': Yeh CSS trick hai jo browser ko force karti hai ke corners ko hamesha round rakhe (Safari/Chrome fix).
-                */}
                 <div 
                   className="relative mt-2 w-full aspect-[21/9] md:aspect-[25/10] rounded-[40px] overflow-hidden isolate shadow-none"
                   style={{ maskImage: "webkit-radial-gradient(white, black)" }} 
@@ -69,7 +65,6 @@ const FeaturedProducts = () => {
       </div>
 
       <style jsx global>{`
-        /* Swiper container ko force karna ke corners round rahein */
         .swiper {
             border-radius: 40px !important;
             overflow: hidden !important;

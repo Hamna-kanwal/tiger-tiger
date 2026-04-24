@@ -26,8 +26,12 @@ const WhoWeServe = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-2 bg-white ">
-      <section className="bg-[#F8F1E2] p-5 md:p-8 lg:p-12 rounded-[40px] max-w-6xl w-full border border-purple-900/10 shadow-sm relative overflow-hidden">
+    // Padding x-4 add kiya taake Herosection ki tarah sides se space rahe
+    <div className="w-full flex items-center justify-center px-4 py-12 bg-white">
+      {/* 1. 'max-w-6xl' ko 'max-w-7xl' kar diya taake Herosection jitni width ho jaye.
+          2. Container ko center karne ke liye 'mx-auto' ensure kiya.
+      */}
+      <section className="bg-[#F8F1E2] p-5 md:p-8 lg:p-12 rounded-[40px] max-w-7xl w-full border border-purple-900/10 shadow-sm relative overflow-hidden mx-auto">
         
         {/* Background Cans */}
         <div className="absolute -left-30 -bottom-70 rotate-[-15deg] w-72 md:w-96 lg:w-[450px] z-0 origin-bottom-left opacity-50 lg:opacity-100">
@@ -41,7 +45,7 @@ const WhoWeServe = () => {
           
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-4 md:px-8">
             
-            {/* Left Side: Isko right shift kiya 'lg:pl-16' se */}
+            {/* Left Side */}
             <div className="space-y-6 lg:pl-4 mb-7">
               <h4 className="uppercase tracking-[2px] text-[#4E1A51] text-[14px] font-bold">Who we serve</h4>
               <h2 className="text-[32px] md:text-[45px] lg:text-[52px] font-extrabold text-slate-900 leading-[1.1] tracking-tight">
@@ -79,8 +83,8 @@ const WhoWeServe = () => {
 
           </div>
 
-          {/* Bottom Line: Isko bhi right shift kiya 'lg:ml-24' se */}
-          <div className="border-l-[3px] border-[#4E1A51] pl-4 py-4   max-w-2xl  lg:ml-24 relative z-10">
+          {/* Bottom Line */}
+          <div className="border-l-[3px] border-[#4E1A51] pl-4 py-4 max-w-2xl lg:ml-24 relative z-10">
             <p className="text-gray-700 font-medium italic text-[17px]">
               Our products help businesses improve efficiency and deliver authentic dishes consistently.
             </p>
