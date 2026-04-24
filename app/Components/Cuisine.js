@@ -19,16 +19,16 @@ const RecipeSection = () => {
         </p>
       </div>
 
-      {/* FIXED GRID LOGIC:
-          - Mobile: grid-cols-1 aur rows-none (taki sare line se niche aayein)
-          - Desktop: md:grid-cols aur md:grid-rows-2
+      {/* Yahan 'md:grid-cols-[2.5fr,1fr,1fr]' use kiya hai taake 
+          Japanese image (first column) layout ka zyada area cover kare.
       */}
-      <div className="grid grid-cols-1 md:grid-cols-[1.8fr,1.1fr,1.1fr] md:grid-rows-2 gap-4 md:grid-flow-col-dense">
+      {/* 'md:h-[600px]' ya 'md:h-[700px]' add karne se Japanese image niche tak full ho jayegi */}
+<div className="grid grid-cols-1 md:grid-cols-[1.9fr,1.1fr,1.1fr] md:grid-rows-2 gap-4 md:h-[500px] md:grid-flow-col-dense">
         {cuisines.map((item) => (
           <div 
             key={item.name} 
             className={`relative overflow-hidden rounded-2xl group ${item.gridClass || ''} 
-              h-[250px] md:h-full min-h-[200px] shadow-sm`}
+              h-[350px] md:h-full min-h-[200px] shadow-sm`}
           >
             <img 
               src={item.image} 
@@ -36,7 +36,7 @@ const RecipeSection = () => {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
             
-            <div className="absolute inset-0  duration-300 z-0" />
+            <div className="absolute inset-0 duration-300 z-0" />
             
             <div className="absolute bottom-6 left-6 z-10">
               <span className="bg-white text-[#4B164C] px-6 py-2 rounded-xl font-bold text-lg shadow-lg">
