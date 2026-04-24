@@ -27,7 +27,7 @@ const WhoWeServe = () => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-2 bg-white ">
-      <section className="bg-[#F8F1E2] p-5 md:p-8 lg:p-12 rounded-[40px] max-w-7xl w-full border border-purple-900/10 shadow-sm relative overflow-hidden">
+      <section className="bg-[#F8F1E2] p-5 md:p-8 lg:p-12 rounded-[40px] max-w-6xl w-full border border-purple-900/10 shadow-sm relative overflow-hidden">
         
         {/* Background Cans */}
         <div className="absolute -left-30 -bottom-70 rotate-[-15deg] w-72 md:w-96 lg:w-[450px] z-0 origin-bottom-left opacity-50 lg:opacity-100">

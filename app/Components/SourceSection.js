@@ -24,19 +24,20 @@ const GlobalSourcing = () => {
 
   return (
     <section className="bg-white py-10 px-4">
+      {/* max-w-6xl ko change karke max-w-7xl kar diya gaya hai */}
       <div 
-        className="max-w-6xl mx-auto rounded-[20px] p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center min-h-[500px]"
+        className="max-w-7xl mx-auto rounded-[20px] p-8 md:p-12 lg:p-16 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center min-h-[500px]"
         style={{ backgroundColor: brandPurple }}
       >
         
         {/* --- Left Content Column --- */}
         <div className="w-full md:w-1/2 z-10 text-left">
-          <h2 className="text-[28px] md:text-[36px] font-bold text-white mb-2 tracking-wide uppercase leading-tight">
+          <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold text-white mb-2 tracking-wide uppercase leading-tight">
             GLOBAL SOURCING FOR <br />
             <span style={{ color: brandGold }}>AUTHENTIC TASTE</span>
           </h2>
           
-          <p className="text-white/90 text-sm md:text-base font-light mb-8 max-w-md">
+          <p className="text-white/90 text-sm md:text-base lg:text-lg font-light mb-8 max-w-md">
             Tiger Tiger sources ingredients directly from Asia, working with trusted producers and partners across the region.
           </p>
 
@@ -51,7 +52,7 @@ const GlobalSourcing = () => {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <span className="text-white text-sm font-medium">{text}</span>
+                <span className="text-white text-sm md:text-base font-medium">{text}</span>
               </div>
             ))}
           </div>
@@ -63,7 +64,7 @@ const GlobalSourcing = () => {
 
         {/* --- Right Column: Image with Location Tags --- */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0 relative flex justify-center items-center h-full">
-          <div className="relative w-full">
+          <div className="relative w-full lg:scale-110 transition-transform">
             {/* The Main Map Image */}
             <img 
               src="/Group.png" 
@@ -83,8 +84,6 @@ const GlobalSourcing = () => {
             ))}
           </div>
         </div>
-
-        {/* Decorative Dotted Lines section has been removed from here */}
 
       </div>
     </section>

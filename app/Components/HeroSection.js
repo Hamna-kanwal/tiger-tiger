@@ -55,32 +55,39 @@ const Herosection = () => {
             Tiger Tiger is a trusted Asian food supplier in the UK, delivering high-quality ingredients inspired by authentic Asian cuisine. From sauces and noodles to frozen foods and spices, we provide everything businesses need to create bold, traditional flavours.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
-            <button 
-              onMouseEnter={() => setHoverExplore(true)}
-              onMouseLeave={() => setHoverExplore(false)}
-              style={{ backgroundColor: hoverExplore ? brandGold : brandPurple }}
-              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full text-white font-bold text-sm md:text-base shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              Explore Products
-            </button>
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
+  {/* Explore Products - Default: Transparent, Hover: Solid Purple */}
+  <button 
+    onMouseEnter={() => setHoverExplore(true)}
+    onMouseLeave={() => setHoverExplore(false)}
+    style={{ 
+      backgroundColor: hoverExplore ? brandPurple : "transparent",
+      borderColor: brandPurple,
+      color: hoverExplore ? "white" : brandPurple 
+    }}
+    className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95"
+  >
+    Explore Products
+  </button>
 
-            <button 
-              onMouseEnter={() => setHoverCuisines(true)}
-              onMouseLeave={() => setHoverCuisines(false)}
-              style={{ 
-                borderColor: hoverCuisines ? brandGold : brandPurple, 
-                color: hoverCuisines ? brandGold : brandPurple 
-              }}
-              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 bg-transparent font-bold text-sm md:text-base transition-all duration-300 active:scale-95"
-            >
-              Discover Cuisines
-            </button>
-          </div>
+  {/* Discover Cuisines - Default: Transparent, Hover: Solid Purple */}
+  <button 
+    onMouseEnter={() => setHoverCuisines(true)}
+    onMouseLeave={() => setHoverCuisines(false)}
+    style={{ 
+      backgroundColor: hoverCuisines ? brandPurple : "transparent",
+      borderColor: brandPurple,
+      color: hoverCuisines ? "white" : brandPurple 
+    }}
+    className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 active:scale-95"
+  >
+    Discover Cuisines
+  </button>
+</div>
         </div>
 
         {/* Feature Box with Separators */}
-        <div className="w-full max-w-6xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto ">
           <div className="bg-[#4e1a51] rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center justify-between overflow-hidden">
             {features.map((feature, idx) => (
               <React.Fragment key={idx}>

@@ -17,7 +17,7 @@ const AboutSection = () => {
           <div className="absolute top-0 right-0 w-[85%] h-[75%] overflow-hidden z-10">
             <img 
               src={mainImage} 
-              alt="Asian Cuisine" 
+              alt="Asian Cuisine"
               className="w-full h-full object-cover"
             />
           </div>

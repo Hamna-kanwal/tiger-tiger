@@ -1,7 +1,7 @@
 // app/layout.jsx
 import { Outfit, Eczar } from "next/font/google";
 import "./globals.css";
-import Header from "./CompTest/Header"; 
+import Header from "./Components/Header"; 
 
 
 // 1. Google Fonts Configuration

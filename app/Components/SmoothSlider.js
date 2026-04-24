@@ -107,4 +107,4 @@ const ProductGallerySlider = () => {
   );
 };
 
-export default ProductGallerySlider;
+export default ProductGallerySlider

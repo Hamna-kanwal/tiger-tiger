@@ -1,24 +1,24 @@
 "use client";
 
 
-import HeroSlider from "./CompTest/Heroslider";
-import HeroCoursol from "./CompTest/HeroCoursol";     
-import BrandSlider from "./CompTest/Brandslider";
-import HeroSection from "./CompTest/HeroSection";       
-import AmazingFlavour from "./CompTest/AmazingFlavour"; 
-import ProductRange from "./CompTest/ProductRange";     
-import Choice from "./CompTest/Choices";                
-import CategorySlider from "./CompTest/CategorySlider";
-import  Cuisine from  "./CompTest/Cuisine";
-import About from "./CompTest/About";
-import SourceSection from "./CompTest/SourceSection";
-import Innovationsection from "./CompTest/InnovationSection"
-import Choose from "./CompTest/Choose"
-import SmoothSlider from "./CompTest/SmoothSlider";
-import Blog from "./CompTest/Blog";
-import Faq from "./CompTest/Faq";
-import CTA from "./CompTest/CTA";
-import Footer from "./CompTest/Footer";
+import HeroSlider from "./Components/Heroslider";
+import HeroCoursol from "./Components/HeroCoursol";     
+import BrandSlider from "./Components/Brandslider";
+import HeroSection from "./Components/HeroSection";       
+import AmazingFlavour from "./Components/AmazingFlavour"; 
+import ProductRange from "./Components/ProductRange";     
+import Choice from "./Components/Choices";                
+import CategorySlider from "./Components/CategorySlider";
+import  Cuisine from  "./Components/Cuisine";
+import About from "./Components/About";
+import SourceSection from "./Components/SourceSection";
+import Innovationsection from "./Components/InnovationSection"
+import Choose from "./Components/Choose"
+import SmoothSlider from "./Components/SmoothSlider";
+import Blog from "./Components/Blog";
+import Faq from "./Components/Faq";
+import CTA from "./Components/CTA";
+import Footer from "./Components/Footer";
 
 export default function Home() {
   return (

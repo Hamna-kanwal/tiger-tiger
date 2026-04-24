@@ -15,17 +15,13 @@ const FeaturedProducts = () => {
     { id: 1, src: "/feature-banner-1.jpg", alt: "Lychee Pulp" },
     { id: 2, src: "/feature-banner-2.jpg", alt: "Coconut Water" },
     { id: 3, src: "/feature-banner-3.jpg", alt: "Guava Juice" },
-   
   ];
 
   return (
-    <section className="py-10 md:py-16 bg-white">
-      {/* Container width aur padding ko consistent rakha gaya hai 
-          taake alignment page ke baaki sections se match kare.
-      */}
-      <div className="max-w-[1380px] mx-auto px-5 md:px-8 lg:px-12 w-full">
+    <section className="py-10 md:py-16 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 w-full">
         
-        <div className="text-center mb-4">
+        <div className="text-center mb-6">
           <h2 
             style={{ color: brandPurple }}
             className="eczar font-bold text-[32px] md:text-[52px] leading-tight"
@@ -37,26 +33,33 @@ const FeaturedProducts = () => {
         <div className="relative group">
           <Swiper
             modules={[Autoplay, Pagination]}
-            spaceBetween={20}
+            spaceBetween={24}
             slidesPerView={1}
             loop={true}
+            speed={800}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
             pagination={{ clickable: true, dynamicBullets: true }}
             className="pb-14"
+            // Yeh property transition ke waqt glitch ko rokti hai
+            touchReleaseOnEdges={true}
           >
             {products.map((product) => (
               <SwiperSlide key={product.id}>
-                {/* Rounded corners aur subtle border shadow design 
-                    elements ko modern aesthetics ke mutabiq rakha gaya hai.
+                {/* IMPORTANT FIXES:
+                   1. 'isolate' class: Yeh ek naya stacking context banati hai jo rounded corners ko slide change ke waqt "leak" hone se rokti hai.
+                   2. 'mask-image': Yeh CSS trick hai jo browser ko force karti hai ke corners ko hamesha round rakhe (Safari/Chrome fix).
                 */}
-                <div className="relative overflow-hidden  mt-6 bg-white w-full h-auto">
+                <div 
+                  className="relative mt-2 w-full aspect-[21/9] md:aspect-[25/10] rounded-[40px] overflow-hidden isolate shadow-none"
+                  style={{ maskImage: "webkit-radial-gradient(white, black)" }} 
+                >
                   <Image
                     src={product.src}
                     alt={product.alt}
-                    width={1920} 
-                    height={800}
-                    className="w-full h-auto object-contain" 
+                    fill
+                    className="object-cover rounded-[40px]"
                     priority
+                    sizes="(max-width: 1280px) 100vw, 1280px"
                   />
                 </div>
               </SwiperSlide>
@@ -66,6 +69,12 @@ const FeaturedProducts = () => {
       </div>
 
       <style jsx global>{`
+        /* Swiper container ko force karna ke corners round rahein */
+        .swiper {
+            border-radius: 40px !important;
+            overflow: hidden !important;
+        }
+
         .swiper-pagination-bullet-active {
           background: #4e1a51 !important;
           width: 12px;
