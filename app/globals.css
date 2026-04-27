@@ -143,6 +143,9 @@ html, body {
 * {
   box-sizing: border-box;
 }
+section {
+  overflow-x: hidden;
+}
 
 /* 3. Images ko container se bahar nikalne se rokne ke liye */
 img {
