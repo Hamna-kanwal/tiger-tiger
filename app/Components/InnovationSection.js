@@ -7,9 +7,9 @@ const InnovationSection = () => {
   const brandGold = "#eed697";
 
   return (
-    <section className="bg-white relative overflow-visible">
+    <section className="bg-white relative overflow-hidden mt-20">
       {/* --- TOP Content Section --- */}
-      <div className="max-w-7xl mx-auto pt-12 relative">
+      <div className="max-w-7xl mx-auto  relative">
         
         {/* Floating Chilli Image (Left) */}
         <div className="absolute left-[10%] top-[20%] hidden lg:block">
