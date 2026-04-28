@@ -38,7 +38,7 @@ const AboutSection = () => {
             style={{ color: brandPurple }}
             className="eczar text-[36px] md:text-[48px] font-bold leading-tight"
           >
-            About Tiger Tiger
+            What We Do?
           </h2>
 
           <div className="space-y-6">
@@ -67,7 +67,7 @@ const AboutSection = () => {
               </div>
               <p className="text-gray-700 leading-relaxed">
                 <span className="font-bold" style={{ color: brandPurple }}>The Heritage: </span>
-                With decades of experience in sourcing and supplying high-quality Asian food products, 
+                With decades of experience in sourcing and supplying high-quality panAsian food products, 
                 we have built a strong reputation for delivering consistency and taste across the globe.
               </p>
             </div>

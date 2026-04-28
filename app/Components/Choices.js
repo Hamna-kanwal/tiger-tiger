@@ -14,7 +14,7 @@ const ProductCTA = () => {
         {/* --- SEO UPDATED SUB-HEADING --- */}
         <div className="space-y-4">
             <h3 className="text-[32px] font-bold text-gray-800">
-             Authentic Asian Food Products for Every Kitchen
+             Authentic Pan-Asian Food Products for Every Kitchen
             </h3>
             
             

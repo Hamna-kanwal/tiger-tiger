@@ -18,7 +18,7 @@ import SmoothSlider from "./Components/SmoothSlider";
 import Blog from "./Components/Blog";
 import Faq from "./Components/Faq";
 import CTA from "./Components/CTA";
-import Footer from "./Components/Footer";
+
 
 export default function Home() {
   return (
@@ -40,7 +40,6 @@ export default function Home() {
       <Blog/>
       <Faq/>
       <CTA/>
-      <Footer />
     </>
   );
 }

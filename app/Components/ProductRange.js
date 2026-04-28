@@ -14,7 +14,7 @@ const FeaturedProducts = () => {
   const products = [
     { id: 1, src: "/feature-banner-1.jpg", alt: "Lychee Pulp" },
     { id: 2, src: "/feature-banner-2.jpg", alt: "Coconut Water" },
-    { id: 3, src: "/feature-banner-3.jpg", alt: "Guava Juice" },
+    { id: 3, src: "/feature-products-popping.jpg.jpeg", alt: "Guava Juice" },
   ];
 
   return (
@@ -27,7 +27,7 @@ const FeaturedProducts = () => {
             style={{ color: brandPurple }}
             className="eczar font-bold text-[32px] md:text-[52px] leading-tight"
           >
-            Tiger Tiger Feature Products
+            Featured Products
           </h2>
         </div>
 

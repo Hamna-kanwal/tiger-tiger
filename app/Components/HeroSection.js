@@ -48,11 +48,11 @@ const Herosection = () => {
             style={{ color: charcoalBlack }}
             className="eczar text-[22px] sm:text-[26px] md:text-[32px] font-black tracking-tighter leading-tight mb-6"
           >
-            Authentic Asian Ingredients for Restaurants, Retailers & Wholesalers
+            Authentic  Pan-Asian Ingredients for Restaurants, Retailers & Wholesalers
           </h4>
 
           <p style={{ color: charcoalBlack }} className="text-sm md:text-base leading-relaxed mb-6 opacity-90">
-            Tiger Tiger is a trusted Asian food supplier in the UK, delivering high-quality ingredients inspired by authentic Asian cuisine. From sauces and noodles to frozen foods and spices, we provide everything businesses need to create bold, traditional flavours.
+            Tiger Tiger is a trusted pan-Asian food supplier in the UK, delivering high-quality ingredients inspired by authentic Asian cuisine. From sauces and noodles to frozen foods and spices, we provide everything businesses need to create bold, traditional flavours.
           </p>
 
     <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">

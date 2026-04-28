@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
             style={{ color: brandPurple }}
             className="eczar text-[32px] md:text-[42px] font-bold tracking-tight uppercase"
           >
-            Why Choose Tiger Tiger 
+            Why Choose Us 
           </h2>
         </div>
 
