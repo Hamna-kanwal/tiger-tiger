@@ -10,7 +10,7 @@ const RecipeSection = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12 font-sans">
+    <section className="max-w-7xl mx-auto px-6 py-12 font-sans">
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-[#4B164C] mb-4 text-center md:text-left">Explore Recipes</h2>
         <p className="text-gray-600 max-w-2xl leading-relaxed text-center md:text-left mx-auto md:mx-0">

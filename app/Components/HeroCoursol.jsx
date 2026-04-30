@@ -20,7 +20,7 @@ const slides = [
   },
   { 
     id: 3, 
-    src: "/koreannnnnn.png", 
+    src: "/koreannnnnn-updated (1).png", 
     alt: "Product 3", 
     // Isko mobile par mt-16 diya hai (sirf mobile ke liye) aur desktop par mt-0
     className: "scale-[1.0] md:scale-105  md:translate-y-12 translate-y-3" 

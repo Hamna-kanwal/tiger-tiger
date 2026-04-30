@@ -13,18 +13,19 @@ const GlobalSourcing = () => {
     "Ethical & sustainable sourcing",
   ];
 
+  // Updated locations with Flag Image paths
+  // Note: Make sure you have these flag images in your /public/flags/ folder
+  // Or you can use a CDN link like: https://flagcdn.com/w80/cn.png
   const locations = [
-    { name: "Korea", style: "top-[15%] right-[5%] text-xs md:text-sm" },
-    { name: "China", style: "top-[40%] right-[22%] text-2xl md:text-4xl font-bold opacity-90" },
-    { name: "Japan", style: "top-[52%] right-[2%] text-sm md:text-lg font-semibold" },
-    { name: "Thailand", style: "bottom-[30%] right-[32%] text-xs md:text-sm" },
-    { name: "Thai", style: "bottom-[15%] right-[38%] text-[10px] md:text-xs" },
-    { name: "Vietnam", style: "bottom-[20%] right-[10%] text-xs md:text-sm" },
+    { name: "Korea", code: "kr", style: "top-[15%] right-[5%] w-8 md:w-10" },
+    { name: "China", code: "cn", style: "top-[38%] right-[22%] w-12 md:w-16" },
+    { name: "Japan", code: "jp", style: "top-[52%] right-[2%] w-10 md:w-12" },
+    { name: "Thailand", code: "th", style: "bottom-[30%] right-[32%] w-8 md:w-10" },
+    { name: "Vietnam", code: "vn", style: "bottom-[20%] right-[10%] w-8 md:w-10" },
   ];
 
   return (
     <section className="bg-white py-10 px-4">
-      {/* max-w-6xl ko change karke max-w-7xl kar diya gaya hai */}
       <div 
         className="max-w-7xl mx-auto rounded-[20px] p-8 md:p-12 lg:p-16 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center min-h-[500px]"
         style={{ backgroundColor: brandPurple }}
@@ -56,30 +57,31 @@ const GlobalSourcing = () => {
               </div>
             ))}
           </div>
-
-          <p className="text-white/70 text-xs md:text-sm font-light italic max-w-sm">
-            This allows us to deliver products that meet the expectations of both chefs and businesses.
-          </p>
         </div>
 
-        {/* --- Right Column: Image with Location Tags --- */}
+        {/* --- Right Column: Image with Flag Overlays --- */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0 relative flex justify-center items-center h-full">
           <div className="relative w-full lg:scale-110 transition-transform">
-            {/* The Main Map Image */}
             <img 
               src="/Group.png" 
               alt="World Map" 
-              className="w-full h-auto object-contain md:opacity-100" 
+              className="w-full h-auto object-contain" 
             />
 
-            {/* Location Overlays */}
+            {/* Flag Overlays */}
             {locations.map((loc, index) => (
               <div 
                 key={index} 
-                className={`absolute text-white pointer-events-none select-none tracking-wider ${loc.style}`}
-                style={{ textShadow: "0px 2px 8px rgba(0,0,0,0.4)" }}
+                className={`absolute transition-transform hover:scale-110 pointer-events-none ${loc.style}`}
               >
-                {loc.name}
+                <img 
+                  src={`https://flagcdn.com/w80/${loc.code}.png`} 
+                  alt={`${loc.name} flag`}
+                  className="rounded-sm shadow-lg border border-white/20"
+                />
+                <span className="block text-[8px] md:text-[10px] text-white text-center mt-1 font-bold uppercase">
+                    {loc.name}
+                </span>
               </div>
             ))}
           </div>
