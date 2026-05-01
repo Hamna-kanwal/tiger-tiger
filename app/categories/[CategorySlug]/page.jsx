@@ -1,68 +1,58 @@
 "use client";
-
 import React from 'react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 
+// YE HISSA ADD KAREIN (Missing Data)
 const allProducts = [
-  { id: '1', name: 'PULP+ LYCHEE JUICE', image: '/pulpCan.png', category: 'drinks' },
-  { id: '2', name: 'PULP+ MANGO JUICE', image: '/pulpCan2.png', category: 'drinks' },
-  { id: '3', name: 'PULP+ PINK GUAVA JUICE', image: '/pulpCan3.png', category: 'drinks' },
-
+  { id: '1', slug: 'lychee-juice', name: 'PULP+ LYCHEE JUICE', image: '/pulpCan.png', category: 'drinks' },
+  { id: '2', slug: 'mango-juice', name: 'PULP+ MANGO JUICE', image: '/pulpCan2.png', category: 'drinks' },
+  { id: '3', slug: 'pink-guava-juice', name: 'PULP+ PINK GUAVA JUICE', image: '/pulpCan3.png', category: 'drinks' },
+  { id: '4', slug: 'lychee-juice-2', name: 'PULP+ LYCHEE JUICE', image: '/pulpCan.png', category: 'drinks' },
+  { id: '5', slug: 'mango-juice-2', name: 'PULP+ MANGO JUICE', image: '/pulpCan2.png', category: 'drinks' },
+  { id: '6', slug: 'pink-guava-juice-2', name: 'PULP+ PINK GUAVA JUICE', image: '/pulpCan3.png', category: 'drinks' },
 ];
 
 export default function CategoryProductsPage() {
   const params = useParams();
-  const categoryName = params?.CategorySlug || "";
+  const categorySlug = params?.CategorySlug || "";
 
   const filteredProducts = allProducts.filter(
-    (product) => product.category.toLowerCase() === categoryName.toLowerCase()
+    (product) => product.category.toLowerCase() === categorySlug.toLowerCase()
   );
 
-  const displayTitle = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+  const displayTitle = categorySlug.charAt(0).toUpperCase() + categorySlug.slice(1);
 
   return (
-    // Pura page background #F2F2F2
-    <section className="bg-[#F2F2F2] min-h-screen pt-32 pb-20">
+    <section className="bg-white min-h-screen pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-4">
-        
-        {/* Header Section */}
-        <div className="mb-12">
-          <h1 className="text-3xl md:text-[40px] font-extrabold text-black tracking-tight">
-            Products in <span className="capitalize">{displayTitle || "Category"}</span>
-          </h1>
-        </div>
+        <h1 className="text-4xl font-bold mb-12 uppercase tracking-tighter">
+          {displayTitle} Collection
+        </h1>
 
-        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <div key={product.id} className="group cursor-pointer">
-                
-                {/* Image Container - Background removed (transparent) */}
-               <div className="bg-white relative w-full h-[300px] p-6 transform transition-transform duration-500 group-hover:scale-105">
-  <Image
-    src={product.image}
-    alt={product.name}
-    fill
-    className="object-contain" 
-    priority
-  />
-</div>
-
-                {/* Product Name Label */}
-                <div className="mt-6 text-center">
-                  <h3 className="text-base md:text-lg font-bold text-black uppercase tracking-tight group-hover:text-[#431A4F] transition-colors">
-                    {product.name}
-                  </h3>
-                </div>
+          {filteredProducts.map((product) => (
+            <Link 
+              key={product.id} 
+              href={`/products/${categorySlug}/${product.slug}`}
+              className="group block"
+            >
+              <div className="bg-[#F9F9F9] relative rounded-2xl aspect-square p-8 overflow-hidden">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-contain transform transition-transform duration-500 group-hover:scale-110"
+                  priority
+                />
               </div>
-            ))
-          ) : (
-            <div className="col-span-full py-20 text-center">
-              <p className="text-gray-500 text-xl font-semibold">No products found in "{categoryName}".</p>
-            </div>
-          )}
+              <div className="mt-4 text-center">
+                <h3 className="font-bold text-lg uppercase text-black">{product.name}</h3>
+                <p className="text-gray-500 text-sm">View Details</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

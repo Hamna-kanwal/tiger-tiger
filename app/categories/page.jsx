@@ -5,15 +5,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const categories = [
+   { title: 'Alcohol', image: '/ALCOHOL.png' },
   { title: 'Canned', image: '/Canned.png' },
+   { title: 'Dried Products', image: '/dried_products.png' },
   { title: 'Drinks', image: '/categories drinks.png' },
   { title: 'Frozen', image: '/categories-frozen.png' },
+   { title: 'Instant Noodles', image: '/instant_noodles.png' },
   { title: 'Noodles', image: '/catrtegories_noodles.png' },
-  { title: 'Nute And Seeds', image: '/categories_nuts_and_seeds.png' },
-  { title: 'Rice', image: '/categories_rice.png' },
-  { title: 'Sauces', image: '/categories_sauces.png' },
-  { title: 'Snacks', image: '/categories_snacks.png' },
-  { title: 'Taste Of Asia', image: '/categories_asia.png' },
+    { title: 'Oils', image: '/oil.png' },
+    { title: 'Pastes', image: '/pastes.png' },
+     { title: 'Rice', image: '/categories_rice.png' },
+      { title: 'Sauces', image: '/categories_sauces.png' },
+       { title: 'Snacks', image: '/categories_snacks.png' },
+ { title: 'Taste Of Asia', image: '/categories_asia.png' },
+ 
+ 
 ];
 
 export default function CategorySection() {

@@ -17,8 +17,8 @@ const GlobalSourcing = () => {
   // Note: Make sure you have these flag images in your /public/flags/ folder
   // Or you can use a CDN link like: https://flagcdn.com/w80/cn.png
   const locations = [
-    { name: "Korea", code: "kr", style: "top-[15%] right-[5%] w-8 md:w-10" },
-    { name: "China", code: "cn", style: "top-[38%] right-[22%] w-12 md:w-16" },
+    { name: "Korea", code: "kr", style: "top-[15%] right-[5%] w-8 md:w-12" },
+    { name: "China", code: "cn", style: "top-[38%] right-[22%] w-12 md:w-12" },
     { name: "Japan", code: "jp", style: "top-[52%] right-[2%] w-10 md:w-12" },
     { name: "Thailand", code: "th", style: "bottom-[30%] right-[32%] w-8 md:w-10" },
     { name: "Vietnam", code: "vn", style: "bottom-[20%] right-[10%] w-8 md:w-10" },
