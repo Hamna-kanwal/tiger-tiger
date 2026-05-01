@@ -8,7 +8,7 @@ const RecipeSection = () => {
     { name: 'Thai', image: '/thai.png' },
     { name: 'Indian', image: '/indian.png' },
   ];
-
+      
   return (
     <section className="max-w-7xl mx-auto px-6 py-12 font-sans">
       <div className="mb-8">
