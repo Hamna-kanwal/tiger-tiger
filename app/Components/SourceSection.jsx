@@ -13,9 +13,6 @@ const GlobalSourcing = () => {
     "Ethical & sustainable sourcing",
   ];
 
-  // Updated locations with Flag Image paths
-  // Note: Make sure you have these flag images in your /public/flags/ folder
-  // Or you can use a CDN link like: https://flagcdn.com/w80/cn.png
   const locations = [
     { name: "Korea", code: "kr", style: "top-[15%] right-[5%] w-8 md:w-12" },
     { name: "China", code: "cn", style: "top-[38%] right-[22%] w-12 md:w-12" },

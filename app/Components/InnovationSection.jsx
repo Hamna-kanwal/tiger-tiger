@@ -8,15 +8,11 @@ const InnovationSection = () => {
 
   return (
     <section className="bg-white relative overflow-hidden mt-20">
-      {/* --- TOP Content Section --- */}
-      <div className="max-w-7xl mx-auto  relative">
-        
-        {/* Floating Chilli Image (Left) */}
+      <div className="max-w-7xl mx-auto relative">
         <div className="absolute left-[10%] top-[20%] hidden lg:block">
           <img src="/fresh spicy.png" alt="chilli" className="w-16 h-auto rotate-12" />
         </div>
 
-        {/* Floating Food with Chopsticks (Right) */}
         <div className="absolute -right-4 top-[10%] hidden md:block">
           <img src="/pngwing.png" alt="food" className="w-48 lg:w-64 h-auto" />
         </div>
@@ -40,13 +36,10 @@ const InnovationSection = () => {
         </div>
       </div>
 
-      {/* --- BOTTOM Purple Section --- */}
       <div 
         className="w-full py-10 md:py-16 text-center relative"
         style={{ backgroundColor: brandPurple }}
       >
-        {/* Floating Bao Bun Image (Bottom Left) */}
-        {/* Isay humne z-40 rakha hai aur section se overflow-hidden hata diya hai taake bao bun poora nazar aaye */}
         <div className="absolute left-0 -bottom-10 z-40">
           <img src="/bao bun.png" alt="bao bun" className="w-32 md:w-52 h-auto drop-shadow-xl" />
         </div>
@@ -65,8 +58,6 @@ const InnovationSection = () => {
           </button>
         </div>
       </div>
-
-      {/* Decorative Center Dotted Line yahan se hata di gayi hai */}
     </section>
   );
 };

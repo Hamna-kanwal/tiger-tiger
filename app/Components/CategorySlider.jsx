@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; // 1. Link component import kiya
+import Link from 'next/link';
 
 const categories = [
   {
@@ -19,16 +19,14 @@ const categories = [
   },
 ];
 
-export default function CategorySection() {
+function CategorySection() {
   const brandPurple = "#4e1a51";
-  const brandGold = "#d5be8b";
   const charcoalBlack = "#333333";
 
   const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-12">
-      {/* Header Row */}
       <div className="flex justify-between items-center mb-8">
         <h2 
           style={{ color: charcoalBlack }}
@@ -37,7 +35,6 @@ export default function CategorySection() {
           Our Categories
         </h2>
         
-        {/* 2. Button ko Link component ke andar wrap kiya */}
         <Link href="/categories">
           <button 
             onMouseEnter={() => setIsBtnHovered(true)}
@@ -56,14 +53,12 @@ export default function CategorySection() {
         </Link>
       </div>
 
-      {/* Categories Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {categories.map((category) => (
           <div 
             key={category.title} 
             className="group relative h-[450px] overflow-hidden rounded-3xl cursor-pointer shadow-lg"
           >
-            {/* Image Container */}
             <Image
               src={category.image}
               alt={category.title}
@@ -71,10 +66,8 @@ export default function CategorySection() {
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
             
-            {/* Dark Overlay */}
             <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors" />
 
-            {/* Label Button Overlay */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-fit">
               <div className="bg-white px-10 py-3 rounded-md shadow-md">
                 <span 
@@ -91,3 +84,5 @@ export default function CategorySection() {
     </section>
   );
 }
+
+export default CategorySection;

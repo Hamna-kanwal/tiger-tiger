@@ -4,7 +4,6 @@ import React from 'react';
 import { Search, Users, Settings, Globe } from 'lucide-react';
 
 const ProcessSection = () => {
-  // Unified Brand Colors
   const brandPurple = "#431A4F";
   const brandGold = "#D2B57B";
 

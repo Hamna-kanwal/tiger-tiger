@@ -5,7 +5,7 @@ import { Award, Flame, HandCoins, Boxes } from 'lucide-react';
 
 const WhyChooseUs = () => {
   const brandPurple = "#431A4F";
-  const brandBeige = "#F8F1E5"; // Light beige color as seen in image
+  const brandBeige = "#F8F1E5"; 
   const brandGold = "#D2B57B";
 
   const features = [

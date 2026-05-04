@@ -19,7 +19,6 @@ const FeaturedProducts = () => {
 
   return (
     <section className="py-10 md:py-16 bg-white overflow-hidden">
-      {/* Width ko 'max-w-7xl' aur padding ko 'px-4' kiya gaya hai alignment ke liye */}
       <div className="max-w-7xl mx-auto px-4 w-full">
         
         <div className="text-center mb-6">

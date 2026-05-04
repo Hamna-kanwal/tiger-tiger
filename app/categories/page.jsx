@@ -5,26 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const categories = [
-   { title: 'Alcohol', image: '/ALCOHOL.png' },
+  { title: 'Alcohol', image: '/ALCOHOL.png' },
   { title: 'Canned', image: '/Canned.png' },
-   { title: 'Dried Products', image: '/dried_products.png' },
+  { title: 'Dried Products', image: '/dried_products.png' },
   { title: 'Drinks', image: '/categories drinks.png' },
   { title: 'Frozen', image: '/categories-frozen.png' },
-   { title: 'Instant Noodles', image: '/instant_noodles.png' },
+  { title: 'Instant Noodles', image: '/instant_noodles.png' },
   { title: 'Noodles', image: '/catrtegories_noodles.png' },
-    { title: 'Oils', image: '/oil.png' },
-    { title: 'Pastes', image: '/pastes.png' },
-     { title: 'Rice', image: '/categories_rice.png' },
-      { title: 'Sauces', image: '/categories_sauces.png' },
-       { title: 'Snacks', image: '/categories_snacks.png' },
- { title: 'Taste Of Asia', image: '/categories_asia.png' },
- 
- 
+  { title: 'Oils', image: '/oil.png' },
+  { title: 'Pastes', image: '/pastes.png' },
+  { title: 'Rice', image: '/categories_rice.png' },
+  { title: 'Sauces', image: '/categories_sauces.png' },
+  { title: 'Snacks', image: '/categories_snacks.png' },
+  { title: 'Taste Of Asia', image: '/categories_asia.png' },
 ];
 
-export default function CategorySection() {
-  const brandPurple = "#4e1a51";
-
+const CategorySection = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-20 mt-10">
       {/* Header Row */}
@@ -37,10 +33,10 @@ export default function CategorySection() {
         </p>
       </div>
 
-      {/* 9 Categories Grid */}
+      {/* Categories Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {categories.map((category) => {
-          // Logic to create a URL-friendly slug (e.g., "Taste Of Asia" -> "taste-of-asia")
+          // Logic to create a URL-friendly slug
           const categorySlug = category.title.toLowerCase().replace(/\s+/g, '-');
 
           return (
@@ -76,4 +72,6 @@ export default function CategorySection() {
       </div>
     </section>
   );
-}
+};
+
+export default CategorySection;

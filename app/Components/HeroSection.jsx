@@ -5,7 +5,6 @@ import { Star, HandCoins, ShieldCheck, Truck } from 'lucide-react';
 
 const Herosection = () => {
   const brandPurple = "#4e1a51";
-  const brandGold = "#d5be8b";
   const charcoalBlack = "#333333";
 
   const [hoverExplore, setHoverExplore] = useState(false);
@@ -19,7 +18,7 @@ const Herosection = () => {
       hasBorder: true
     },
     {
-      icon: <HandCoins className="w-6 h-6" />, // Value and Price icon
+      icon: <HandCoins className="w-6 h-6" />,
       title: "COMPETITIVE",
       sub: "PRICES",
       hasBorder: true
@@ -42,51 +41,47 @@ const Herosection = () => {
     <section className="relative bg-white py-12 md:py-20 px-4 overflow-hidden">
       <div className="container mx-auto relative z-10">
         
-        {/* Header Text Section */}
         <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
-          <h4 
+          <h2 
             style={{ color: charcoalBlack }}
             className="eczar text-[22px] sm:text-[26px] md:text-[32px] font-black tracking-tighter leading-tight mb-6"
           >
-            Authentic  Pan-Asian Ingredients for Restaurants, Retailers & Wholesalers
-          </h4>
+            Authentic Pan-Asian Ingredients for Restaurants, Retailers & Wholesalers
+          </h2>
 
           <p style={{ color: charcoalBlack }} className="text-sm md:text-base leading-relaxed mb-6 opacity-90">
             Tiger Tiger is a trusted pan-Asian food supplier in the UK, delivering high-quality ingredients inspired by authentic Asian cuisine. From sauces and noodles to frozen foods and spices, we provide everything businesses need to create bold, traditional flavours.
           </p>
 
-    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
-  {/* Explore Products - Default: Transparent, Hover: Solid Purple */}
-  <button 
-    onMouseEnter={() => setHoverExplore(true)}
-    onMouseLeave={() => setHoverExplore(false)}
-    style={{ 
-      backgroundColor: hoverExplore ? brandPurple : "transparent",
-      borderColor: brandPurple,
-      color: hoverExplore ? "white" : brandPurple 
-    }}
-    className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95"
-  >
-    Explore Products
-  </button>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
+            <button 
+              onMouseEnter={() => setHoverExplore(true)}
+              onMouseLeave={() => setHoverExplore(false)}
+              style={{ 
+                backgroundColor: hoverExplore ? brandPurple : "transparent",
+                borderColor: brandPurple,
+                color: hoverExplore ? "white" : brandPurple 
+              }}
+              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+              Explore Products
+            </button>
 
-  {/* Discover Cuisines - Default: Transparent, Hover: Solid Purple */}
-  <button 
-    onMouseEnter={() => setHoverCuisines(true)}
-    onMouseLeave={() => setHoverCuisines(false)}
-    style={{ 
-      backgroundColor: hoverCuisines ? brandPurple : "transparent",
-      borderColor: brandPurple,
-      color: hoverCuisines ? "white" : brandPurple 
-    }}
-    className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 active:scale-95"
-  >
-    Discover Cuisines
-  </button>
-</div>
+            <button 
+              onMouseEnter={() => setHoverCuisines(true)}
+              onMouseLeave={() => setHoverCuisines(false)}
+              style={{ 
+                backgroundColor: hoverCuisines ? brandPurple : "transparent",
+                borderColor: brandPurple,
+                color: hoverCuisines ? "white" : brandPurple 
+              }}
+              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 active:scale-95"
+            >
+              Discover Cuisines
+            </button>
+          </div>
         </div>
 
-        {/* Feature Box with Separators */}
         <div className="w-full max-w-7xl mx-auto ">
           <div className="bg-[#4e1a51] rounded-[2rem] shadow-2xl flex flex-col md:flex-row items-center justify-between overflow-hidden">
             {features.map((feature, idx) => (
@@ -108,7 +103,6 @@ const Herosection = () => {
                   </div>
                 </div>
 
-                {/* Mobile Separator Line + Star */}
                 {idx !== features.length - 1 && (
                   <div className="flex md:hidden items-center w-[85%] mx-auto opacity-30">
                     <div className="flex-grow h-[1px] bg-[#d5be8b]"></div>

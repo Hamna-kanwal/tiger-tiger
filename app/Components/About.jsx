@@ -1,9 +1,11 @@
 import React from 'react';
-import { Check } from 'lucide-react'; // Check icons ke liye lucide-react use kiya hai
+import { Check } from 'lucide-react';
 
 const AboutSection = () => {
+  // Brand color configuration
   const brandPurple = "#431A4F";
-  // Image links (Aap apni images se replace kar sakte hain)
+  
+  // Image assets
   const mainImage = "/image 4.png";
   const overlayImage = "/image 5.png";
 
@@ -11,9 +13,9 @@ const AboutSection = () => {
     <section className="py-16 px-4 md:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
-        {/* --- Left Side: Overlapping Images --- */}
+        {/* Visual Content: Overlapping Image Grid */}
         <div className="relative h-[400px] md:h-[500px]">
-          {/* Main Large Image (Top Right) */}
+          {/* Primary Background Image */}
           <div className="absolute top-0 right-0 w-[85%] h-[75%] overflow-hidden z-10">
             <img 
               src={mainImage} 
@@ -22,8 +24,8 @@ const AboutSection = () => {
             />
           </div>
 
-          {/* Overlay Image (Bottom Left) */}
-          <div className="absolute bottom-0 left-0 w-[55%] h-[55%] overflow-hidden z-20 ">
+          {/* Secondary Foreground Overlay Image */}
+          <div className="absolute bottom-0 left-0 w-[55%] h-[55%] overflow-hidden z-20">
             <img 
               src={overlayImage} 
               alt="Tiger Tiger Products" 
@@ -32,7 +34,7 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* --- Right Side: Content --- */}
+        {/* Text Content: Brand Details */}
         <div className="space-y-8">
           <h2 
             style={{ color: brandPurple }}
@@ -42,7 +44,7 @@ const AboutSection = () => {
           </h2>
 
           <div className="space-y-6">
-            {/* The Brand */}
+            {/* Feature Item: The Brand */}
             <div className="flex gap-4">
               <div 
                 className="mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center"
@@ -57,7 +59,7 @@ const AboutSection = () => {
               </p>
             </div>
 
-            {/* The Heritage */}
+            {/* Feature Item: The Heritage */}
             <div className="flex gap-4">
               <div 
                 className="mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center"
@@ -72,7 +74,7 @@ const AboutSection = () => {
               </p>
             </div>
 
-            {/* The Mission */}
+            {/* Feature Item: The Mission */}
             <div className="flex gap-4">
               <div 
                 className="mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center"

@@ -1,11 +1,9 @@
 "use client";
 
 import Image from "next/image";
-// Swiper components aur modules import karein
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
-// Swiper styles
 import "swiper/css";
 
 const BrandsSlider = () => {
@@ -26,19 +24,19 @@ const BrandsSlider = () => {
         <Swiper
           modules={[Autoplay]}
           loop={true}
-          slidesPerView={2} // Mobile par default
+          slidesPerView={2}
           spaceBetween={20}
           autoplay={{
             delay: 2000,
             disableOnInteraction: false,
           }}
           breakpoints={{
-            // 768px se upar (Tablets)
+            // Tablets
             768: {
               slidesPerView: 3,
               spaceBetween: 30,
             },
-            // 1024px se upar (Desktop)
+            // Desktop
             1024: {
               slidesPerView: 5,
               spaceBetween: 40,

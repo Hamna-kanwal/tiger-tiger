@@ -7,7 +7,7 @@ const MapSection = () => {
   const [isClient, setIsClient] = useState(false);
   const [leafletLib, setLeafletLib] = useState(null);
   
-  const position = [52.9372, -1.1764]; // Bull Close Road, Nottingham
+  const position = [52.9372, -1.1764]; 
 
   useEffect(() => {
     setIsClient(true);

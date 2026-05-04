@@ -33,7 +33,7 @@ const DiscoverSection = () => {
               </p>
             </div>
 
-            {/* Buttons Container - Ab ye Mobile par center aur Desktop par left-aligned hain */}
+            {/* Buttons Container*/}
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
                <button 
                 onMouseEnter={() => setIsBtn2Hovered(true)}
