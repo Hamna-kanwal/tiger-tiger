@@ -126,7 +126,7 @@ function ProductSlider({ listings }) {
                 className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover/card:scale-110"
               />
             </div>
-            <div className="mt-4 text-center w-full px-4 min-h-[60px] flex items-center justify-center">
+            <div className="mt-4 text-center w-full px-4 min-h-[30px] flex items-center justify-center">
               <h3 className="text-[14px] md:text-[18px] font-black uppercase text-[#431A4F] tracking-tighter group-hover/card:text-black transition-colors leading-tight text-center">
                 {item.name}
               </h3>
