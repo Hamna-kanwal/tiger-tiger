@@ -10,24 +10,24 @@ export default function Header() {
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductHovered, setIsProductHovered] = useState(false); // Dropdown state
-
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { 
-      name: "Products", 
-      href: "/products",
-      dropdown: [
-        { name: "All Products", href: "/products" },
-        { name: "Featured Products", href: "/products/featured" },
-        { name: "New Products", href: "/products/new" },
-      ]
-    },
-    { name: "Recipes", href: "/recipes" },
-    { name: "Blogs", href: "/blogs" },
-    { name: "Contact", href: "/contact" },
-    { name: "About", href: "/about" },
-    { name: "Login", href: "/login" },
-  ];
+const navLinks = [
+  { name: "Home", href: "/" },
+  { 
+    name: "Products", 
+    href: "#", // Ab is par click karne se page change nahi hoga
+    dropdown: [
+       { name: "All", href: "/products/best-sellers" },
+      { name: "Featured", href: "./feature_product" },
+      { name: "New", href: "/products/new" },
+     
+    ]
+  },
+  { name: "Recipes", href: "/recipes" },
+  { name: "Blogs", href: "/blogs" },
+  { name: "Contact", href: "/contact" },
+  { name: "About", href: "/about" },
+  { name: "Login", href: "/login" },
+];
 
   const isActive = (href) => path === href;
 
