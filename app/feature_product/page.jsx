@@ -119,7 +119,7 @@ function ProductSlider({ listings }) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 w-full">
         {visibleListings.map((item, i) => (
           <div key={`${item.id}-${i}`} className="flex flex-col items-center group/card">
-            <div className="relative w-full aspect-[3/4] overflow-hidden flex items-center justify-center p-6 mb-4 transition-all duration-500 group-hover/card:drop-shadow-3xl shadow-2xl rounded-[2.5rem] bg-white">
+            <div className="relative w-full aspect-[3/4] overflow-hidden flex items-center justify-center  mb-4 transition-all duration-500 group-hover/card:drop-shadow-3xl shadow-2xl rounded-[2.5rem] bg-white">
               <img
                 src={item.img}
                 alt={item.name}

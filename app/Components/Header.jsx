@@ -75,7 +75,7 @@ const navLinks = [
                     <Link
                       key={subItem.name}
                       href={subItem.href}
-                      className="block px-6 py-3 text-[#4e1a51] hover:bg-[#4e1a51] hover:text-white transition-colors text-sm"
+                     className="block px-6 py-3 hover:text-white  text-[#4e1a51] hover:bg-[#4e1a51] transition-all duration-200 text-sm"
                     >
                       {subItem.name}
                     </Link>
@@ -134,20 +134,28 @@ const navLinks = [
                   {link.name}
                 </Link>
                 {/* Sub-links for Mobile */}
-                {link.dropdown && (
-                  <div className="flex flex-col gap-3 mt-3 ml-4 border-l border-gray-100">
-                    {link.dropdown.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        href={subItem.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-sm text-gray-500 pl-4"
-                      >
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+{link.dropdown && (
+  <div
+    className={`absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${
+      isProductHovered
+        ? "opacity-100 visible translate-y-0"
+        : "opacity-0 invisible translate-y-2"
+    }`}
+  >
+    {link.dropdown.map((subItem) => (
+      <Link
+        key={subItem.name}
+        href={subItem.href}
+        // 'group' class parent par aur 'group-hover:text-white' child par
+        className="group block px-6 py-3 hover:bg-[#4e1a51] transition-all duration-200"
+      >
+        <span className="text-[#4e1a51] group-hover:text-white text-sm font-medium transition-colors duration-200">
+          {subItem.name}
+        </span>
+      </Link>
+    ))}
+  </div>
+)}
               </div>
             ))}
           </nav>
