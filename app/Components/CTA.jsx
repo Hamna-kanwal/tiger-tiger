@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const DiscoverSection = () => {
   const brandPurple = "#431A4F";
@@ -61,22 +62,28 @@ const DiscoverSection = () => {
             <div className="relative w-full h-full flex items-end justify-center lg:justify-end">
   
               {/* 1. BACKGROUND IMAGE (CTA1 - Sticks Box) - FRONT */}
-              <img 
-                src="/CTA1.png" 
-                alt="Sticks Background"
-                className="absolute h-[65%] w-auto object-contain z-30 right-50 bottom-0 "
-              />
+                {/* 1. STICKS BOX (CTA1) - Front Layer */}
+              <div className="absolute z-30 bottom-0 left-[10%] lg:left-0">
+                <Image 
+                  src="/CTA1.png" 
+                  alt="Sticks Background"
+                  width={350} // Desktop size
+                  height={450} 
+                  className="w-[180px] md:w-[280px] lg:w-[350px] h-auto object-contain"
+                />
+              </div>
 
-              {/* 2. FOREGROUND IMAGE (CTA2) - BEHIND */}
-              {/* Width ko 2000px se kam kar ke optimized kiya hai taake scroll na aaye */}
-              <img 
-                src="/CTA2.png" 
-                alt="Pulp Cans Main"
-                className="relative h-[90%] w-[600px] md:w-[850px] object-contain z-10 
-                           right-[-10%] lg:right-[-10%] 
-                           lg:scale-120
-                           block"
-              />
+              {/* 2. MAIN CANS (CTA2) - Behind Layer */}
+              <div className="relative z-10 mb-[-20px] mr-[-20px] lg:mr-[-40px]">
+                <Image
+                  src="/CTA2.png" 
+                  alt="Pulp Cans Main"
+                  width={850} // High resolution width
+                  height={600}
+                  className="w-[300px] md:w-[600px] lg:w-[850px] h-auto object-contain lg:scale-110"
+                />
+              </div>
+
 
             </div>
           </div>

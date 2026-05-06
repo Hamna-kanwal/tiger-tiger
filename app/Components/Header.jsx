@@ -40,9 +40,8 @@ const navLinks = [
           <Image
             src="/logo.png"
             alt="Logo"
-            width={170}
-            height={50}
-            className="w-[120px] md:w-[150px] h-auto"
+            width={120}
+            height={150}
             priority 
           />
         </Link>

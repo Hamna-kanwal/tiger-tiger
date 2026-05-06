@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image"; // 1. Standard Import
 
 const GlobalSourcing = () => {
   const brandGold = "#D2B57B";
@@ -59,9 +60,13 @@ const GlobalSourcing = () => {
         {/* --- Right Column: Image with Flag Overlays --- */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0 relative flex justify-center items-center h-full">
           <div className="relative w-full lg:scale-110 transition-transform">
-            <img 
+            
+            {/* 2. Main Map Image: Added width/height or layout logic */}
+            <Image 
               src="/Group.png" 
               alt="World Map" 
+              width={600} 
+              height={400}
               className="w-full h-auto object-contain" 
             />
 
@@ -71,10 +76,13 @@ const GlobalSourcing = () => {
                 key={index} 
                 className={`absolute transition-transform hover:scale-110 pointer-events-none ${loc.style}`}
               >
-                <img 
+                {/* 3. Flag Images: Using external URL with Next.js Image */}
+                <Image
                   src={`https://flagcdn.com/w80/${loc.code}.png`} 
                   alt={`${loc.name} flag`}
-                  className="rounded-sm shadow-lg border border-white/20"
+                  width={80}  // Required width
+                  height={50} // Required height
+                  className="rounded-sm shadow-lg border border-white/20 h-auto w-full"
                 />
                 <span className="block text-[8px] md:text-[10px] text-white text-center mt-1 font-bold uppercase">
                     {loc.name}

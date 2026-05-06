@@ -57,13 +57,19 @@ function CategorySection() {
         {categories.map((category) => (
           <div 
             key={category.title} 
-            className="group relative h-[450px] overflow-hidden rounded-3xl cursor-pointer shadow-lg"
+            className="group relative h-[450px] overflow-hidden rounded-3xl cursor-pointer shadow-lg bg-gray-100"
           >
             <Image
               src={category.image}
               alt={category.title}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              // 1. "sizes" prop add kiya taake Next.js optimized image load kare
+              sizes="(max-width: 768px) 100vw, 33vw"
+              // 2. object-cover ko style mein bhi dena behtar hai warnings se bachne ke liye
+              style={{ objectFit: 'cover' }}
+              className="transition-transform duration-500 group-hover:scale-105"
+              // 3. Pehli row ki images ko fast load karne ke liye priority (Optional)
+              priority
             />
             
             <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors" />

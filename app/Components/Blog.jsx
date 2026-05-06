@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image'; // Standard Import
 
 const LatestBlog = () => {
   const brandPurple = "#431A4F";
@@ -12,17 +13,17 @@ const LatestBlog = () => {
     {
       title: "Authentic Sourcing: Behind the Scenes",
       desc: "How we ensure every spice meets our high standards.",
-      image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d",
     },
     {
       title: "The Art of Traditional Asian Cooking",
       desc: "Expert tips for using our premium ingredients in your kitchen.",
-      image: "https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1552611052-33e04de081de",
     },
     {
       title: "Wholesale Trends for 2026",
       desc: "Stay ahead of the market with our latest industry insights.",
-      image: "https://images.unsplash.com/photo-1534483509719-3feaee7c30da?q=80&w=800",
+      image: "https://images.unsplash.com/photo-1534483509719-3feaee7c30da",
     }
   ];
 
@@ -30,25 +31,26 @@ const LatestBlog = () => {
     <section className="py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         
-        {/* --- Header Section --- */}
         <div className="text-center mb-16">
           <h2 className="eczar text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
             Latest Blog
           </h2>
         </div>
 
-        {/* --- Blog Grid --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
             <div key={index} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500">
               
               {/* Image Container */}
               <div className="relative h-64 overflow-hidden">
-                <img 
+                <Image
                   src={blog.image} 
-                  alt={blog.title} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  alt={blog.title}
+                  fill // Container ke hisaab se image fill hogi
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
+                {/* Overlay */}
                 <div className="absolute inset-0 bg-[#431A4F]/70 flex flex-col items-center justify-center p-6 text-center opacity-100 group-hover:bg-[#431A4F]/85 transition-all">
                   <h3 className="text-white font-black text-xl md:text-2xl leading-tight mb-2">
                     {blog.title}
@@ -65,7 +67,6 @@ const LatestBlog = () => {
                   {blog.desc}
                 </p>
                 
-                {/* Read More Link Styling */}
                 <button 
                   style={{ color: brandPurple }}
                   className="flex items-center gap-2 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:tracking-[0.3em] group-hover:text-[#D2B57B]"
@@ -77,7 +78,6 @@ const LatestBlog = () => {
           ))}
         </div>
 
-        {/* --- Bottom Action Button --- */}
         <div className="text-center mt-16">
           <button 
             onMouseEnter={() => setIsMainBtnHovered(true)}
@@ -91,7 +91,6 @@ const LatestBlog = () => {
             View All Blogs
           </button>
         </div>
-
       </div>
     </section>
   );

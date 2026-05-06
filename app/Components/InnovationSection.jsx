@@ -1,6 +1,13 @@
 "use client";
 
+import React from "react";
 import { UtensilsCrossed } from "lucide-react";
+import Image from "next/image"; // 1. Standard Import
+
+// 2. STANDARD WAY: Images ko upar import karein
+import chilliImg from "@/public/fresh spicy.png";
+import foodImg from "@/public/pngwing.png";
+import baoImg from "@/public/bao bun.png";
 
 const InnovationSection = () => {
   const brandPurple = "#4e1a51";
@@ -9,12 +16,26 @@ const InnovationSection = () => {
   return (
     <section className="bg-white relative overflow-hidden mt-20">
       <div className="max-w-7xl mx-auto relative">
+        {/* Chilli Image */}
         <div className="absolute left-[10%] top-[20%] hidden lg:block">
-          <img src="/fresh spicy.png" alt="chilli" className="w-16 h-auto rotate-12" />
+          <Image 
+            src={chilliImg} 
+            alt="chilli" 
+            width={64} 
+            height={64} 
+            className="rotate-12 h-auto" 
+          />
         </div>
 
+        {/* Floating Food Image */}
         <div className="absolute -right-4 top-[10%] hidden md:block">
-          <img src="/pngwing.png" alt="food" className="w-48 lg:w-64 h-auto" />
+          <Image 
+            src={foodImg} 
+            alt="food" 
+            width={256} 
+            height={256} 
+            className="w-48 lg:w-64 h-auto" 
+          />
         </div>
 
         <div className="text-center mb-6">
@@ -36,12 +57,20 @@ const InnovationSection = () => {
         </div>
       </div>
 
+      {/* Banner Section */}
       <div 
         className="w-full py-10 md:py-16 text-center relative"
         style={{ backgroundColor: brandPurple }}
       >
+        {/* Bao Bun Image */}
         <div className="absolute left-0 -bottom-10 z-40">
-          <img src="/bao bun.png" alt="bao bun" className="w-32 md:w-52 h-auto drop-shadow-xl" />
+          <Image 
+            src={baoImg} 
+            alt="bao bun" 
+            width={200} 
+            height={200} 
+            className="w-32 md:w-52 h-auto drop-shadow-xl" 
+          />
         </div>
 
         <div className="max-w-6xl mx-auto px-6 relative z-10 space-y-8">

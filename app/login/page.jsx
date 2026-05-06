@@ -53,7 +53,7 @@ const TigerLoginBody = () => {
         {/* Right Side: Image Section */}
        <div className="relative w-full h-[500px] md:h-[600px] rounded-[30px] overflow-hidden shadow-2xl mt-20">
   {/* Image Section */}
-  <img
+  <image
     src="/Login_img.png" 
     alt="Person with Cramm'd product"
     className="w-full h-full object-cover object-center"

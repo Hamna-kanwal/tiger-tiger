@@ -66,7 +66,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-start">
                 {section.features.map((item) => (
                   <div key={item.id} className="overflow-hidden rounded-[30px] md:rounded-[40px] shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <img
+                    <image
                       src={item.img}
                       alt="Feature"
                       className="w-full h-auto block transition-transform duration-700 hover:scale-105"
@@ -120,7 +120,7 @@ function ProductSlider({ listings }) {
         {visibleListings.map((item, i) => (
           <div key={`${item.id}-${i}`} className="flex flex-col items-center group/card">
             <div className="relative w-full aspect-[3/4] overflow-hidden flex items-center justify-center  mb-4 transition-all duration-500 group-hover/card:drop-shadow-3xl shadow-2xl rounded-[2.5rem] bg-white">
-              <img
+              <image
                 src={item.img}
                 alt={item.name}
                 className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover/card:scale-110"

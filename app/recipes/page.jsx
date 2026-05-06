@@ -220,7 +220,7 @@ const RecipeHero = () => {
 
           {/* Floating Image 1 (Wow Chow) - Adjusted to stay inside */}
           <div className="absolute left-[-20px] bottom-[-30px] w-44 md:w-64 z-20 opacity-80 md:opacity-100 transform md:rotate-12">
-            <img src="/wow chow.png" alt="Wow Chow" className="w-full h-auto" />
+            <image src="/wow chow.png" alt="Wow Chow" className="w-full h-auto" />
           </div>
 
           {/* Content - Centered */}
@@ -241,7 +241,7 @@ const RecipeHero = () => {
 
           {/* Floating Image 2 (Mayo) - Adjusted to stay inside */}
           <div className="absolute right-[-10px] top-[320px] md:bottom-2 md:top-auto w-32 md:w-44 z-20 opacity-80 md:opacity-100 transform -rotate-12">
-            <img src="/mayo.png" alt="Mayo" className="w-full h-auto" />
+            <Image src="/mayo.png" alt="Mayo" className="w-full h-auto" />
           </div>
         </div>
       </section>

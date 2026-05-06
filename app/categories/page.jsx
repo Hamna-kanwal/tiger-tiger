@@ -8,7 +8,7 @@ const categories = [
   { title: 'Alcohol', image: '/ALCOHOL.png' },
   { title: 'Canned', image: '/Canned.png' },
   { title: 'Dried Products', image: '/dried_products.png' },
-  { title: 'Drinks', image: '/categories drinks.png' },
+  { title: 'Drinks', image: '/categories-drinks.png' },
   { title: 'Frozen', image: '/categories-frozen.png' },
   { title: 'Instant Noodles', image: '/instant_noodles.png' },
   { title: 'Noodles', image: '/catrtegories_noodles.png' },

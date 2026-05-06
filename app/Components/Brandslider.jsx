@@ -42,16 +42,19 @@ const BrandsSlider = () => {
               spaceBetween: 40,
             },
           }}
-          className="w-full flex items-center"
+          className="w-full"
         >
           {brands.map((brand, index) => (
             <SwiperSlide key={index} className="flex justify-center items-center">
-              <div className="relative w-[150px] h-[60px]">
+              {/* Width aur Height yahan Image component mein di gayi hai */}
+              <div className="flex justify-center items-center py-2">
                 <Image
                   src={brand.src}
                   alt={brand.alt}
-                  fill
+                  width={150}   // Aapki requirement ke mutabiq width
+                  height={60}   // Aapki requirement ke mutabiq height
                   className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  style={{ width: 'auto', height: 'auto' }} // Aspect ratio barkarar rakhne ke liye
                 />
               </div>
             </SwiperSlide>
