@@ -65,14 +65,13 @@ const Footer = () => {
         {/* Column 1: Brand & Identity */}
         <div className="flex-1 flex flex-col gap-6 md:max-w-[320px] -mt-4">
           <Link href="/" className="inline-block transition-opacity hover:opacity-80">
-            <Image 
-              src="/logo.png" 
-              alt="Tiger Tiger Logo" 
-              width={150} 
-              height={60} 
-              priority 
-              className="object-contain" 
-            />
+         <Image 
+  src="/logo.png" 
+  width={150} 
+  height={60}
+  priority 
+  className="w-[100px] h-auto" // h-auto add karne se warning khatam ho jayegi
+/>
           </Link>
           <p style={{ color: brandPurple }} className="text-[16px] leading-relaxed font-normal opacity-90">
             Tiger Tiger brings premium Asian ingredients Japanese, Thai, Chinese, Korean and more to businesses across the UK. Authentic flavours, competitive pricing, reliable supply.

@@ -1,14 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // 1. Quality error fix karne ke liye ye line add ki hai
+    qualities: [75, 85], 
+
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'flagcdn.com', // Jo pehle flag wala kiya tha
+        hostname: 'flagcdn.com',
       },
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com', // Unsplash ke liye ye zaroori hai
+        hostname: 'images.unsplash.com',
       },
     ],
   },

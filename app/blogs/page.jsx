@@ -12,17 +12,17 @@ const LatestBlog = () => {
     {
       title: "Authentic Sourcing: Behind the Scenes",
       desc: "How we ensure every spice meets our high standards.",
-      image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800",
+      image: "/blog1.webp",
     },
     {
       title: "The Art of Traditional Asian Cooking",
       desc: "Expert tips for using our premium ingredients in your kitchen.",
-      image: "https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=800",
+      image: "/blog2.webp",
     },
     {
       title: "Wholesale Trends for 2026",
       desc: "Stay ahead of the market with our latest industry insights.",
-      image: "https://images.unsplash.com/photo-1534483509719-3feaee7c30da?q=80&w=800",
+      image: "/blog3.webp",
     },
     // --- Doosri Line (Row) ka data yahan se start hai ---
     {

@@ -63,7 +63,7 @@ const GlobalSourcing = () => {
             
             {/* 2. Main Map Image: Added width/height or layout logic */}
             <Image 
-              src="/Group.png" 
+              src="/Group.webp" 
               alt="World Map" 
               width={600} 
               height={400}

@@ -37,13 +37,13 @@ const navLinks = [
         
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={120}
-            height={150}
-            priority 
-          />
+         <Image 
+  src="/logo.png" 
+  width={150} 
+  height={50} 
+  priority
+  className="w-[100px] h-auto" // h-auto add karne se warning khatam ho jayegi
+/>
         </Link>
 
         {/* Desktop Nav */}
