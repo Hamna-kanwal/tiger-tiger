@@ -2,14 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   { 
     id: 1, 
     src: "/pulp-hero-section.webp", 
     alt: "Product 1", 
-    priority:true,
     className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
   },
   { 
@@ -26,57 +25,80 @@ const slides = [
   },
 ];
 
+// Animation variants taaki code saaf rahay aur CLS control mein rahay
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? "100%" : "-100%",
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction) => ({
+    x: direction < 0 ? "100%" : "-100%",
+    opacity: 0,
+  }),
+};
+
 const HeroCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  const currentIndex = Math.abs(page % slides.length);
+
+  const paginate = (newDirection) => {
+    setPage([page + newDirection, newDirection]);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
+      paginate(1);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [page]);
 
   return (
-    <div className="w-full flex justify-center items-end mt-0">
-      {/* Aspect Ratio dena CLS fix karne ke liye zaroori hai */}
-      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden md:-mt-40 -mt-15 bg-transparent">
+    <div className="w-full flex justify-center items-end mt-0 overflow-hidden">
+      {/* Container height fix rakhein taaki layout shift na ho */}
+      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden bg-transparent">
         
-        {slides.map((slide, index) => {
-          const isActive = index === currentIndex;
-          
-          return (
-            <motion.div
-              key={slide.id}
-              initial={false}
-              animate={{
-                opacity: isActive ? 1 : 0,
-                // x animation CLS barha sakti hai, koshish karein sirf opacity use karein agar zaroori na ho
-                x: isActive ? "0%" : index > currentIndex ? "100%" : "-100%",
-              }}
-              transition={{
-                x: { type: "tween", duration: 0.8, ease: "easeInOut" },
-                opacity: { duration: 0.6 }
-              }}
-              style={{ zIndex: isActive ? 10 : 0 }}
-              className="absolute inset-0 w-full h-full"
-            >
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                fill
-                // 1. "unoptimized" hata dein, Next.js ko apna kaam karne dein
-                // 2. "priority" sirf un images par jo pehle 2 slides mein hain
-                priority
-                fill 
-                // 3. "sizes" prop ko screen ke mutabiq sahi karein
-                sizes="(max-width: 768px) 100vw, 1200px"
-                className={`object-contain object-bottom origin-bottom ${slide.className}`}
-                // 4. Quality thori kam karein file size chota karne ke liye
-                quality={85}
-              />
-            </motion.div>
-          );
-        })}
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={page}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.4 }
+            }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={slides[currentIndex].src}
+              alt={slides[currentIndex].alt}
+              fill
+              priority={currentIndex === 0}
+              sizes="(max-width: 768px) 100vw, 1200px"
+              className={`object-contain object-bottom origin-bottom ${slides[currentIndex].className}`}
+              quality={90}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Optional: Dots for navigation */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {slides.map((_, index) => (
+            <div 
+              key={index}
+              className={`h-2 w-2 rounded-full transition-all ${
+                index === currentIndex ? "bg-[#4B2452] w-6" : "bg-gray-300"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
