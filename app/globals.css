@@ -10,6 +10,20 @@
   --color-brand-purple: var(--brand-purple);
   --color-brand-gold: var(--brand-gold);
 }
+/* globals.css */
+
+/* Heading ke liye Eczar set karein agar aapko wahi chahiye */
+
+
+/* Adobe font (Fields) ke liye specific class */
+.font-fields {
+  font-family: "fields", sans-serif; /* "fields" Adobe Typekit ka exact name hona chahiye */
+}
+
+/* Body font fallback */
+body {
+  font-family: var(--font-outfit), sans-serif;
+}
 
 /* Headings aur Eczar class ke liye 'fields' font (Adobe Typekit wala) */
 h1, h2, h3, .eczar {

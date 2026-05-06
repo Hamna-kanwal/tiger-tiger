@@ -65,7 +65,8 @@ const HeroCarousel = () => {
                 fill
                 // 1. "unoptimized" hata dein, Next.js ko apna kaam karne dein
                 // 2. "priority" sirf un images par jo pehle 2 slides mein hain
-                priority={index <= 1} 
+                priority
+                fill 
                 // 3. "sizes" prop ko screen ke mutabiq sahi karein
                 sizes="(max-width: 768px) 100vw, 1200px"
                 className={`object-contain object-bottom origin-bottom ${slide.className}`}
