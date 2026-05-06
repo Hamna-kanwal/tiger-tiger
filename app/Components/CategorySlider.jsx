@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const categories = [
-  { title: 'Canned', image: '/Canned.png' },
-  { title: 'Drinks', image: '/categories-drinks.png' }, // Space ko hyphen se replace karein
-  { title: 'Frozen', image: '/categories-frozen.png' },
+  { title: 'Canned', image: '/Canned.webp' },
+  { title: 'Drinks', image: '/categories-drinks.webp' }, // Space ko hyphen se replace karein
+  { title: 'Frozen', image: '/categories-frozen.webp' },
 ];
 
 function CategorySection() {

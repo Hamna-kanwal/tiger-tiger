@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 const RecipeSection = () => {
   const cuisines = [
-    { name: 'Japanese', image: '/japnese_receipes.png' },
-    { name: 'Chinese', image: '/chinese.png' },
-    { name: 'Korean', image: '/korean_receipes.png' },
-    { name: 'Thai', image: '/thai.png' },
-    { name: 'Indian', image: '/indian.png' },
+    { name: 'Japanese', image: '/japnese_receipes.webp' },
+    { name: 'Chinese', image: '/chinese.webp' },
+    { name: 'Korean', image: '/korean_receipes.webp' },
+    { name: 'Thai', image: '/thai.webp' },
+    { name: 'Indian', image: '/indian.webp' },
   ];
 
   return (

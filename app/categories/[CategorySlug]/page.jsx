@@ -6,12 +6,12 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
 const allProducts = [
-  { id: '1', slug: 'lychee-juice', name: 'PULP+ LYCHEE JUICE', image: '/pulpCan.png', category: 'drinks' },
-  { id: '2', slug: 'mango-juice', name: 'PULP+ MANGO JUICE', image: '/pulpCan2.png', category: 'drinks' },
-  { id: '3', slug: 'pink-guava-juice', name: 'PULP+ PINK GUAVA JUICE', image: '/pulpCan3.png', category: 'drinks' },
-  { id: '4', slug: 'lychee-juice-2', name: 'PULP+ LYCHEE JUICE', image: '/pulpCan.png', category: 'drinks' },
-  { id: '5', slug: 'mango-juice-2', name: 'PULP+ MANGO JUICE', image: '/pulpCan2.png', category: 'drinks' },
-  { id: '6', slug: 'pink-guava-juice-2', name: 'PULP+ PINK GUAVA JUICE', image: '/pulpCan3.png', category: 'drinks' },
+  { id: '1', slug: 'lychee-juice', name: 'PULP+ LYCHEE JUICE', image: '/pulpCan.webp', category: 'drinks' },
+  { id: '2', slug: 'mango-juice', name: 'PULP+ MANGO JUICE', image: '/pulpCan2.webp', category: 'drinks' },
+  { id: '3', slug: 'pink-guava-juice', name: 'PULP+ PINK GUAVA JUICE', image: '/pulpCan3.webp', category: 'drinks' },
+  { id: '4', slug: 'lychee-juice-2', name: 'PULP+ LYCHEE JUICE', image: '/pulpCan.webp', category: 'drinks' },
+  { id: '5', slug: 'mango-juice-2', name: 'PULP+ MANGO JUICE', image: '/pulpCan2.webp', category: 'drinks' },
+  { id: '6', slug: 'pink-guava-juice-2', name: 'PULP+ PINK GUAVA JUICE', image: '/pulpCan3.webp', category: 'drinks' },
 ];
 
 const CategoryProductsPage = () => {

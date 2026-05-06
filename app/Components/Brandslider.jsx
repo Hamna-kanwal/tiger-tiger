@@ -19,43 +19,41 @@ const BrandsSlider = () => {
   ];
 
   return (
-    <section className="bg-[#4e1a51] py-3 mt-0">
+    <section className="bg-[#4e1a51] py-2 mt-0">
       <div className="max-w-7xl mx-auto px-4">
         <Swiper
           modules={[Autoplay]}
           loop={true}
           slidesPerView={2}
-          spaceBetween={20}
+          spaceBetween={30}
           autoplay={{
             delay: 2000,
             disableOnInteraction: false,
           }}
           breakpoints={{
-            // Tablets
             768: {
               slidesPerView: 3,
-              spaceBetween: 30,
-            },
-            // Desktop
-            1024: {
-              slidesPerView: 5,
               spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 4, // Slides kam karne se size mazeed bara dikhay ga
+              spaceBetween: 50,
             },
           }}
           className="w-full"
         >
           {brands.map((brand, index) => (
-            <SwiperSlide key={index} className="flex justify-center items-center">
-              {/* Width aur Height yahan Image component mein di gayi hai */}
-              <div className="flex justify-center items-center py-2">
-                <Image
-                  src={brand.src}
-                  alt={brand.alt}
-                  width={150}   // Aapki requirement ke mutabiq width
-                  height={60}   // Aapki requirement ke mutabiq height
-                  className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                  style={{ width: 'auto', height: 'auto' }} // Aspect ratio barkarar rakhne ke liye
-                />
+            <SwiperSlide key={index}>
+              <div className="flex justify-center items-center py-1">
+                <div className="relative w-[180px] h-[100px] md:w-[120px] md:h-[100px]"> 
+                  <Image
+                    src={brand.src}
+                    alt={brand.alt}
+                    fill
+                    className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                    sizes="(max-width: 768px) 180px, 220px"
+                  />
+                </div>
               </div>
             </SwiperSlide>
           ))}

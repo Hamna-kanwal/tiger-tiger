@@ -5,19 +5,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const categories = [
-  { title: 'Alcohol', image: '/ALCOHOL.png' },
-  { title: 'Canned', image: '/Canned.png' },
-  { title: 'Dried Products', image: '/dried_products.png' },
-  { title: 'Drinks', image: '/categories-drinks.png' },
-  { title: 'Frozen', image: '/categories-frozen.png' },
-  { title: 'Instant Noodles', image: '/instant_noodles.png' },
-  { title: 'Noodles', image: '/catrtegories_noodles.png' },
-  { title: 'Oils', image: '/oil.png' },
-  { title: 'Pastes', image: '/pastes.png' },
-  { title: 'Rice', image: '/categories_rice.png' },
-  { title: 'Sauces', image: '/categories_sauces.png' },
-  { title: 'Snacks', image: '/categories_snacks.png' },
-  { title: 'Taste Of Asia', image: '/categories_asia.png' },
+  { title: 'Alcohol', image: '/ALCOHOL.webp' },
+  { title: 'Canned', image: '/Canned.webp' },
+  { title: 'Dried Products', image: '/dried_products.webp' },
+  { title: 'Drinks', image: '/categories-drinks.webp' },
+  { title: 'Frozen', image: '/categories-frozen.webp' },
+  { title: 'Instant Noodles', image: '/instant_noodles.webp' },
+  { title: 'Noodles', image: '/catrtegories_noodles.webp' },
+  { title: 'Oils', image: '/oil.webp' },
+  { title: 'Pastes', image: '/pastes.webp' },
+  { title: 'Rice', image: '/categories_rice.webp' },
+  { title: 'Sauces', image: '/categories_sauces.webp' },
+  { title: 'Snacks', image: '/categories_snacks.webp' },
+  { title: 'Taste Of Asia', image: '/categories_asia.webp' },
 ];
 
 const CategorySection = () => {

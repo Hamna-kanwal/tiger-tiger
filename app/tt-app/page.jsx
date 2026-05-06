@@ -25,7 +25,7 @@ export default function AppLandingPage() {
         <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
           {/* Background */}
           <Image
-            src="/mobile image.png"
+            src="/mobile image.webp"
             alt="bg"
             fill
             className="object-cover"
@@ -72,7 +72,7 @@ export default function AppLandingPage() {
           {/* Mobile Image */}
           <div className="absolute mt-20 right-50 -bottom-[140px] hidden z-40 md:block">
             <Image
-              src="/mobile_image.png"
+              src="/mobile_image.webp"
               alt="phone"
               width={800}
               height={800}
@@ -88,7 +88,7 @@ export default function AppLandingPage() {
           <div className="w-full md:w-full p-0 relative flex justify-center md:justify-start">
             <div className="relative w-full h-full aspect-square">
               <Image
-                src="/mobile_phone.png"
+                src="/mobile_phone.webp"
                 alt="Searching products"
                 fill
                 className="object-contain"
@@ -99,9 +99,9 @@ export default function AppLandingPage() {
           <div className="w-full md:w-full px-6 md:px-0">
             <div className="flex items-center gap-6">
               {[
-                { id: 1, src: "/Soda_Can_Mockup1.png" },
-                { id: 2, src: "/Soda_Can_Mockup2.png" },
-                { id: 3, src: "/Soda_Can_Mockup_3.png" },
+                { id: 1, src: "/Soda_Can_Mockup1.webp" },
+                { id: 2, src: "/Soda_Can_Mockup2.webp" },
+                { id: 3, src: "/Soda_Can_Mockup_3.webp" },
               ].map((product) => (
                 <div
                   key={product.id}
@@ -179,16 +179,16 @@ export default function AppLandingPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-end">
             <div className="relative flex justify-center hover:scale-105 transition-transform duration-500">
-              <Image src="/iPhone 15 Pro Mockup1.png" alt="Screen 1" width={300} height={600} className="object-contain drop-shadow-2xl" />
+              <Image src="/iPhone 15 Pro Mockup1.webp" alt="Screen 1" width={300} height={600} className="object-contain drop-shadow-2xl" />
             </div>
             <div className="relative flex justify-center hover:scale-110 transition-transform duration-500 z-10">
-              <Image src="/iPhone 15 Pro Mockup2.png" alt="Screen 2" width={600} height={1200} priority className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)] w-full h-auto scale-110 md:scale-125" />
+              <Image src="/iPhone 15 Pro Mockup2.webp" alt="Screen 2" width={600} height={1200} priority className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)] w-full h-auto scale-110 md:scale-125" />
             </div>
             <div className="relative flex justify-center hover:scale-105 transition-transform duration-500">
-              <Image src="/iPhone 15 Pro Mockup3.png" alt="Screen 3" width={400} height={700} className="object-contain drop-shadow-2xl" />
+              <Image src="/iPhone 15 Pro Mockup3.webp" alt="Screen 3" width={400} height={700} className="object-contain drop-shadow-2xl" />
             </div>
             <div className="relative flex justify-center hover:scale-105 transition-transform duration-500">
-              <Image src="/iPhone 15 Pro Mockup4.png" alt="Screen 4" width={300} height={600} className="object-contain drop-shadow-2xl" />
+              <Image src="/iPhone 15 Pro Mockup4.webp" alt="Screen 4" width={300} height={600} className="object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function AppLandingPage() {
       {/* ================= SECTION 5: DOWNLOAD ================= */}
       <section className="bg-[#e5e7eb] min-h-screen flex items-center relative overflow-hidden">
         <div className="absolute -left-10 lg:-left-20 top-1/2 -translate-y-1/2 z-10">
-          <Image src="/image1.png" alt="App Preview" width={600} height={600} className="w-[450px] lg:w-[600px] h-auto drop-shadow-2xl object-contain" />
+          <Image src="/image1.webp" alt="App Preview" width={600} height={600} className="w-[450px] lg:w-[600px] h-auto drop-shadow-2xl object-contain" />
         </div>
 
         <div className="container mx-auto flex justify-end px-6 lg:px-20">

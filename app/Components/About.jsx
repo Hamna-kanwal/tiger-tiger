@@ -3,8 +3,8 @@ import { Check } from 'lucide-react';
 import Image from 'next/image';
 
 // 1. STANDARD WAY: Images ko upar import karein (Best for performance)
-import mainImg from '@/public/image 4.png'; 
-import overlayImg from '@/public/image 5.png';
+import mainImg from '@/public/image 4.webp'; 
+import overlayImg from '@/public/image 5.webp';
 
 const AboutSection = () => {
   const brandPurple = "#431A4F";

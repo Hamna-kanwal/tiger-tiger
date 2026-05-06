@@ -14,7 +14,7 @@ export const allRecipes = [
     time: "30 min", 
     servings: "5 Serving", 
     calories: "320", 
-    image: "/curry.png",
+    image: "/curry.webp",
     ingredients: [
       "1 tablespoon vegetable oil",
       "1 medium yellow onion, thinly sliced",
@@ -39,7 +39,7 @@ export const allRecipes = [
     time: "20 min", 
     servings: "2 Serving", 
     calories: "450", 
-    image: "/receipes.png",
+    image: "/receipes.webp",
     ingredients: ["Ramen Noodles", "Miso Paste", "Soft boiled egg", "Green onions", "Nori sheets", "Sliced bamboo shoots"],
     method: ["Prepare Broth: Combine dashi stock with miso paste in a pot and bring to a gentle simmer.", "Cook Noodles: Boil ramen noodles until al dente.", "Assemble: Place noodles in a bowl, pour over broth.", "Garnish: Top with egg, onions, nori, and bamboo shoots."]
   },
@@ -51,15 +51,15 @@ export const allRecipes = [
     time: "25 min", 
     servings: "4 Serving", 
     calories: "410", 
-    image: "/receipes.png",
+    image: "/receipes.webp",
     ingredients: ["Tiger Tiger Green Curry Paste", "400ml Coconut Milk", "Bamboo shoots", "Chicken/Tofu", "Basil", "Fish sauce"],
     method: ["Sauté Paste: Fry paste until fragrant.", "Add Protein: Stir in your protein.", "Simmer: Add coconut milk and bamboo shoots. Simmer 10-15 min.", "Finish: Stir in basil and fish sauce."]
   },
-  { id: "kimchi-noodles", title: "Spicy Kimchi Noodles", cuisine: "Korean", product: "Noodles", time: "15 min", servings: "2 Serving", calories: "380", image: "/receipes.png", ingredients: ["Korean Noodles", "Kimchi", "Gochujang", "Sesame oil"], method: ["Boil noodles.", "Mix with kimchi and sauce."] },
-  { id: "bulgogi-beef", title: "Korean BBQ Bulgogi", cuisine: "Korean", product: "Spices & Seasonings", time: "35 min", servings: "4 Serving", calories: "520", image: "/receipes.png", ingredients: ["Beef slices", "Bulgogi marinade", "Onions", "Sesame seeds"], method: ["Marinate beef.", "Grill or pan-fry with onions."] },
-  { id: "egg-fried-rice", title: "Special Fried Rice", cuisine: "Chinese", product: "Rice", time: "20 min", servings: "3 Serving", calories: "350", image: "/receipes.png", ingredients: ["Cooked Rice", "Eggs", "Soy Sauce", "Mixed Veggies"], method: ["Scramble eggs.", "Stir fry veggies and rice with soy sauce."] },
-  { id: "dim-sum", title: "Steamed Prawn Dim Sum", cuisine: "Chinese", product: "Frozen", time: "12 min", servings: "3 Serving", calories: "180", image: "/receipes.png", ingredients: ["Tiger Tiger Frozen Dim Sum", "Soy dipping sauce"], method: ["Steam for 10-12 minutes.", "Serve hot."] },
-  { id: "butter-chicken", title: "Butter Chicken Masala", cuisine: "Indian", product: "Sauces", time: "40 min", servings: "4 Serving", calories: "550", image: "/receipes.png", ingredients: ["Chicken chunks", "Butter Chicken Paste", "Cream", "Butter"], method: ["Fry chicken.", "Add paste and cream, simmer until thick."] },
+  { id: "kimchi-noodles", title: "Spicy Kimchi Noodles", cuisine: "Korean", product: "Noodles", time: "15 min", servings: "2 Serving", calories: "380", image: "/receipes.webp", ingredients: ["Korean Noodles", "Kimchi", "Gochujang", "Sesame oil"], method: ["Boil noodles.", "Mix with kimchi and sauce."] },
+  { id: "bulgogi-beef", title: "Korean BBQ Bulgogi", cuisine: "Korean", product: "Spices & Seasonings", time: "35 min", servings: "4 Serving", calories: "520", image: "/receipes.webp", ingredients: ["Beef slices", "Bulgogi marinade", "Onions", "Sesame seeds"], method: ["Marinate beef.", "Grill or pan-fry with onions."] },
+  { id: "egg-fried-rice", title: "Special Fried Rice", cuisine: "Chinese", product: "Rice", time: "20 min", servings: "3 Serving", calories: "350", image: "/receipes.webp", ingredients: ["Cooked Rice", "Eggs", "Soy Sauce", "Mixed Veggies"], method: ["Scramble eggs.", "Stir fry veggies and rice with soy sauce."] },
+  { id: "dim-sum", title: "Steamed Prawn Dim Sum", cuisine: "Chinese", product: "Frozen", time: "12 min", servings: "3 Serving", calories: "180", image: "/receipes.webp", ingredients: ["Tiger Tiger Frozen Dim Sum", "Soy dipping sauce"], method: ["Steam for 10-12 minutes.", "Serve hot."] },
+  { id: "butter-chicken", title: "Butter Chicken Masala", cuisine: "Indian", product: "Sauces", time: "40 min", servings: "4 Serving", calories: "550", image: "/receipes.webp", ingredients: ["Chicken chunks", "Butter Chicken Paste", "Cream", "Butter"], method: ["Fry chicken.", "Add paste and cream, simmer until thick."] },
 ];
 
 const RecipeHero = () => {

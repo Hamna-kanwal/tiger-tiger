@@ -65,7 +65,7 @@ const DiscoverSection = () => {
                 {/* 1. STICKS BOX (CTA1) - Front Layer */}
               <div className="absolute z-30 bottom-0 left-[10%] lg:left-0">
                 <Image 
-                  src="/CTA1.png" 
+                  src="/CTA1.webp" 
                   alt="Sticks Background"
                   width={350} // Desktop size
                   height={450} 
@@ -76,7 +76,7 @@ const DiscoverSection = () => {
               {/* 2. MAIN CANS (CTA2) - Behind Layer */}
               <div className="relative z-10 mb-[-20px] mr-[-20px] lg:mr-[-40px]">
                 <Image
-                  src="/CTA2.png" 
+                  src="/CTA2.webp" 
                   alt="Pulp Cans Main"
                   width={850} // High resolution width
                   height={600}

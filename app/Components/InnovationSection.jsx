@@ -5,9 +5,9 @@ import { UtensilsCrossed } from "lucide-react";
 import Image from "next/image"; // 1. Standard Import
 
 // 2. STANDARD WAY: Images ko upar import karein
-import chilliImg from "@/public/fresh spicy.png";
-import foodImg from "@/public/pngwing.png";
-import baoImg from "@/public/bao bun.png";
+import chilliImg from "@/public/fresh spicy.webp";
+import foodImg from "@/public/pngwing.webp";
+import baoImg from "@/public/bao bun.webp";
 
 const InnovationSection = () => {
   const brandPurple = "#4e1a51";

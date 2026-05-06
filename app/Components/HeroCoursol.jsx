@@ -7,19 +7,19 @@ import { motion } from "framer-motion";
 const slides = [
   { 
     id: 1, 
-    src: "/pulp-hero-section.png", 
+    src: "/pulp-hero-section.webp", 
     alt: "Product 1", 
     className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
   },
   { 
     id: 2, 
-    src: "/japanese-hero.png", 
+    src: "/japanese-hero.webp", 
     alt: "Product 2", 
     className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
   },
   { 
     id: 3, 
-    src: "/koreannnnnn-updated (1).png", 
+    src: "/koreannnnnn-updated (1).webp", 
     alt: "Product 3", 
     className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3" 
   },

@@ -9,7 +9,7 @@ const allProducts = [
     id: '1', 
     slug: 'lychee-juice', 
     name: 'PULP+ LYCHEE JUICE', 
-    image: '/pulpCan.png', 
+    image: '/pulpCan.webp', 
     category: 'drinks',
     size: '12x320ml',
     sku: '800769',
