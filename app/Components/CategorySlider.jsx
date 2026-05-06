@@ -5,24 +5,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const categories = [
-  {
-    title: 'Canned',
-    image: '/Canned.png',
-  },
-  {
-    title: 'Drinks',
-    image: '/categories drinks.png', 
-  },
-  {
-    title: 'Frozen',
-    image: '/categories-frozen.png',
-  },
+  { title: 'Canned', image: '/Canned.png' },
+  { title: 'Drinks', image: '/categories-drinks.png' }, // Space ko hyphen se replace karein
+  { title: 'Frozen', image: '/categories-frozen.png' },
 ];
 
 function CategorySection() {
   const brandPurple = "#4e1a51";
   const charcoalBlack = "#333333";
-
   const [isBtnHovered, setIsBtnHovered] = useState(false);
 
   return (
@@ -43,10 +33,9 @@ function CategorySection() {
               backgroundColor: isBtnHovered ? "white" : brandPurple,
               color: isBtnHovered ? brandPurple : "white",
               borderColor: brandPurple,
-              borderWidth: "2px",
-              borderStyle: "solid"
+              borderWidth: "2px"
             }}
-            className="font-bold py-2 px-4 md:py-4 md:px-10 rounded-xl md:rounded-2xl transition-all duration-300 text-xs sm:text-sm md:text-xl shadow-md eczar whitespace-nowrap cursor-pointer"
+            className="font-bold py-2 px-6 md:py-4 md:px-10 rounded-xl md:rounded-2xl transition-all duration-300 text-xs sm:text-sm md:text-xl shadow-md eczar whitespace-nowrap cursor-pointer"
           >
             All Categories
           </button>
@@ -54,27 +43,28 @@ function CategorySection() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <div 
             key={category.title} 
-            className="group relative h-[450px] overflow-hidden rounded-3xl cursor-pointer shadow-lg bg-gray-100"
+            className="group relative h-[450px] overflow-hidden rounded-3xl cursor-pointer shadow-lg bg-gray-200" // Placeholder background color
           >
             <Image
               src={category.image}
               alt={category.title}
               fill
-              // 1. "sizes" prop add kiya taake Next.js optimized image load kare
+              // Sizes prop ko mazeed optimize kiya
               sizes="(max-width: 768px) 100vw, 33vw"
-              // 2. object-cover ko style mein bhi dena behtar hai warnings se bachne ke liye
-              style={{ objectFit: 'cover' }}
               className="transition-transform duration-500 group-hover:scale-105"
-              // 3. Pehli row ki images ko fast load karne ke liye priority (Optional)
-              priority
+              style={{ objectFit: 'cover' }}
+              // Sirf pehli image ko priority dein agar ye viewport mein hai
+              priority={index === 0} 
+              // Quality ko 80-85 par rakhein (default 75 hai) file size chota rakhne ke liye
+              quality={85}
             />
             
             <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors" />
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-fit">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-fit">
               <div className="bg-white px-10 py-3 rounded-md shadow-md">
                 <span 
                   style={{ color: brandPurple }}

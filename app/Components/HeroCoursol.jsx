@@ -37,7 +37,8 @@ const HeroCarousel = () => {
 
   return (
     <div className="w-full flex justify-center items-end mt-0">
-      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden md:-mt-40 -mt-15">
+      {/* Aspect Ratio dena CLS fix karne ke liye zaroori hai */}
+      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden md:-mt-40 -mt-15 bg-transparent">
         
         {slides.map((slide, index) => {
           const isActive = index === currentIndex;
@@ -48,28 +49,32 @@ const HeroCarousel = () => {
               initial={false}
               animate={{
                 opacity: isActive ? 1 : 0,
+                // x animation CLS barha sakti hai, koshish karein sirf opacity use karein agar zaroori na ho
                 x: isActive ? "0%" : index > currentIndex ? "100%" : "-100%",
-                zIndex: isActive ? 10 : 0
               }}
               transition={{
-                x: { type: "tween", duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+                x: { type: "tween", duration: 0.8, ease: "easeInOut" },
                 opacity: { duration: 0.6 }
               }}
+              style={{ zIndex: isActive ? 10 : 0 }}
               className="absolute inset-0 w-full h-full"
             >
               <Image
                 src={slide.src}
                 alt={slide.alt}
                 fill
-                className={`object-contain object-bottom origin-bottom transition-all duration-500 ${slide.className}`}
-                priority={index === 0}
-                sizes="100vw"
-                unoptimized
+                // 1. "unoptimized" hata dein, Next.js ko apna kaam karne dein
+                // 2. "priority" sirf un images par jo pehle 2 slides mein hain
+                priority={index <= 1} 
+                // 3. "sizes" prop ko screen ke mutabiq sahi karein
+                sizes="(max-width: 768px) 100vw, 1200px"
+                className={`object-contain object-bottom origin-bottom ${slide.className}`}
+                // 4. Quality thori kam karein file size chota karne ke liye
+                quality={85}
               />
             </motion.div>
           );
         })}
-        
       </div>
     </div>
   );

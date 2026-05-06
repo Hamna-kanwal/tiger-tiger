@@ -4,8 +4,6 @@ import "./globals.css";
 import Header from "./Components/Header"; 
 import Footer from "./Components/Footer";
 
-
-// 1. Google Fonts Configuration
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
@@ -25,16 +23,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${outfit.variable} ${eczar.variable}`}>
       <head>
-        {/* 2. Adobe Typekit Link (Yahan se 'fields' font aa raha hai) */}
+        {/* Adobe Typekit render-blocking ho sakta hai, 
+            lekin agar zaroori hai to ise yahan rehne dein */}
         <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
       </head>
-      <body className={`${outfit.className} ${eczar.variable} antialiased`}>
+      <body className="antialiased font-sans">
         <Header />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
