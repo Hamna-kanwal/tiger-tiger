@@ -1,11 +1,9 @@
-// app/layout.jsx
 import { Outfit, Eczar } from "next/font/google";
 import "./globals.css";
 import Header from "./Components/Header"; 
 import Footer from "./Components/Footer";
 
-
-// 1. Google Fonts Configuration
+// 1. Google Fonts Configuration (display: 'swap' CLS ke liye zaroori hai)
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
@@ -25,12 +23,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${outfit.variable} ${eczar.variable}`}>
       <head>
-        {/* 2. Adobe Typekit Link (Yahan se 'fields' font aa raha hai) */}
+        {/* 2. Adobe Typekit - Preconnect add kiya hai taaki font jaldi load ho */}
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
       </head>
-      <body className={`${outfit.className} ${eczar.variable} antialiased`}>
+      <body className="antialiased font-outfit">
         <Header />
         <main>
           {children}
