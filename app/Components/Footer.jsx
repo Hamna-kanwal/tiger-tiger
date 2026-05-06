@@ -67,6 +67,7 @@ const Footer = () => {
           <Link href="/" className="inline-block transition-opacity hover:opacity-80">
          <Image 
   src="/logo.png" 
+  alt="logo"
   width={150} 
   height={60}
   priority 

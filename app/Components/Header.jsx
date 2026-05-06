@@ -41,6 +41,7 @@ const navLinks = [
   src="/logo.png" 
   width={150} 
   height={50} 
+  alt="logo"
   priority
   className="w-[100px] h-auto" // h-auto add karne se warning khatam ho jayegi
 />

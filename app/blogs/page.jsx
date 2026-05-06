@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const LatestBlog = () => {
   const brandPurple = "#431A4F";
-  const brandGold = "#D2B57B";
-  const [isMainBtnHovered, setIsMainBtnHovered] = useState(false);
 
   const blogs = [
     {
@@ -24,7 +23,6 @@ const LatestBlog = () => {
       desc: "Stay ahead of the market with our latest industry insights.",
       image: "/blog3.webp",
     },
-    // --- Doosri Line (Row) ka data yahan se start hai ---
     {
       title: "Sustainable Packaging Solutions",
       desc: "Our commitment to eco-friendly practices in food logistics.",
@@ -46,28 +44,28 @@ const LatestBlog = () => {
     <section className="py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         
-        {/* --- Header Section --- */}
         <div className="mb-8 mt-8">
           <h2 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
             Latest Blog
           </h2>
-        
-            <p className="text-sm md:text-base leading-relaxed text-[#431A4F]  mb-6 opacity-90">
-          Read news, blogs and latest articles from Tiger Tiger Foods
+          <p className="text-sm md:text-base leading-relaxed text-[#431A4F] mb-6 opacity-90">
+            Read news, blogs and latest articles from Tiger Tiger Foods
           </p>
         </div>
 
-        {/* --- Blog Grid --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
             <div key={index} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500">
               
-              {/* Image Container */}
-              <div className="relative h-64 overflow-hidden">
-                <image
-                  src={blog.image} 
+              <div className="relative h-64 w-full overflow-hidden">
+                <Image
+                  src={blog.image || "/fallback.png"} 
                   alt={blog.title} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  fill 
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  // Optional chaining fix here:
+                  unoptimized={blog.image?.startsWith('http')} 
                 />
                 <div className="absolute inset-0 bg-[#431A4F]/70 flex flex-col items-center justify-center p-6 text-center opacity-100 group-hover:bg-[#431A4F]/85 transition-all">
                   <h3 className="text-white font-black text-xl md:text-2xl leading-tight mb-2">
@@ -76,7 +74,6 @@ const LatestBlog = () => {
                 </div>
               </div>
 
-              {/* Text Content */}
               <div className="p-8 flex flex-col flex-grow text-center items-center">
                 <h4 className="font-extrabold text-[#431A4F] text-lg mb-3 uppercase tracking-tight">
                   {blog.title}
@@ -85,10 +82,9 @@ const LatestBlog = () => {
                   {blog.desc}
                 </p>
                 
-                {/* Read More Link Styling */}
                 <button 
                   style={{ color: brandPurple }}
-                  className="flex items-center gap-2 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:tracking-[0.3em] group-hover:text-[#D2B57B]"
+                  className="flex items-center gap-2 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:tracking-[0.3em] hover:text-[#D2B57B]"
                 >
                   Read More <ArrowRight size={14} />
                 </button>
@@ -96,7 +92,6 @@ const LatestBlog = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

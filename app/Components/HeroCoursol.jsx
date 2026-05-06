@@ -9,6 +9,7 @@ const slides = [
     id: 1, 
     src: "/pulp-hero-section.webp", 
     alt: "Product 1", 
+    priority:true,
     className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
   },
   { 

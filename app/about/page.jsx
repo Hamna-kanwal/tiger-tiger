@@ -5,14 +5,18 @@ const TigerAboutBody = () => {
     <main className="bg-[#FFFDF9]">
       
       {/* 1. Who We Are Section */}
-      <section className="my-20 px-6 text-center max-w-7xl sm:mt-[50px] md:mt-40">
-        <span className="text-[#4B2452] font-bold tracking-widest text-[20px]">ABOUT US</span>
-        <h1 className="text-[50px] text-[#4B2452] mt-4 mb-4 font-black uppercase">
-          Who We Are
-        </h1>
+     <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[50px] md:mt-40">
+    {/* mx-auto add kiya gaya hai taaki pura section screen ke center mein aa jaye */}
+    
+    <span className="text-[#4B2452] font-bold tracking-widest text-[20px]">ABOUT US</span>
+    
+    <h1 className="text-[32px] md:text-[50px] text-[#4B2452] mt-4 mb-4 font-black uppercase">
+        Who We Are
+    </h1>
 
-        <div className="space-y-6 text-[#333333] leading-relaxed text-lg text-justify md:text-center">
-          <p>
+    <div className="space-y-6 text-[#333333] leading-relaxed text-lg text-center">
+        {/* Yahan md:text-center ko hata kar sirf text-center rakha hai taaki har screen par text center rahe */}
+        <p>
             Tiger Tiger has been a developer and supplier of Asian foods and services to major hubs, 
             including supermarkets, retailers, restaurants and direct customers, for a long time. 
             Our parent company, JK FOODS UK, with nearly five decades of experience, is widely 
@@ -22,8 +26,8 @@ const TigerAboutBody = () => {
             exceptional quality and taste preferred across the UK, Europe, and the Americas. 
             To this day, the brand is well-known for its dedication to delivering taste and 
             quality to customers at manageable prices.
-          </p>
-          <p>
+        </p>
+        <p>
             At Tiger Tiger, we redefine value without compromising on the flavours that make every 
             bite memorable. Our consistent quality and recognition for a taste appreciated by 
             individuals and professional kitchens alike let us lead developers of Asian food. 
@@ -32,24 +36,25 @@ const TigerAboutBody = () => {
             possibilities with top quality, we only aim to support businesses and elevate dishes 
             for the desired effect. With this approach and commitment, we will continue bringing 
             the combination of quality, irresistible taste, and competition.
-          </p>
-          <p>
+        </p>
+        <p>
             Across the UK’s kitchens! Try Tiger Tiger, the UK’s leading developers of Asian food, 
             and fill your kitchens with the texture and aroma you recall at events. 
             Within a single supplier, you will have multiple options dedicated to being delivered across 
             Japanese, Thai, Chinese, Korean, Vietnamese, and Indian cuisines.
-          </p>
-        </div>
+        </p>
+    </div>
 
-        <div className="mt-10 flex justify-center gap-4">
-          <button className="px-8 py-3 rounded-full border-2 border-[#4B2452] text-[#4B2452] font-bold hover:bg-[#4B2452] hover:text-white transition">
+    <div className="mt-10 flex flex-wrap justify-center gap-4">
+        {/* flex-wrap add kiya hai taaki mobile par buttons ek dusre ke upar niche aa sakein agar jagah kam ho */}
+        <button className="px-8 py-3 rounded-full border-2 border-[#4B2452] text-[#4B2452] font-bold hover:bg-[#4B2452] hover:text-white transition">
             View Products
-          </button>
-          <button className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold hover:opacity-90 transition">
+        </button>
+        <button className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold hover:opacity-90 transition">
             Discover Cuisine
-          </button>
-        </div>
-      </section>
+        </button>
+    </div>
+</section>
 
       {/* 2. Our Food Section */}
       <section className="max-w-7xl mx-auto my-20 px-4">

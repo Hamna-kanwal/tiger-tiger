@@ -1,14 +1,19 @@
-import React from 'react';
-import { Eye } from 'lucide-react'; // Eye icon ke liye
+"use client";
+
+import React, { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react'; // Password toggle ke liye dono icons
+import Image from 'next/image';
 
 const TigerLoginBody = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <main className="bg-[#FFFDF9] min-h-screen flex items-center justify-center p-6 mt-20">
+    <main className="bg-[#FFFDF9] min-h-screen flex items-center justify-center p-6 md:mt-30">
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
         
         {/* Left Side: Login Form */}
-        <div className="flex flex-col">
-          <h1 className="text-[32px] text-[#4B2452] font-black mb-6 uppercase" style={{ fontFamily: 'serif' }}>
+        <div className="flex flex-col order-2 md:order-1">
+          <h1 className="text-[32px] text-[#4B2452] font-black mb-6 uppercase">
             Login
           </h1>
           <p className="text-[#333333] text-lg mb-8 leading-snug">
@@ -16,23 +21,29 @@ const TigerLoginBody = () => {
             Login here.
           </p>
 
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
             <div className="relative">
               <input
                 type="email"
                 placeholder="Email*"
-                className="w-full p-5 bg-[#E5E5E5] rounded-xl outline-none text-gray-700 placeholder-gray-500"
+                className="w-full p-5 bg-[#E5E5E5] rounded-xl outline-none text-gray-700 placeholder-gray-500 focus:ring-2 focus:ring-[#4B2452]/20 transition"
+                required
               />
             </div>
 
             <div className="relative">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password*"
-                className="w-full p-5 bg-[#E5E5E5] rounded-xl outline-none text-gray-700 placeholder-gray-500"
+                className="w-full p-5 bg-[#E5E5E5] rounded-xl outline-none text-gray-700 placeholder-gray-500 focus:ring-2 focus:ring-[#4B2452]/20 transition"
+                required
               />
-              <button type="button" className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-600">
-                <Eye size={20} />
+              <button 
+                type="button" 
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-600 hover:text-[#4B2452] transition"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
 
@@ -43,7 +54,7 @@ const TigerLoginBody = () => {
 
             <button
               type="submit"
-              className="w-full mt-6 bg-[#4B2452] text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition shadow-md"
+              className="w-full mt-6 bg-[#4B2452] text-white py-4 rounded-xl font-bold text-lg hover:opacity-95 transition shadow-md active:scale-[0.98]"
             >
               Login
             </button>
@@ -51,27 +62,20 @@ const TigerLoginBody = () => {
         </div>
 
         {/* Right Side: Image Section */}
-       <div className="relative w-full h-[500px] md:h-[600px] rounded-[30px] overflow-hidden shadow-2xl mt-20">
-  {/* Image Section */}
-  <image
-    src="/Login_img.png" 
-    alt="Person with Cramm'd product"
-    className="w-full h-full object-cover object-center"
-  />
+        <div className="relative w-full h-[400px] md:h-[600px] rounded-[30px] overflow-hidden shadow-2xl order-1 md:order-2">
+          <Image
+            src="/Login_img.webp" 
+            alt="Tiger Tiger Login"
+            fill // Container ko pura bharne ke liye
+            priority // Speed behtar karne ke liye
+            className="object-cover object-center"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
 
-  {/* Cart Float Button */}
-  <button 
-    className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-4 rounded-l-full shadow-xl border border-gray-100 hover:bg-gray-50 transition-all duration-300 group"
-    aria-label="View Cart"
-  >
-    <div className="transform group-hover:scale-110 transition-transform">
-      <span className="text-2xl">🛒</span>
-    </div>
-  </button>
-
-  {/* Optional: Overlay gradient for better contrast */}
-  <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
-</div>
+  
+          {/* Overlay gradient */}
+          <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
+        </div>
 
       </div>
     </main>
