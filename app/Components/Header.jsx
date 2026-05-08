@@ -3,31 +3,33 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Search, Menu, X, ChevronDown } from "lucide-react"; // ChevronDown icon add kiya
+import { Menu, X, ChevronDown } from "lucide-react"; 
 import { useState } from "react";
+// 🟢 Step 1: SearchBox ko import karein
+import SearchBox from "./SearchBox"; 
 
 export default function Header() {
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProductHovered, setIsProductHovered] = useState(false); // Dropdown state
-const navLinks = [
-  { name: "Home", href: "/" },
-  { 
-    name: "Products", 
-    href: "#", // Ab is par click karne se page change nahi hoga
-    dropdown: [
-       { name: "All", href: "/products/best-sellers" },
-      { name: "Featured", href: "./feature_product" },
-      { name: "New", href: "/products/new" },
-     
-    ]
-  },
-  { name: "Recipes", href: "/recipes" },
-  { name: "Blogs", href: "/blogs" },
-  { name: "Contact", href: "/contact" },
-  { name: "About", href: "/about" },
-  { name: "Login", href: "/login" },
-];
+  const [isProductHovered, setIsProductHovered] = useState(false);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { 
+      name: "Products", 
+      href: "#", 
+      dropdown: [
+        { name: "All", href: "/products/best-sellers" },
+        { name: "Featured", href: "/feature_product" },
+        { name: "New", href: "/products/new" },
+      ]
+    },
+    { name: "Recipes", href: "/recipes" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Contact", href: "/contact" },
+    { name: "About", href: "/about" },
+    { name: "Login", href: "/login" },
+  ];
 
   const isActive = (href) => path === href;
 
@@ -37,14 +39,14 @@ const navLinks = [
         
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
-         <Image 
-  src="/logo.png" 
-  width={150} 
-  height={50} 
-  alt="logo"
-  priority
-  className="w-[100px] h-auto" // h-auto add karne se warning khatam ho jayegi
-/>
+          <Image 
+            src="/logo.png" 
+            width={150} 
+            height={50} 
+            alt="logo"
+            priority
+            className="w-[100px] h-auto"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -68,14 +70,14 @@ const navLinks = [
                 {link.dropdown && <ChevronDown size={14} className={`transition-transform ${isProductHovered ? 'rotate-180' : ''}`} />}
               </Link>
 
-              {/* Dropdown Menu (Desktop) */}
+              {/* Dropdown Menu */}
               {link.dropdown && (
-                <div className={`absolute top-full left-0 mt-2 md:w-52 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${isProductHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
+                <div className={`absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${isProductHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
                   {link.dropdown.map((subItem) => (
                     <Link
                       key={subItem.name}
                       href={subItem.href}
-                     className="block px-6 py-3 hover:text-white  text-[#4e1a51] hover:bg-[#4e1a51] transition-all duration-200 text-sm"
+                      className="block px-6 py-3 text-[#4e1a51] hover:bg-[#4e1a51] hover:text-white transition-all duration-200 text-sm font-medium"
                     >
                       {subItem.name}
                     </Link>
@@ -86,15 +88,10 @@ const navLinks = [
           ))}
         </nav>
 
-        {/* Search & Menu */}
+        {/* 🟢 Step 2: SearchBox Call */}
         <div className="flex items-center gap-5">
-          <div className="hidden md:flex items-center rounded-full px-6 py-3 w-full lg:w-[250px] bg-[#4e1a51]">
-            <Search size={22} className="text-white shrink-0" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="bg-transparent outline-none ml-4 w-full placeholder:text-white/80 text-lg text-white"
-            />
+          <div className="hidden md:block">
+             <SearchBox /> 
           </div>
 
           <button onClick={() => setIsMenuOpen(true)} className="lg:hidden p-2">
@@ -121,7 +118,12 @@ const navLinks = [
             <X size={26} className="text-[#4e1a51]" />
           </button>
           
-          <nav className="flex flex-col gap-6 mt-10">
+          {/* 🟢 Mobile Search */}
+          <div className="mt-4 mb-6">
+            <SearchBox />
+          </div>
+
+          <nav className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <div key={link.name}>
                 <Link
@@ -133,29 +135,6 @@ const navLinks = [
                 >
                   {link.name}
                 </Link>
-                {/* Sub-links for Mobile */}
-{link.dropdown && (
-  <div
-    className={`absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${
-      isProductHovered
-        ? "opacity-100 visible translate-y-0"
-        : "opacity-0 invisible translate-y-2"
-    }`}
-  >
-    {link.dropdown.map((subItem) => (
-      <Link
-        key={subItem.name}
-        href={subItem.href}
-        // 'group' class parent par aur 'group-hover:text-white' child par
-        className="group block px-6 py-3 hover:bg-[#4e1a51] transition-all duration-200"
-      >
-        <span className="text-[#4e1a51] group-hover:text-white text-sm font-medium transition-colors duration-200">
-          {subItem.name}
-        </span>
-      </Link>
-    ))}
-  </div>
-)}
               </div>
             ))}
           </nav>

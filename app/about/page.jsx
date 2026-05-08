@@ -50,9 +50,9 @@ const TigerAboutBody = () => {
         <button className="px-8 py-3 rounded-full border-2 border-[#4B2452] text-[#4B2452] font-bold hover:bg-[#4B2452] hover:text-white transition">
             View Products
         </button>
-        <button className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold hover:opacity-90 transition">
-            Discover Cuisine
-        </button>
+    <button className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold border-2 border-[#4B2452] hover:bg-transparent hover:text-[#4B2452] transition">
+    Discover Cuisine
+</button>
     </div>
 </section>
 

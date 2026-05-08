@@ -79,17 +79,21 @@ const LatestBlog = () => {
         </div>
 
         <div className="text-center mt-16">
-          <button 
-            onMouseEnter={() => setIsMainBtnHovered(true)}
-            onMouseLeave={() => setIsMainBtnHovered(false)}
-            style={{ 
-              borderColor: isMainBtnHovered ? brandGold : brandPurple,
-              color: isMainBtnHovered ? brandGold : brandPurple 
-            }}
-            className="inline-block px-12 py-4 rounded-full border-2 bg-transparent font-black uppercase tracking-widest text-sm transition-all duration-300 shadow-md active:scale-95"
-          >
-            View All Blogs
-          </button>
+        <button 
+  onMouseEnter={() => setIsMainBtnHovered(true)}
+  onMouseLeave={() => setIsMainBtnHovered(false)}
+  style={{ 
+    // Hover par border gold ho jayega (ya aap isay bhi purple rakh sakte hain)
+    borderColor: isMainBtnHovered ? brandPurple : brandPurple, 
+    
+    // Invert Effect Logic:
+    backgroundColor: isMainBtnHovered ? brandPurple : "transparent", 
+    color: isMainBtnHovered ? "#FFFFFF" : brandPurple 
+  }}
+  className="inline-block px-12 py-4 rounded-full border-2 font-black uppercase tracking-widest text-sm transition-all duration-300 shadow-md active:scale-95"
+>
+  View All Blogs
+</button>
         </div>
       </div>
     </section>

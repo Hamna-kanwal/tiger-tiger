@@ -36,22 +36,35 @@ const DiscoverSection = () => {
 
             {/* Buttons Container*/}
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-               <button 
-                onMouseEnter={() => setIsBtn2Hovered(true)}
-                onMouseLeave={() => setIsBtn2Hovered(false)}
-                style={{ borderColor: isBtn2Hovered ? brandGold : 'white', color: isBtn2Hovered ? brandGold : 'white' }}
-                className="bg-transparent border-[1.5px] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300"
-              >
-                Contact Us
-              </button>
-              <button 
-                onMouseEnter={() => setIsBtn1Hovered(true)}
-                onMouseLeave={() => setIsBtn1Hovered(false)}
-                style={{ backgroundColor: isBtn1Hovered ? brandGold : 'white', color: brandPurple }}
-                className="px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300 flex items-center gap-2 shadow-lg"
-              >
-                View Products <ArrowRight size={16} />
-              </button>
+              {/* Contact Us Button - Invert Effect */}
+<button 
+  onMouseEnter={() => setIsBtn2Hovered(true)}
+  onMouseLeave={() => setIsBtn2Hovered(false)}
+  style={{ 
+    borderColor: 'white', 
+    // Hover par background white ho jayega aur text purple/black
+    backgroundColor: isBtn2Hovered ? 'white' : 'transparent', 
+    color: isBtn2Hovered ? brandPurple : 'white' 
+  }}
+  className="bg-transparent border-[1.5px] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300"
+>
+  Contact Us
+</button>
+
+{/* View Products Button - Invert Effect */}
+<button 
+  onMouseEnter={() => setIsBtn1Hovered(true)}
+  onMouseLeave={() => setIsBtn1Hovered(false)}
+  style={{ 
+    // Hover par background purple ho jayega aur text white
+    backgroundColor: isBtn1Hovered ? brandPurple : 'white', 
+    color: isBtn1Hovered ? 'white' : brandPurple,
+    border: `1.5px solid ${isBtn1Hovered ? brandPurple : 'white'}`
+  }}
+  className="px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300 flex items-center gap-2 shadow-lg"
+>
+  View Products <ArrowRight size={16} />
+</button>
               
              
             </div>

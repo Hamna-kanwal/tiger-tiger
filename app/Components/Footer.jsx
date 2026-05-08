@@ -66,7 +66,7 @@ const Footer = () => {
         <div className="flex-1 flex flex-col gap-6 md:max-w-[320px] -mt-4">
           <Link href="/" className="inline-block transition-opacity hover:opacity-80">
          <Image 
-  src="/logo.png" 
+  src="/logo.webp" 
   alt="logo"
   width={150} 
   height={60}

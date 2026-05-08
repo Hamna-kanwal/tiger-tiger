@@ -100,18 +100,21 @@ const FAQSection = () => {
           {/* --- Read More Button --- */}
           {!showAll && (
             <div className="pt-6 flex justify-center md:justify-start">
-              <button 
-                onMouseEnter={() => setIsBtnHovered(true)}
-                onMouseLeave={() => setIsBtnHovered(false)}
-                onClick={() => setShowAll(true)}
-                style={{ 
-                  borderColor: isBtnHovered ? brandGold : brandPurple,
-                  color: isBtnHovered ? brandGold : brandPurple 
-                }}
-                className="px-8 py-3.5 border-2 bg-transparent rounded-full font-bold uppercase tracking-[0.1em] text-[11px] md:text-[12px] transition-all duration-300 active:scale-95 shadow-sm"
-              >
-                Read More FAQs
-              </button>
+             <button 
+  onMouseEnter={() => setIsBtnHovered(true)}
+  onMouseLeave={() => setIsBtnHovered(false)}
+  onClick={() => setShowAll(true)}
+  style={{ 
+    // Border hover par purple hi rahay ya gold (aapki choice)
+    borderColor: brandPurple,
+    // Invert Effect: Hover par background purple aur text white
+    backgroundColor: isBtnHovered ? brandPurple : "transparent",
+    color: isBtnHovered ? "#FFFFFF" : brandPurple 
+  }}
+  className="px-8 py-3.5 border-2 rounded-full font-bold uppercase tracking-[0.1em] text-[11px] md:text-[12px] transition-all duration-300 active:scale-95 shadow-sm"
+>
+  Read More FAQs
+</button>
             </div>
           )}
         </div>

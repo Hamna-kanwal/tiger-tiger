@@ -1,8 +1,15 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// Swiper imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+
+// Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
 const slides = [
   { 
@@ -25,80 +32,57 @@ const slides = [
   },
 ];
 
-// Animation variants taaki code saaf rahay aur CLS control mein rahay
-const slideVariants = {
-  enter: (direction) => ({
-    x: direction > 0 ? "100%" : "-100%",
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction) => ({
-    x: direction < 0 ? "100%" : "-100%",
-    opacity: 0,
-  }),
-};
-
 const HeroCarousel = () => {
-  const [[page, direction], setPage] = useState([0, 0]);
-
-  const currentIndex = Math.abs(page % slides.length);
-
-  const paginate = (newDirection) => {
-    setPage([page + newDirection, newDirection]);
-  };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      paginate(1);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [page]);
+  const brandPurple = "#4B2452";
 
   return (
-    <div className="w-full flex justify-center items-end mt-0 overflow-hidden">
-      {/* Container height fix rakhein taaki layout shift na ho */}
-      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] overflow-hidden bg-transparent">
+    <div className="w-full  md:mt-0 flex justify-center items-end mt-0 overflow-hidden">
+      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] bg-transparent">
         
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={page}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.4 }
-            }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={slides[currentIndex].src}
-              alt={slides[currentIndex].alt}
-              fill
-              priority={currentIndex === 0}
-              sizes="(max-width: 768px) 100vw, 1200px"
-              className={`object-contain object-bottom origin-bottom ${slides[currentIndex].className}`}
-              quality={90}
-            />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Optional: Dots for navigation */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {slides.map((_, index) => (
-            <div 
-              key={index}
-              className={`h-2 w-2 rounded-full transition-all ${
-                index === currentIndex ? "bg-[#4B2452] w-6" : "bg-gray-300"
-              }`}
-            />
+        <Swiper
+          modules={[Autoplay, Pagination, EffectFade]}
+          slidesPerView={1}
+          loop={true}
+          speed={1000}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          // Agar aapko sliding animation chahiye to niche wali line delete kar dein
+          // effect={"fade"} 
+          className="h-full w-full pb-14"
+        >
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id} className="relative overflow-hidden">
+              <div className="relative w-full h-full">
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  fill
+                  priority
+                  sizes="100vw"
+                  // Aapki purani classes yahan inject ho rahi hain
+                  className={`object-contain object-bottom origin-bottom transition-transform duration-700 ${slide.className}`}
+                  quality={100}
+                />
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
+
+        {/* Custom Styles for Pagination (Same as Featured Products) */}
+        <style jsx global>{`
+          .swiper-pagination-bullet-active {
+            background: ${brandPurple} !important;
+            width: 24px !important;
+            border-radius: 5px !important;
+          }
+          .swiper-pagination-bullet {
+            background: ${brandPurple};
+            opacity: 0.3;
+          }
+          .swiper-pagination {
+            bottom: 40px !important;
+          }
+        `}</style>
       </div>
     </div>
   );

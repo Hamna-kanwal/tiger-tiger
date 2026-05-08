@@ -19,7 +19,7 @@ const HeroSlider = () => {
   if (!mounted) return null;
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden">
+    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden md:mb-0">
       {/* Header Spacing Section */}
       <div className="w-full pt-[80px] md:pt-[100px] lg:pt-[120px]" />
 

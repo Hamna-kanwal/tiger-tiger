@@ -19,7 +19,7 @@ function CategorySection() {
     <section className="max-w-7xl mx-auto px-4 py-12">
       <div className="flex justify-between items-center mb-8">
         <h2 
-          style={{ color: charcoalBlack }}
+          style={{ color: brandPurple }}
           className="eczar text-3xl font-black tracking-tighter"
         >
           Our Categories
