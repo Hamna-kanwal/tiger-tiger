@@ -1,26 +1,12 @@
-"use client";
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getCategories } from '../action'; // Adjust path according to your folder structure
 
-const categories = [
-  { title: 'Alcohol', image: '/ALCOHOL.webp' },
-  { title: 'Canned', image: '/Canned.webp' },
-  { title: 'Dried Products', image: '/dried_products.webp' },
-  { title: 'Drinks', image: '/categories-drinks.webp' },
-  { title: 'Frozen', image: '/categories-frozen.webp' },
-  { title: 'Instant Noodles', image: '/instant_noodles.webp' },
-  { title: 'Noodles', image: '/catrtegories_noodles.webp' },
-  { title: 'Oils', image: '/oil.webp' },
-  { title: 'Pastes', image: '/pastes.webp' },
-  { title: 'Rice', image: '/categories_rice.webp' },
-  { title: 'Sauces', image: '/categories_sauces.webp' },
-  { title: 'Snacks', image: '/categories_snacks.webp' },
-  { title: 'Taste Of Asia', image: '/categories_asia.webp' },
-];
+export default async function CategorySection() {
+  // Server-side fetching
+  const data = await getCategories();
 
-const CategorySection = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 md:py-20 mt-10">
       {/* Header Row */}
@@ -33,45 +19,38 @@ const CategorySection = () => {
         </p>
       </div>
 
-      {/* Categories Grid */}
+      {/* Categories Grid - UI Not Changed */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {categories.map((category) => {
-          // Logic to create a URL-friendly slug
-          const categorySlug = category.title.toLowerCase().replace(/\s+/g, '-');
+        {data?.map((category, i) => (
+          <Link key={i} href={`/categories/${category.slug}`}>
+            <div className="group relative h-[400px] md:h-[450px] overflow-hidden rounded-[2rem] cursor-pointer shadow-lg bg-gray-100">
+              {/* Image Container */}
+              <Image
+                src={category.image}
+                alt={category.name}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              
+              {/* Gradient Overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-black/5 transition-colors group-hover:bg-black/10" />
 
-          return (
-            <Link key={category.title} href={`/categories/${categorySlug}`}>
-              <div className="group relative h-[400px] md:h-[450px] overflow-hidden rounded-[2rem] cursor-pointer shadow-lg bg-gray-100">
-                {/* Image Container */}
-                <Image
-                  src={category.image}
-                  alt={category.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-0 bg-black/5 transition-colors group-hover:bg-black/10" />
-
-                {/* Label Button Overlay with Hover Invert Effect */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-fit z-20">
-                  <div className="bg-white px-10 py-3 rounded-md shadow-md transition-all duration-300 hover:!bg-[#4e1a51] group/btn">
-                    <span 
-                      className="text-xl font-semibold whitespace-nowrap transition-colors duration-300 text-[#4e1a51] group-hover/btn:!text-white"
-                    >
-                      {category.title}
-                    </span>
-                  </div>
+              {/* Label Button Overlay with Hover Invert Effect */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-fit z-20">
+                <div className="bg-white px-10 py-3 rounded-md shadow-md transition-all duration-300 hover:!bg-[#4e1a51] group/btn">
+                  <span 
+                    className="text-xl font-semibold whitespace-nowrap transition-colors duration-300 text-[#4e1a51] group-hover/btn:!text-white"
+                  >
+                    {category.name}
+                  </span>
                 </div>
               </div>
-            </Link>
-          );
-        })}
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
-};
-
-export default CategorySection;
+}

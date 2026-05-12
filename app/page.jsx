@@ -1,6 +1,3 @@
-"use client";
-
-
 import HeroSlider from "./Components/Heroslider";
 import HeroCoursol from "./Components/HeroCoursol";     
 import BrandSlider from "./Components/Brandslider";

@@ -37,7 +37,7 @@ const HeroCarousel = () => {
 
   return (
     <div className="w-full  md:mt-0 flex justify-center items-end mt-0 overflow-hidden">
-      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[750px] bg-transparent">
+      <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[500px] bg-transparent">
         
         <Swiper
           modules={[Autoplay, Pagination, EffectFade]}

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ProductRange from "../Components/ProductRange";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from'next/image';
 
 export default function Home() {
   const sections = [
@@ -66,7 +67,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-start">
                 {section.features.map((item) => (
                   <div key={item.id} className="overflow-hidden rounded-[30px] md:rounded-[40px] shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <image
+                    <Image
                       src={item.img}
                       alt="Feature"
                       className="w-full h-auto block transition-transform duration-700 hover:scale-105"

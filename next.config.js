@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // Quality ko default rehne dein ya thora barha dein
+    // 1. Sabse pehle qualities define karein (Taaki wo yellow warnings khatam ho jayein)
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    
+    // Aapki mangi hui qualities yahan hain
+    qualities: [25, 50, 75, 85, 100], 
+
+    // 2. Remote Patterns (Backend se images allow karne ke liye)
     remotePatterns: [
       {
         protocol: 'https',
@@ -11,11 +22,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
-      // 🟢 Senior ki Backend API yahan add karni hai
       {
         protocol: 'https',
         hostname: 'backend.tigertigerfoods.com',
-        pathname: '**', // Taaki har folder ki image allow ho jaye
+        pathname: '/**', // Double star taaki sare sub-folders cover ho jayein
       },
     ],
   },

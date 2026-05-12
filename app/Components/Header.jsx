@@ -19,9 +19,9 @@ export default function Header() {
       name: "Products", 
       href: "#", 
       dropdown: [
-        { name: "All", href: "/products/best-sellers" },
+        { name: "All", href: "/all_products" },
         { name: "Featured", href: "/feature_product" },
-        { name: "New", href: "/products/new" },
+        { name: "Categories", href: "/categories" },
       ]
     },
     { name: "Recipes", href: "/recipes" },
@@ -40,7 +40,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <Image 
-            src="/logo.png" 
+            src="/logo.webp" 
             width={150} 
             height={50} 
             alt="logo"
@@ -71,19 +71,20 @@ export default function Header() {
               </Link>
 
               {/* Dropdown Menu */}
-              {link.dropdown && (
-                <div className={`absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${isProductHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
-                  {link.dropdown.map((subItem) => (
-                    <Link
-                      key={subItem.name}
-                      href={subItem.href}
-                      className="block px-6 py-3 text-[#4e1a51] hover:bg-[#4e1a51] hover:text-white transition-all duration-200 text-sm font-medium"
-                    >
-                      {subItem.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
+          {link.dropdown && (
+  <div className={`absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transition-all duration-300 ${isProductHovered ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
+    {link.dropdown.map((subItem) => (
+      <Link
+        key={subItem.name}
+        href={subItem.href}
+        // Yahan 'group' add kiya hai aur 'hover:text-white' ko thoda force kiya hai
+        className="block px-6 py-3 text-[#4e1a51] hover:bg-[#4e1a51] hover:!text-white transition-colors duration-200 text-sm font-medium"
+      >
+        {subItem.name}
+      </Link>
+    ))}
+  </div>
+)}
             </div>
           ))}
         </nav>
