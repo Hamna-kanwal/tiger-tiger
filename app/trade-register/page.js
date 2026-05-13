@@ -15,13 +15,20 @@ export default function TradeRegisterPage() {
     setLoading(false);
 
     if (result.success) {
-      toast.success("Registration successful! Please verify your email.");
-      
-      // ✅ Yahan logic change kiya hai:
-      // Agar backend direct login allow karta hai toh dashboard, 
-      // warna verify-email wale page par bhejein.
+      // 1. Success Message
+      toast.success("Registration successful! Check your email to verify your account.");
+
+      // 2. Token save karein (agar backend de raha hai) taake dashboard pe pehchan ho sake
+      if (result.token) {
+        localStorage.setItem("token", result.token);
+        if (result.data) localStorage.setItem("user", JSON.stringify(result.data));
+        window.dispatchEvent(new Event("auth-changed"));
+      }
+
+      // 3. Seedha Dashboard par navigate karein
+      // Dashboard ka page khud check karega ke email verify hai ya nahi
       setTimeout(() => {
-        router.push("/verify-email"); // User ko batane ke liye ke email check kare
+        router.push("/dashboard"); 
       }, 2000);
       
     } else {
@@ -84,4 +91,4 @@ export default function TradeRegisterPage() {
       <ToastContainer />
     </section>
   );
-}     
+}
