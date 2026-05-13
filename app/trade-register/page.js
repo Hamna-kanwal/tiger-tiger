@@ -54,7 +54,7 @@ export default function TradeRegisterPage() {
         setIsSubmitted(true); // Form chhupa kar "Check Email" message dikhayenge
         
         // Optionally logic: Agar aap chahte hain user 5 second baad login page pe jaye
-        setTimeout(() => router.push("/login"), 6000);
+        setTimeout(() => router.push("/dashboard"), 6000);
       } else {
         toast.error(data.message || "Registration failed");
       }
