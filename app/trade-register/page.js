@@ -11,34 +11,21 @@ export default function TradeRegisterPage() {
 
   async function handleFormAction(formData) {
     setLoading(true);
-    // registerTradeUser ko call kiya
     const result = await registerTradeUser(formData);
     setLoading(false);
 
     if (result.success) {
-      // 1. Agar backend result mein token bhej raha hai (e.g., result.token)
-      if (result.token) {
-        localStorage.setItem("token", result.token);
-        
-        // Agar user ka data bhi hai toh save karein
-        if (result.data) {
-          localStorage.setItem("user", JSON.stringify(result.data));
-        }
-
-        // 2. Auth state change ka event fire karein taake Header update ho jaye
-        window.dispatchEvent(new Event("auth-changed"));
-
-        toast.success(result.message || "Registration Successful! Redirecting to Dashboard...");
-
-        // 3. 1 second baad Dashboard par bhej dein
-        setTimeout(() => router.push("/dashboard"), 1000);
-      } else {
-        // Agar token nahi mila, toh majbooran login page par hi bhejna hoga
-        toast.info("Account created! Please login to continue.");
-        setTimeout(() => router.push("/login"), 1500);
-      }
+      toast.success("Registration successful! Please verify your email.");
+      
+      // ✅ Yahan logic change kiya hai:
+      // Agar backend direct login allow karta hai toh dashboard, 
+      // warna verify-email wale page par bhejein.
+      setTimeout(() => {
+        router.push("/verify-email"); // User ko batane ke liye ke email check kare
+      }, 2000);
+      
     } else {
-      toast.error(result.message || "Registration failed. Please try again.");
+      toast.error(result.message || "Registration failed.");
     }
   }
 
@@ -50,7 +37,6 @@ export default function TradeRegisterPage() {
       
       <form action={handleFormAction} className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-10">
-          {/* Section 1: Billing */}
           <div className="space-y-4">
             <h2 className="eczar text-3xl text-[#220016]">Billing Information</h2>
             <input name="contact_name" placeholder="Contact Name*" className={inputClass} required />
@@ -63,7 +49,6 @@ export default function TradeRegisterPage() {
             <input name="password" type="password" placeholder="Password*" className={inputClass} required />
           </div>
 
-          {/* Section 2: Address */}
           <div className="space-y-4">
             <h2 className="eczar text-3xl text-[#220016]">Address Information</h2>
             <input name="address" placeholder="Address*" className={inputClass} required />
