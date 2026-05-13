@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import OrdersList from "../components/Orderlist";
+import OrdersList from "../Components/Orderlist";
 
 export default function DashboardPage() {
   const router = useRouter();
