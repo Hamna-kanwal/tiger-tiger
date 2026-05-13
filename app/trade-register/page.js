@@ -1,101 +1,133 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { registerTradeUser } from "../action"; 
 
 export default function TradeRegisterPage() {
   const router = useRouter();
+
+  const [formData, setFormData] = useState({
+    contact_name: "", business_name: "", company_registration: "",
+    company_vat: "", position_in_business: "", email: "",
+    phone: "", password: "", address: "", address_2: "",
+    city: "", state: "", zip_code: "", country: "",
+    type_business: "", interest: "",
+  });
+
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false); // New state for verification message
 
-  async function handleFormAction(formData) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    if (errors[name]) setErrors({ ...errors, [name]: "" });
+  };
+
+  const validate = () => {
+    let newErrors = {};
+    const requiredFields = ["contact_name", "business_name", "company_registration", "email", "password"];
+    requiredFields.forEach(field => {
+      if (!formData[field]) newErrors[field] = "This field is required";
+    });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
     setLoading(true);
-    const result = await registerTradeUser(formData);
-    setLoading(false);
+    try {
+      const res = await fetch("https://backend.tigertigerfoods.com/api/sign-up", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    if (result.success) {
-      // 1. Agar backend registration ke sath token bhej raha hai (result.token)
-      if (result.token) {
-        localStorage.setItem("token", result.token);
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success("Registration successful!");
+        setIsSubmitted(true); // Form chhupa kar "Check Email" message dikhayenge
         
-        // Agar user ka data bhi hai toh save karein
-        if (result.user || result.data) {
-          localStorage.setItem("user", JSON.stringify(result.user || result.data));
-        }
-
-        // 2. Header aur baki components ko batayen ke user login ho chuka hai
-        window.dispatchEvent(new Event("auth-changed"));
-
-        toast.success(result.message || "Account created and logged in!");
-
-        // 3. Seedha Dashboard par navigate karein (Login ki zarurat nahi)
-        setTimeout(() => router.push("/dashboard"), 1500);
+        // Optionally logic: Agar aap chahte hain user 5 second baad login page pe jaye
+        setTimeout(() => router.push("/login"), 6000);
       } else {
-        // Agar backend token nahi bhej raha, toh login par hi bhejna paray ga
-        toast.success("Account created! Please login to verify.");
-        setTimeout(() => router.push("/login"), 2000);
+        toast.error(data.message || "Registration failed");
       }
-    } else {
-      toast.error(result.message);
+    } catch (err) {
+      toast.error("Network error. Please try again.");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  // Agar user register ho gaya hai toh ye UI dikhao
+  if (isSubmitted) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center bg-[#FFFDF9] px-6">
+        <div className="max-w-md w-full text-center p-10 bg-white border border-[#431A4F] rounded-3xl shadow-xl">
+          <div className="text-6xl mb-6">📩</div>
+          <h2 className="eczar text-3xl text-[#220016] mb-4">Verify Your Email</h2>
+          <p className="text-gray-600 mb-6">
+            We've sent a verification link to <strong>{formData.email}</strong>. 
+            Please check your inbox (and spam folder) to activate your trade account.
+          </p>
+          <button 
+            onClick={() => router.push("/login")}
+            className="w-full bg-[#431A4F] text-white py-4 rounded-xl font-bold"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
+    );
   }
 
-  const inputClass = "w-full bg-white p-[20px] border border-[#220016] rounded-[14px] outline-none focus:border-2 focus:border-[#431A4F] transition-all";
+  const inputClass = (name) => `w-full bg-white p-[20px] border ${errors[name] ? 'border-red-500' : 'border-[#220016]'} rounded-[14px] outline-none focus:border-2 focus:border-[#431A4F] transition-all`;
 
   return (
-    <section className="bg-[#FFFDF9]">
-      <div className="w-full mb-12 h-[70vh] bg-[url('/bg.png')] bg-cover bg-center" />
-      
-      <form action={handleFormAction} className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-10">
-          {/* Section 1: Billing */}
-          <div className="space-y-4">
-            <h2 className="eczar text-3xl text-[#220016]">Billing Information</h2>
-            <input name="contact_name" placeholder="Contact Name*" className={inputClass} required />
-            <input name="business_name" placeholder="Business Name*" className={inputClass} required />
-            <input name="company_registration" placeholder="Company Registration Number*" className={inputClass} required />
-            <input name="company_vat" placeholder="Company VAT Number" className={inputClass} />
-            <input name="position_in_business" placeholder="Position in Business*" className={inputClass} required />
-            <input name="email" type="email" placeholder="Email*" className={inputClass} required />
-            <input name="phone" placeholder="Phone*" className={inputClass} required />
-            <input name="password" type="password" placeholder="Password*" className={inputClass} required />
-          </div>
+    <>
+      <div className="h-[40vh] bg-[url('/bg.png')] bg-cover bg-center" />
+      <section className="py-12 bg-[#FFFDF9]">
+        <form onSubmit={handleSubmit} className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-10">
+            {/* Left Column: Billing */}
+            <div className="space-y-4">
+              <h2 className="eczar text-3xl text-[#220016]">Billing Information</h2>
+              <input name="contact_name" value={formData.contact_name} onChange={handleChange} placeholder="Contact Name*" className={inputClass("contact_name")} />
+              <input name="business_name" value={formData.business_name} onChange={handleChange} placeholder="Business Name*" className={inputClass("business_name")} />
+              <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email*" className={inputClass("email")} />
+              <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder="Password*" className={inputClass("password")} />
+              {/* Baki fields yahan add karein... */}
+            </div>
 
-          {/* Section 2: Address */}
-          <div className="space-y-4">
-            <h2 className="eczar text-3xl text-[#220016]">Address Information</h2>
-            <input name="address" placeholder="Address*" className={inputClass} required />
-            <input name="address_2" placeholder="Address 2" className={inputClass} />
-            <input name="city" placeholder="City*" className={inputClass} required />
-            <input name="state" placeholder="State" className={inputClass} />
-            <input name="country" placeholder="Country*" className={inputClass} required />
-            <input name="zip_code" placeholder="Zip Code*" className={inputClass} required />
-            
-            <select name="type_business" className={inputClass} required>
-              <option value="">Select Type</option>
-              <option value="Wholesale">Wholesale</option>
-              <option value="Retail Shop">Retail Shop</option>
-            </select>
-
-            <h3 className="eczar text-2xl pt-4">Primary Interest</h3>
-            <div className="flex flex-wrap gap-4">
-              {['Chinese', 'Thai', 'Vietnamese', 'Korean', 'Japanese', 'Indian'].map(c => (
-                <label key={c} className="flex items-center gap-2">
-                  <input type="radio" name="interest" value={c} className="w-4 h-4 accent-[#431A4F]" /> {c}
-                </label>
-              ))}
+            {/* Right Column: Address */}
+            <div className="space-y-4">
+              <h2 className="eczar text-3xl text-[#220016]">Address Information</h2>
+              <input name="address" value={formData.address} onChange={handleChange} placeholder="Address*" className={inputClass("address")} />
+              <input name="city" value={formData.city} onChange={handleChange} placeholder="City*" className={inputClass("city")} />
+              <select name="type_business" value={formData.type_business} onChange={handleChange} className={inputClass("type_business")}>
+                <option value="">Select Type</option>
+                <option value="Wholesale">Wholesale</option>
+                <option value="Retail Shop">Retail Shop</option>
+              </select>
             </div>
           </div>
-        </div>
-        <button 
-          disabled={loading} 
-          className="w-full mt-10 bg-[#431A4F] text-white border-2 border-[#431A4F] py-5 rounded-xl font-bold uppercase transition-all duration-300 hover:bg-white hover:text-[#431A4F] disabled:opacity-50"
-        >
-          {loading ? "Signing Up..." : "Sign Up"}
-        </button>
-      </form>
-      <ToastContainer />
-    </section>
+
+          <button 
+            type="submit" 
+            disabled={loading} 
+            className="w-full mt-10 bg-[#FFEB57] border border-black text-black py-5 rounded-xl font-bold uppercase hover:bg-black hover:text-white transition-all disabled:opacity-50"
+          >
+            {loading ? "Processing..." : "Create Trade Account"}
+          </button>
+        </form>
+        <ToastContainer />
+      </section>
+    </>
   );
 }
