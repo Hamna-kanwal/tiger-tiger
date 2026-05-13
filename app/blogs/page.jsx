@@ -4,47 +4,34 @@ import React, { useEffect, useState } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+// ✅ Server Action import karein
+import { getAllBlogsAction } from '../action';
 
 const LatestBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const brandPurple = "#431A4F";
 
-  // ✅ Function to clean HTML and Encoded Tags completely
   const stripHtml = (html) => {
     if (!html) return "";
-
-    // 1. Pehle encoded characters ko decode karein (e.g. &lt; to <)
     const decodedHtml = html
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&amp;/g, '&')
-      .replace(/&nbsp;/g, ' ');
-
-    // 2. Phir saare HTML tags ko remove karein
+      .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ');
     const cleanText = decodedHtml.replace(/<\/?[^>]+(>|$)/g, "");
-
-    // 3. Extra white spaces ko khatam karein
     return cleanText.trim();
   };
 
   useEffect(() => {
-    const fetchAllBlogs = async () => {
-      try {
-        const res = await fetch("https://backend.tigertigerfoods.com/api/get-blogs");
-        const data = await res.json();
-
-        if (data.success && Array.isArray(data.data)) {
-          setBlogs(data.data);
-        }
-      } catch (error) {
-        console.error("❌ Error fetching blogs:", error);
-      } finally {
-        setLoading(false);
+    const fetchBlogs = async () => {
+      setLoading(true);
+      // ✅ Server Action call ho raha hai
+      const result = await getBlogsAction();
+      if (result.success) {
+        setBlogs(result.data);
       }
+      setLoading(false);
     };
 
-    fetchAllBlogs();
+    fetchBlogs();
   }, []);
 
   if (loading) {
@@ -58,8 +45,6 @@ const LatestBlog = () => {
   return (
     <section className="py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Header Section */}
         <div className="mb-8 mt-8">
           <h2 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
             Latest Blog
@@ -69,15 +54,12 @@ const LatestBlog = () => {
           </p>
         </div>
 
-        {/* Blogs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((blog) => (
             <div 
               key={blog._id || blog.slug} 
               className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500"
             >
-              
-              {/* Image Section with Overlay */}
               <div className="relative h-64 w-full overflow-hidden">
                 <Image
                   src={blog.image || "/fallback.png"} 
@@ -94,18 +76,13 @@ const LatestBlog = () => {
                 </div>
               </div>
 
-              {/* Text Content Section */}
               <div className="p-8 flex flex-col flex-grow text-center items-center">
                 <h4 className="font-extrabold text-[#431A4F] text-lg mb-3 uppercase tracking-tight line-clamp-2">
                   {blog.title}
                 </h4>
-                
-                {/* Description with HTML Stripping */}
                 <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-                  {stripHtml(blog.description || blog.desc) || "Explore our latest culinary insights and updates."}
+                  {stripHtml(blog.description || blog.desc) || "Explore our latest culinary insights."}
                 </p>
-                
-                {/* Navigation Link */}
                 <Link 
                   href={`/blogs/${blog.slug}`}
                   style={{ color: brandPurple }}
@@ -118,7 +95,6 @@ const LatestBlog = () => {
           ))}
         </div>
 
-        {/* Empty State */}
         {blogs.length === 0 && (
           <div className="text-center py-20 text-gray-400">
             No blogs available at this time.

@@ -1,14 +1,80 @@
 "use client";
 import { useState } from "react";
-// Related Slider import karein
+import { useRouter } from "next/navigation"; // Navigation ke liye
+import { toast, ToastContainer } from "react-toastify"; // Success message ke liye
+import "react-toastify/dist/ReactToastify.css";
 import RelatedProducts from "../Components/RelatedProducts"; 
 
 export default function ProductDetailClient({ product, relatedProducts }) {
   const [selectedUnit, setSelectedUnit] = useState(null);
+  const router = useRouter();
   const themeColor = "#431A4F";
 
+const handleAddToCart = () => {
+    if (typeof window === "undefined") return;
+
+    // 1. Check Login
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Yahan humne toast message aur redirect path dono badal diye hain
+      toast.info("Please register a trade account to send an inquiry.");
+      
+      setTimeout(() => {
+        router.push("/trade-register"); // Login ki jagah Trade Register par redirect
+      }, 2000);
+      return;
+    }
+
+    // 2. Check Selection (Case or Pallet)
+    if (!selectedUnit) {
+      toast.warning("Please select Case or Pallet first.");
+      return;
+    }
+
+    try {
+      // 3. Cart Logic
+      const cart = JSON.parse(sessionStorage.getItem("inquiry_cart") || "[]");
+      
+      const existingItemIndex = cart.findIndex(
+        (item) => item.id === product.id && item.unit === selectedUnit
+      );
+
+      if (existingItemIndex !== -1) {
+        cart[existingItemIndex].quantity += 1;
+      } else {
+        const item = {
+          id: product.id,
+          product_id: product.id,
+          name: product.name,
+          unit: selectedUnit,
+          quantity: 1,
+          product_quantity: product.quantity,
+          sku: product.SKU,
+          images: product.images,
+        };
+        cart.push(item);
+      }
+
+      // 4. Save & Event Fire
+      sessionStorage.setItem("inquiry_cart", JSON.stringify(cart));
+      window.dispatchEvent(new Event("cartUpdated"));
+      
+      toast.success(`${product.name} added to inquiry!`);
+
+      // 5. Success hone par Enquiry page par le jayein
+      setTimeout(() => {
+        router.push("/enquiry");
+      }, 800);
+
+    } catch (error) {
+      console.error("Cart Error:", error);
+      toast.error("Something went wrong!");
+    }
+  };
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 font-sans mt-30" style={{ color: themeColor }}>
+      <ToastContainer position="top-right" autoClose={3000} />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left: Product Image */}
         <div className="flex flex-col gap-6">
@@ -58,7 +124,7 @@ export default function ProductDetailClient({ product, relatedProducts }) {
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setSelectedUnit('case')}
-              className="px-8 py-2.5 rounded-xl font-bold border-2 transition-all"
+              className="px-8 py-2.5 rounded-xl font-bold border-2 transition-all active:scale-95"
               style={{ 
                 backgroundColor: selectedUnit === 'case' ? themeColor : 'transparent',
                 color: selectedUnit === 'case' ? 'white' : themeColor,
@@ -69,7 +135,7 @@ export default function ProductDetailClient({ product, relatedProducts }) {
             </button>
             <button 
               onClick={() => setSelectedUnit('palette')}
-              className="px-8 py-2.5 rounded-xl font-bold border-2 transition-all"
+              className="px-8 py-2.5 rounded-xl font-bold border-2 transition-all active:scale-95"
               style={{ 
                 backgroundColor: selectedUnit === 'palette' ? themeColor : 'transparent',
                 color: selectedUnit === 'palette' ? 'white' : themeColor,
@@ -80,8 +146,9 @@ export default function ProductDetailClient({ product, relatedProducts }) {
             </button>
             
             <button 
+              onClick={handleAddToCart} // Click handler yahan add kiya
               disabled={!selectedUnit}
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white transition-all shadow-md"
+              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white transition-all shadow-md active:scale-95"
               style={{ 
                 backgroundColor: !selectedUnit ? '#c5ced4' : themeColor,
                 cursor: !selectedUnit ? 'not-allowed' : 'pointer'

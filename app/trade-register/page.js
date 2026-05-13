@@ -15,8 +15,27 @@ export default function TradeRegisterPage() {
     setLoading(false);
 
     if (result.success) {
-      toast.success(result.message);
-      setTimeout(() => router.push("/login"), 2000);
+      // 1. Agar backend registration ke sath token bhej raha hai (result.token)
+      if (result.token) {
+        localStorage.setItem("token", result.token);
+        
+        // Agar user ka data bhi hai toh save karein
+        if (result.user || result.data) {
+          localStorage.setItem("user", JSON.stringify(result.user || result.data));
+        }
+
+        // 2. Header aur baki components ko batayen ke user login ho chuka hai
+        window.dispatchEvent(new Event("auth-changed"));
+
+        toast.success(result.message || "Account created and logged in!");
+
+        // 3. Seedha Dashboard par navigate karein (Login ki zarurat nahi)
+        setTimeout(() => router.push("/dashboard"), 1500);
+      } else {
+        // Agar backend token nahi bhej raha, toh login par hi bhejna paray ga
+        toast.success("Account created! Please login to verify.");
+        setTimeout(() => router.push("/login"), 2000);
+      }
     } else {
       toast.error(result.message);
     }
@@ -69,12 +88,12 @@ export default function TradeRegisterPage() {
             </div>
           </div>
         </div>
-<button 
-  disabled={loading} 
-  className="w-full mt-10 bg-[#431A4F] text-white border-2 border-[#431A4F] py-5 rounded-xl font-bold uppercase transition-all duration-300 hover:bg-white hover:text-[#431A4F] disabled:opacity-50"
->
-  {loading ? "Signing Up..." : "Sign Up"}
-</button>
+        <button 
+          disabled={loading} 
+          className="w-full mt-10 bg-[#431A4F] text-white border-2 border-[#431A4F] py-5 rounded-xl font-bold uppercase transition-all duration-300 hover:bg-white hover:text-[#431A4F] disabled:opacity-50"
+        >
+          {loading ? "Signing Up..." : "Sign Up"}
+        </button>
       </form>
       <ToastContainer />
     </section>
