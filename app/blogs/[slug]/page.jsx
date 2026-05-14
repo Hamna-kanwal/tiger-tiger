@@ -18,14 +18,17 @@ const BlogDetail = () => {
       if (!slug) return;
       try {
         setLoading(true);
-        const blogResult = await getSingleBlogAction(slug);
+        // Fetching in parallel for speed
+        const [blogResult, sidebarResult] = await Promise.all([
+          getSingleBlogAction(slug),
+          getLatestSidebarBlogsAction(slug)
+        ]);
         
-        if (blogResult.success) {
+        if (blogResult?.success) {
           setBlog(blogResult.data);
-          const sidebarResult = await getLatestSidebarBlogsAction(slug);
-          if (sidebarResult.success) {
-            setRelatedBlogs(sidebarResult.data);
-          }
+        }
+        if (sidebarResult?.success) {
+          setRelatedBlogs(sidebarResult.data);
         }
       } catch (error) {
         console.error("❌ Fetch error:", error);
@@ -44,84 +47,81 @@ const BlogDetail = () => {
     );
   }
 
-  if (!blog) return <div className="text-center py-20 font-bold">Blog not found.</div>;
+  if (!blog) {
+    return (
+      <div className="text-center py-40">
+        <h2 className="text-2xl font-bold text-[#431A4F]">Blog not found.</h2>
+        <Link href="/blogs" className="mt-4 text-blue-600 underline block">Return to Blogs</Link>
+      </div>
+    );
+  }
 
   return (
-    <article className="min-h-screen bg-white mt-20">
+    <article className="min-h-screen bg-white">
       {/* Header Banner */}
-      <div className="pt-20 pb-40 px-6 text-center bg-gray-50">
+      <div className="pt-32 pb-44 px-6 text-center bg-gray-50">
         <div className="max-w-5xl mx-auto">
+      
           <h1 className="text-3xl md:text-5xl font-black text-[#431A4F] uppercase leading-tight tracking-tighter">
             {blog.title}
           </h1>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
-  <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white/20 bg-white">
-    {/* 
-      1. width aur height yahan placeholder hain, Next.js inki ratio maintain rakhta hai.
-      2. 'w-full h-auto' se image container ki width le legi aur height automatically set hogi.
-    */}
+   <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
+  <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white bg-white"> 
     <Image 
       src={blog.image || "/fallback.png"} 
       alt={blog.title} 
-      width={1200} // Aapki standard width
-      height={800} // Aapki standard height (jo image ko bada dikhaye)
-      priority 
-      className="w-full h-auto block object-contain" 
-      // object-contain se image ka koi kona nahi katega
+      width={1200} // Approximate width
+      height={800} // Approximate height (16:9)
+      priority
+      layout="responsive" // Isse image container ki width ke hisab se scale hogi
+      className="w-full h-auto" 
     />
   </div>
 </div>
 
       {/* Main Content & Sidebar */}
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* Blog Content */}
         <div className="lg:col-span-8">
           <div 
-            className="blog-rich-text prose prose-lg max-w-none text-gray-800 leading-relaxed"
+            className="blog-rich-text prose prose-lg prose-purple max-w-none text-gray-800 leading-relaxed"
             dangerouslySetInnerHTML={{ __html: blog.description || blog.desc }} 
           />
         </div>
 
+        {/* Sidebar */}
         <aside className="lg:col-span-4">
-          <div className="sticky top-24 space-y-8 mb-10">
-            <h2 className="text-[#431A4F] font-black text-2xl uppercase tracking-tighter border-b-4  inline-block mb-2">
+          <div className="sticky top-28 space-y-8 mb-10">
+            <h2 className="text-[#431A4F] font-black text-2xl uppercase tracking-tighter border-b-4 border-[#431A4F] inline-block mb-6">
               Latest Reads
             </h2>
 
-            <div className="space-y-10">
-              {relatedBlogs.map((item, index) => (
+            <div className="space-y-6">
+              {relatedBlogs.map((item) => (
                 <Link 
-                  key={item._id || index} 
+                  key={item._id || item.slug} 
                   href={`/blogs/${item.slug}`}
-                  className="group block overflow-hidden transition-transform duration-300 hover:-translate-y-2"
+                  className="group flex flex-col bg-[#431A4F] rounded-[1.5rem] overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div 
-                    className="p-6 rounded-[1.5rem] flex flex-col h-full shadow-md border border-white/10"
-                    style={{ backgroundColor: '#431A4F' }} 
-                  >
-                    <div className="relative w-full h-48 mb-6 rounded-[1rem] overflow-hidden bg-[#35153f]">
-                      <Image 
-                        src={item.image || "/fallback.png"} 
-                        alt={item.title} 
-                        fill 
-                        sizes="(max-w-768px) 100vw, 400px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        unoptimized={item.image?.startsWith('http')}
-                      />
-                    </div>
-
-                    <div className="flex flex-col flex-grow">
-                      <h3 className="text-white font-black text-lg leading-tight uppercase tracking-tighter mb-8 line-clamp-3">
-                        {item.title}
-                      </h3>
-                      <div className="mt-auto">
-                        <span className="text-white font-black text-xs uppercase tracking-widest border-b-2 border-[#D2B57B] pb-1">
-                          READ MORE
-                        </span>
-                      </div>
-                    </div>
+                  <div className="relative w-full h-40 overflow-hidden bg-[#35153f]">
+                    <Image 
+                      src={item.image || "/fallback.png"} 
+                      alt={item.title} 
+                      fill 
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-white font-bold text-base leading-tight uppercase tracking-tight line-clamp-2 mb-4">
+                      {item.title}
+                    </h3>
+                    <span className="text-white font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-[#D2B57B] pb-1">
+                      READ MORE
+                    </span>
                   </div>
                 </Link>
               ))}
@@ -130,11 +130,15 @@ const BlogDetail = () => {
         </aside>
       </div>
 
+      {/* Scoped Styles for Rich Text */}
       <style jsx global>{`
-        .blog-rich-text h2 { color: #431A4F; font-weight: 900; margin-top: 3rem; font-size: 2rem; text-transform: uppercase; border-bottom: 2px solid #f3f4f6; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
-        .blog-rich-text p { margin-bottom: 1.5rem; font-size: 1.125rem; color: #374151; }
+        .blog-rich-text h2 { color: #431A4F; font-weight: 900; margin-top: 2.5rem; font-size: 1.75rem; text-transform: uppercase; margin-bottom: 1rem; }
+        .blog-rich-text h3 { color: #431A4F; font-weight: 800; margin-top: 2rem; font-size: 1.5rem; }
+        .blog-rich-text p { margin-bottom: 1.25rem; font-size: 1.1rem; color: #374151; line-height: 1.8; }
         .blog-rich-text strong { color: #431A4F; font-weight: 800; }
-        .blog-rich-text img { border-radius: 2rem; margin: 3rem 0; max-width: 100%; height: auto; }
+        .blog-rich-text img { border-radius: 1.5rem; margin: 2rem 0; width: 100%; height: auto; }
+        .blog-rich-text ul, .blog-rich-text ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .blog-rich-text li { margin-bottom: 0.5rem; list-style-position: outside; }
       `}</style>
     </article>
   );

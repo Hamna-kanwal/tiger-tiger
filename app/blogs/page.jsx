@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,7 +16,7 @@ const LatestBlog = () => {
   const stripHtml = (html) => {
     if (!html) return "";
     return html
-      .replace(/<[^>]*>?/gm, '') // Faster regex for stripping tags
+      .replace(/<[^>]*>?/gm, '') 
       .replace(/&nbsp;/g, ' ')
       .trim();
   };
@@ -64,21 +64,19 @@ const LatestBlog = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.slice(0, visibleCount).map((blog, index) => (
-            <div 
-              key={blog._id || blog.slug} 
+            <article 
+              key={blog._id || blog.slug || index} 
               className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500"
             >
-              {/* ✅ Image Container with Fixed Aspect Ratio for CLS */}
+              {/* Image Container with Fixed Aspect Ratio */}
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                 <Image
                   src={blog.image || "/fallback.png"} 
-                  alt={blog.title} 
+                  alt={blog.title || "Blog post image"} 
                   fill 
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  // ✅ Pehle 3 blogs ko priority di taake LCP score behtar ho
                   priority={index < 3} 
-                  unoptimized={blog.image?.startsWith('http')} 
                 />
                 <div className="absolute inset-0 bg-[#431A4F]/70 flex flex-col items-center justify-center p-6 text-center transition-all group-hover:bg-[#431A4F]/85">
                   <h3 className="text-white font-black text-xl md:text-2xl leading-tight mb-2 line-clamp-3">
@@ -96,13 +94,13 @@ const LatestBlog = () => {
                 </p>
                 <Link 
                   href={`/blogs/${blog.slug}`}
-                  style={{ color: brandPurple }}
                   className="flex items-center gap-2 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:gap-4 hover:text-[#D2B57B]"
+                  style={{ color: brandPurple }}
                 >
                   Read More <ArrowRight size={14} />
                 </Link>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
