@@ -22,7 +22,6 @@ const BlogDetail = () => {
         
         if (blogResult.success) {
           setBlog(blogResult.data);
-          // ✅ Action call ho raha hai jo khud 5 blogs filter karke deta hai
           const sidebarResult = await getLatestSidebarBlogsAction(slug);
           if (sidebarResult.success) {
             setRelatedBlogs(sidebarResult.data);
@@ -48,11 +47,11 @@ const BlogDetail = () => {
   if (!blog) return <div className="text-center py-20 font-bold">Blog not found.</div>;
 
   return (
-    <article className="min-h-screen bg-white">
+    <article className="min-h-screen bg-white mt-20">
       {/* Header Banner */}
-      <div className="pt-30 pb-40 px-6 text-center">
+      <div className="pt-20 pb-40 px-6 text-center bg-gray-50">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-3xl md:text-3xl lg:text-5xl font-black text-[#431A4F] uppercase leading-tight tracking-tighter">
+          <h1 className="text-3xl md:text-5xl font-black text-[#431A4F] uppercase leading-tight tracking-tighter">
             {blog.title}
           </h1>
         </div>
@@ -61,7 +60,7 @@ const BlogDetail = () => {
       {/* Featured Image */}
       <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
         <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white/20 bg-white">
-          <img src={blog.image || "/fallback.png"} alt={blog.title} className="w-full h-auto block" />
+          <Image src={blog.image || "/fallback.png"} alt={blog.title} className="w-full h-auto block" />
         </div>
       </div>
 
@@ -75,9 +74,8 @@ const BlogDetail = () => {
         </div>
 
         <aside className="lg:col-span-4">
-          <div className="sticky top-24 space-y-8">
-            {/* ✅ Sidebar Title */}
-            <h2 className="text-[#431A4F] font-black text-2xl uppercase tracking-tighter border-b-4 border-[#D2B57B] inline-block mb-2">
+          <div className="sticky top-24 space-y-8 mb-10">
+            <h2 className="text-[#431A4F] font-black text-2xl uppercase tracking-tighter border-b-4  inline-block mb-2">
               Latest Reads
             </h2>
 
@@ -92,23 +90,23 @@ const BlogDetail = () => {
                     className="p-6 rounded-[1.5rem] flex flex-col h-full shadow-md border border-white/10"
                     style={{ backgroundColor: '#431A4F' }} 
                   >
-                    <div className="relative w-full h-48 mb-6 rounded-[1rem] overflow-hidden">
+                    <div className="relative w-full h-48 mb-6 rounded-[1rem] overflow-hidden bg-[#35153f]">
                       <Image 
                         src={item.image || "/fallback.png"} 
                         alt={item.title} 
                         fill 
+                        sizes="(max-w-768px) 100vw, 400px"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         unoptimized={item.image?.startsWith('http')}
                       />
                     </div>
 
                     <div className="flex flex-col flex-grow">
-                      <h3 className="text-white font-black text-lg md:text-xl leading-tight uppercase tracking-tighter mb-8 line-clamp-3 group-hover:text-white transition-colors">
+                      <h3 className="text-white font-black text-lg leading-tight uppercase tracking-tighter mb-8 line-clamp-3">
                         {item.title}
                       </h3>
-                      
                       <div className="mt-auto">
-                        <span className="text-white font-black text-xs uppercase tracking-widest border-b-2 border-[#D2B57B] pb-1 group-hover:text-white transition-colors">
+                        <span className="text-white font-black text-xs uppercase tracking-widest border-b-2 border-[#D2B57B] pb-1">
                           READ MORE
                         </span>
                       </div>
@@ -125,7 +123,7 @@ const BlogDetail = () => {
         .blog-rich-text h2 { color: #431A4F; font-weight: 900; margin-top: 3rem; font-size: 2rem; text-transform: uppercase; border-bottom: 2px solid #f3f4f6; padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
         .blog-rich-text p { margin-bottom: 1.5rem; font-size: 1.125rem; color: #374151; }
         .blog-rich-text strong { color: #431A4F; font-weight: 800; }
-        .blog-rich-text img { border-radius: 2rem; margin: 3rem 0; }
+        .blog-rich-text img { border-radius: 2rem; margin: 3rem 0; max-width: 100%; height: auto; }
       `}</style>
     </article>
   );

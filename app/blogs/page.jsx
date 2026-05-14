@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, Loader2 } from 'lucide-react'; // ✅ Plus icon nikal diya
+import React, { useEffect, useState, useMemo } from 'react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlogsAction } from '../action';
@@ -12,12 +12,13 @@ const LatestBlog = () => {
   const [visibleCount, setVisibleCount] = useState(15);
   const brandPurple = "#431A4F";
 
+  // Optimized HTML Stripper
   const stripHtml = (html) => {
     if (!html) return "";
-    const decodedHtml = html
-      .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ');
-    const cleanText = decodedHtml.replace(/<\/?[^>]+(>|$)/g, "");
-    return cleanText.trim();
+    return html
+      .replace(/<[^>]*>?/gm, '') // Faster regex for stripping tags
+      .replace(/&nbsp;/g, ' ')
+      .trim();
   };
 
   useEffect(() => {
@@ -62,21 +63,24 @@ const LatestBlog = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogs.slice(0, visibleCount).map((blog) => (
+          {blogs.slice(0, visibleCount).map((blog, index) => (
             <div 
               key={blog._id || blog.slug} 
               className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500"
             >
-              <div className="relative h-64 w-full overflow-hidden">
+              {/* ✅ Image Container with Fixed Aspect Ratio for CLS */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
                 <Image
                   src={blog.image || "/fallback.png"} 
                   alt={blog.title} 
                   fill 
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  // ✅ Pehle 3 blogs ko priority di taake LCP score behtar ho
+                  priority={index < 3} 
                   unoptimized={blog.image?.startsWith('http')} 
                 />
-                <div className="absolute inset-0 bg-[#431A4F]/70 flex flex-col items-center justify-center p-6 text-center opacity-100 group-hover:bg-[#431A4F]/85 transition-all">
+                <div className="absolute inset-0 bg-[#431A4F]/70 flex flex-col items-center justify-center p-6 text-center transition-all group-hover:bg-[#431A4F]/85">
                   <h3 className="text-white font-black text-xl md:text-2xl leading-tight mb-2 line-clamp-3">
                     {blog.title}
                   </h3>
@@ -102,28 +106,11 @@ const LatestBlog = () => {
           ))}
         </div>
 
-        {/* ✅ Invert Effect Button */}
         {visibleCount < blogs.length && (
           <div className="mt-16 flex justify-center">
             <button
               onClick={handleLoadMore}
-              className="
-                px-12 py-4 
-                rounded-full 
-                font-black 
-                uppercase 
-                tracking-widest 
-                text-sm
-                border-2 
-                border-[#431A4F]
-                bg-[#431A4F] 
-                text-white 
-                transition-all 
-                duration-300 
-                hover:bg-transparent 
-                hover:text-[#431A4F]
-                active:scale-95
-              "
+              className="px-12 py-4 rounded-full font-black uppercase tracking-widest text-sm border-2 border-[#431A4F] bg-[#431A4F] text-white transition-all duration-300 hover:bg-transparent hover:text-[#431A4F] active:scale-95"
             >
               Load More
             </button>
