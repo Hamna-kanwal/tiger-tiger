@@ -57,12 +57,23 @@ const BlogDetail = () => {
         </div>
       </div>
 
-      {/* Featured Image */}
       <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
-        <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white/20 bg-white">
-          <Image src={blog.image || "/fallback.png"} alt={blog.title} className="w-full h-auto block" />
-        </div>
-      </div>
+  <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-white/20 bg-white">
+    {/* 
+      1. width aur height yahan placeholder hain, Next.js inki ratio maintain rakhta hai.
+      2. 'w-full h-auto' se image container ki width le legi aur height automatically set hogi.
+    */}
+    <Image 
+      src={blog.image || "/fallback.png"} 
+      alt={blog.title} 
+      width={1200} // Aapki standard width
+      height={800} // Aapki standard height (jo image ko bada dikhaye)
+      priority 
+      className="w-full h-auto block object-contain" 
+      // object-contain se image ka koi kona nahi katega
+    />
+  </div>
+</div>
 
       {/* Main Content & Sidebar */}
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
