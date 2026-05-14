@@ -68,16 +68,17 @@ const BlogDetail = () => {
         </div>
       </div>
 
-   <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
-  <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white bg-white"> 
+  <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
+  <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white bg-white">
+    {/* Container ko fixed height mat dein, balkay image ko khud height lenay dein */}
     <Image 
       src={blog.image || "/fallback.png"} 
       alt={blog.title} 
-      width={1200} // Approximate width
-      height={800} // Approximate height (16:9)
+      width={1200}    // Max width jo aap chahte hain
+      height={675}   // Base height (ye placeholder ka kaam karegi)
       priority
-      layout="responsive" // Isse image container ki width ke hisab se scale hogi
-      className="w-full h-auto" 
+      className="w-full h-auto object-contain" // h-auto se image apni asli shape mein rahegi
+      sizes="(max-width: 768px) 100vw, 1200px"
     />
   </div>
 </div>
