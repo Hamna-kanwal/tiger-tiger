@@ -221,3 +221,91 @@ export async function getRelatedProducts(productId) {
     return [];
   }
 }
+
+export async function getBlogsAction() {
+  try {
+    const response = await fetch("https://backend.tigertigerfoods.com/api/get-blogs", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // Cache management: 60 seconds tak data cache rahega (ISR)
+      next: { revalidate: 60 }, 
+    });
+
+    // Agar response ok nahi hai (e.g. 404 or 500)
+    if (!response.ok) {
+      return {
+        success: false,
+        message: `API Error: ${response.status}`,
+        data: [],
+      };
+    }
+
+    const result = await response.json();
+
+    // API ke 'success' field ko check karna
+    if (result.success) {
+      return {
+        success: true,
+        data: result.data || [],
+        message: "Blogs fetched successfully",
+      };
+    } else {
+      return {
+        success: false,
+        data: [],
+        message: result.message || "Failed to fetch blogs",
+      };
+    }
+
+  } catch (error) {
+    console.error("Server Action Error:", error);
+    return {
+      success: false,
+      message: "Server par koi masla aa gaya hai.",
+      data: [],
+    };
+  }
+}
+
+
+// ✅ Single Blog fetch function
+export async function getSingleBlogAction(slug) {
+  try {
+    const res = await fetch(`https://backend.tigertigerfoods.com/api/get-blog/${slug}`, {
+      next: { revalidate: 60 },
+    });
+    const data = await res.json();
+    return data.success ? { success: true, data: data.data } : { success: false };
+  } catch (error) {
+    return { success: false };
+  }
+}
+
+// ✅ Latest 5 Blogs for Sidebar (Logic Fixed)
+export async function getLatestSidebarBlogsAction(currentSlug) {
+  try {
+    const res = await fetch("https://backend.tigertigerfoods.com/api/get-blogs", {
+      next: { revalidate: 60 },
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      // 1. Data ko copy karke reverse kiya taake latest blogs upar aaein
+      // 2. Current parhay jane walay blog ko list se nikala
+      // 3. .slice(0, 5) laga kar limit fix kar di
+      const limitedBlogs = data.data
+        .slice()
+        .reverse() 
+        .filter((b) => b.slug !== currentSlug)
+        .slice(0, 5);
+
+      return { success: true, data: limitedBlogs };
+    }
+    return { success: false, data: [] };
+  } catch (error) {
+    console.error("❌ Sidebar Action Error:", error);
+    return { success: false, data: [] };
+  }
+}

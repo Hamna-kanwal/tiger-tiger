@@ -51,7 +51,7 @@ export default function AppLandingPage() {
   className="flex items-center gap-3 bg-[#4e1a51] text-white border border-gray-300 px-10 py-4 rounded-xl font-bold 
              hover:bg-[white] hover:text-[#4e1a51] hover:border-[#4e1a51] "
 >
-Browse Products
+  Download iOS
 </Link>
           </div>
           </div>

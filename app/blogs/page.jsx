@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react'; // ✅ Plus icon nikal diya
 import Image from 'next/image';
 import Link from 'next/link';
-// ✅ Server Action import karein
-import { getAllBlogsAction } from '../action';
+import { getBlogsAction } from '../action';
 
 const LatestBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(15);
   const brandPurple = "#431A4F";
 
   const stripHtml = (html) => {
@@ -22,17 +22,24 @@ const LatestBlog = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      setLoading(true);
-      // ✅ Server Action call ho raha hai
-      const result = await getBlogsAction();
-      if (result.success) {
-        setBlogs(result.data);
+      try {
+        setLoading(true);
+        const result = await getBlogsAction();
+        if (result.success) {
+          setBlogs(result.data);
+        }
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
-
     fetchBlogs();
   }, []);
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 15);
+  };
 
   if (loading) {
     return (
@@ -55,7 +62,7 @@ const LatestBlog = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
+          {blogs.slice(0, visibleCount).map((blog) => (
             <div 
               key={blog._id || blog.slug} 
               className="group bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 flex flex-col hover:shadow-2xl transition-all duration-500"
@@ -94,6 +101,34 @@ const LatestBlog = () => {
             </div>
           ))}
         </div>
+
+        {/* ✅ Invert Effect Button */}
+        {visibleCount < blogs.length && (
+          <div className="mt-16 flex justify-center">
+            <button
+              onClick={handleLoadMore}
+              className="
+                px-12 py-4 
+                rounded-full 
+                font-black 
+                uppercase 
+                tracking-widest 
+                text-sm
+                border-2 
+                border-[#431A4F]
+                bg-[#431A4F] 
+                text-white 
+                transition-all 
+                duration-300 
+                hover:bg-transparent 
+                hover:text-[#431A4F]
+                active:scale-95
+              "
+            >
+              Load More
+            </button>
+          </div>
+        )}
 
         {blogs.length === 0 && (
           <div className="text-center py-20 text-gray-400">
