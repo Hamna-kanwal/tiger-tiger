@@ -39,15 +39,16 @@ const slidesData = [
     subText: "Your Thirst’s New Weakness.",
     className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3" 
   },
-  { 
-    id: 4, 
-    src: "/TT-hero-main.png", 
-    alt: "Tiger Tiger", 
-    title: "Double Champions",
-    mainHeading: "Celebrating Back to Back Success ",
-    subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3" 
-  },
+ { 
+  id: 4, 
+  src: "/TT-hero-main.png", 
+  alt: "Tiger Tiger", 
+  title: "Double Champions",
+  mainHeading: "Celebrating Back to Back Success ",
+  subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
+  // Maine scale 1.0 se barha kar 1.25 (Mobile) aur 1.40 (Desktop) kar diya hai
+  className: "scale-[1.25] md:scale-140 md:translate-y-12 translate-y-3" 
+},
 ];
 
 const HeroSlider = () => {
