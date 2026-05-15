@@ -1,5 +1,4 @@
-import HeroSlider from "./Components/Heroslider";
-import HeroCoursol from "./Components/HeroCoursol";     
+import HeroSlider from "./Components/Heroslider";   
 import BrandSlider from "./Components/Brandslider";
 import HeroSection from "./Components/HeroSection";       
 import AmazingFlavour from "./Components/AmazingFlavour"; 
@@ -21,7 +20,6 @@ export default function Home() {
   return (
     <>
       <HeroSlider />
-      <HeroCoursol/>
       <BrandSlider />
       <HeroSection />
       <AmazingFlavour />

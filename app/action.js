@@ -309,3 +309,21 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
     return { success: false, data: [] };
   }
 }
+
+
+
+export async function fetchAllProducts() {
+  try {
+    const res = await fetch("https://backend.tigertigerfoods.com/api/get-products");
+    
+    if (!res.ok) {
+      throw new Error("Data fetch nahi ho saka");
+    }
+
+    const data = await res.json();
+    return data.data; 
+  } catch (error) {
+    console.error("API Error:", error);
+    return [];
+  }
+}
