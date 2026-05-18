@@ -19,7 +19,8 @@ const slidesData = [
     title: "Double Champions",
     mainHeading: "Celebrating Back to Back Success ",
     subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
+    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
+    isVideo: false 
   },
   { 
     id: 2, 
@@ -28,7 +29,18 @@ const slidesData = [
     title: "Nature’s Best in Every Sip",
     mainHeading: "Leading Pan Asian Food Brand in the UK",
     subText: "Your Thirst’s New Weakness.",
-    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8" 
+    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
+    isVideo: false 
+  },
+  { 
+    id: 5, 
+    src: "/hero_section.mp4", 
+    alt: "Brand Video", 
+    title: "Experience the Taste",
+    mainHeading: "Authentic Asian Flavors Crafted For You",
+    subText: "Your Thirst’s New Weakness.",
+    className: "w-full h-full object-cover", 
+    isVideo: true 
   },
   { 
     id: 3, 
@@ -37,18 +49,19 @@ const slidesData = [
     title: "Nature’s Best in Every Sip",
     mainHeading: "Leading Pan Asian Food Brand in the UK",
     subText: "Your Thirst’s New Weakness.",
-    className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3" 
+    className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3",
+    isVideo: false 
   },
- { 
-  id: 4, 
-  src: "/TT-hero-main.png", 
-  alt: "Tiger Tiger", 
-  title: "Double Champions",
-  mainHeading: "Celebrating Back to Back Success ",
-  subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-  // Maine scale 1.0 se barha kar 1.25 (Mobile) aur 1.40 (Desktop) kar diya hai
-  className: "scale-[1.25] md:scale-140 md:translate-y-12 translate-y-3" 
-},
+  { 
+    id: 4, 
+    src: "/TT-hero-main.png", 
+    alt: "Tiger Tiger", 
+    title: "Double Champions",
+    mainHeading: "Celebrating Back to Back Success ",
+    subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
+    className: "scale-[1.25] md:scale-140 md:translate-y-12 translate-y-3",
+    isVideo: false 
+  },
 ];
 
 const HeroSlider = () => {
@@ -60,7 +73,7 @@ const HeroSlider = () => {
   const charcoalBlack = "#333333";
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden">
+    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden rounded-none">
       {/* Header Spacing Section */}
       <div className="w-full pt-[80px] md:pt-[20px] lg:pt-[60px]" />
 
@@ -71,7 +84,7 @@ const HeroSlider = () => {
           style={{ color: charcoalBlack }}
           className="text-base lg:text-lg font-outfit mt-4 lg:mt-2 font-semibold mb-1 transition-all duration-500"
         >
-          {slidesData[activeIndex].title}
+          {slidesData[activeIndex]?.title}
         </p>
 
         {/* Main Heading */}
@@ -79,7 +92,7 @@ const HeroSlider = () => {
           className="eczar text-[30px] md:text-[45px] lg:text-[50px] m-0 p-0 font-bold leading-tight transition-all duration-500"
           style={{ color: brandPurple }}
         >
-          {slidesData[activeIndex].mainHeading}
+          {slidesData[activeIndex]?.mainHeading}
         </h1>
 
         {/* Subtext */}
@@ -89,7 +102,7 @@ const HeroSlider = () => {
         >
           <span style={{ color: charcoalBlack }}>Your Thirst’s</span>{" "}
           <span className="font-bold eczar text-lg md:text-2xl">
-            {slidesData[activeIndex].subText.split(" ").slice(-2).join(" ")}
+            {slidesData[activeIndex]?.subText ? slidesData[activeIndex].subText.split(" ").slice(-2).join(" ") : ""}
           </span>.
         </p>
 
@@ -126,8 +139,8 @@ const HeroSlider = () => {
       </div>
 
       {/* --- CAROUSEL SECTION --- */}
-      <div className="w-full flex justify-center items-end mt-10 overflow-hidden">
-        <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[500px] bg-transparent">
+      <div className="w-full flex justify-center items-end mt-10 overflow-hidden rounded-none">
+        <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[500px] bg-transparent rounded-none">
           <Swiper
             modules={[Autoplay, Pagination, EffectFade]}
             slidesPerView={1}
@@ -136,36 +149,68 @@ const HeroSlider = () => {
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             pagination={{ clickable: true }}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            className="h-full w-full pb-14"
+            className="h-full w-full pb-14 rounded-none root-hero-swiper"
           >
             {slidesData.map((slide) => (
-              <SwiperSlide key={slide.id} className="relative overflow-hidden">
-                <div className="relative w-full h-full">
-                  <Image
-                    src={slide.src}
-                    alt={slide.alt}
-                    fill
-                    priority
-                    sizes="100vw"
-                    className={`object-contain object-bottom origin-bottom transition-transform duration-700 ${slide.className}`}
-                    quality={100}
-                  />
+              <SwiperSlide key={slide.id} className="relative overflow-hidden rounded-none">
+                <div className="relative w-full h-full rounded-none">
+                  {slide.isVideo ? (
+                    <video
+                      src={slide.src}
+                      className={`${slide.className} rounded-none border-0 block`}
+                      style={{ borderRadius: '0px' }}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <Image
+                      src={slide.src}
+                      alt={slide.alt}
+                      fill
+                      priority
+                      sizes="100vw"
+                      className={`object-contain object-bottom origin-bottom transition-transform duration-700 rounded-none ${slide.className}`}
+                      style={{ borderRadius: '0px' }}
+                      quality={100}
+                    />
+                  )}
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
+          {/* --- CSS CUSTOMIZATION FOR SHARP EDGES & RECTANGLE DOTS --- */}
           <style jsx global>{`
-            .swiper-pagination-bullet-active {
+            /* Force reset all rounded corners inside the slider wrapper */
+            .root-hero-swiper, 
+            .root-hero-swiper .swiper-wrapper, 
+            .root-hero-swiper .swiper-slide,
+            .root-hero-swiper video {
+              border-radius: 0px !important;
+              -webkit-border-radius: 0px !important;
+              -moz-border-radius: 0px !important;
+            }
+
+            /* Active Dot Style: Rectangular */
+            .root-hero-swiper .swiper-pagination-bullet-active {
               background: ${brandPurple} !important;
               width: 24px !important;
-              border-radius: 5px !important;
+              border-radius: 0px !important;
+              height: 8px !important;
             }
-            .swiper-pagination-bullet {
-              background: ${brandPurple};
+            
+            /* Inactive Dot Style: Square */
+            .root-hero-swiper .swiper-pagination-bullet {
+              background: ${brandPurple} !important;
               opacity: 0.3;
+              border-radius: 0px !important;
+              height: 8px !important;
+              width: 8px !important;
             }
-            .swiper-pagination {
+            
+            .root-hero-swiper .swiper-pagination {
               bottom: 40px !important;
             }
           `}</style>

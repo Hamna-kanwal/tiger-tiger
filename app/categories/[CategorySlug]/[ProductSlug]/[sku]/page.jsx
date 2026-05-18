@@ -1,5 +1,5 @@
 import { getProductDetail, getRelatedProducts } from "../../../../action";
-import ProductDetailClient from "../../../../Components/ProductDetail"; 
+import ProductDetail from "../../../../Components/ProductDetail"; // Sahi file import ki
 import { notFound } from "next/navigation";
 
 export default async function Page({ params }) {
@@ -15,14 +15,13 @@ export default async function Page({ params }) {
   }
 
   // 2. Related products mangwayein product ID se
-  // Note: ensure karein ke action.js mein getRelatedProducts sahi endpoint hit kar raha hai
   const relatedData = await getRelatedProducts(product.id);
 
   return (
-    <ProductDetailClient 
+    <ProductDetail 
       product={product} 
-      categorySlug={CategorySlug} // URL se aane wala category name
-      relatedProducts={relatedData || []} // Slider ke liye data
+      categorySlug={CategorySlug} 
+      relatedProducts={relatedData || []} 
     />
   );
 }

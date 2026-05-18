@@ -53,6 +53,7 @@ const handleAddToCart = () => {
           images: product.images,
         };
         cart.push(item);
+
       }
 
       // 4. Save & Event Fire
@@ -61,11 +62,7 @@ const handleAddToCart = () => {
       
       toast.success(`${product.name} added to inquiry!`);
 
-      // 5. Success hone par Enquiry page par le jayein
-      setTimeout(() => {
-        router.push("/enquiry");
-      }, 800);
-
+      
     } catch (error) {
       console.error("Cart Error:", error);
       toast.error("Something went wrong!");

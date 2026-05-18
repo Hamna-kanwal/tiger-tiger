@@ -32,7 +32,7 @@ const WhoWeServe = () => {
         {/* Background Decorative Images */}
         <div className="absolute -left-30 -bottom-70 rotate-[-15deg] w-72 md:w-96 lg:w-[450px] z-0 origin-bottom-left opacity-50 lg:opacity-100">
           <Image
-            src="/pulpCan.png"
+            src="/pulpCan.webp"
             alt="Can"
             width={1000}
             height={1200}

@@ -2,6 +2,7 @@ import { Outfit, Eczar } from "next/font/google";
 import "./globals.css";
 import Header from "./Components/Header"; 
 import Footer from "./Components/Footer";
+import FloatingCart from "./Components/FloatingCart";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <FloatingCart />
       </body>
     </html>
   );
