@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Star, HandCoins, ShieldCheck, Truck } from 'lucide-react'; 
-
+import Link from 'next/link';
 const Herosection = () => {
   const brandPurple = "#4e1a51";
   const charcoalBlack = "#333333";
@@ -53,33 +53,35 @@ const Herosection = () => {
             Tiger Tiger is a trusted pan-Asian food supplier in the UK, delivering high-quality ingredients inspired by authentic Asian cuisine. From sauces and noodles to frozen foods and spices, we provide everything businesses need to create bold, traditional flavours.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
-            <button 
-              onMouseEnter={() => setHoverExplore(true)}
-              onMouseLeave={() => setHoverExplore(false)}
-              style={{ 
-                backgroundColor: hoverExplore ? brandPurple : "transparent",
-                borderColor: brandPurple,
-                color: hoverExplore ? "white" : brandPurple 
-              }}
-              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              Explore Products
-            </button>
+         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
+  <Link 
+    href="/products" // 👈 Apna sahi route yahan likhein
+    onMouseEnter={() => setHoverExplore(true)}
+    onMouseLeave={() => setHoverExplore(false)}
+    style={{ 
+      backgroundColor: hoverExplore ? brandPurple : "transparent",
+      borderColor: brandPurple,
+      color: hoverExplore ? "white" : brandPurple 
+    }}
+    className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 hover:scale-105 active:scale-95 text-center block"
+  >
+    Explore Products
+  </Link>
 
-            <button 
-              onMouseEnter={() => setHoverCuisines(true)}
-              onMouseLeave={() => setHoverCuisines(false)}
-              style={{ 
-                backgroundColor: hoverCuisines ? brandPurple : "transparent",
-                borderColor: brandPurple,
-                color: hoverCuisines ? "white" : brandPurple 
-              }}
-              className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 active:scale-95"
-            >
-              Discover Cuisines
-            </button>
-          </div>
+  <Link 
+    href="/cuisines" // 👈 Apna sahi route yahan likhein
+    onMouseEnter={() => setHoverCuisines(true)}
+    onMouseLeave={() => setHoverCuisines(false)}
+    style={{ 
+      backgroundColor: hoverCuisines ? brandPurple : "transparent",
+      borderColor: brandPurple,
+      color: hoverCuisines ? "white" : brandPurple 
+    }}
+    className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 active:scale-95 text-center block"
+  >
+    Discover Cuisines
+  </Link>
+</div>
         </div>
 
         <div className="w-full max-w-7xl mx-auto ">

@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 const slidesData = [
- { 
+  { 
     id: 1, 
     src: "/TT-hero-main.png", 
     alt: "Tiger Tiger", 
@@ -33,16 +33,6 @@ const slidesData = [
     isVideo: false 
   },
   { 
-    id: 5, 
-    src: "/hero_section.mp4", 
-    alt: "Brand Video", 
-    title: "Experience the Taste",
-    mainHeading: "Authentic Asian Flavors Crafted For You",
-    subText: "Your Thirst’s New Weakness.",
-    className: "w-full h-full object-cover", 
-    isVideo: true 
-  },
-  { 
     id: 3, 
     src: "/koreannnnnn-updated (1).webp", 
     alt: "Korean", 
@@ -52,8 +42,7 @@ const slidesData = [
     className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3",
     isVideo: false 
   },
-  
-   { 
+  { 
     id: 4, 
     src: "/pulp-hero-section.webp", 
     alt: "Pulp", 
@@ -62,6 +51,16 @@ const slidesData = [
     subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
     className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
     isVideo: false 
+  },
+  { 
+    id: 5, 
+    src: "/hero_section.mp4", 
+    alt: "Brand Video", 
+    title: "Experience the Taste",
+    mainHeading: "Authentic Asian Flavors Crafted For You",
+    subText: "Your Thirst’s New Weakness.",
+    className: "w-full h-full object-cover", 
+    isVideo: true 
   },
 ];
 
@@ -74,7 +73,7 @@ const HeroSlider = () => {
   const charcoalBlack = "#333333";
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden rounded-none">
+    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden !rounded-none">
       {/* Header Spacing Section */}
       <div className="w-full pt-[80px] md:pt-[20px] lg:pt-[60px]" />
 
@@ -140,8 +139,8 @@ const HeroSlider = () => {
       </div>
 
       {/* --- CAROUSEL SECTION --- */}
-      <div className="w-full flex justify-center items-end mt-10 overflow-hidden rounded-none">
-        <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[500px] bg-transparent rounded-none">
+      <div className="w-full flex justify-center items-end mt-10 overflow-hidden !rounded-none">
+        <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[500px] bg-transparent !rounded-none">
           <Swiper
             modules={[Autoplay, Pagination, EffectFade]}
             slidesPerView={1}
@@ -150,16 +149,16 @@ const HeroSlider = () => {
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             pagination={{ clickable: true }}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            className="h-full w-full pb-14 rounded-none root-hero-swiper"
+            className="h-full w-full pb-14 !rounded-none root-hero-swiper"
           >
             {slidesData.map((slide) => (
-              <SwiperSlide key={slide.id} className="relative overflow-hidden rounded-none">
-                <div className="relative w-full h-full rounded-none">
+              <SwiperSlide key={slide.id} className="relative overflow-hidden !rounded-none">
+                <div className="relative w-full h-full !rounded-none">
                   {slide.isVideo ? (
                     <video
                       src={slide.src}
-                      className={`${slide.className} rounded-none border-0 block`}
-                      style={{ borderRadius: '0px' }}
+                      className={`${slide.className} !rounded-none border-0 block`}
+                      style={{ borderRadius: '0px !important' }}
                       autoPlay
                       muted
                       loop
@@ -172,8 +171,8 @@ const HeroSlider = () => {
                       fill
                       priority
                       sizes="100vw"
-                      className={`object-contain object-bottom origin-bottom transition-transform duration-700 rounded-none ${slide.className}`}
-                      style={{ borderRadius: '0px' }}
+                      className={`object-contain object-bottom origin-bottom transition-transform duration-700 !rounded-none ${slide.className}`}
+                      style={{ borderRadius: '0px !important' }}
                       quality={100}
                     />
                   )}
@@ -182,19 +181,23 @@ const HeroSlider = () => {
             ))}
           </Swiper>
 
-          {/* --- CSS CUSTOMIZATION FOR SHARP EDGES & RECTANGLE DOTS --- */}
+          {/* --- CSS OVERRIDES FOR PURE SHARP SQUARES --- */}
           <style jsx global>{`
-            /* Force reset all rounded corners inside the slider wrapper */
+            /* Root layouts elements rounding crash bypass */
             .root-hero-swiper, 
-            .root-hero-swiper .swiper-wrapper, 
-            .root-hero-swiper .swiper-slide,
-            .root-hero-swiper video {
+            .root-hero-swiper * {
               border-radius: 0px !important;
+              border-top-left-radius: 0px !important;
+              border-top-right-radius: 0px !important;
+              border-bottom-left-radius: 0px !important;
+              border-bottom-right-radius: 0px !important;
               -webkit-border-radius: 0px !important;
-              -moz-border-radius: 0px !important;
+              mask-image: none !important;
+              -webkit-mask-image: none !important;
+              clip-path: none !important;
             }
 
-            /* Active Dot Style: Rectangular */
+            /* Active Dot Layout Settings */
             .root-hero-swiper .swiper-pagination-bullet-active {
               background: ${brandPurple} !important;
               width: 24px !important;
@@ -202,7 +205,7 @@ const HeroSlider = () => {
               height: 8px !important;
             }
             
-            /* Inactive Dot Style: Square */
+            /* Inactive Dot Layout Settings */
             .root-hero-swiper .swiper-pagination-bullet {
               background: ${brandPurple} !important;
               opacity: 0.3;
