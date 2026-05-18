@@ -12,14 +12,14 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 const slidesData = [
-  { 
+ { 
     id: 1, 
-    src: "/pulp-hero-section.webp", 
-    alt: "Pulp", 
+    src: "/TT-hero-main.png", 
+    alt: "Tiger Tiger", 
     title: "Double Champions",
     mainHeading: "Celebrating Back to Back Success ",
     subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
+    className: "scale-[1.25] md:scale-140 md:translate-y-12 translate-y-3",
     isVideo: false 
   },
   { 
@@ -52,14 +52,15 @@ const slidesData = [
     className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3",
     isVideo: false 
   },
-  { 
+  
+   { 
     id: 4, 
-    src: "/TT-hero-main.png", 
-    alt: "Tiger Tiger", 
+    src: "/pulp-hero-section.webp", 
+    alt: "Pulp", 
     title: "Double Champions",
     mainHeading: "Celebrating Back to Back Success ",
     subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.25] md:scale-140 md:translate-y-12 translate-y-3",
+    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
     isVideo: false 
   },
 ];
