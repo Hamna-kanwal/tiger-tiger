@@ -28,7 +28,7 @@ export default function Header() {
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact" },
     { name: "About", href: "/about" },
-    { name: "Login", href: "/login" },
+    { name: "Trade Register", href: "/trade-register" },
   ];
 
   const isActive = (href) => path === href;
