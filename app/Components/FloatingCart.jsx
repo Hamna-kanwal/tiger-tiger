@@ -59,21 +59,23 @@ export default function FloatingCart() {
   // PORTAL: Ab browser pure page ke containers se azaad kar ke isko direct body par set karega
   return createPortal(
     <>
-      {/* Floating Cart Button - Exact Senior Style Small Rounded Circle */}
-      <button
-        onClick={toggleCart}
-        className="fixed right-6 top-1/2 -translate-y-1/2 z-[9999] w-10 h-10 flex items-center justify-center rounded-full bg-white shadow-[0_4px_24px_rgba(0,0,0,0.15)] hover:shadow-lg transition-all hover:scale-105"
-        aria-label="Cart"
-        style={{ right: "24px", top: "50%", transform: "translateY(-50%)", position: "fixed" }}
-      >
-        <FiShoppingCart className="text-[#40023F] text-xl" />
-        {count > 0 && (
-          <span className="absolute -top-1 -right-1 bg-[#40023F] text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-            {count}
-          </span>
-        )}
-      </button>
-
+    <button
+  onClick={toggleCart}
+  className="fixed right-6 top-1/2 -translate-y-1/2 z-[9999] w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(64,2,63,0.2)] transition-all duration-300 hover:scale-110 border border-gray-100"
+  aria-label="Cart"
+  style={{ right: "24px", top: "50%", transform: "translateY(-50%)", position: "fixed" }}
+>
+  <FiShoppingCart className="text-[#40023F] text-2xl" />
+  
+  {count > 0 && (
+    <span 
+      className="absolute bg-[#40023F] text-white text-[11px] font-black w-5 h-5 flex items-center justify-center rounded-full animate-pulse shadow-md"
+      style={{ left: "-6px", top: "-6px", position: "absolute" }}
+    >
+      {count}
+    </span>
+  )}
+</button>
       {/* Floating Cart Preview Box - Senior ka blur style aur side position */}
       {open && (
         <div

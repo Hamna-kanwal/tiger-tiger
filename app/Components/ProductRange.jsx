@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 const FeaturedProducts = () => {
   const brandPurple = "#4e1a51";
 
+  // Ab yahan sirf images ka data reh gaya hai, links ke slugs hatane ke baad
   const products = [
     { id: 1, src: "/feature-banner-1.webp", alt: "Lychee Pulp" },
     { id: 2, src: "/feature-banner-2.webp", alt: "Coconut Water" },
@@ -44,6 +45,7 @@ const FeaturedProducts = () => {
           >
             {products.map((product) => (
               <SwiperSlide key={product.id}>
+                {/* Fixed: Link tag yahan se poora remove kar diya hai */}
                 <div 
                   className="relative mt-2 w-full aspect-[21/9] md:aspect-[25/10] rounded-[40px] overflow-hidden isolate shadow-none"
                   style={{ maskImage: "webkit-radial-gradient(white, black)" }} 

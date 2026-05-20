@@ -162,7 +162,7 @@ export default function EnquiryPage() {
 
           <div className="mt-5">
             <Link
-              href="/checkout"
+              href="/trade-register"
               className="w-full md:w-auto px-6 py-3   bg-[#40023F] text-white font-semibold rounded-2xl shadow-md hover:from-pink-700 hover:to-purple-700 hover:shadow-lg transition-all duration-300 ease-in-out"
             >
               Proceed to Checkout

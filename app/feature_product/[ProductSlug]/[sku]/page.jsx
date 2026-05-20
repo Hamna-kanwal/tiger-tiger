@@ -1,24 +1,105 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Navigation ke liye
 import { toast, ToastContainer } from "react-toastify"; // Success message ke liye
 import "react-toastify/dist/ReactToastify.css";
-import RelatedProducts from "../Components/RelatedProducts"; 
+import RelatedProducts from "../../../Components/RelatedProducts"; 
 
 export default function ProductDetailClient({ product, relatedProducts }) {
   const [selectedUnit, setSelectedUnit] = useState(null);
+  const router = useRouter();
   const themeColor = "#431A4F";
+  const resolveImageUrl = (product) => {
+    if (!product) return "/product_image.png";
+    // 1) images as array
+    if (Array.isArray(product.images) && product.images.length) {
+      const first = product.images[0];
+      if (typeof first === "string" && first.trim()) return first;
+      if (first && typeof first === "object") return first.url || first.src || first.path || first.image || "/product_image.png";
+    }
+    // 2) images field as string
+    if (typeof product.images === "string" && product.images.trim()) return product.images;
+    // 3) single image field
+    if (typeof product.image === "string" && product.image.trim()) return product.image;
+    if (product.image && typeof product.image === "object") return product.image.url || product.image.src || product.image.path || "/product_image.png";
+    // 4) media array fallback
+    if (Array.isArray(product.media) && product.media.length) {
+      const m = product.media[0];
+      if (typeof m === "string" && m.trim()) return m;
+      if (m && typeof m === "object") return m.url || m.src || m.path || "/product_image.png";
+    }
+    return "/product_image.png";
+  };
+
+  const normalizeProduct = (p) => {
+    if (!p) return p;
+    const get = (keys) => {
+      for (const k of keys) {
+        if (p[k] !== undefined && p[k] !== null && p[k] !== "") return p[k];
+      }
+      return undefined;
+    };
+
+    const SKU = get(["SKU", "sku", "Sku", "sku_code"]);
+    const jk_code = get(["jk_code", "jkCode", "jk"]);
+    const palette_quantity = get(["palette_quantity", "pallet_quantity", "pallet_qty", "palette_qty", "paletteQuantity"]);
+    const case_barcode = get(["case_barcode", "caseBarcode", "case_barcode_value"]);
+    const single_unit_barcode = get(["single_unit_barcode", "single_barcode", "singleUnitBarcode", "barcode"]);
+    const brand = get(["brand", "Brand", "manufacturer", "brand_name"]);
+    const quantity = get(["quantity", "qty", "product_quantity"]);
+    const categories = get(["categories", "category", "category_name", "categories_name"]);
+
+    let images = p.images ?? p.image ?? p.media ?? undefined;
+
+    return {
+      ...p,
+      SKU: SKU || "",
+      jk_code: jk_code || "---",
+      palette_quantity: palette_quantity || "---",
+      case_barcode: case_barcode || "---",
+      single_unit_barcode: single_unit_barcode || "---",
+      brand: brand || p.brand || "TIGER TIGER",
+      quantity: quantity || p.quantity || "12x320ml",
+      categories: categories || p.categories || "Drinks",
+      images,
+    };
+  };
+
+  const normalized = normalizeProduct(product);
+  const imageUrl = resolveImageUrl(normalized);
+
+  if (!product) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 text-center text-gray-700">
+        <h2 className="text-2xl font-bold mb-4">Product not found</h2>
+        <p>Please check the link or try another product.</p>
+      </div>
+    );
+  }
 
   const handleAddToCart = () => {
     if (typeof window === "undefined") return;
 
-    // 1. Check Selection Only (Case or Pallet)
+    // 1. Check Login
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Yahan humne toast message aur redirect path dono badal diye hain
+      toast.info("Please register a trade account to send an inquiry.");
+      
+      setTimeout(() => {
+        router.push("/trade-register"); // Login ki jagah Trade Register par redirect
+      }, 2000);
+      return;
+    }
+
+    // 2. Check Selection (Case or Pallet)
     if (!selectedUnit) {
       toast.warning("Please select Case or Pallet first.");
       return;
     }
 
     try {
-      // 2. Direct Cart Logic (No Login/Token check, No redirection)
+      // 3. Cart Logic
       const cart = JSON.parse(sessionStorage.getItem("inquiry_cart") || "[]");
       
       const existingItemIndex = cart.findIndex(
@@ -36,29 +117,24 @@ export default function ProductDetailClient({ product, relatedProducts }) {
           quantity: 1,
           product_quantity: product.quantity,
           sku: product.SKU,
-          images: product.images,
+          images: imageUrl,
         };
         cart.push(item);
+
       }
 
-      // 3. Save to Session & Fire Custom Event for Floating Cart
+      // 4. Save & Event Fire
       sessionStorage.setItem("inquiry_cart", JSON.stringify(cart));
       window.dispatchEvent(new Event("cartUpdated"));
       
-      // 4. Show success message (No router.push)
       toast.success(`${product.name} added to inquiry!`);
+
       
     } catch (error) {
       console.error("Cart Error:", error);
       toast.error("Something went wrong!");
     }
   };
-
-  // Helper function to extract correct single image url from array or string
-  const mainImageSrc = Array.isArray(product.images) && product.images.length > 0 
-    ? product.images[0] 
-    : (product.images || "/placeholder.png");
-
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 font-sans mt-30" style={{ color: themeColor }}>
       <ToastContainer position="top-right" autoClose={3000} />
@@ -67,15 +143,21 @@ export default function ProductDetailClient({ product, relatedProducts }) {
         {/* Left: Product Image */}
         <div className="flex flex-col gap-6">
           <div className="bg-white rounded-[20px] p-12 flex justify-center border border-gray-100 shadow-lg">
-            <img 
-              src={mainImageSrc} 
-              alt={product.name}
-              className="max-h-[550px] w-auto object-contain"
+            <img
+              src={imageUrl}
+              alt={normalized?.name || product?.name}
+              onError={(e) => {
+                try {
+                  e.currentTarget.src = "/product_image.png";
+                } catch (err) {}
+              }}
+              className="w-auto object-contain"
+              style={{ maxHeight: 550 }}
             />
           </div>
           <div className="flex justify-start">
             <span className="text-white px-6 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider" style={{ backgroundColor: themeColor }}>
-              {product.categories || "Drinks"}
+              {normalized.categories || "Drinks"}
             </span>
           </div>
         </div>
@@ -83,22 +165,22 @@ export default function ProductDetailClient({ product, relatedProducts }) {
         {/* Right: Product Info */}
         <div className="flex flex-col">
           <h1 className="text-3xl font-black uppercase mb-2 tracking-tight leading-none italic" style={{ fontFamily: 'serif' }}>
-            {product.name}
+            {normalized.name || product.name}
           </h1>
           <p className="text-xl font-medium text-gray-500 mb-6">
-            {product.quantity || "12x320ml"}
+            {normalized.quantity || "12x320ml"}
           </p>
 
           <div className="mb-10">
             <h2 className="text-2xl font-bold mb-4 border-b-2 pb-2" style={{ borderBottomColor: `${themeColor}20` }}>Details</h2>
             <div className="space-y-0 text-[15px]">
               {[
-                ["SKU", product.SKU],
-                ["JK CODE", product.jk_code],
-                ["PALLET QUANTITY", product.palette_quantity],
-                ["CASE BARCODE", product.case_barcode],
-                ["SINGLE BARCODE", product.single_unit_barcode],
-                ["BRAND", product.brand || "TIGER TIGER"],
+                ["SKU", normalized.SKU],
+                ["JK CODE", normalized.jk_code],
+                ["PALLET QUANTITY", normalized.palette_quantity],
+                ["CASE BARCODE", normalized.case_barcode],
+                ["SINGLE BARCODE", normalized.single_unit_barcode],
+                ["BRAND", normalized.brand || "TIGER TIGER"],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between py-3 border-b border-gray-100 uppercase font-bold">
                   <span style={{ color: `${themeColor}CC` }}>{label}</span>
@@ -134,7 +216,7 @@ export default function ProductDetailClient({ product, relatedProducts }) {
             </button>
             
             <button 
-              onClick={handleAddToCart} 
+              onClick={handleAddToCart} // Click handler yahan add kiya
               disabled={!selectedUnit}
               className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white transition-all shadow-md active:scale-95"
               style={{ 
