@@ -3,6 +3,7 @@
 import React from "react";
 import { UtensilsCrossed } from "lucide-react";
 import Image from "next/image"; // 1. Standard Import
+import Link from 'next/link';
 
 // 2. STANDARD WAY: Images ko upar import karein
 import chilliImg from "@/public/fresh spicy.webp";
@@ -79,12 +80,13 @@ const InnovationSection = () => {
             <span style={{ color: brandGold }}>simplify cooking</span> without sacrificing taste."
           </h3>
           
-          <button 
-            className="px-8 py-3 rounded-md font-bold uppercase tracking-widest text-[12px] md:text-[14px] transition-all hover:scale-105 active:scale-95 shadow-md"
-            style={{ backgroundColor: brandGold, color: brandPurple }}
-          >
-            Learn More
-          </button>
+        <Link 
+  href="/categories"
+  className="inline-block px-8 py-3 rounded-md font-bold uppercase tracking-widest text-[12px] md:text-[14px] transition-all hover:scale-105 active:scale-95 shadow-md text-center"
+  style={{ backgroundColor: brandGold, color: brandPurple }}
+>
+  Learn More
+</Link>
         </div>
       </div>
     </section>

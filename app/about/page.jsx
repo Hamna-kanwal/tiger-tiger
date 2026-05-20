@@ -51,7 +51,7 @@ const TigerAboutBody = () => {
             View Products
         </button>
     <button className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold border-2 border-[#4B2452] hover:bg-transparent hover:text-[#4B2452] transition">
-    Discover Cuisine
+    Contact Us
 </button>
     </div>
 </section>

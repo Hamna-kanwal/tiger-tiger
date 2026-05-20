@@ -13,33 +13,22 @@ const AboutSection = () => {
     <section className="py-16 px-4 md:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
-        {/* Visual Content */}
-        <div className="relative h-[400px] md:h-[500px]">
-          
-          {/* Primary Image: Using 'fill' and 'object-cover' */}
-          <div className="absolute top-0 right-0 w-[85%] h-[75%] overflow-hidden z-10 rounded-xl">
-            <Image
-              src={mainImg} 
-              alt="Asian Cuisine"
-              fill  // Standard: Responsive banane ke liye fill use karein
-              sizes="(max-width: 768px) 100vw, 50vw"
-              placeholder="blur" // Standard: Loading ke waqt blur effect deta hai
-              className="object-cover"
-            />
-          </div>
-
-          {/* Secondary Image */}
-          <div className="absolute bottom-0 left-0 w-[55%] h-[55%] overflow-hidden z-20 rounded-xl border-4 border-white shadow-2xl">
-            <Image
-              src={overlayImg} 
-              alt="Tiger Tiger Products" 
-              fill
-              sizes="(max-width: 768px) 50vw, 25vw"
-              placeholder="blur"
-              className="object-cover"
-            />
-          </div>
-        </div>
+ {/* Visual Content: Video Section */}
+<div className="relative h-[400px] md:h-[500px] w-full">
+  <video
+    className="w-full h-full object-cover rounded-xl shadow-2xl"
+    autoPlay
+    loop
+    muted
+    playsInline
+    // Agar video load hone mein time le toh yeh image dikhayega
+    poster="/placeholder-image.jpg" 
+  >
+    {/* Ensure file name has no spaces and is in public folder */}
+    <source src="/header_video_TT.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
 
         {/* Text Content */}
         <div className="space-y-8">

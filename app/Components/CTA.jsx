@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from "next/link";
+
 
 const DiscoverSection = () => {
   const brandPurple = "#431A4F";
@@ -34,40 +36,40 @@ const DiscoverSection = () => {
               </p>
             </div>
 
-            {/* Buttons Container*/}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-              {/* Contact Us Button - Invert Effect */}
-<button 
-  onMouseEnter={() => setIsBtn2Hovered(true)}
-  onMouseLeave={() => setIsBtn2Hovered(false)}
-  style={{ 
-    borderColor: 'white', 
-    // Hover par background white ho jayega aur text purple/black
-    backgroundColor: isBtn2Hovered ? 'white' : 'transparent', 
-    color: isBtn2Hovered ? brandPurple : 'white' 
-  }}
-  className="bg-transparent border-[1.5px] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300"
->
-  Contact Us
-</button>
+         {/* Buttons Container */}
+<div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+  
+  {/* Contact Us Link - Invert Effect */}
+  <Link
+    href="/trade-register"
+    onMouseEnter={() => setIsBtn2Hovered(true)}
+    onMouseLeave={() => setIsBtn2Hovered(false)}
+    style={{ 
+      borderColor: 'white', 
+      backgroundColor: isBtn2Hovered ? 'white' : 'transparent', 
+      color: isBtn2Hovered ? brandPurple : 'white' 
+    }}
+    className="bg-transparent border-[1.5px] px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300 text-center"
+  >
+    Contact Us
+  </Link>
 
-{/* View Products Button - Invert Effect */}
-<button 
-  onMouseEnter={() => setIsBtn1Hovered(true)}
-  onMouseLeave={() => setIsBtn1Hovered(false)}
-  style={{ 
-    // Hover par background purple ho jayega aur text white
-    backgroundColor: isBtn1Hovered ? brandPurple : 'white', 
-    color: isBtn1Hovered ? 'white' : brandPurple,
-    border: `1.5px solid ${isBtn1Hovered ? brandPurple : 'white'}`
-  }}
-  className="px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300 flex items-center gap-2 shadow-lg"
->
-  View Products <ArrowRight size={16} />
-</button>
-              
-             
-            </div>
+  {/* View Products Link - Invert Effect */}
+  <Link
+    href="/products"
+    onMouseEnter={() => setIsBtn1Hovered(true)}
+    onMouseLeave={() => setIsBtn1Hovered(false)}
+    style={{ 
+      backgroundColor: isBtn1Hovered ? brandPurple : 'white', 
+      color: isBtn1Hovered ? 'white' : brandPurple,
+      border: `1.5px solid ${isBtn1Hovered ? brandPurple : 'white'}`
+    }}
+    className="px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] md:text-[12px] transition-all duration-300 flex items-center gap-2 shadow-lg"
+  >
+    View Products <ArrowRight size={16} />
+  </Link>
+
+</div>
           </div>
 
           {/* --- Right Side: Pop-out Images --- */}
