@@ -1,5 +1,5 @@
-import ProductDetailClient from "../../../../Components/ProductDetail"; // Path check kar lein agar adjustments chahiye hon
-import { fetchAllProducts } from "../../../../action";
+import ProductDetailClient from "../../Components/ProductDetail"; // Path check kar lein agar adjustments chahiye hon
+import { fetchAllProducts } from "../../action";
 import { notFound } from "next/navigation";
 
 // Hamare specific array list jo sirf featured items ko match karega
