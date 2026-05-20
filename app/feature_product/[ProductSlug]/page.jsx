@@ -69,13 +69,14 @@ export default function Home() {
 
         <div className="max-w-[1440px] mx-auto">
           {sections.map((section, idx) => (
-            // FIXED: Yahan se mb-64, mt-22 aur pb-20 ko hata kar standard mb-16 (margin-bottom) laga diya hai
-            <div key={idx} className="mb-16 border-b border-gray-100 pb-16 last:border-0 last:mb-0">
+            // FIXED: Yahan py-12 lagaya hai taake har brand ke darmiyan standard aur clean spacing bane
+            <div key={idx} className="py-12 border-b border-gray-100 last:border-0 last:pb-0">
               <h2 className="text-3xl md:text-4xl font-bold text-[#4e1a51] mb-10 uppercase tracking-tight">
                 {section.title}
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 items-start">
+              {/* FIXED: mb-12 se top features grid aur neeche slider ke beech chipkao khatam ho jayega */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 items-start">
                 {section.features.map((item) => (
                   <div key={item.id} className="overflow-hidden rounded-[30px] md:rounded-[40px] shadow-lg hover:shadow-2xl transition-all duration-500">
                     <img
@@ -120,7 +121,8 @@ function ProductSlider({ listings, productSlug }) {
   const visibleListings = getVisibleListings();
 
   return (
-    <div className="relative flex items-center px-4 md:px-20">
+    // FIXED: pt-4 add kiya hai taaki top section se cards ka distance balanced lage
+    <div className="relative flex items-center px-4 md:px-20 pt-4">
       <button
         onClick={handlePrev}
         className="absolute left-0 md:left-4 z-30 p-4 bg-[#4e1a51] text-white rounded-full shadow-2xl hover:scale-110 transition-all active:scale-95"
@@ -137,7 +139,7 @@ function ProductSlider({ listings, productSlug }) {
               href={`/feature_product/${productSlug}/${sku}`}
               className="flex flex-col items-center group/card"
             >
-              <div className="relative w-full aspect-[3/4] overflow-hidden flex items-center justify-center  mb-4 transition-all duration-500 group-hover/card:drop-shadow-3xl shadow-2xl rounded-[2.5rem] bg-white">
+              <div className="relative w-full aspect-[3/4] overflow-hidden flex items-center justify-center mb-4 transition-all duration-500 group-hover/card:drop-shadow-3xl shadow-2xl rounded-[2.5rem] bg-white">
                 <img
                   src={item.img}
                   alt={item.name}
