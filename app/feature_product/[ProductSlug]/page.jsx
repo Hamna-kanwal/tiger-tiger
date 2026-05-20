@@ -62,20 +62,20 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <main className="flex-grow pt-20 pb-16 px-4 md:px-12">
+      <main className="flex-grow pb-16 px-4 md:px-12">
         <div className="mt-20">
           <ProductRange />
         </div>
 
         <div className="max-w-[1440px] mx-auto">
           {sections.map((section, idx) => (
-            // mb-64 aur pb-20 add kiya hai har section ke end par extra spacing ke liye
-            <div key={idx} className="mb-64 mt-22 pb-20 border-b border-gray-50 last:border-0 last:mb-20">
+            // FIXED: Yahan se mb-64, mt-22 aur pb-20 ko hata kar standard mb-16 (margin-bottom) laga diya hai
+            <div key={idx} className="mb-16 border-b border-gray-100 pb-16 last:border-0 last:mb-0">
               <h2 className="text-3xl md:text-4xl font-bold text-[#4e1a51] mb-10 uppercase tracking-tight">
                 {section.title}
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 items-start">
                 {section.features.map((item) => (
                   <div key={item.id} className="overflow-hidden rounded-[30px] md:rounded-[40px] shadow-lg hover:shadow-2xl transition-all duration-500">
                     <img

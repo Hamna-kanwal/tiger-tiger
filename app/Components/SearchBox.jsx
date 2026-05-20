@@ -70,7 +70,8 @@ export default function SearchBox() {
           {results.map((item) => (
             <Link 
               key={item.id} 
-              href={`/products/${item.slug}`}
+              // YAHAN BADLAO KIYA HAI: Item type check karke sahi URL path de diya hai
+              href={item.type === 'blog' ? `/blogs/${item.slug}` : `/products/${item.slug}/${item.SKU}`}
               onClick={() => setResults([])} 
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-xl text-[#4e1a51] transition-all"
             >
@@ -88,7 +89,13 @@ export default function SearchBox() {
                   onError={(e) => { e.target.src = "https://via.placeholder.com/80?text=Error"; }}
                 />
               </div>
-              <span className="text-xs font-bold truncate leading-tight">{item.name}</span>
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-bold truncate leading-tight">{item.name}</span>
+                {/* Choti sub-text details taake pata chale product hai ya blog */}
+                <span className="text-[10px] text-gray-400 mt-0.5">
+                  {item.type === 'blog' ? 'Blog Article' : `SKU: ${item.SKU || ''}`}
+                </span>
+              </div>
             </Link>
           ))}
         </div>
