@@ -69,7 +69,7 @@ const Herosection = () => {
   </Link>
 
   <Link 
-    href="/trade-register" // 👈 Apna sahi route yahan likhein
+    href="/contact" // 👈 Apna sahi route yahan likhein
     onMouseEnter={() => setHoverCuisines(true)}
     onMouseLeave={() => setHoverCuisines(false)}
     style={{ 

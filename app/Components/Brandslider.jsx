@@ -19,8 +19,8 @@ const BrandsSlider = () => {
   ];
 
   return (
-    <section className="bg-[#4e1a51] py-2 mt-0">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="bg-[#4e1a51]">
+      <div className="max-w-7xl">
         <Swiper
           modules={[Autoplay]}
           loop={true}
@@ -39,13 +39,21 @@ const BrandsSlider = () => {
               slidesPerView: 4, // Slides kam karne se size mazeed bara dikhay ga
               spaceBetween: 50,
             },
+             768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            500: {
+              slidesPerView: 4, // Slides kam karne se size mazeed bara dikhay ga
+              spaceBetween: 50,
+            },
           }}
           className="w-full"
         >
           {brands.map((brand, index) => (
             <SwiperSlide key={index}>
               <div className="flex justify-center items-center py-1">
-                <div className="relative w-[180px] h-[100px] md:w-[120px] md:h-[100px]"> 
+                <div className="relative w-[180px] h-[100px] md:w-[120px] md:h-[50px]"> 
                   <Image
                     src={brand.src}
                     alt={brand.alt}

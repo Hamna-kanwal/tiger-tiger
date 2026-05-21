@@ -234,14 +234,17 @@ export default function TradeRegisterPage() {
 
   return (
     <>
-      <div className="relative h-84 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/bg.png')" }}>
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
-            Complete Your Registration
-          </h1>
-        </div>
-      </div>
+     <div 
+  className="relative h-[600px] md:h-[400px] bg-cover bg-center bg-no-repeat" 
+  style={{ backgroundImage: "url('/bg.png')" }}
+>
+  <div className="absolute inset-0 bg-black/40"></div>
+  <div className="relative z-10 flex items-center justify-center h-full">
+    <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
+      Complete Your Registration
+    </h1>
+  </div>
+</div>
 
       <section className="py-12 bg-[#F8FAFC]">
         <form onSubmit={handleSubmit}>

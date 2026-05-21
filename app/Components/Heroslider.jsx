@@ -19,7 +19,7 @@ const slidesData = [
     title: "Double Champions",
     mainHeading: "Celebrating Back to Back Success ",
     subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.25] md:scale-140 md:translate-y-12 translate-y-3",
+    className: "scale-[1.25] md:scale-180 md:translate-y-12 translate-y-3",
     isVideo: false 
   },
   { 
@@ -140,7 +140,7 @@ const HeroSlider = () => {
 
       {/* --- CAROUSEL SECTION --- */}
       <div className="w-full flex justify-center items-end mt-10 overflow-hidden !rounded-none">
-        <div className="relative w-full h-[320px] sm:h-[400px] md:h-[550px] lg:h-[500px] bg-transparent !rounded-none">
+        <div className="relative w-full h-[320px] sm:h-[1000px] md:h-[550px] lg:h-[500px] bg-transparent !rounded-none">
           <Swiper
             modules={[Autoplay, Pagination, EffectFade]}
             slidesPerView={1}

@@ -1,11 +1,12 @@
 import React from 'react';
+import Link from "next/link";
 
 const TigerAboutBody = () => {
   return (
     <main className="bg-[#FFFDF9]">
       
       {/* 1. Who We Are Section */}
-     <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[50px] md:mt-40">
+     <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[10px] md:mt-10">
     {/* mx-auto add kiya gaya hai taaki pura section screen ke center mein aa jaye */}
     
     <span className="text-[#4B2452] font-bold tracking-widest text-[20px]">ABOUT US</span>
@@ -45,15 +46,23 @@ const TigerAboutBody = () => {
         </p>
     </div>
 
-    <div className="mt-10 flex flex-wrap justify-center gap-4">
-        {/* flex-wrap add kiya hai taaki mobile par buttons ek dusre ke upar niche aa sakein agar jagah kam ho */}
-        <button className="px-8 py-3 rounded-full border-2 border-[#4B2452] text-[#4B2452] font-bold hover:bg-[#4B2452] hover:text-white transition">
-            View Products
-        </button>
-    <button className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold border-2 border-[#4B2452] hover:bg-transparent hover:text-[#4B2452] transition">
+   <div className="mt-10 flex flex-wrap justify-center gap-4">
+  {/* View Products Link */}
+  <Link 
+    href="/products" 
+    className="px-8 py-3 rounded-full border-2 border-[#4B2452] text-[#4B2452] font-bold hover:bg-[#4B2452] hover:text-white transition text-center"
+  >
+    View Products
+  </Link>
+
+  {/* Contact Us Link */}
+  <Link 
+    href="/trade-register" 
+    className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold border-2 border-[#4B2452] hover:bg-transparent hover:text-[#4B2452] transition text-center"
+  >
     Contact Us
-</button>
-    </div>
+  </Link>
+</div>
 </section>
 
       {/* 2. Our Food Section */}
@@ -186,14 +195,21 @@ const TigerAboutBody = () => {
           <h2 className="text-xl md:text-2xl font-semibold text-white leading-relaxed mb-10">
             Tiger Tiger are explorers and ambassadors of Asian cuisine. Our customer-first approach in Asian food supply and passion for discovery keep us committed to making stories real. We are dedicated to satisfying our customers while sharing the vibrant and diverse flavours of Asia with the world.
           </h2>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition">
-              Contact Us
-            </button>
-            <button className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition">
-              Discover Products
-            </button>
-          </div>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+  <Link 
+    href="/contact" 
+    className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
+  >
+    Contact Us
+  </Link>
+  
+  <Link 
+    href="/products" 
+    className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
+  >
+    Discover Products
+  </Link>
+</div>
         </div>
       </section>
 
