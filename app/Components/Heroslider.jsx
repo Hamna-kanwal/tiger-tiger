@@ -54,7 +54,7 @@ const slidesData = [
   },
   { 
     id: 5, 
-    src: "/hero_section.mp4", 
+    src: "/Comp 1_5.mp4", 
     alt: "Brand Video", 
     title: "Experience the Taste",
     mainHeading: "Authentic Asian Flavors Crafted For You",
