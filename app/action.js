@@ -159,20 +159,21 @@ export async function getCategories() {
     return [];
   }
 }
-
-// --- 7. NEW: GET PRODUCTS BY CATEGORY (For SSR) ---
 export async function getProductsByCategory(slug) {
   if (!slug) return { success: false, data: [] };
 
   try {
     const res = await fetch(
       `https://backend.tigertigerfoods.com/api/get-product-by-category?category=${slug}`,
-      {
-        next: { revalidate: 3600 }, // 1 Ghante ka cache
-      }
+      { next: { revalidate: 3600 } }
     );
 
-    if (!res.ok) throw new Error("API response was not ok");
+    // --- Yahan change karein ---
+    if (!res.ok) {
+      const errorText = await res.text(); // Server ka error message read karein
+      console.error(`Fetch failed with status ${res.status}:`, errorText);
+      throw new Error(`API error: ${res.status}`);
+    }
     
     const data = await res.json();
     return {
@@ -184,7 +185,6 @@ export async function getProductsByCategory(slug) {
     return { success: false, data: [] };
   }
 }
-
 export async function getProductDetail(sku) {
   if (!sku) return null;
   try {

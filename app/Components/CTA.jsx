@@ -68,10 +68,10 @@ const DiscoverSection = () => {
           </div>
 
        {/* --- Right Side: Image Container Fixed --- */}
-<div className="lg:col-span-6 relative h-full flex items-end justify-center lg:justify-start overflow-hidden">
+<div className="lg:col-span-6 relative h-full flex items-center justify-center overflow-hidden padding">
   
-  {/* Image wrapper with negative margin to pull it away from the edge */}
-  <div className="relative w-full h-full flex items-end justify-center lg:ml-[80px]"> 
+  {/* Yahan 'lg:ml-[80px]' ko 'ml-0' ke saath override kiya hai taake mobile par center rahe */}
+  <div className="relative w-full h-full flex items-end justify-center ml-0 lg:ml-[80px]"> 
     <Image 
       src="/asian.png" 
       alt="Sticks Background"

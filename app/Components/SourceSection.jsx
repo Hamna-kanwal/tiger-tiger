@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image"; // 1. Standard Import
+import Image from "next/image";
 
 const GlobalSourcing = () => {
   const brandGold = "#D2B57B";
@@ -14,12 +14,13 @@ const GlobalSourcing = () => {
     "Ethical & sustainable sourcing",
   ];
 
+  // Updated sizes for better visibility on mobile
   const locations = [
-    { name: "Korea", code: "kr", style: "top-[15%] right-[5%] w-8 md:w-12" },
-    { name: "China", code: "cn", style: "top-[38%] right-[22%] w-12 md:w-12" },
-    { name: "Japan", code: "jp", style: "top-[52%] right-[2%] w-10 md:w-12" },
-    { name: "Thailand", code: "th", style: "bottom-[30%] right-[32%] w-8 md:w-10" },
-    { name: "Vietnam", code: "vn", style: "bottom-[20%] right-[10%] w-8 md:w-10" },
+    { name: "Korea", code: "kr", style: "top-[15%] right-[5%] w-7 md:w-12" },
+    { name: "China", code: "cn", style: "top-[38%] right-[22%] w-8 md:w-12" },
+    { name: "Japan", code: "jp", style: "top-[52%] right-[2%] w-7 md:w-12" },
+    { name: "Thailand", code: "th", style: "bottom-[30%] right-[32%] w-6 md:w-10" },
+    { name: "Vietnam", code: "vn", style: "bottom-[20%] right-[10%] w-6 md:w-10" },
   ];
 
   return (
@@ -29,7 +30,6 @@ const GlobalSourcing = () => {
         style={{ backgroundColor: brandPurple }}
       >
         
-        {/* --- Left Content Column --- */}
         <div className="w-full md:w-1/2 z-10 text-left">
           <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold text-white mb-2 tracking-wide uppercase leading-tight">
             GLOBAL SOURCING FOR <br />
@@ -57,11 +57,9 @@ const GlobalSourcing = () => {
           </div>
         </div>
 
-        {/* --- Right Column: Image with Flag Overlays --- */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0 relative flex justify-center items-center h-full">
           <div className="relative w-full lg:scale-110 transition-transform">
             
-            {/* 2. Main Map Image: Added width/height or layout logic */}
             <Image 
               src="/Group.webp" 
               alt="World Map" 
@@ -70,28 +68,25 @@ const GlobalSourcing = () => {
               className="w-full h-auto object-contain" 
             />
 
-            {/* Flag Overlays */}
             {locations.map((loc, index) => (
               <div 
                 key={index} 
                 className={`absolute transition-transform hover:scale-110 pointer-events-none ${loc.style}`}
               >
-                {/* 3. Flag Images: Using external URL with Next.js Image */}
                 <Image
                   src={`https://flagcdn.com/w80/${loc.code}.png`} 
                   alt={`${loc.name} flag`}
-                  width={80}  // Required width
-                  height={50} // Required height
+                  width={80} 
+                  height={50}
                   className="rounded-sm shadow-lg border border-white/20 h-auto w-full"
                 />
-                <span className="block text-[8px] md:text-[10px] text-white text-center mt-1 font-bold uppercase">
+                <span className="hidden md:block text-[10px] text-white text-center mt-0.5 font-bold uppercase">
                     {loc.name}
                 </span>
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

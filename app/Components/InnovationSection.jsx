@@ -8,7 +8,7 @@ import Link from 'next/link';
 // 2. STANDARD WAY: Images ko upar import karein
 import chilliImg from "@/public/fresh spicy.webp";
 import foodImg from "@/public/pngwing.webp";
-import baoImg from "@/public/bao bun.webp";
+import baoImg from "@/public/bao bun img.png";
 
 const InnovationSection = () => {
   const brandPurple = "#4e1a51";
