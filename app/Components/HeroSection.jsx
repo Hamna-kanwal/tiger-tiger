@@ -25,7 +25,7 @@ const Herosection = () => {
     },
     {
       icon: <ShieldCheck className="w-6 h-6" />,
-      title: "1000+",
+      title: "3000+",
       sub: "UK F&B BUSINESSES SERVED",
       hasBorder: true
     },

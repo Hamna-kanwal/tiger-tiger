@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Search } from 'lucide-react'; 
 
 export const allRecipes = [
+  // --- JAPANESE (Original) ---
   { 
     id: "chicken-katsu", 
     title: "Chicken Katsu Curry With Rice", 
@@ -24,7 +25,7 @@ export const allRecipes = [
       "1 box (4 blocks) Tiger Tiger Golden Katsu Curry Japanese Style HOT Curry Mix Block"
     ],
     method: [
-      "Simmer Vegetables: Sauté 1 sliced onion and chunks of 1 carrot and 1 potato in a pot with a little oil. Add 2½ cups of water, bring to a boil, and simmer until tender (approx. 15-20 min)." ,
+      "Simmer Vegetables: Sauté 1 sliced onion and chunks of 1 carrot and 1 potato in a pot with a little oil. Add 2½ cups of water, bring to a boil, and simmer until tender (approx. 15-20 min).",
       "Dissolve Curry Blocks: Turn off the heat. Break the Tiger Tiger Golden Katsu Curry Mix Blocks into the pot. Stir until fully dissolved. Turn heat back on low and simmer 5-10 minutes until thick. Keep warm.",
       "Prepare Chicken Katsu: Season 2 flattened chicken breasts with salt and pepper. Dredge in flour, dip in beaten egg, and coat thoroughly with Panko breadcrumbs.",
       "Fry Katsu: Heat 1 inch of oil in a skillet over medium-high heat. Fry each breaded chicken breast until deep golden brown and cooked through (4-5 minutes per side). Drain on paper towels.",
@@ -43,23 +44,190 @@ export const allRecipes = [
     ingredients: ["Ramen Noodles", "Miso Paste", "Soft boiled egg", "Green onions", "Nori sheets", "Sliced bamboo shoots"],
     method: ["Prepare Broth: Combine dashi stock with miso paste in a pot and bring to a gentle simmer.", "Cook Noodles: Boil ramen noodles until al dente.", "Assemble: Place noodles in a bowl, pour over broth.", "Garnish: Top with egg, onions, nori, and bamboo shoots."]
   },
+
+  // --- CHINESE ---
+  {
+    id: "chicken-chop-suey",
+    title: "Classic Chicken Chop Suey",
+    cuisine: "Chinese",
+    product: "Noodles",
+    time: "35 min",
+    servings: "4 Serving",
+    calories: "470",
+    image: "/receipes.webp",
+    ingredients: ["300g Tiger Tiger Gold Chop Suey No.1 Noodles", "250g chicken breast, sliced", "Garlic, ginger, onion", "Carrot, celery, mushrooms, Chinese cabbage", "Beansprouts, water chestnuts", "Sauce: Oyster sauce, Light Soy Sauce, Shaoxing wine, Sesame Oil, sugar, chicken stock, cornflour"],
+    method: ["Cook Noodles: Boil noodles 3-4 mins, drain and set aside.", "Mix Sauce: Whisk sauce ingredients except cornflour.", "Stir-Fry: Fry chicken until golden. Remove.", "Vegetables: Stir-fry garlic, ginger, onion, then add hard veg, then soft veg.", "Finish: Return chicken, add sauce and cornflour slurry. Simmer until thickened. Toss with noodles."]
+  },
+
+  // --- KOREAN ---
+ // --- KOREAN RECIPES ---
   { 
-    id: "thai-green-curry", 
-    title: "Thai Green Curry", 
+    id: "tteokbokki", 
+    title: "TT - Chopped Rice Cake (Tteokbokki)", 
+    cuisine: "Korean", 
+    product: "Rice", 
+    time: "40 min", 
+    servings: "2 Serving", 
+    calories: "450", 
+    image: "/receipes.webp",
+    ingredients: [
+      "1 pack (500g) Tiger Tiger Chopped Rice Cake",
+      "3 cups (700ml) water or anchovy/dashi stock",
+      "3 tablespoons Tiger Tiger Gochujang Hot Pepper Paste",
+      "1 tablespoon gochugaru (Korean red chilli flakes)",
+      "2 tablespoons soy sauce",
+      "1½ tablespoons sugar (or honey)",
+      "2 cloves garlic, finely minced",
+      "1 small onion, thinly sliced",
+      "2 spring onions, cut into 2-inch pieces",
+      "2 sheets fish cake (eomuk), cut into triangles (optional)",
+      "2 boiled eggs (optional)",
+      "1 teaspoon toasted sesame seeds",
+      "1 teaspoon sesame oil"
+    ],
+    method: [
+      "Soak Rice Cakes: Soak in cold water for 15-20 minutes. Drain.",
+      "Make Sauce Base: Whisk Gochujang, gochugaru, soy sauce, sugar, and garlic in a bowl.",
+      "Build Broth: Boil 3 cups water/stock with onion and white parts of spring onions.",
+      "Combine: Stir in sauce base, add rice cakes and fish cakes. Stir well.",
+      "Simmer: Cook for 8-10 minutes, stirring occasionally until sauce is thick and glossy.",
+      "Finish: Stir in boiled eggs and green onion parts. Drizzle with sesame oil and sprinkle with sesame seeds."
+    ]
+  },
+  { 
+    id: "tteokguk-beef", 
+    title: "Non-Vegetarian Tteokguk (Classic Beef)", 
+    cuisine: "Korean", 
+    product: "Rice", 
+    time: "60 min", 
+    servings: "4 Serving", 
+    calories: "490", 
+    image: "/receipes.webp",
+    ingredients: [
+      "1 pack (500g) Tiger Tiger Sliced Rice Cake",
+      "200g beef brisket or sirloin, thinly sliced",
+      "8 cups (1.8L) beef stock",
+      "4 garlic cloves, minced",
+      "2 tbsp soy sauce, 1 tbsp sesame oil",
+      "Salt & black pepper to taste",
+      "2 eggs (for Jidan garnish)",
+      "Spring onions, roasted seaweed strips, sesame seeds"
+    ],
+    method: [
+      "Soak Rice Cakes: Soak in cold water for 20-30 minutes. Drain.",
+      "Sauté Beef: Heat sesame oil, sauté beef and garlic until fragrant.",
+      "Build Broth: Add beef stock and soy sauce. Simmer for 10-15 minutes.",
+      "Egg Garnish: Cook thin yolk and white omelettes separately, roll, and slice into ribbons.",
+      "Cook Rice Cakes: Add cakes to broth, simmer 5-7 minutes until they float.",
+      "Serve: Season to taste. Top with egg ribbons, seaweed, spring onions, and sesame seeds."
+    ]
+  },
+  { 
+    id: "tteokguk-veg", 
+    title: "Vegetarian Tteokguk (Mushroom & Tofu)", 
+    cuisine: "Korean", 
+    product: "Rice", 
+    time: "70 min", 
+    servings: "4 Serving", 
+    calories: "400", 
+    image: "/receipes.webp",
+    ingredients: [
+      "1 pack (500g) Tiger Tiger Sliced Rice Cake",
+      "150g shiitake mushrooms, 200g firm tofu cubes",
+      "8 cups (1.8L) vegetable broth",
+      "Dried shiitake, kombu, daikon (for broth)",
+      "4 cloves garlic, soy sauce, sesame oil",
+      "Eggs (optional), spring onions, roasted seaweed"
+    ],
+    method: [
+      "Make Broth: Simmer water with dried mushrooms, kombu, and daikon for 30 minutes. Strain.",
+      "Sauté: Fry mushrooms and tofu in sesame oil until golden.",
+      "Combine: Add mushrooms, tofu, and soy sauce to the broth. Simmer for 5 minutes.",
+      "Cook Rice Cakes: Add drained rice cakes, simmer 5-7 minutes until soft.",
+      "Serve: Garnish with egg ribbons, spring onions, and seaweed strips."
+    ]
+  },
+
+  // --- THAI ---
+ // --- THAI RECIPES ---
+  { 
+    id: "thai-green-curry-chicken", 
+    title: "Chicken Thai Green Curry", 
     cuisine: "Thai", 
     product: "Sauces", 
-    time: "25 min", 
+    time: "40 min", 
     servings: "4 Serving", 
-    calories: "410", 
-    image: "/receipes.webp",
-    ingredients: ["Tiger Tiger Green Curry Paste", "400ml Coconut Milk", "Bamboo shoots", "Chicken/Tofu", "Basil", "Fish sauce"],
-    method: ["Sauté Paste: Fry paste until fragrant.", "Add Protein: Stir in your protein.", "Simmer: Add coconut milk and bamboo shoots. Simmer 10-15 min.", "Finish: Stir in basil and fish sauce."]
+    calories: "720", 
+    image: "/thia_curry.jpeg",
+    ingredients: [
+      "500g boneless chicken thighs (or breast), cut into bite-sized pieces",
+      "3-4 tablespoons Tiger Tiger Green Curry Paste",
+      "400ml Tiger Tiger Coconut Milk (full-fat)",
+      "100ml chicken stock or water",
+      "2 tablespoons Fish Sauce",
+      "1½ tablespoons palm sugar (or brown sugar)",
+      "1 tablespoon vegetable oil",
+      "1 small aubergine, cut into chunks",
+      "1 red bell pepper, sliced",
+      "100g Tiger Tiger bamboo shoots, drained",
+      "4-5 kaffir lime leaves, torn",
+      "2 stalks lemongrass, bruised",
+      "1-inch piece galangal (or ginger), sliced",
+      "Fresh Thai basil leaves, Lime juice, Tiger Tiger Jasmine Rice"
+    ],
+    method: [
+      "Prep: Slice chicken and vegetables. Bruise lemongrass and tear lime leaves.",
+      "Bloom Paste: Heat thick coconut cream from the top of the can until it splits. Add curry paste and fry for 2-3 mins until fragrant.",
+      "Sear Chicken: Add chicken and stir-fry for 3-4 mins until sealed.",
+      "Simmer: Pour in remaining coconut milk and stock. Add aromatics (lemongrass, galangal, lime leaves) and simmer for 8-10 mins.",
+      "Add Veg: Add aubergine and simmer 4-5 mins. Add peppers and bamboo shoots, cook 3-4 mins more.",
+      "Season & Serve: Stir in fish sauce, sugar, and lime juice. Turn off heat, stir in basil, and serve over Jasmine rice."
+    ]
   },
-  { id: "kimchi-noodles", title: "Spicy Kimchi Noodles", cuisine: "Korean", product: "Noodles", time: "15 min", servings: "2 Serving", calories: "380", image: "/receipes.webp", ingredients: ["Korean Noodles", "Kimchi", "Gochujang", "Sesame oil"], method: ["Boil noodles.", "Mix with kimchi and sauce."] },
-  { id: "bulgogi-beef", title: "Korean BBQ Bulgogi", cuisine: "Korean", product: "Spices & Seasonings", time: "35 min", servings: "4 Serving", calories: "520", image: "/receipes.webp", ingredients: ["Beef slices", "Bulgogi marinade", "Onions", "Sesame seeds"], method: ["Marinate beef.", "Grill or pan-fry with onions."] },
-  { id: "egg-fried-rice", title: "Special Fried Rice", cuisine: "Chinese", product: "Rice", time: "20 min", servings: "3 Serving", calories: "350", image: "/receipes.webp", ingredients: ["Cooked Rice", "Eggs", "Soy Sauce", "Mixed Veggies"], method: ["Scramble eggs.", "Stir fry veggies and rice with soy sauce."] },
-  { id: "dim-sum", title: "Steamed Prawn Dim Sum", cuisine: "Chinese", product: "Frozen", time: "12 min", servings: "3 Serving", calories: "180", image: "/receipes.webp", ingredients: ["Tiger Tiger Frozen Dim Sum", "Soy dipping sauce"], method: ["Steam for 10-12 minutes.", "Serve hot."] },
-  { id: "butter-chicken", title: "Butter Chicken Masala", cuisine: "Indian", product: "Sauces", time: "40 min", servings: "4 Serving", calories: "550", image: "/receipes.webp", ingredients: ["Chicken chunks", "Butter Chicken Paste", "Cream", "Butter"], method: ["Fry chicken.", "Add paste and cream, simmer until thick."] },
+  { 
+    id: "thai-green-curry-tofu", 
+    title: "Tofu & Vegetable Thai Green Curry", 
+    cuisine: "Thai", 
+    product: "Sauces", 
+    time: "40 min", 
+    servings: "4 Serving", 
+    calories: "580", 
+    image: "/receipes.webp",
+    ingredients: [
+      "300g firm tofu, pressed and cubed",
+      "150g shiitake or button mushrooms, sliced",
+      "3-4 tablespoons Tiger Tiger Green Curry Paste (veg-suitable)",
+      "400ml Tiger Tiger Coconut Milk",
+      "100ml vegetable stock",
+      "2 tablespoons Tiger Tiger Light Soy Sauce",
+      "1½ tablespoons palm sugar (or brown sugar)",
+      "Aubergine, bell pepper, bamboo shoots, sugar snap peas",
+      "Aromatics (kaffir lime leaves, lemongrass, galangal)",
+      "Thai basil, Lime juice, Tiger Tiger Jasmine Rice"
+    ],
+    method: [
+      "Crisp Tofu: Pan-fry tofu cubes in oil until golden. Set aside.",
+      "Bloom Paste: Fry thick coconut cream with curry paste for 2-3 mins.",
+      "Sauté Mushrooms: Add mushrooms to the paste and sauté for 2-3 mins.",
+      "Simmer: Add remaining coconut milk, stock, and aromatics. Simmer gently.",
+      "Add Veg: Simmer aubergine, peppers, bamboo shoots, and snap peas until tender.",
+      "Combine & Season: Fold in crispy tofu. Season with light soy sauce, sugar, and lime. Stir in basil and serve."
+    ]
+  },
+
+  // --- OTHERS (Spring Rolls) ---
+  {
+    id: "veggie-spring-rolls",
+    title: "Classic Vegetable Spring Rolls",
+    cuisine: "Chinese",
+    product: "Frozen",
+    time: "25 min",
+    servings: "4 Serving",
+    calories: "300",
+    image: "/receipes.webp",
+    ingredients: ["Tiger Tiger Spring Roll Pastry Sheets", "Shredded cabbage, carrots, bean sprouts", "Mushrooms, garlic, ginger", "Soy sauce, sesame oil, cornstarch"],
+    method: ["Filling: Stir-fry aromatics and vegetables. Season and thicken with cornstarch slurry. Cool completely.", "Wrap: Place filling on wrapper, fold sides and roll tightly. Seal with water/flour paste.", "Cook: Deep-fry at 170-180°C until golden or brush with oil and bake at 200°C for 15-20 mins."]
+  }
 ];
 
 const RecipeHero = () => {
