@@ -19,7 +19,7 @@ const slidesData = [
     title: "Double Champions",
     mainHeading: "Celebrating Back to Back Success ",
     subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.25] md:scale-180 md:translate-y-12 translate-y-3",
+    className: "scale-[1.5] md:scale-140 md:translate-y-0 translate-y-8",
     isVideo: false 
   },
   { 
