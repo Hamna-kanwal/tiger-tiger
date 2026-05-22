@@ -9,18 +9,22 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         
         {/* Visual Content: Video Section (Adjusted for 1920x800) */}
-        <div className="w-full">
-          <video
-            className="w-full h-auto max-h-[400px] object-contain rounded-xl shadow-2xl bg-black"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="/header_video_TT.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+    {/* Visual Content: Video Section */}
+<div className="w-full">
+  <video
+    className="w-full h-auto max-h-[400px] object-contain rounded-xl shadow-2xl bg-black"
+    autoPlay
+    loop
+    muted
+    playsInline
+  >
+    <source 
+      src="https://backend.tigertigerfoods.com/public/assets/Video/tiger_tiger_video.mp4" 
+      type="video/mp4" 
+    />
+    Your browser does not support the video tag.
+  </video>
+</div>
 
         {/* Text Content */}
         <div className="space-y-6">
