@@ -1,13 +1,15 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const RecipeSection = () => {
+  // Cuisines ka data
   const cuisines = [
     { name: 'Japanese', image: '/japnese_receipes.webp' },
     { name: 'Chinese', image: '/chinese.webp' },
     { name: 'Korean', image: '/korean_receipes.webp' },
     { name: 'Thai', image: '/thai.webp' },
-    { name: 'Indian', image: '/indian.webp' },
+    { name: 'Others', image: '/indian.webp' },
   ];
 
   return (
@@ -23,22 +25,23 @@ const RecipeSection = () => {
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-4 md:h-[700px]">
         {cuisines.map((item, index) => (
-          <div
+          <Link
             key={item.name}
-            className={`relative overflow-hidden rounded-2xl group shadow-sm bg-gray-100 
+            href={`/recipes?cuisine=${item.name}`} // Yahan se URL param ja raha hai
+            className={`block relative overflow-hidden rounded-2xl group shadow-sm bg-gray-100 
               ${index === 0 ? 'md:row-span-2 h-[500px] md:h-full' : 'h-[350px] md:h-full'}`}
           >
-            {/* Optimized Next.js Image Component */}
+            {/* Image */}
             <Image
               src={item.image}
               alt={`${item.name} cuisine recipes`}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-              priority={index === 0} // Optimizes Largest Contentful Paint for the first image
+              priority={index === 0}
               className="absolute inset-0 object-cover group-hover:scale-105 transition-transform duration-500"
             />
 
-            {/* Gradient Overlay for Text Legibility */}
+            {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:bg-black/20 transition-all duration-300" />
 
             {/* Label */}
@@ -47,7 +50,7 @@ const RecipeSection = () => {
                 {item.name}
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
