@@ -21,11 +21,18 @@ const manualProductLinkMap = {
 };
 
 const mapItemToHref = (item) => {
+  // COCO CHOO ke liye special redirection
+  if (item.name.startsWith("COCO CHOO")) {
+    return {
+      ...item,
+      href: "/coming-soon",
+    };
+  }
+
   const manual = manualProductLinkMap[item.name];
   if (manual?.slug && manual?.sku) {
     return {
       ...item,
-      // FIXED: /products/ folder ka exact path add kiya hy
       href: `/feature_product/products/${manual.slug}/${manual.sku}`,
     };
   }
@@ -33,7 +40,6 @@ const mapItemToHref = (item) => {
   const slug = slugify(item.name || item.id);
   return {
     ...item,
-    // FIXED: /products/ folder ka exact path add kiya hy
     href: `/feature_product/products/${slug}/${slug}`,
   };
 };

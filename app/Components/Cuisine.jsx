@@ -9,7 +9,7 @@ const RecipeSection = () => {
     { name: 'Chinese', image: '/chinese.webp' },
     { name: 'Korean', image: '/korean_receipes.webp' },
     { name: 'Thai', image: '/thai.webp' },
-    { name: 'Others', image: '/indian.webp' },
+    { name: 'Others', image: '/others.jpeg' },
   ];
 
   return (
