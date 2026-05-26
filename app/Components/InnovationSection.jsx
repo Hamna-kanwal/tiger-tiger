@@ -81,11 +81,11 @@ const InnovationSection = () => {
           </h3>
           
         <Link 
-  href="/categories"
+  href="/products"
   className="inline-block px-8 py-3 rounded-md font-bold uppercase tracking-widest text-[12px] md:text-[14px] transition-all hover:scale-105 active:scale-95 shadow-md text-center"
   style={{ backgroundColor: brandGold, color: brandPurple }}
 >
-  Learn More
+  Explore Our Products
 </Link>
         </div>
       </div>

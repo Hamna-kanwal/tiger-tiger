@@ -42,18 +42,9 @@ const slidesData = [
     className: "scale-[1.0] md:scale-105 md:translate-y-12 translate-y-3",
     isVideo: false 
   },
+
   { 
     id: 4, 
-    src: "/pulp-hero-section.webp", 
-    alt: "Pulp", 
-    title: "Double Champions",
-    mainHeading: "Celebrating Back to Back Success ",
-    subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
-    isVideo: false 
-  },
-  { 
-    id: 5, 
     src: "/Comp 1_5.mp4", 
     alt: "Brand Video", 
     title: "Experience the Taste",

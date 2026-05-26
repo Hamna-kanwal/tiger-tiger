@@ -1,22 +1,20 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom"; // 👈 Zaroori import
-import { FiShoppingCart } from "react-icons/fi";
+import { createPortal } from "react-dom";
 
 export default function FloatingCart() {
   const [open, setOpen] = useState(false);
   const cartRef = useRef(null);
-  const [mounted, setMounted] = useState(false); // SSR error se bachne ke liye
-
-  const [count, setCount] = useState(0); 
-  const [latestItem, setLatestItem] = useState(null); 
+  const [mounted, setMounted] = useState(false);
+  const [count, setCount] = useState(0);
+  const [latestItem, setLatestItem] = useState(null);
 
   const toggleCart = () => setOpen(!open);
 
   useEffect(() => {
-    setMounted(true); // Component ab browser par aa chuka hai
-    
+    setMounted(true);
+
     function updateCart() {
       if (typeof window !== "undefined") {
         const cart = JSON.parse(sessionStorage.getItem("inquiry_cart")) || [];
@@ -25,9 +23,9 @@ export default function FloatingCart() {
       }
     }
 
-    updateCart(); 
-    window.addEventListener("cartUpdated", updateCart); 
-    window.addEventListener("storage", updateCart); 
+    updateCart();
+    window.addEventListener("cartUpdated", updateCart);
+    window.addEventListener("storage", updateCart);
 
     return () => {
       window.removeEventListener("cartUpdated", updateCart);
@@ -53,35 +51,43 @@ export default function FloatingCart() {
     };
   }, [open]);
 
-  // Agar Next.js abhi server par chal raha ho toh render na karein
   if (!mounted) return null;
 
-  // PORTAL: Ab browser pure page ke containers se azaad kar ke isko direct body par set karega
   return createPortal(
     <>
-    <button
-  onClick={toggleCart}
-  className="fixed right-6 top-1/2 -translate-y-1/2 z-[9999] w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgba(64,2,63,0.2)] transition-all duration-300 hover:scale-110 border border-gray-100"
-  aria-label="Cart"
-  style={{ right: "24px", top: "50%", transform: "translateY(-50%)", position: "fixed" }}
->
-  <FiShoppingCart className="text-[#40023F] text-2xl" />
-  
-  {count > 0 && (
-    <span 
-      className="absolute bg-[#40023F] text-white text-[11px] font-black w-5 h-5 flex items-center justify-center rounded-full animate-pulse shadow-md"
-      style={{ left: "-6px", top: "-6px", position: "absolute" }}
-    >
-      {count}
-    </span>
-  )}
-</button>
-      {/* Floating Cart Preview Box - Senior ka blur style aur side position */}
+      <button
+        onClick={toggleCart}
+        className="fixed right-6 top-1/2 -translate-y-1/2 z-[99999] isolation-isolate w-20 h-20 flex items-center justify-center rounded-full bg-[#40023F] shadow-[0_8px_30px_rgba(64,2,63,0.3)] transition-all duration-300 hover:scale-110 border-4 border-white"
+        aria-label="Cart"
+        style={{ 
+          right: "24px", 
+          top: "50%", 
+          transform: "translateY(-50%)", 
+          position: "fixed",
+          zIndex: 99999 
+        }}
+      >
+        <img 
+          src="/cart.png" 
+          alt="Cart Icon" 
+          className="w-10 h-10 object-contain invert brightness-0" 
+        />
+
+        {count > 0 && (
+          <span
+            className="absolute bg-white text-[#40023F] text-[12px] font-black w-6 h-6 flex items-center justify-center rounded-full shadow-lg border-2 border-[#40023F]"
+            style={{ left: "5px", top: "5px", position: "absolute" }}
+          >
+            {count}
+          </span>
+        )}
+      </button>
+
       {open && (
         <div
           ref={cartRef}
-          className="fixed right-[80px] top-1/2 -translate-y-1/2 w-[320px] bg-white/70 backdrop-blur-[16px] rounded-xl z-[9998] border-[2px] border-[#40023F] shadow-2xl font-sans p-2"
-          style={{ right: "80px", top: "50%", transform: "translateY(-50%)", position: "fixed" }}
+          className="fixed right-[80px] top-1/2 -translate-y-1/2 w-[320px] bg-white/70 backdrop-blur-[16px] rounded-xl z-[99999] border-[2px] border-[#40023F] shadow-2xl font-sans p-2"
+          style={{ right: "80px", top: "50%", transform: "translateY(-50%)", position: "fixed", zIndex: 99999 }}
         >
           {latestItem ? (
             <>
@@ -100,8 +106,6 @@ export default function FloatingCart() {
                   </div>
                 </div>
               </div>
-
-              {/* View Enquiry link */}
               <div className="mt-3 mb-2 text-center">
                 <Link
                   href="/enquiry"
@@ -127,6 +131,6 @@ export default function FloatingCart() {
         </div>
       )}
     </>,
-    document.body // 👈 Yeh sab se aakhir mein inject kar dega pure HTML ko browser body par
+    document.body
   );
 }
