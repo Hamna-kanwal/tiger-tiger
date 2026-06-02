@@ -43,7 +43,7 @@ export const allRecipes = [
     time: "40 min", 
     servings: "2 Serving", 
     calories: "450", 
-    image: "/receipes.webp",
+    image: "/Korean 1.jpeg",
     ingredients: [
       "1 pack (500g) Tiger Tiger Chopped Rice Cake",
       "3 cups (700ml) water or anchovy/dashi stock",
@@ -76,7 +76,7 @@ export const allRecipes = [
     time: "55-60 min", 
     servings: "4 Serving", 
     calories: "490", 
-    image: "/receipes.webp",
+    image: "/Korean 2.jpeg",
     ingredients: [
       "1 pack (500g) Tiger Tiger Sliced Rice Cake",
       "200g beef brisket or sirloin, thinly sliced",
@@ -110,7 +110,7 @@ export const allRecipes = [
     time: "70 min", 
     servings: "4 Serving", 
     calories: "400", 
-    image: "/receipes.webp",
+    image: "/Korean 3.jpeg",
     ingredients: [
       "1 pack (500g) Tiger Tiger Sliced Rice Cake",
       "150g shiitake or king oyster mushrooms, sliced",
@@ -151,7 +151,7 @@ export const allRecipes = [
     time: "40 min", 
     servings: "4 Serving", 
     calories: "720", 
-    image: "/thai-2nd-image.jpeg",
+    image: "/thai 1.jpeg",
     ingredients: [
       "500g boneless chicken thighs (or breast), cut into bite-sized pieces",
       "3-4 tablespoons Tiger Tiger Green Curry Paste",
@@ -190,7 +190,7 @@ export const allRecipes = [
     time: "40 min", 
     servings: "4 Serving", 
     calories: "580", 
-    image: "/receipes.webp",
+    image: "/thai 2.jpeg",
     ingredients: [
       "300g firm tofu, pressed and cubed",
       "150g shiitake or button mushrooms, sliced",
@@ -231,7 +231,7 @@ export const allRecipes = [
     time: "30 min", 
     servings: "3-4 Serving", 
     calories: "520", 
-    image: "/receipes.webp",
+    image: "/Chinese 1.jpg.jpeg",
     ingredients: [
       "300g Tiger Tiger Gold Chop Suey No.1 Noodles (uncooked weight)",
       "250g chicken breast, thinly sliced",
@@ -267,7 +267,7 @@ export const allRecipes = [
     time: "35 min", 
     servings: "3-4 Serving", 
     calories: "470", 
-    image: "/receipes.webp",
+    image: "/Chinese 2.jpg.jpeg",
     ingredients: [
       "300g Tiger Tiger Gold Chop Suey No.1 Noodles (uncooked weight)",
       "200g firm tofu, cubed (or 200g mixed mushrooms for a meatier feel)",
@@ -298,25 +298,70 @@ export const allRecipes = [
   },
 
   // --- OTHERS ---
-{ 
-  id: "spring-rolls-collection", 
-  title: "Tiger Tiger Spring Roll Creations", 
-  cuisine: "Others", // Yahan 'Others' hona chahiye
-  product: "Frozen", // Yeh field zaroori hai
-  time: "30-40 min", 
-  servings: "Varies", 
-  calories: "Varies", 
-  image: "/receipes.webp",
-  ingredients: [
-    "Tiger Tiger frozen spring roll pastry sheets",
-    "Vegetable Filling: Cabbage, carrots, bean sprouts, mushrooms",
-    "Meat Filling: Minced chicken, beef, or prawns",
-    "Sweet Fillings: Bananas, brown sugar, cinnamon, or pineapple-cream cheese"
+{
+  "id": "spring-rolls-collection",
+  "title": "Tiger Tiger Spring Roll Creations",
+  "cuisine": "Others",
+  "product": "Frozen",
+  "time": "30-40 min",
+  "servings": "Varies",
+  "calories": "Varies",
+  "image": "/others.jpg.jpeg",
+  "recipes": [
+    {
+      "recipe_name": "1. Classic Vegetable Spring Rolls",
+      "ingredients": [
+        "Tiger Tiger pastry sheets",
+        "2 cups shredded cabbage, 1 cup carrots",
+        "1 cup bean sprouts or bell peppers",
+        "1/2 cup mushrooms or onions",
+        "2-3 garlic cloves, 1 tbsp ginger (minced)",
+        "2 tbsp soy sauce, 1 tbsp sesame oil",
+        "Salt, pepper, chili flakes",
+        "1 tsp cornstarch (thickening)"
+      ],
+      "method": [
+        "Stir-fry garlic, ginger, and veggies on high heat (3-5 mins).",
+        "Add soy sauce, seasonings, and cornstarch slurry. Cool completely.",
+        "Place filling on wrapper, fold bottom, tuck sides, roll tight, and seal.",
+        "Deep-fry at 170-180°C (2-4 mins) or bake at 200°C (15-20 mins)."
+      ]
+    },
+    {
+      "recipe_name": "2. Chicken or Meat Spring Rolls",
+      "ingredients": [
+        "Tiger Tiger pastry sheets",
+        "300-400g minced chicken, beef, or prawns",
+        "Garlic, onions, and spices",
+        "Shredded cabbage/carrots for bulk"
+      ],
+      "method": [
+        "Pre-cook minced meat with garlic, onions, and spices.",
+        "Mix in cabbage/carrots and cook fully. Cool completely.",
+        "Wrap tightly using the standard folding method and seal.",
+        "Deep-fry or bake until golden (same temp as vegetable rolls)."
+      ]
+    },
+    {
+      "recipe_name": "3. Sweet Treats (Banana/Pineapple)",
+      "ingredients": [
+        "Tiger Tiger pastry sheets",
+        "Ripe bananas or Pineapple chunks",
+        "Brown sugar, cinnamon",
+        "Cream cheese (for pineapple version)"
+      ],
+      "method": [
+        "For Banana: Brush with butter, add banana, sugar/cinnamon, roll like a cigar.",
+        "For Pineapple: Spread cream cheese, add pineapple, roll tightly.",
+        "Seal edges and fry/bake until crispy.",
+        "Dust with icing sugar before serving."
+      ]
+    }
   ],
-  method: [
-    "1. Vegetable/Meat Rolls: Stir-fry filling, cool completely, wrap tightly, seal with flour slurry, fry/bake.",
-    "2. Sweet Treats: Banana/sugar or pineapple-cream cheese rolls, fry/bake, dust with icing sugar.",
-    "3. Creative Ideas: Mini samosas, crispy toppings for salads, fusion bites."
+  "tips_for_success": [
+    "Thaw sheets and keep unused ones under a damp cloth.",
+    "Always cool fillings completely to avoid soggy wrappers.",
+    "Use flour+water slurry or beaten egg to seal edges."
   ]
 }
 ];

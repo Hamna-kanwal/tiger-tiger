@@ -10,6 +10,11 @@ export default function RecipeDetailPage({ params }) {
 
   const recipe = allRecipes.find((r) => r.id === id) || allRecipes[0];
 
+  // If this entry is a collection (has nested `recipes`), pick the first sub-recipe
+  // but keep the original object as `recipe` for title/meta.
+  const isCollection = Array.isArray(recipe?.recipes) && recipe.recipes.length > 0;
+  const displayRecipe = isCollection ? recipe.recipes[0] : recipe;
+
   return (
     <div className="bg-white min-h-screen pb-20 pt-32">
       <section className="max-w-6xl mx-auto px-4">
@@ -73,7 +78,7 @@ export default function RecipeDetailPage({ params }) {
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="p-10 md:border-r-2" style={{ borderColor: '#D0B989' }}>
               <ul className="space-y-5">
-                {recipe.ingredients?.map((item, index) => (
+                {(displayRecipe?.ingredients || []).map((item, index) => (
                   <li key={index} className="text-gray-700 text-[15px] flex items-start">
                     <span className="mr-3 text-black font-bold text-lg leading-none">•</span> 
                     <span className="leading-relaxed">{item}</span>
@@ -84,26 +89,17 @@ export default function RecipeDetailPage({ params }) {
 
             <div className="p-10 bg-white">
               <ul className="space-y-8">
-                {recipe.method?.map((m, index) => {
-                  const content = typeof m === 'string' ? m : `${m.step}: ${m.desc}`;
-                  const hasSeparator = content.includes(':');
-                  const heading = hasSeparator ? content.split(':')[0] : "";
-                  const description = hasSeparator ? content.split(':')[1] : content;
-
-                  return (
-                    <li key={index} className="flex items-start text-gray-700 text-[15px] leading-relaxed">
-                      <span className="mr-4 text-black font-bold text-lg leading-none mt-1">•</span>
-                      <p>
-                        {heading && (
-                          <span className="font-bold text-gray-900 mr-1">
-                            {heading}:
-                          </span>
-                        )} 
-                        {description}
-                      </p>
-                    </li>
-                  );
-                })}
+                {(
+                  // Normalize method into an array of strings for display.
+                  Array.isArray(displayRecipe?.method)
+                    ? displayRecipe.method
+                    : (typeof displayRecipe?.method === 'string' ? displayRecipe.method.split(/\n|\.|;|\d+\)/).map(s => s.trim()).filter(Boolean) : [])
+                ).map((m, index) => (
+                  <li key={index} className="flex items-start text-gray-700 text-[15px] leading-relaxed">
+                    <span className="mr-4 text-black font-bold text-lg leading-none mt-1">•</span>
+                    <p>{m}</p>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
