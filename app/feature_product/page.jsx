@@ -61,7 +61,7 @@ export default function FeatureProductPage() {
       ],
     },
     {
-      title: "Popping Candy",
+      title: "Popping Candy ",
       features: [
         { id: 8, img: "/popping feature 1.webp", name: "POPPING CANDY BISCUITS STICK MILK TEA" },
         { id: 9, img: "/popping feature 2.webp", name: "POPPING CANDY BISCUITS STICK BANANA" },
@@ -75,7 +75,7 @@ export default function FeatureProductPage() {
       ],
     },
     {
-      title: "COCO CHOO",
+      title: "COCO CHOO (Coming Soon)",
       features: [
         { id: 15, img: "/cocochoo-feature-1.webp", name: "COCO CHOO CLASSIC" },
         { id: 16, img: "/coco choo 2.webp", name: "COCO CHOO HAZELNUT" },
