@@ -70,7 +70,7 @@ export default function FloatingCart() {
         <img 
           src="/cart.png" 
           alt="Cart Icon" 
-          className="w-10 h-10 object-contain invert brightness-0" 
+          className="w-10 h-10 object-contain" 
         />
 
         {count > 0 && (
