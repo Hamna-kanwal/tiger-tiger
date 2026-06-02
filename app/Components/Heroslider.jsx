@@ -34,7 +34,7 @@ const slidesData = [
   },
   { 
     id: 3, 
-    src: "/koreannnnnn-updated (1).webp", 
+    src: "/koreann-wow.png", 
     alt: "Korean", 
     title: "Nature’s Best in Every Sip",
     mainHeading: "Leading Pan Asian Food Brand in the UK",

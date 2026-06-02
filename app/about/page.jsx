@@ -197,7 +197,7 @@ const TigerAboutBody = () => {
           </h2>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
   <Link 
-    href="/contact" 
+    href="/trade-register" 
     className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
   >
     Contact Us

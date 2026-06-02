@@ -13,7 +13,7 @@ const FeaturedProducts = () => {
 
   // Ab yahan sirf images ka data reh gaya hai, links ke slugs hatane ke baad
   const products = [
-    { id: 1, src: "/feature-banner-1.webp", alt: "Lychee Pulp" },
+    { id: 1, src: "/featured.jpeg", alt: "Lychee Pulp" },
     { id: 2, src: "/feature-banner-2.webp", alt: "Coconut Water" },
     { id: 3, src: "/feature-products-popping.webp", alt: "Guava Juice" },
   ];
