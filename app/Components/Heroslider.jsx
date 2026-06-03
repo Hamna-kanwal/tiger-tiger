@@ -32,16 +32,17 @@ const slidesData = [
     className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
     isVideo: false 
   },
-  { 
-    id: 3, 
-    src: "/koreann-wow.png", 
-    alt: "Korean", 
-    title: "Nature’s Best in Every Sip",
-    mainHeading: "Leading Pan Asian Food Brand in the UK",
-    subText: "Your Thirst’s New Weakness.",
-    className: "scale-[1.2] md:scale-140 md:translate-y-6 translate-y-2",
-    isVideo: false 
-  },
+{ 
+  id: 3, 
+  src: "/koreann-wow.png", 
+  alt: "Korean", 
+  title: "Nature’s Best in Every Sip",
+  mainHeading: "Leading Pan Asian Food Brand in the UK",
+  subText: "Your Thirst’s New Weakness.",
+  // Yahan w/h define karein (jaise w-[100%] h-[400px])
+className: "w-full h-full object-cover object-bottom scale-[1.1]",
+  isVideo: false 
+},
 
   { 
     id: 4, 
@@ -86,7 +87,6 @@ const HeroSlider = () => {
           {slidesData[activeIndex]?.mainHeading}
         </h1>
 
-          className: "scale-[1.15] md:scale-110 md:translate-y-6 translate-y-2",
         <p
           style={{ color: brandPurple }}
           className="text-sm md:text-lg font-outfit font-medium mt-1 transition-all duration-500"
