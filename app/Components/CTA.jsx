@@ -16,8 +16,17 @@ const DiscoverSection = () => {
     <section className="py-12 md:py-24 px-4 bg-white overflow-hidden">
       <div 
         style={{ backgroundColor: brandPurple }}
-        className="max-w-7xl mx-auto rounded-2xl relative min-h-[400px] lg:min-h-[480px] flex items-stretch shadow-2xl overflow-visible"
+        className="max-w-7xl mx-auto rounded-2xl relative min-h-[400px] lg:min-h-[480px] flex items-stretch shadow-2xl overflow-hidden"
       >
+        {/* Background image: covers entire section */}
+        <Image
+          src="/Authentic Asian Cuisine.jpg.jpeg"
+          alt="Sticks Background"
+          fill
+          priority
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+
         <div className="grid grid-cols-1 lg:grid-cols-12 w-full relative z-10">
           
           {/* --- Left Side: Content --- */}
@@ -67,23 +76,8 @@ const DiscoverSection = () => {
             </div>
           </div>
 
-       {/* --- Right Side: Image Container Fixed --- */}
-<div className="lg:col-span-6 relative h-full flex items-center justify-center overflow-hidden padding">
-  
-  {/* Yahan 'lg:ml-[80px]' ko 'ml-0' ke saath override kiya hai taake mobile par center rahe */}
-  <div className="relative w-full h-full flex items-end justify-center ml-0 lg:ml-[80px]"> 
-    <Image 
-      src="/asian.png" 
-      alt="Sticks Background"
-      width={350} 
-      height={450} 
-      className="w-full max-w-[180px] md:max-w-[280px] lg:max-w-[320px] h-auto object-contain"
-    />
-  </div>
-
-</div>
-          {/* Decorative Glow */}
-          <div className="absolute top-0 right-[-10%] lg:right-[-10%] w-[400px] h-[400px] bg-yellow-400/10 blur-[100px] rounded-full z-0"></div>
+          {/* --- Right Side: Spacer (image moved to background) --- */}
+          <div className="lg:col-span-6" />
 
         </div>
       </div>

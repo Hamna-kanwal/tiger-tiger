@@ -417,7 +417,7 @@ export default function TradeRegisterPage() {
               <div className="w-full lg:w-1/4 lg:sticky lg:top-8">
                 <div className="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
                   <div className="bg-[#f8f1e2] px-6 py-4 flex justify-between items-center border-b border-yellow-200/40">
-                    <h2 className="text-xl font-bold text-gray-900 tracking-tight">Your Enquiry</h2>
+                    <h2 className="text-xl font-bold text-gray-900 tracking-tight">Your Wishlist</h2>
                     <span className="bg-[#40023F] text-white px-3 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
                       {totalItems} Items
                     </span>
@@ -427,10 +427,10 @@ export default function TradeRegisterPage() {
                     {cart.length === 0 ? (
                       <div className="text-center py-14 flex flex-col items-center justify-center">
                            <Image
-                                       src="/empty-cart.png"
+                                       src="/cart.png"
                                        alt="Empty Cart"
-                                       width={150}
-                                       height={150}
+                                       width={50}
+                                       height={50}
                                        className="mb-6"
                                      />
                         <p className="text-gray-400 font-medium text-sm">No products in enquiry</p>

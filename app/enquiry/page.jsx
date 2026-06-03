@@ -91,16 +91,16 @@ export default function EnquiryPage() {
         <div className="max-w-6xl mx-auto ">
           {/* Heading */}
           <h2 className="eczar font-semibold text-[32px] text-[#220016] mb-6">
-            Your Enquiry
+            Your Wishlist
           </h2>
 
           {cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 bg-gray-50 rounded-2xl shadow-inner">
               <Image
-                src="/empty-cart.png"
+                src="/cart.png"
                 alt="Empty Cart"
-                width={150}
-                height={150}
+                width={50}
+                height={50}
                 className="mb-6"
               />
               <p className="text-gray-600 text-lg">No products found</p>

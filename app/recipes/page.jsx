@@ -372,7 +372,7 @@ const RecipeContent = () => {
 
   const stats = [
     { label: "RECIPES", value: "50+" },
-    { label: "CUISINES", value: "5" },
+    { label: "CUISINES", value: "10+" },
     { label: "TT PRODUCTS", value: "200+" },
     { label: "QUICKEST DISH", value: "15 min" },
   ];
