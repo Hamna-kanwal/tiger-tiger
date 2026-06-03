@@ -416,7 +416,7 @@ export default function TradeRegisterPage() {
               {/* RIGHT: Inquiry/Cart Summary Sidebar (Smaller Size) */}
               <div className="w-full lg:w-1/4 lg:sticky lg:top-8">
                 <div className="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-                  <div className="bg-[#FFEB57] px-6 py-4 flex justify-between items-center border-b border-yellow-200/40">
+                  <div className="bg-[#f8f1e2] px-6 py-4 flex justify-between items-center border-b border-yellow-200/40">
                     <h2 className="text-xl font-bold text-gray-900 tracking-tight">Your Enquiry</h2>
                     <span className="bg-[#40023F] text-white px-3 py-0.5 rounded-full text-xs font-extrabold uppercase tracking-wider">
                       {totalItems} Items
