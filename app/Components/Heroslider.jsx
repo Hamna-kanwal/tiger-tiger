@@ -39,7 +39,7 @@ const slidesData = [
     title: "Nature’s Best in Every Sip",
     mainHeading: "Leading Pan Asian Food Brand in the UK",
     subText: "Your Thirst’s New Weakness.",
-    className: "05md:translate-y-12 translate-y-3",
+    className: "scale-[1.5] md:scale-160 md:translate-y-6 translate-y-2",
     isVideo: false 
   },
 
@@ -86,7 +86,7 @@ const HeroSlider = () => {
           {slidesData[activeIndex]?.mainHeading}
         </h1>
 
-        {/* Subtext */}
+          className: "scale-[1.15] md:scale-110 md:translate-y-6 translate-y-2",
         <p
           style={{ color: brandPurple }}
           className="text-sm md:text-lg font-outfit font-medium mt-1 transition-all duration-500"
@@ -143,7 +143,7 @@ const HeroSlider = () => {
             className="h-full w-full pb-14 !rounded-none root-hero-swiper"
           >
             {slidesData.map((slide) => (
-              <SwiperSlide key={slide.id} className="relative overflow-hidden !rounded-none">
+              <SwiperSlide key={slide.id} className={`relative ${slide.id === 3 ? 'overflow-visible' : 'overflow-hidden'} !rounded-none`}>
                 <div className="relative w-full h-full !rounded-none">
                   {slide.isVideo ? (
                     <video
