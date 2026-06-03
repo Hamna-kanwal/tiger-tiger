@@ -37,7 +37,7 @@ const DiscoverSection = () => {
             
             <div className="space-y-3">
               <p className="text-white text-base md:text-xl font-bold opacity-95">
-                Bring authentic Asian flavours to your kitchen with Tiger Tiger
+                Bring authentic Asian flavours to your kitchen with <br/> Tiger Tiger
               </p>
               <p className="text-white/70 text-sm md:text-base max-w-md leading-relaxed font-light mx-auto lg:mx-0">
                 Explore our full product range and find the ingredients you need to create exceptional dishes.
