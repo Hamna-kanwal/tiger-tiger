@@ -6,14 +6,7 @@ import { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa"; // Icon import kiya
 
 export default function AppLandingPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
+  
   return (
     <main className="relative w-full h-full">
       {/* ================= SECTION 1: HERO ================= */}
@@ -45,42 +38,46 @@ export default function AppLandingPage() {
             </div>
 
             {/* Custom Pure HTML/CSS App Buttons */}
-        <div className="flex flex-wrap gap-4 items-center">
-          
-          {/* Google Play Button */}
-          <a 
-            href="#google-play" 
-            className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
-          >
-            {/* Google Play Icon (SVG) */}
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.22998 2.05005C3.07998 2.21005 3 2.46005 3 2.77005V21.2301C3 21.5401 3.07998 21.7901 3.22998 21.9501L3.30998 22.0201L13.51 11.8201V11.5901L3.30998 1.39005L3.22998 2.05005Z" fill="#EA4335"/>
-              <path d="M16.91 15.2201L13.51 11.8101V11.5901L16.91 8.18005L17.01 8.24005L21.03 10.5201C22.18 11.1701 22.18 12.2301 21.03 12.8901L17.01 15.1701L16.91 15.2201Z" fill="#FBBC05"/>
-              <path d="M13.61 11.7L3.22998 21.9501C3.42998 22.1501 3.75998 22.1701 4.12998 21.9601L16.91 14.7L13.61 11.7Z" fill="#4285F4"/>
-              <path d="M13.61 11.7L16.91 8.70005L4.12998 1.44005C3.75998 1.23005 3.42998 1.25005 3.22998 1.45005L13.61 11.7Z" fill="#34A853"/>
-            </svg>
-            <div className="flex flex-col text-left">
-              <span className="text-[9px] uppercase font-bold tracking-wider leading-none text-gray-500">GET IT ON</span>
-              <span className="text-base font-semibold leading-tight -mt-0.5">Google Play</span>
-            </div>
-          </a>
+     {/* Custom App Store Buttons with QR Code */}
+<div className="flex flex-wrap gap-4 items-center">
+  
+  {/* Google Play Button */}
+  <div className="relative group">
+    <a 
+      href="/download" 
+      className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
+    >
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M3.23 2.05L13.51 11.82V11.59L3.31 1.39Z" fill="#EA4335"/><path d="M16.91 15.22L13.51 11.81V11.59L16.91 8.18Z" fill="#FBBC05"/><path d="M13.61 11.7L3.23 21.95L16.91 14.7Z" fill="#4285F4"/><path d="M13.61 11.7L16.91 8.7L4.13 1.44Z" fill="#34A853"/></svg>
+      <div className="flex flex-col text-left">
+        <span className="text-[9px] uppercase font-bold tracking-wider leading-none text-gray-500">GET IT ON</span>
+        <span className="text-base font-semibold leading-tight -mt-0.5">Google Play</span>
+      </div>
+    </a>
+    {/* QR Code Container */}
+    <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block bg-white p-2 border border-gray-200 rounded-xl shadow-xl z-50">
+      <Image src="/tiger tiger foods.png" alt="Play Store QR" width={120} height={120} />
+    </div>
+  </div>
 
-          {/* App Store Button */}
-          <a 
-            href="#app-store" 
-            className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
-          >
-            {/* Apple Icon (SVG) */}
-            <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.48C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.14 6.9 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.1 16.67C20.08 16.74 19.67 18.11 18.71 19.5ZM15.97 4.17C16.63 3.37 17.07 2.28 16.95 1C16 1.04 14.9 1.6 14.24 2.38C13.68 3.04 13.19 4.14 13.34 5.39C14.39 5.47 15.4 4.88 15.97 4.17Z"/>
-            </svg>
-            <div className="flex flex-col text-left">
-              <span className="text-[9px] font-medium tracking-tight leading-none text-gray-500">Download on the</span>
-              <span className="text-base font-semibold leading-tight">App Store</span>
-            </div>
-          </a>
+  {/* App Store Button */}
+  <div className="relative group">
+    <a 
+      href="/download" 
+      className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
+    >
+      <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.48C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.14 6.9 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.1 16.67C20.08 16.74 19.67 18.11 18.71 19.5ZM15.97 4.17C16.63 3.37 17.07 2.28 16.95 1C16 1.04 14.9 1.6 14.24 2.38C13.68 3.04 13.19 4.14 13.34 5.39C14.39 5.47 15.4 4.88 15.97 4.17Z"/></svg>
+      <div className="flex flex-col text-left">
+        <span className="text-[9px] font-medium tracking-tight leading-none text-gray-500">Download on the</span>
+        <span className="text-base font-semibold leading-tight">App Store</span>
+      </div>
+    </a>
+    {/* QR Code Container */}
+    <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block bg-white p-2 border border-gray-200 rounded-xl shadow-xl z-50">
+      <Image src="/tiger tiger foods(1).png" alt="App Store QR" width={120} height={120} />
+    </div>
+  </div>
 
-        </div>
+</div>
           </div>
 
           {/* --- RIGHT IMAGES (Phones) --- */}

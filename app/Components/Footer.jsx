@@ -8,7 +8,6 @@ import { Instagram, Facebook, Linkedin, Plus, Minus } from 'lucide-react';
 const brandPurple = "#431A4F";
 const brandGold = "#D2B57B";
 
-// FIXED: Added props to the TikTok component so it can receive the color changes
 const TikTokIcon = ({ size = 18, className }) => (
   <svg 
     viewBox="0 0 24 24" 
@@ -33,27 +32,33 @@ const Footer = () => {
     setOpenSection(openSection === section ? null : section);
   };
 
+  // Yahan apne social media links dalen
+  const socialLinks = [
+    { id: 'ig', Icon: Instagram, href: 'https://www.instagram.com/tigertigerfoodsofficial/' },
+    { id: 'fb', Icon: Facebook, href: 'https://www.facebook.com/tigertigerfoodsofficial/' },
+    { id: 'tt', Icon: TikTokIcon, href: 'https://www.tiktok.com/@tigertigerfoodsofficial1?_t=8rkFatEOb71&_r=1' },
+    { id: 'li', Icon: Linkedin, href: 'https://www.linkedin.com/company/jk-foodsofficial/' }
+  ];
+
   const sections = {
     useful: {
       title: 'Useful Links',
       links: [
-        { name: 'Cuisine', href: '/cuisine' },
+        { name: 'Recipes', href: '/recipes' },
         { name: 'Contact', href: '/contact' },
         { name: 'About Us', href: '/about' },
         { name: 'Blogs', href: '/blogs' },
-        { name: 'Sign Up', href: '/signup' },
-        { name: 'Login', href: '/login' },
+        { name: 'Trade Register', href: '/trade-register' },
       ]
     },
     categories: {
       title: 'Categories',
       links: [
-        { name: 'Canned', href: '#' },
-        { name: 'Drinks', href: '#' },
-        { name: 'Frozen', href: '#' },
-        { name: 'Noodles', href: '#' },
-        { name: 'Nuts & Seeds', href: '#' },
-        { name: 'Rice', href: '#' },
+        { name: 'Canned', href: '/categories/canned' },
+        { name: 'Drinks', href: '/categories/drinks' },
+        { name: 'Frozen', href: '/categories/frozen' },
+        { name: 'Noodles', href: '/categories/noodles' },
+        { name: 'Rice', href: '/categories/rice' },
       ]
     }
   };
@@ -65,14 +70,14 @@ const Footer = () => {
         {/* Column 1: Brand & Identity */}
         <div className="flex-1 flex flex-col gap-6 md:max-w-[320px] -mt-4">
           <Link href="/" className="inline-block transition-opacity hover:opacity-80">
-         <Image 
-  src="/logo.webp" 
-  alt="logo"
-  width={150} 
-  height={60}
-  priority 
-  className="w-[100px] h-auto" // h-auto add karne se warning khatam ho jayegi
-/>
+            <Image 
+              src="/logo.webp" 
+              alt="logo"
+              width={150} 
+              height={60}
+              priority 
+              className="w-[100px] h-auto"
+            />
           </Link>
           <p style={{ color: brandPurple }} className="text-[16px] leading-relaxed font-normal opacity-90">
             Tiger Tiger brings premium Asian ingredients Japanese, Thai, Chinese, Korean and more to businesses across the UK. Authentic flavours, competitive pricing, reliable supply.
@@ -80,26 +85,21 @@ const Footer = () => {
           
           {/* Social Icons */}
           <div className="flex gap-4 mt-2">
-            {[
-              { Icon: Instagram, id: 'ig' }, 
-              { Icon: Facebook, id: 'fb' }, 
-              { Icon: TikTokIcon, id: 'tt' }, 
-              { Icon: Linkedin, id: 'li' }
-            ].map(({ Icon, id }) => (
+            {socialLinks.map(({ Icon, id, href }) => (
               <Link 
                 key={id} 
-                href="#" 
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseEnter={() => setHoveredIcon(id)}
                 onMouseLeave={() => setHoveredIcon(null)}
                 style={{ 
-                  // If hovered, icon is white, background is gold. Otherwise, icon is purple, background transparent.
                   color: hoveredIcon === id ? '#fff' : brandPurple,
                   backgroundColor: hoveredIcon === id ? brandGold : 'transparent',
                   borderColor: hoveredIcon === id ? brandGold : '#e5e7eb'
                 }}
                 className="w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm"
               >
-                {/* We pass the 'text-white' class specifically when hovered to force the SVG to change */}
                 <Icon size={18} className={hoveredIcon === id ? 'text-white' : ''} />
               </Link>
             ))}
