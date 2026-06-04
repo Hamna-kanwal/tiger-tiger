@@ -46,7 +46,7 @@ className: "w-full h-full object-cover object-bottom scale-[1.1]",
 
   { 
     id: 4, 
-    src: "/Comp 1_5.mp4", 
+    src: "/testing.mp4", 
     alt: "Brand Video", 
     title: "Experience the Taste",
     mainHeading: "Authentic Asian Flavors Crafted For You",
