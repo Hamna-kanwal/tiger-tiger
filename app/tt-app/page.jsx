@@ -187,7 +187,7 @@ export default function AppLandingPage() {
     <Image 
       src="/image1.webp" 
       alt="Reliable" 
-      width={250} 
+      width={500} 
       height={500} 
       className="object-contain block" 
       loading="lazy"
@@ -220,11 +220,11 @@ export default function AppLandingPage() {
 
       {/* Left Side: Phone Mockup with Solid Circle Background */}
    {/* Left Side: Phone Mockup Container with Solid Circle Background */}
-<div className="relative flex-shrink-0 z-10 flex items-center justify-center  h-[300px] sm:w-[360px] sm:h-[360px]">
+<div className="relative flex-shrink-0 z-10 flex items-center justify-center  h-[360px] sm:w-[360px] sm:h-[420px]">
  
   
   {/* Phone Wrapper - Layered on top of the circle using z-10 */}
-  <div className="relative z-10 transform hover:rotate-0 transition-transform duration-500 ease-out max-w-[500px] sm:max-w-[240px] drop-shadow-2xl">
+  <div className="relative z-10 transform hover:rotate-0 transition-transform duration-500 ease-out  max-w-[500px] sm:max-w-[280px] drop-shadow-2xl">
     <img 
       src="/mobile_image.webp" 
       alt="Tiger Tiger App Mockup" 
