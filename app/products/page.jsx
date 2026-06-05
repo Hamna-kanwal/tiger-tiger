@@ -1,15 +1,21 @@
-import { fetchProductsPage } from "../action";
+import { fetchAllProducts } from "../action";
 import Image from 'next/image';
 import Link from 'next/link';
 
 // 'use client' HATANA ZAROORI HAI KYUNKI YEH ASYNC SERVER COMPONENT HAI
 export default async function AllProductsPage({ searchParams }) {
+  const allProducts = await fetchAllProducts();
+  
   const itemsPerPage = 20;
   const resolvedSearchParams = await searchParams;
   const currentPage = Number(resolvedSearchParams.page) || 1;
-
-  const { products: currentProducts, total: totalProducts } = await fetchProductsPage(currentPage, itemsPerPage);
-  const totalPages = Math.max(1, Math.ceil(totalProducts / itemsPerPage));
+  
+  const totalProducts = allProducts?.length || 0;
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
+  
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = allProducts?.slice(startIndex, endIndex);
 
   return (
     <div className="container mx-auto px-4 py-20 bg-[#F9F9F7] font-outfit">
