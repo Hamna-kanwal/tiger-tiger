@@ -15,7 +15,7 @@ export default function AppLandingPage() {
           
           {/* --- LEFT CONTENT --- */}
           {/* --- LEFT CONTENT (Updated with Padding/Alignment) --- */}
-<div className="z-10 text-white max-w-2xl pl-4 md:pl-36 lg:pl-36">
+<div className="z-10 text-white max-w-2xl pl-4 md:pl-6 lg:pl-6">
   <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight eczar">
     Your Shortcut to Great Food Choices
   </h2>
