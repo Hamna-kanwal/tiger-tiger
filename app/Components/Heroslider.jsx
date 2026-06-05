@@ -40,7 +40,7 @@ const slidesData = [
   title: "Nature’s Best in Every Sip",
   mainHeading: "Leading Pan Asian Food Brand in the UK",
   subText: "Your Thirst’s New Weakness.",
-  // Yahan w/h define karein (jaise w-[100%] h-[400px])
+
 className: "w-full h-full object-cover object-bottom scale-[1.1]",
   isVideo: false 
 },
@@ -78,7 +78,7 @@ const HeroSlider = () => {
 
       {/* --- TEXT SECTION (Dynamic) --- */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl h-[250px] md:h-[200px]">
-        {/* Chota Title */}
+       
         <p
           style={{ color: charcoalBlack }}
           className="text-base lg:text-lg font-outfit mt-4 lg:mt-2 font-semibold mb-1 transition-all duration-500"
