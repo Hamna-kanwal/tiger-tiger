@@ -72,7 +72,7 @@ const HeroSlider = () => {
   const charcoalBlack = "#333333";
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center overflow-hidden !rounded-none">
+    <section className="relative w-full bg-transparent flex flex-col items-center overflow-hidden !rounded-none">
       {/* Header Spacing Section */}
       <div className="w-full pt-[80px] md:pt-[20px] lg:pt-[60px]" />
 

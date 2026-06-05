@@ -88,7 +88,7 @@ export default function AppLandingPage() {
 
       {/* ================= SECTION 2: INTRO & SEARCH ================= */}
 <section className="relative w-full bg-white py-20">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap items-center">
           <div className="relative aspect-square w-full max-w-[420px] border-4 border-[#A8967D] rounded-2xl overflow-hidden">
             <Image
               src="/mobile_phone.webp"
