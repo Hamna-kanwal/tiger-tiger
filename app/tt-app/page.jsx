@@ -108,7 +108,7 @@ export default function AppLandingPage() {
   <div className="absolute w-[280px]  sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] shadow-lg z-0" />
   
   {/* Phone Image Container centered right on top */}
-  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] border-4 border-[#A8967D] rounded-2xl z-0 overflow-hidden">
+  <div className="absolute sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] border-4 border-[#A8967D] rounded-2xl z-0 overflow-hidden">
     <Image
       src="/mobile_phone.webp"
       alt="Easy Searching"
