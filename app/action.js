@@ -314,7 +314,9 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
 
 export async function fetchAllProducts() {
   try {
-    const res = await fetch("https://backend.tigertigerfoods.com/api/get-products");
+    const res = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
+      next: { revalidate: 3600 },
+    });
     
     if (!res.ok) {
       throw new Error("Data fetch nahi ho saka");

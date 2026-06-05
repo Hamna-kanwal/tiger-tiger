@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react"; 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence add kiya smooth closing ke liye
@@ -10,6 +10,7 @@ import SearchBox from "./SearchBox";
 
 export default function Header() {
   const path = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductHovered, setIsProductHovered] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false); // Mobile dropdown ke liye state
@@ -63,6 +64,12 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
+                  prefetch={true}
+                  onMouseEnter={() => {
+                    if (link.href && link.href !== "#") router.prefetch(link.href);
+                    if (link.dropdown) setIsProductHovered(true);
+                  }}
+                  onMouseLeave={() => link.dropdown && setIsProductHovered(false)}
                   className={`text-[15px] xl:text-[16px] flex items-center gap-1 transition-all duration-200 ${
                     isActive(link.href)
                       ? "font-bold text-[#4e1a51]"
@@ -164,6 +171,8 @@ export default function Header() {
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}
+                                prefetch={true}
+                                onMouseEnter={() => { if (subItem.href && subItem.href !== "#") router.prefetch(subItem.href); }}
                                 onClick={() => setIsMenuOpen(false)}
                                 className="py-2.5 px-4 text-[#4e1a51]/80 hover:text-[#4e1a51] text-base font-normal rounded-lg hover:bg-gray-50 block"
                               >
@@ -180,6 +189,8 @@ export default function Header() {
                     <Link
                       key={link.name}
                       href={link.href}
+                      prefetch={true}
+                      onMouseEnter={() => { if (link.href && link.href !== "#") router.prefetch(link.href); }}
                       onClick={() => setIsMenuOpen(false)}
                       className={`py-3 px-4 text-lg rounded-xl transition-all block ${
                         isActive(link.href)

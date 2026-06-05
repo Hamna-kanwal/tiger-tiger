@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
@@ -57,6 +58,7 @@ className: "w-full h-full object-cover object-bottom scale-[1.1]",
 ];
 
 const HeroSlider = () => {
+  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverApp, setHoverApp] = useState(false);
   const [hoverProducts, setHoverProducts] = useState(false);
@@ -101,7 +103,11 @@ const HeroSlider = () => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-8 w-full px-4 sm:px-0">
           <Link
             href="/tt-app"
-            onMouseEnter={() => setHoverApp(true)}
+            prefetch={true}
+            onMouseEnter={() => {
+              setHoverApp(true);
+              router.prefetch("/tt-app");
+            }}
             onMouseLeave={() => setHoverApp(false)}
             style={{
               backgroundColor: hoverApp ? brandPurple : "transparent",
@@ -115,7 +121,11 @@ const HeroSlider = () => {
 
           <Link
             href="/products"
-            onMouseEnter={() => setHoverProducts(true)}
+            prefetch={true}
+            onMouseEnter={() => {
+              setHoverProducts(true);
+              router.prefetch("/products");
+            }}
             onMouseLeave={() => setHoverProducts(false)}
             style={{
               backgroundColor: hoverProducts ? "transparent" : brandPurple,

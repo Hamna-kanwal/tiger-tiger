@@ -154,10 +154,10 @@ export default function AppLandingPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-end">
-            <Image src="/iPhone 15 Pro Mockup1.webp" alt="M1" width={280} height={560} className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
-            <Image src="/iPhone 15 Pro Mockup2.webp" alt="M2" width={320} height={640} className="mx-auto scale-110 drop-shadow-2xl z-10 hover:scale-125 transition-transform" />
-            <Image src="/iPhone 15 Pro Mockup3.webp" alt="M3" width={280} height={560} className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
-            <Image src="/iPhone 15 Pro Mockup4.webp" alt="M4" width={280} height={560} className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
+            <Image src="/iPhone 15 Pro Mockup1.webp" alt="M1" width={280} height={560} loading="lazy" className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
+            <Image src="/iPhone 15 Pro Mockup2.webp" alt="M2" width={320} height={640} loading="lazy" className="mx-auto scale-110 drop-shadow-2xl z-10 hover:scale-125 transition-transform" />
+            <Image src="/iPhone 15 Pro Mockup3.webp" alt="M3" width={280} height={560} loading="lazy" className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
+            <Image src="/iPhone 15 Pro Mockup4.webp" alt="M4" width={280} height={560} loading="lazy" className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
           </div>
         </div>
       </section>
@@ -213,7 +213,7 @@ export default function AppLandingPage() {
       width={250} 
       height={500} 
       className="object-contain block" 
-      priority
+      loading="lazy"
     />
   </div>
   

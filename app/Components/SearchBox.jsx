@@ -6,9 +6,11 @@ import Link from "next/link";
 import { searchProducts } from "../action";
 
 export default function SearchBox() {
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const searchRef = useRef(null);
+  const debounceRef = useRef(null);
 
   useEffect(() => {
     const handleEvents = (e) => {
@@ -23,27 +25,40 @@ export default function SearchBox() {
     return () => {
       window.removeEventListener("scroll", handleEvents);
       window.removeEventListener("mousedown", handleEvents);
+      if (debounceRef.current) clearTimeout(debounceRef.current);
     };
   }, []);
 
-  async function handleSearch(e) {
-    const term = e.target.value;
-    if (term.length > 2) {
-      setIsSearching(true);
+  useEffect(() => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    if (query.length <= 2) {
+      setResults([]);
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+    debounceRef.current = setTimeout(async () => {
       const formData = new FormData();
-      formData.append("search", term);
-      
+      formData.append("search", query);
+
       try {
         const data = await searchProducts(formData);
         setResults(data || []);
       } catch (error) {
         console.error("Search error:", error);
+        setResults([]);
       } finally {
         setIsSearching(false);
       }
-    } else {
-      setResults([]);
-    }
+    }, 300);
+  }, [query]);
+
+  function handleSearch(e) {
+    setQuery(e.target.value);
   }
 
   return (
@@ -55,7 +70,8 @@ export default function SearchBox() {
           type="text"
           name="search"
           autoComplete="off"
-          placeholder={isSearching ? "..." : "Search..."}
+          value={query}
+          placeholder={isSearching ? "Searching..." : "Search..."}
           onChange={handleSearch}
           className="bg-transparent outline-none ml-2 w-full text-white placeholder:text-white/70 text-sm font-medium"
         />
