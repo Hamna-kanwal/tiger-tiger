@@ -78,6 +78,8 @@ const GlobalSourcing = () => {
                   alt={`${loc.name} flag`}
                   width={80} 
                   height={50}
+                  priority
+                  loading="eager"
                   className="rounded-sm shadow-lg border border-white/20 h-auto w-full"
                 />
                 <span className="hidden md:block text-[10px] text-white text-center mt-0.5 font-bold uppercase">

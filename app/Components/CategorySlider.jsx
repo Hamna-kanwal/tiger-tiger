@@ -54,7 +54,7 @@ function CategorySection() {
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="transition-transform duration-500 group-hover:scale-105"
                 style={{ objectFit: 'cover' }}
-                priority={index === 0} 
+                priority
                 quality={85}
               />
               

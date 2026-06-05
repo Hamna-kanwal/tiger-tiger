@@ -37,7 +37,7 @@ const RecipeSection = () => {
               alt={`${item.name} cuisine recipes`}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-              priority={index === 0}
+              priority
               className="absolute inset-0 object-cover group-hover:scale-105 transition-transform duration-500"
             />
 
