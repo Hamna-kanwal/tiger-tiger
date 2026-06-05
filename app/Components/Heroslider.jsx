@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -62,6 +62,11 @@ const HeroSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverApp, setHoverApp] = useState(false);
   const [hoverProducts, setHoverProducts] = useState(false);
+
+  useEffect(() => {
+    router.prefetch("/tt-app");
+    router.prefetch("/products");
+  }, [router]);
 
   const brandPurple = "#4e1a51";
   const charcoalBlack = "#333333";
