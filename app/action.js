@@ -312,6 +312,51 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
 
 
 
+export async function fetchProductsPage(page = 1, limit = 20) {
+  const pageNumber = Number(page) || 1;
+  const pageSize = Number(limit) || 20;
+
+  try {
+    const res = await fetch(
+      `https://backend.tigertigerfoods.com/api/get-products?page=${pageNumber}&limit=${pageSize}`,
+      { next: { revalidate: 3600 } }
+    );
+
+    if (res.ok) {
+      const data = await res.json();
+      const products = Array.isArray(data.data) ? data.data : [];
+      let total = Number(data.total || data.count || 0);
+
+      if (!total && products.length < pageSize) {
+        total = (pageNumber - 1) * pageSize + products.length;
+      }
+
+      return {
+        products,
+        total,
+        pageSize,
+      };
+    }
+
+    const fallbackRes = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
+      next: { revalidate: 3600 },
+    });
+    const fallbackData = await fallbackRes.json();
+    const allProducts = Array.isArray(fallbackData.data) ? fallbackData.data : [];
+    const total = allProducts.length;
+    const startIndex = (pageNumber - 1) * pageSize;
+
+    return {
+      products: allProducts.slice(startIndex, startIndex + pageSize),
+      total,
+      pageSize,
+    };
+  } catch (error) {
+    console.error("Paged fetch error:", error);
+    return { products: [], total: 0, pageSize };
+  }
+}
+
 export async function fetchAllProducts() {
   try {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-products", {

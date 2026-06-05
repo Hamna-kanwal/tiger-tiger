@@ -80,8 +80,10 @@ export default function AppLandingPage() {
       src="/Frame 11 1.png"
       alt="Tiger Tiger App Interface"
       fill
-      className="object-contain object-right pr-0" // Image khud bhi right aligned rahe
+      sizes="(max-width: 1024px) 100vw, 50vw"
+      className="object-contain object-right pr-0"
       priority
+      loading="eager"
     />
   </div>
 </div>
@@ -115,7 +117,8 @@ export default function AppLandingPage() {
       width={500}
       height={500}
       className="object-contain w-full h-full"
-      priority // Performance boost ke liye kyunki ye top fold mockup hai
+      priority
+      loading="eager"
     />
   </div>
 </div>
