@@ -124,7 +124,15 @@ export default function AppLandingPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-end">
-            <Image src="/iPhone 15 Pro Mockup1.webp" alt="M1" width={280} height={560} loading="lazy" className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
+          <Image 
+  src="/iPhone 15 Pro Mockup1.webp" 
+  alt="M1" 
+  width={280} 
+  height={560} 
+  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+  className="object-contain w-full h-auto" // w-full aur h-auto lagana behtar hai
+  priority={false} // Baqi images ke liye lazy loading rehne dein
+/>
             <Image src="/iPhone 15 Pro Mockup2.webp" alt="M2" width={320} height={640} loading="lazy" className="mx-auto scale-110 drop-shadow-2xl z-10 hover:scale-125 transition-transform" />
             <Image src="/iPhone 15 Pro Mockup3.webp" alt="M3" width={280} height={560} loading="lazy" className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
             <Image src="/iPhone 15 Pro Mockup4.webp" alt="M4" width={280} height={560} loading="lazy" className="mx-auto drop-shadow-xl hover:scale-105 transition-transform" />
