@@ -10,7 +10,7 @@ export default function AppLandingPage() {
   return (
     <main className="relative w-full h-full">
       {/* ================= SECTION 1: HERO ================= */}
-      <section className="relative w-full bg-[#4e1a51] min-h-[550px] flex items-center overflow-hidden px-6 md:pr-12 lg:px-24">
+      <section className="relative w-full bg-[#4e1a51] min-h-[550px] flex items-centeroverflow-hidden ">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* --- LEFT CONTENT --- */}
@@ -37,61 +37,54 @@ export default function AppLandingPage() {
               </ul>
             </div>
 
-            {/* Custom Pure HTML/CSS App Buttons */}
-     {/* Custom App Store Buttons with QR Code */}
-<div className="flex flex-wrap gap-4 items-center">
-  
-  {/* Google Play Button */}
-  <div className="relative group">
-    <a 
-      href="/download" 
-      className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
-    >
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M3.23 2.05L13.51 11.82V11.59L3.31 1.39Z" fill="#EA4335"/><path d="M16.91 15.22L13.51 11.81V11.59L16.91 8.18Z" fill="#FBBC05"/><path d="M13.61 11.7L3.23 21.95L16.91 14.7Z" fill="#4285F4"/><path d="M13.61 11.7L16.91 8.7L4.13 1.44Z" fill="#34A853"/></svg>
-      <div className="flex flex-col text-left">
-        <span className="text-[9px] uppercase font-bold tracking-wider leading-none text-gray-500">GET IT ON</span>
-        <span className="text-base font-semibold leading-tight -mt-0.5">Google Play</span>
-      </div>
-    </a>
-    {/* QR Code Container */}
-    <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block bg-white p-2 border border-gray-200 rounded-xl shadow-xl z-50">
-      <Image src="/tiger tiger foods.png" alt="Play Store QR" width={120} height={120} />
-    </div>
-  </div>
-
-  {/* App Store Button */}
-  <div className="relative group">
-    <a 
-      href="/download" 
-      className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
-    >
-      <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.48C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.14 6.9 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.1 16.67C20.08 16.74 19.67 18.11 18.71 19.5ZM15.97 4.17C16.63 3.37 17.07 2.28 16.95 1C16 1.04 14.9 1.6 14.24 2.38C13.68 3.04 13.19 4.14 13.34 5.39C14.39 5.47 15.4 4.88 15.97 4.17Z"/></svg>
-      <div className="flex flex-col text-left">
-        <span className="text-[9px] font-medium tracking-tight leading-none text-gray-500">Download on the</span>
-        <span className="text-base font-semibold leading-tight">App Store</span>
-      </div>
-    </a>
-    {/* QR Code Container */}
-    <div className="absolute bottom-full left-0 mb-2 hidden group-hover:block bg-white p-2 border border-gray-200 rounded-xl shadow-xl z-50">
-      <Image src="/tiger tiger foods(1).png" alt="App Store QR" width={120} height={120} />
-    </div>
-  </div>
-
-</div>
-          </div>
-
-          {/* --- RIGHT IMAGES (Phones) --- */}
-          <div className="relative h-[500px] md:h-[700px] w-full flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[600px] h-full">
-              <Image
-                src="/Frame 11 1.png"
-                alt="Tiger Tiger App Interface"
-                fill
-                className="object-contain object-right-bottom"
-                priority
-              />
+ <div className="flex flex-wrap gap-4 items-center">
+          
+          {/* Google Play Button */}
+          <a 
+            href="/download" 
+            className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
+          >
+            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.22998 2.05005C3.07998 2.21005 3 2.46005 3 2.77005V21.2301C3 21.5401 3.07998 21.7901 3.22998 21.9501L3.30998 22.0201L13.51 11.8201V11.5901L3.30998 1.39005L3.22998 2.05005Z" fill="#EA4335"/>
+              <path d="M16.91 15.2201L13.51 11.8101V11.5901L16.91 8.18005L17.01 8.24005L21.03 10.5201C22.18 11.1701 22.18 12.2301 21.03 12.8901L17.01 15.1701L16.91 15.2201Z" fill="#FBBC05"/>
+              <path d="M13.61 11.7L3.22998 21.9501C3.42998 22.1501 3.75998 22.1701 4.12998 21.9601L16.91 14.7L13.61 11.7Z" fill="#4285F4"/>
+              <path d="M13.61 11.7L16.91 8.70005L4.12998 1.44005C3.75998 1.23005 3.42998 1.25005 3.22998 1.45005L13.61 11.7Z" fill="#34A853"/>
+            </svg>
+            <div className="flex flex-col text-left">
+              <span className="text-[9px] uppercase font-bold tracking-wider leading-none text-gray-500">GET IT ON</span>
+              <span className="text-base font-semibold leading-tight -mt-0.5">Google Play</span>
             </div>
+          </a>
+
+          {/* App Store Button */}
+          <a 
+            href="/download" 
+            className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
+          >
+            <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.48C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.14 6.9 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.1 16.67C20.08 16.74 19.67 18.11 18.71 19.5ZM15.97 4.17C16.63 3.37 17.07 2.28 16.95 1C16 1.04 14.9 1.6 14.24 2.38C13.68 3.04 13.19 4.14 13.34 5.39C14.39 5.47 15.4 4.88 15.97 4.17Z"/>
+            </svg>
+            <div className="flex flex-col text-left">
+              <span className="text-[9px] font-medium tracking-tight leading-none text-gray-500">Download on the</span>
+              <span className="text-base font-semibold leading-tight">App Store</span>
+            </div>
+          </a>
+
+        </div>
           </div>
+
+       {/* --- RIGHT IMAGES (Phones) --- */}
+<div className="relative h-[500px] md:h-[700px] w-full flex justify-center lg:justify-end">
+  <div className="relative w-full max-w-[600px] h-full flex justify-end lg:-mr-8">
+    <Image
+      src="/Frame 11 1.png"
+      alt="Tiger Tiger App Interface"
+      fill
+      className="object-contain object-right pr-0" // Image khud bhi right aligned rahe
+      priority
+    />
+  </div>
+</div>
         </div>
 
         {/* Background Decorative Glow */}
@@ -115,7 +108,7 @@ export default function AppLandingPage() {
   <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] bg-[#C9B69C] rounded-full shadow-lg z-0" />
   
   {/* Phone Image Container centered right on top */}
-  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] bg-[#A8967D] border-2 border-[#6a256e] rounded-2xl z-0 overflow-hidden">
+  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] border-4 border-[#A8967D] rounded-2xl z-0 overflow-hidden">
     <Image
       src="/mobile_phone.webp"
       alt="Easy Searching"
@@ -202,7 +195,7 @@ export default function AppLandingPage() {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         
         {/* Left Side: Purple Background Backdrop Box */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-4">
+        <div className="w-full md:w-1/2 flex items-start justify-start">
           
           {/* Main Container - Relative, with z-0 stack to hold children properly */}
           <div className="relative bg-[#5B2956] rounded-[60px] w-full max-w-[420px] aspect-[4/5] flex items-center justify-center overflow-hidden shadow-xl z-0">
@@ -212,21 +205,20 @@ export default function AppLandingPage() {
             <div className="absolute top-1/3 left-10 text-[#E2C799]/30 text-4xl pointer-events-none select-none z-0">✦</div>
 
             {/* Phone & Shadow Wrapper - Layered perfectly on top of purple background */}
-            <div className="relative z-10 flex flex-col items-center pt-8">
-              <div className="relative transform scale-105 drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)]">
-                <Image 
-                  src="/image1.webp" 
-                  alt="Reliable" 
-                  width={250} 
-                  height={500} 
-                  className="object-contain block" 
-                  priority
-                />
-              </div>
-              
-              {/* Soft Flat Bottom Shadow - Visible cleanly on top of the purple box base */}
-              <div className="w-[105%] h-4 bg-gradient-to-r from-transparent via-black/40 to-transparent rounded-[100%] blur-md mt-4 opacity-90" />
-            </div>
+      <div className="relative z-10 flex flex-col items-start pt-8">
+  <div className="relative transform scale-105 drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)]">
+    <Image 
+      src="/image1.webp" 
+      alt="Reliable" 
+      width={250} 
+      height={500} 
+      className="object-contain block" 
+      priority
+    />
+  </div>
+  
+  <div className="w-[105%] h-4 bg-gradient-to-r from-transparent via-black/40 to-transparent rounded-[100%] blur-md mt-4 opacity-90" />
+</div>
 
           </div>
         </div>
@@ -255,11 +247,11 @@ export default function AppLandingPage() {
  
   
   {/* Phone Wrapper - Layered on top of the circle using z-10 */}
-  <div className="relative z-10 transform -rotate-[6deg] hover:rotate-0 transition-transform duration-500 ease-out max-w-[200px] sm:max-w-[240px] drop-shadow-2xl">
+  <div className="relative z-10 transform -rotate-[6deg] hover:rotate-0 transition-transform duration-500 ease-out max-w-[500px] sm:max-w-[240px] drop-shadow-2xl">
     <img 
       src="/mobile_image.webp" 
       alt="Tiger Tiger App Mockup" 
-      className="w-full h-auto"
+      className="w-full h-full"
     />
   </div>
 </div>
@@ -278,7 +270,7 @@ export default function AppLandingPage() {
           
           {/* Google Play Button */}
           <a 
-            href="#google-play" 
+            href="/download" 
             className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
           >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -295,7 +287,7 @@ export default function AppLandingPage() {
 
           {/* App Store Button */}
           <a 
-            href="#app-store" 
+            href="/download" 
             className="flex items-center gap-3 bg-white border border-gray-400 text-black px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-50 transition-all duration-200 hover:scale-105"
           >
             <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
