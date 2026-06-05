@@ -40,11 +40,10 @@ const slidesData = [
   title: "Nature’s Best in Every Sip",
   mainHeading: "Leading Pan Asian Food Brand in the UK",
   subText: "Your Thirst’s New Weakness.",
-
-className: "w-full h-full object-cover object-bottom scale-[1.1]",
-  isVideo: false 
+  className: "!relative !w-full !h-full",
+  isVideo: false,
+  isBackground: true // Add this flag
 },
-
   { 
     id: 4, 
     src: "/testing.mp4", 
