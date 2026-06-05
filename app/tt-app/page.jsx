@@ -105,7 +105,7 @@ export default function AppLandingPage() {
          <div className="w-full md:w-1/2 relative flex items-center justify-center min-h-[340px] sm:min-h-[420px]">
   
   {/* Rounded Background Circle Boundary */}
-  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] shadow-lg z-0" />
+  <div className="absolute w-[280px]  sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] shadow-lg z-0" />
   
   {/* Phone Image Container centered right on top */}
   <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] border-4 border-[#A8967D] rounded-2xl z-0 overflow-hidden">
@@ -198,7 +198,7 @@ export default function AppLandingPage() {
         <div className="w-full md:w-1/2 flex items-start justify-start">
           
           {/* Main Container - Relative, with z-0 stack to hold children properly */}
-          <div className="relative bg-[#5B2956] rounded-[60px] w-full max-w-[420px] aspect-[4/5] flex items-center justify-center overflow-hidden shadow-xl z-0">
+          <div className="relative bg-[#5B2956] rounded-[60px] w-full max-w-[420px] aspect-[4/5] flex items-center overflow-hidden shadow-xl z-0">
             
             {/* Decorative Vector Accents (Kept in background safely) */}
             <div className="absolute top-10 right-12 text-white/20 text-3xl font-bold rotate-12 pointer-events-none select-none z-0">ツ</div>
@@ -243,11 +243,11 @@ export default function AppLandingPage() {
 
       {/* Left Side: Phone Mockup with Solid Circle Background */}
    {/* Left Side: Phone Mockup Container with Solid Circle Background */}
-<div className="relative flex-shrink-0 z-10 flex items-center justify-center w-[300px] h-[300px] sm:w-[360px] sm:h-[360px]">
+<div className="relative flex-shrink-0 z-10 flex items-center justify-center  h-[300px] sm:w-[360px] sm:h-[360px]">
  
   
   {/* Phone Wrapper - Layered on top of the circle using z-10 */}
-  <div className="relative z-10 transform -rotate-[6deg] hover:rotate-0 transition-transform duration-500 ease-out max-w-[500px] sm:max-w-[240px] drop-shadow-2xl">
+  <div className="relative z-10 transform hover:rotate-0 transition-transform duration-500 ease-out max-w-[500px] sm:max-w-[240px] drop-shadow-2xl">
     <img 
       src="/mobile_image.webp" 
       alt="Tiger Tiger App Mockup" 
