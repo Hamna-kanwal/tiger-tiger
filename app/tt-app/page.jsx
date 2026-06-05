@@ -105,7 +105,7 @@ export default function AppLandingPage() {
          <div className="w-full md:w-1/2 relative flex items-center justify-center min-h-[340px] sm:min-h-[420px]">
   
   {/* Rounded Background Circle Boundary */}
-  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] bg-[#C9B69C] rounded-full shadow-lg z-0" />
+  <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] shadow-lg z-0" />
   
   {/* Phone Image Container centered right on top */}
   <div className="absolute w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px] border-4 border-[#A8967D] rounded-2xl z-0 overflow-hidden">
@@ -206,7 +206,7 @@ export default function AppLandingPage() {
 
             {/* Phone & Shadow Wrapper - Layered perfectly on top of purple background */}
       <div className="relative z-10 flex flex-col items-start pt-8">
-  <div className="relative transform scale-105 drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)]">
+  <div className="relative transform  drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)]">
     <Image 
       src="/image1.webp" 
       alt="Reliable" 
@@ -217,7 +217,7 @@ export default function AppLandingPage() {
     />
   </div>
   
-  <div className="w-[105%] h-4 bg-gradient-to-r from-transparent via-black/40 to-transparent rounded-[100%] blur-md mt-4 opacity-90" />
+  <div className="w-[250px] h-4 bg-gradient-to-r from-transparent via-black/40 to-transparent rounded-[100%] blur-md mt-4 opacity-90" />
 </div>
 
           </div>
