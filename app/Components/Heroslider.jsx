@@ -65,7 +65,6 @@ const HeroSlider = () => {
 
   return (
     <section className="relative w-full bg-transparent flex flex-col items-center overflow-hidden">
-
       {/* Header Spacing */}
       <div className="w-full pt-[80px] md:pt-[20px] lg:pt-[60px]" />
 
@@ -103,7 +102,10 @@ const HeroSlider = () => {
           <Link
             href="/tt-app"
             prefetch={true}
-            onMouseEnter={() => { setHoverApp(true); router.prefetch("/tt-app"); }}
+            onMouseEnter={() => {
+              setHoverApp(true);
+              router.prefetch("/tt-app");
+            }}
             onMouseLeave={() => setHoverApp(false)}
             style={{
               backgroundColor: hoverApp ? brandPurple : "transparent",
@@ -118,7 +120,10 @@ const HeroSlider = () => {
           <Link
             href="/products"
             prefetch={true}
-            onMouseEnter={() => { setHoverProducts(true); router.prefetch("/products"); }}
+            onMouseEnter={() => {
+              setHoverProducts(true);
+              router.prefetch("/products");
+            }}
             onMouseLeave={() => setHoverProducts(false)}
             style={{
               backgroundColor: hoverProducts ? "transparent" : brandPurple,
@@ -134,7 +139,7 @@ const HeroSlider = () => {
 
       {/* CAROUSEL SECTION - Height Controlled */}
       <div className="w-full mt-6 overflow-hidden">
-        <div className="relative w-full h-[380px] sm:h-[460px] md:h-[520px] lg:h-[480px] xl:h-[520px]">
+        <div className="relative w-full h-[420px] sm:h-[500px] md:h-[580px] lg:h-[560px] xl:h-[600px]">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
@@ -146,7 +151,10 @@ const HeroSlider = () => {
             className="w-full h-full root-hero-swiper"
           >
             {slidesData.map((slide) => (
-              <SwiperSlide key={slide.id} className="relative w-full h-full overflow-hidden">
+              <SwiperSlide
+                key={slide.id}
+                className="relative w-full h-full overflow-hidden"
+              >
                 {slide.isVideo ? (
                   <video
                     src={slide.src}
@@ -157,14 +165,16 @@ const HeroSlider = () => {
                     playsInline
                   />
                 ) : (
-                  <Image
+                  <img
                     src={slide.src}
                     alt={slide.alt}
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="object-cover object-center"
-                    quality={100}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "bottom",
+                      borderRadius: 0,
+                    }}
                   />
                 )}
               </SwiperSlide>
