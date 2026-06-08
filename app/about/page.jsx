@@ -6,7 +6,7 @@ const TigerAboutBody = () => {
     <main className="bg-[#FFFDF9]">
       
       {/* 1. Who We Are Section */}
-     <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[10px] md:mt-2">
+     <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[20px] md:mt-6">
 
     
     <span className="text-[#4B2452] font-bold tracking-widest text-[20px]">ABOUT US</span>
