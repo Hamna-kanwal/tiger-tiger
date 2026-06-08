@@ -80,7 +80,7 @@ const Footer = () => {
             />
           </Link>
           <p style={{ color: brandPurple }} className="text-[16px] leading-relaxed font-normal opacity-90">
-            Tiger Tiger brings premium Asian ingredients Japanese, Thai, Chinese, Korean and more to businesses across the UK. Authentic flavours, competitive pricing, reliable supply.
+            Tiger Tiger brings premium Pan Asian ingredients Japanese, Thai, Chinese, Korean and more to businesses across the UK. Authentic flavours, competitive pricing, reliable supply.
           </p>
           
           {/* Social Icons */}

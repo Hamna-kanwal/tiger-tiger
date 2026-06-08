@@ -111,7 +111,7 @@ export default function FloatingCart() {
                   href="/enquiry"
                   className="text-sm text-[#220016] underline font-semibold hover:text-[#40023F]"
                 >
-                  View Enquiry
+                  View Wishlist
                 </Link>
               </div>
             </>
@@ -123,7 +123,7 @@ export default function FloatingCart() {
                   href="/enquiry"
                   className="text-sm text-[#220016] underline font-semibold hover:text-[#40023F]"
                 >
-                  View Enquiry
+                  View Wishlist
                 </Link>
               </div>
             </>

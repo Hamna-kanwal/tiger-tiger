@@ -264,7 +264,7 @@ export default function TradeRegisterPage() {
                   <div className="p-6 max-h-[600px] overflow-y-auto custom-scroll">
                     {/* Billing Section */}
                     <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-[#40023F] mb-4 pb-2 border-b-2 border-[#FFEB57] inline-block">
+                      <h3 className="text-lg font-semibold text-[#40023F] mb-4 pb-2 border-b-2 border-[#40023F] inline-block">
                         Billing Information
                       </h3>
                       
@@ -328,7 +328,7 @@ export default function TradeRegisterPage() {
 
                     {/* Address Section */}
                     <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-[#40023F] mb-4 pb-2 border-b-2 border-[#FFEB57] inline-block">
+                      <h3 className="text-lg font-semibold text-[#40023F] mb-4 pb-2 border-b-2 border-[#40023F] inline-block">
                         Address Information
                       </h3>
                       
@@ -376,7 +376,7 @@ export default function TradeRegisterPage() {
 
                     {/* Business Type & Interest */}
                     <div className="mb-6">
-                      <h3 className="text-lg font-semibold text-[#40023F] mb-4 pb-2 border-b-2 border-[#FFEB57] inline-block">
+                      <h3 className="text-lg font-semibold text-[#40023F] mb-4 pb-2 border-b-2 border-[#40023F] inline-block">
                         Business Information
                       </h3>
                       
@@ -511,7 +511,7 @@ export default function TradeRegisterPage() {
         Processing...
       </span>
     ) : (
-      cart.length === 0 ? "Register Only" : "Register & Submit Enquiry" 
+      cart.length === 0 ? "Register " : "Register & Submit Enquiry" 
     )}
   </button>
   <p className="text-center text-[11px] font-medium text-gray-400 mt-3.5 tracking-wide">

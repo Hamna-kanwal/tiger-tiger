@@ -17,7 +17,8 @@ export default function AppLandingPage() {
           {/* --- LEFT CONTENT (Updated with Padding/Alignment) --- */}
 <div className="z-10 text-white max-w-2xl pl-4 md:pl-6 lg:pl-6">
   <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight eczar">
-    Your Shortcut to Great Food Choices
+     Effortless Access to Authentic Pan-Asian Products for
+Your Business
   </h2>
 
   <div className="space-y-4 mb-10">
@@ -70,7 +71,7 @@ export default function AppLandingPage() {
 <div className="relative h-[500px] md:h-[700px] w-full flex justify-center lg:justify-end">
   <div className="relative w-full max-w-[600px] h-full flex justify-end lg:-mr-8">
     <Image
-      src="/Frame 11 1.png"
+      src="/app-hero-image.png"
       alt="Tiger Tiger App Interface"
       fill
       sizes="(max-width: 1024px) 100vw, 50vw"
@@ -224,14 +225,14 @@ export default function AppLandingPage() {
 <div className="relative flex-shrink-0 z-10 flex items-center justify-center  h-[300px] sm:w-[360px] sm:h-[360px]">
  
   
-  {/* Phone Wrapper - Layered on top of the circle using z-10 */}
-  <div className="relative z-10 transform hover:rotate-0 transition-transform duration-500 ease-out  max-w-[500px] sm:max-w-[240px] drop-shadow-2xl">
-    <img 
-      src="/mobile_image.webp" 
-      alt="Tiger Tiger App Mockup" 
-      className="w-full h-full"
-    />
-  </div>
+{/* Phone Wrapper - Layered on top of the circle using z-10 */}
+<div className="relative z-10 transform hover:rotate-0 transition-transform duration-500 ease-out max-w-[600px] sm:max-w-[350px] w-full drop-shadow-2xl">
+  <img 
+    src="/mobile_image.webp" 
+    alt="Tiger Tiger App Mockup" 
+    className="w-full h-auto object-contain"
+  />
+</div>
 </div>
 
       {/* Right Side: Content Area */}
