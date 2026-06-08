@@ -422,7 +422,7 @@ const RecipeContent = () => {
                 Cook Authentic.
               </h1>
               <p className="text-white/90 text-sm md:text-lg font-light mb-8 md:mb-12 max-w-md leading-relaxed">
-                Each recipe is crafted around a Tiger Tiger product—discover flavours from Japan, China, Korea, and India.
+                Each recipe is crafted around a Tiger Tiger product discover flavours from Japan, China, Korea, Thai and Many more.
               </p>
             </div>
 

@@ -32,12 +32,12 @@ const DiscoverSection = () => {
           {/* --- Left Side: Content --- */}
           <div className="lg:col-span-6 p-8 md:p-12 lg:p-16 space-y-6 text-center lg:text-left flex flex-col justify-center items-center lg:items-start">
             <h2 className="eczar text-3xl md:text-[36px] font-bold text-white leading-[1.1] uppercase tracking-tight">
-              Discover the Taste of Pan-Authentic Asian Cuisine
+              Discover the Taste of Pan Authentic Asian Cuisine
             </h2>
             
             <div className="space-y-3">
               <p className="text-white text-base md:text-xl font-bold opacity-95">
-                Bring authentic Pan-Asian flavours to your kitchen with <br/> Tiger Tiger
+                Bring authentic Pan Asian flavours to your kitchen with <br/> Tiger Tiger
               </p>
               <p className="text-white/70 text-sm md:text-base max-w-md leading-relaxed font-light mx-auto lg:mx-0">
                 Explore our full product range and find the ingredients you need to create exceptional dishes.
@@ -61,7 +61,7 @@ const DiscoverSection = () => {
               </Link>
 
               <Link
-                href="/products"
+                href="/categories"
                 onMouseEnter={() => setIsBtn1Hovered(true)}
                 onMouseLeave={() => setIsBtn1Hovered(false)}
                 style={{ 

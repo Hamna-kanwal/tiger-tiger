@@ -3,6 +3,7 @@ import React from 'react';
 const ProductCTA = () => {
     // Brand Colors
     const brandPurple = "#4e1a51";
+    const charcoalBlack = "#333333";
 
     return (
       <section className="w-full bg-white py-16 px-6 text-center font-sans">
@@ -14,11 +15,12 @@ const ProductCTA = () => {
         {/* --- SEO UPDATED SUB-HEADING --- */}
         <div className="space-y-4">
             <h3 className="text-[32px] font-bold text-gray-800">
-             Authentic Pan-Asian Food Products for Every Kitchen
+             Authentic Pan Asian Flavours for Homes, Chefs and Trade
+Partners
             </h3>
             
             
-          <p className="text-[#333333] md:text-[16px] text-sm md:text-base leading-relaxed mb-6">
+          <p style={{ color: charcoalBlack }} className="text-sm md:text-base leading-relaxed mb-6 opacity-90">
               At Tiger Tiger, we offer a diverse range of products covering multiple Asian cuisines. Our carefully sourced ingredients allow chefs and businesses to create traditional dishes with confidence.
             </p>
         </div>

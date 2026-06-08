@@ -1,5 +1,6 @@
 import React from 'react';
 import { Check } from 'lucide-react';
+import Link from 'next/link'; // <--- Yahan 'Link' capital hona chahiye
 
 const AboutSection = () => {
   const brandPurple = "#431A4F";
@@ -8,23 +9,22 @@ const AboutSection = () => {
     <section className="py-16 px-4 md:px-10 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         
-        {/* Visual Content: Video Section (Adjusted for 1920x800) */}
-    {/* Visual Content: Video Section */}
-<div className="w-full">
-  <video
-    className="w-full h-auto max-h-[400px] object-contain rounded-xl shadow-2xl bg-black"
-    autoPlay
-    loop
-    muted
-    playsInline
-  >
-    <source 
-      src="https://backend.tigertigerfoods.com/public/assets/Video/tiger_tiger_video.mp4" 
-      type="video/mp4" 
-    />
-    Your browser does not support the video tag.
-  </video>
-</div>
+        {/* Visual Content: Video Section */}
+        <div className="w-full">
+          <video
+            className="w-full h-auto max-h-[400px] object-contain rounded-xl shadow-2xl bg-black"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source 
+              src="https://backend.tigertigerfoods.com/public/assets/Video/tiger_tiger_video.mp4" 
+              type="video/mp4" 
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
 
         {/* Text Content */}
         <div className="space-y-6">
@@ -35,11 +35,27 @@ const AboutSection = () => {
             What We Do?
           </h2>
 
-          <div className="space-y-6">
-            <FeatureItem brandPurple={brandPurple} title="The Brand" text="Tiger Tiger is a premium Asian food brand developed by JK Foods UK Ltd." />
-            <FeatureItem brandPurple={brandPurple} title="The Heritage" text="With decades of experience in sourcing and supplying high-quality products." />
-            <FeatureItem brandPurple={brandPurple} title="The Mission" text="Our mission is to make authentic Asian ingredients accessible to every kitchen." />
-          </div>
+         <div className="space-y-1">
+  <FeatureItem brandPurple={brandPurple} title="The Brand" text="Tiger Tiger is a premium Pan-Asian food, crafted by JK Foods UK." />
+  <FeatureItem brandPurple={brandPurple} title="The Heritage" text="From the streets of Asia to your shelves, backed by decades of sourcing expertise." />
+  <FeatureItem brandPurple={brandPurple} title="The Mission" text="Bringing bold, authentic Pan-Asian flavour to every food business — wholesale, retail and foodservice alike." />
+  
+  {/* Button Section */}
+  <div className="pt-0">
+    <p className="text-gray-800 font-medium mb-4">
+      Trusted by retailers, wholesalers and kitchens across the UK
+    </p>
+    <Link 
+      href="/categories" 
+      className="inline-block px-5 py-2 rounded-lg font-bold text-white transition-all hover:opacity-90"
+      style={{ backgroundColor: brandPurple }}
+    >
+      Explore the range
+    </Link>
+  </div>
+</div>
+
+         
         </div>
 
       </div>

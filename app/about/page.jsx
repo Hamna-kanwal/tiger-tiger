@@ -6,8 +6,8 @@ const TigerAboutBody = () => {
     <main className="bg-[#FFFDF9]">
       
       {/* 1. Who We Are Section */}
-     <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[10px] md:mt-10">
-    {/* mx-auto add kiya gaya hai taaki pura section screen ke center mein aa jaye */}
+     <section className="my-20 px-6 text-center max-w-7xl sm:mt-[10px] md:mt-2">
+
     
     <span className="text-[#4B2452] font-bold tracking-widest text-[20px]">ABOUT US</span>
     
@@ -18,12 +18,12 @@ const TigerAboutBody = () => {
     <div className="space-y-6 text-[#333333] leading-relaxed text-lg text-center">
         {/* Yahan md:text-center ko hata kar sirf text-center rakha hai taaki har screen par text center rahe */}
         <p>
-            Tiger Tiger has been a developer and supplier of Asian foods and services to major hubs, 
+            Tiger Tiger has been a developer and supplier of Pan Asian foods and services to major hubs, 
             including supermarkets, retailers, restaurants and direct customers, for a long time. 
             Our parent company, JK FOODS UK, with nearly five decades of experience, is widely 
             recognised in the market for providing authenticity in products. Founded by Mark Johal, 
-            who recognised the demand for high-quality, authentic Asian flavours, he sought out 
-            the very best-tasting, quality Asian foods from the Far East. He began by introducing 
+            who recognised the demand for high-quality, authentic Pan Asian flavours, he sought out 
+            the very best-tasting, quality Pan Asian foods from the Far East. He began by introducing 
             exceptional quality and taste preferred across the UK, Europe, and the Americas. 
             To this day, the brand is well-known for its dedication to delivering taste and 
             quality to customers at manageable prices.
@@ -31,7 +31,7 @@ const TigerAboutBody = () => {
         <p>
             At Tiger Tiger, we redefine value without compromising on the flavours that make every 
             bite memorable. Our consistent quality and recognition for a taste appreciated by 
-            individuals and professional kitchens alike let us lead developers of Asian food. 
+            individuals and professional kitchens alike let us lead developers of Pan Asian food. 
             We keep offering a deep variety of food products that spans Japanese, Thai, Chinese, 
             and Indian cuisines and commit to keeping up the trend. By providing a range of tasty 
             possibilities with top quality, we only aim to support businesses and elevate dishes 
@@ -39,10 +39,10 @@ const TigerAboutBody = () => {
             the combination of quality, irresistible taste, and competition.
         </p>
         <p>
-            Across the UK’s kitchens! Try Tiger Tiger, the UK’s leading developers of Asian food, 
+            Across the UK’s kitchens! Try Tiger Tiger, the UK’s leading developers of Pan Asian food, 
             and fill your kitchens with the texture and aroma you recall at events. 
             Within a single supplier, you will have multiple options dedicated to being delivered across 
-            Japanese, Thai, Chinese, Korean, Vietnamese, and Indian cuisines.
+            Japanese, Thai, Chinese, Korean, Vietnamese, and Others cuisines.
         </p>
     </div>
 
@@ -86,7 +86,7 @@ const TigerAboutBody = () => {
 
           <div className="flex-1 w-full flex items-center justify-center">
             <p className="text-white text-lg leading-relaxed text-justify md:text-left">
-              We are the UK’s leading developers of Asian food, offering a diverse selection that spans Japanese, Thai, Chinese, and Indian cuisines. We provide a range of tasty possibilities with our top-quality ingredients that make and enhance your dishes. At Tiger Tiger UK, we guarantee unmatched quality, irresistible taste, and competitive pricing. Our commitment is to bring authentic flavours to our valued customers, ensuring an unparalleled culinary experience.
+              We are the UK’s leading developers of Pan Asian food, offering a diverse selection that spans Japanese, Thai, Chinese, and Others cuisines. We provide a range of tasty possibilities with our top-quality ingredients that make and enhance your dishes. At Tiger Tiger UK, we guarantee unmatched quality, irresistible taste, and competitive pricing. Our commitment is to bring authentic flavours to our valued customers, ensuring an unparalleled culinary experience.
             </p>
           </div>
         </div>
@@ -97,7 +97,7 @@ const TigerAboutBody = () => {
         <div className="bg-[#F8F1E2] backdrop-blur-lg border border-white/20 rounded-[10px] shadow-xl grid md:grid-cols-2">
           <div className="p-12 md:p-20 flex flex-col justify-center gap-8">
             <p className="text-[#4B2452] text-lg leading-relaxed font-medium text-justify">
-              We begin our development of Asian foods by delving deeply into the culinary heritage of Asia. This leads us to draw inspiration from centuries-old recipes and cooking techniques. Since supplying indicates a specific chore and a thoughtful process to adhere to multiple food services, we partner with experts. Working with our expert chefs and food artists paves a way for us to specialise in Asian cuisine. That’s where we keep every product creation sticking true to its origins.
+              We begin our development of Pan Asian foods by delving deeply into the culinary heritage of Asia. This leads us to draw inspiration from centuries-old recipes and cooking techniques. Since supplying indicates a specific chore and a thoughtful process to adhere to multiple food services, we partner with experts. Working with our expert chefs and food artists paves a way for us to specialise in Pan Asian cuisine. That’s where we keep every product creation sticking true to its origins.
             </p>
             <p className="text-[#4B2452] text-lg leading-relaxed font-medium text-justify">
               In our every step is excellence and skill on top. We don’t just list but carefully source the finest ingredients. Our tasty products collection includes aromatic spices, premium frozen food, and fresh produce that offer authentic flavours and textures. With current and rising trends like sustainability preferences, we keep serving ethical sourcing practices. We aim to partner with suppliers who share our commitment to environmental stewardship.
@@ -109,7 +109,7 @@ const TigerAboutBody = () => {
               How We Develop
             </h2>
             <p className="text-[#4B2452]/90 text-lg leading-relaxed text-justify md:text-left">
-              Tiger Tiger begins with research and strategic planning, with researching and strategising many options. We keep attuned to our customers’ and partners’ needs in developing our range of Asian foods. Our passion for authenticity, quality, and culinary excellence is the foundation that reflects our understanding that Asian cuisine is as diverse as it is flavourful. This is why we organise our product listings to honour the rich traditions and regional nuances, making each dish unique.
+              Tiger Tiger begins with research and strategic planning, with researching and strategising many options. We keep attuned to our customers’ and partners’ needs in developing our range of Pan Asian foods. Our passion for authenticity, quality, and culinary excellence is the foundation that reflects our understanding that Pan Asian cuisine is as diverse as it is flavourful. This is why we organise our product listings to honour the rich traditions and regional nuances, making each dish unique.
             </p>
           </div>
         </div>
@@ -125,12 +125,12 @@ const TigerAboutBody = () => {
           <div className="bg-[#4B2452] p-10 rounded-3xl hover:shadow-lg transition">
             <h3 className="text-white md:text-[24px] mb-4 font-bold uppercase">High Quality</h3>
             <p className="text-lg text-white text-justify">
-              We assure the essence of what’s best with Asian ingredients. Celebrating natural colours 
+              We assure the essence of what’s best with Pan Asian ingredients. Celebrating natural colours 
               and fermented delicacies across the UK food spots, we take pride in our offerings. 
               Our authentic taste of pan-Asian cuisine is the result of combined effort, planning, 
               strategy, and sourcing from the Far East. We continually expand but extend across 
               borders to bring the real taste and textures. So, our customers delight their appetites 
-              and discerning palates with premium Asian flavours. Tiger Tiger embraces authenticity 
+              and discerning palates with premium Pan Asian flavours. Tiger Tiger embraces authenticity 
               and serves in the UK, Europe, and the Americas, ensuring a global culinary journey.
             </p>
           </div>
@@ -143,7 +143,7 @@ const TigerAboutBody = () => {
           <div className="bg-[#4B2452] p-10 rounded-3xl hover:shadow-lg transition">
             <h3 className="text-white md:text-[24px] mb-4 font-bold uppercase">Mesmerising Taste</h3>
             <p className="text-lg text-white text-justify">
-              Tiger Tiger helps create delectable dishes with carefully selected ingredients to bring you the authentic taste of Asia, no matter where you are. From our irresistibly flavourful sauces, pastes, and curries to our tempting range of frozen foods, core products, and all the essential ingredients, each item is designed to make every bite an irresistible journey into the heart of Asian cuisine.
+              Tiger Tiger helps create delectable dishes with carefully selected ingredients to bring you the authentic taste of Pan Asia, no matter where you are. From our irresistibly flavourful sauces, pastes, and curries to our tempting range of frozen foods, core products, and all the essential ingredients, each item is designed to make every bite an irresistible journey into the heart of Pan Asian cuisine.
             </p>
           </div>
         </div>
@@ -157,7 +157,7 @@ const TigerAboutBody = () => {
             How we work
           </h2>
           <p className="text-gray-700 max-w-5xl mx-auto leading-relaxed text-[15px] md:text-center text-justify">
-            Tiger Tiger works to fulfil a mission to bring the authentic flavours and culinary Asian trends to every table around the United Kingdom. This approach leads us to have a focus and dedication towards our work on sourcing and developing the highest quality food products. Our customers will get a delight in every bite, and businesses will thrive. Here's how we ensure our quality transports bring vibrancy to the streets and bustling markets of Asia:
+            Tiger Tiger works to fulfil a mission to bring the authentic flavours and culinary Pan Asian trends to every table around the United Kingdom. This approach leads us to have a focus and dedication towards our work on sourcing and developing the highest quality food products. Our customers will get a delight in every bite, and businesses will thrive. Here's how we ensure our quality transports bring vibrancy to the streets and bustling markets of Asia:
           </p>
         </div>
 
@@ -165,25 +165,25 @@ const TigerAboutBody = () => {
           <div className="bg-[#F8F1E2] p-8 rounded-sm">
             <h3 className="text-lg font-bold text-[#4B2452] mb-4 uppercase">Cultural understanding & expertise</h3>
             <p className="text-[#4B2452] text-[14px] leading-relaxed text-justify">
-              We have highly inspired food enthusiasts in our team that work more interestingly than just to fulfill the responsibility. Their cultural understanding and deep passion for Asian cuisines sure the rich tapestry of Asian culinary traditions. We immerse ourselves in exploring diverse flavours, ingredients, and cooking techniques that keep us innovation drivers for keeping the culinary alive and lasting.
+              We have highly inspired food enthusiasts in our team that work more interestingly than just to fulfill the responsibility. Their cultural understanding and deep passion for Pan Asian cuisines sure the rich tapestry of Pan  Asian culinary traditions. We immerse ourselves in exploring diverse flavours, ingredients, and cooking techniques that keep us innovation drivers for keeping the culinary alive and lasting.
             </p>
           </div>
           <div className="bg-[#F5F5F5] p-8 rounded-sm">
             <h3 className="text-lg font-bold text-[#4B2452] mb-4 uppercase">Global Sourcing</h3>
             <p className="text-[#4B2452] text-[14px] leading-relaxed text-justify">
-              Tiger Tiger doesn't just rely on the name or fame but on self-research and assessment. That's why we scour the Asian markets that can help us source the finest ingredients and products from trusted suppliers and producers. We have earned an extensive network of trusted partners in the region, opening up our access and extending our services for a wide variety of authentic and premium-quality ingredients.
+              Tiger Tiger doesn't just rely on the name or fame but on self-research and assessment. That's why we scour the Pan Asian markets that can help us source the finest ingredients and products from trusted suppliers and producers. We have earned an extensive network of trusted partners in the region, opening up our access and extending our services for a wide variety of authentic and premium-quality ingredients.
             </p>
           </div>
           <div className="bg-[#F5F5F5] p-8 rounded-sm">
             <h3 className="text-lg font-bold text-[#4B2452] mb-4 uppercase">Innovation and Adaptability</h3>
             <p className="text-[#4B2452] text-[14px] leading-relaxed text-justify">
-              If it belongs to success, it is tied to effort! With innovation as our focus and a future-driven method, we never hesitate to adapt to new trends. That's why our customers trust us and keep us at the forefront of the Asian food industry. Through research, experimentation, and creative exploration, we constantly push the boundaries of flavour and innovation.
+              If it belongs to success, it is tied to effort! With innovation as our focus and a future-driven method, we never hesitate to adapt to new trends. That's why our customers trust us and keep us at the forefront of the PanAsian food industry. Through research, experimentation, and creative exploration, we constantly push the boundaries of flavour and innovation.
             </p>
           </div>
           <div className="bg-[#F8F1E2] p-8 rounded-sm">
             <h3 className="text-lg font-bold text-[#4B2452] mb-4 uppercase">Collaborative Development</h3>
             <p className="text-[#4B2452] text-[14px] leading-relaxed text-justify">
-              Our Asian ingredient offerings are the result of close collaboration with chefs, culinary experts, and food artisans across Asia. With this escort and trust, we develop unique and innovative food products. While keeping ahead with the modern interpretations, we never leave traditional recipes passed down through generations.
+              Our Pan Asian ingredient offerings are the result of close collaboration with chefs, culinary experts, and food artisans across Asia. With this escort and trust, we develop unique and innovative food products. While keeping ahead with the modern interpretations, we never leave traditional recipes passed down through generations.
             </p>
           </div>
         </div>
@@ -193,7 +193,7 @@ const TigerAboutBody = () => {
       <section className="bg-[#4E1A51] mt-20 py-20 px-6 text-center">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xl md:text-2xl font-semibold text-white leading-relaxed mb-10">
-            Tiger Tiger are explorers and ambassadors of Asian cuisine. Our customer-first approach in Asian food supply and passion for discovery keep us committed to making stories real. We are dedicated to satisfying our customers while sharing the vibrant and diverse flavours of Asia with the world.
+            Tiger Tiger are explorers and ambassadors of Pan Asian cuisine. Our customer-first approach in Asian food supply and passion for discovery keep us committed to making stories real. We are dedicated to satisfying our customers while sharing the vibrant and diverse flavours of Asia with the world.
           </h2>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
   <Link 

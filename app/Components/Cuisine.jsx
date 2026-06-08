@@ -18,7 +18,8 @@ const RecipeSection = () => {
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-[#4B164C] mb-4">Explore Recipes</h2>
         <p className="text-gray-600 max-w-2xl leading-relaxed">
-          We bring together the rich culinary traditions of Asia under one brand.
+          Uniting the diverse culinary traditions of Pan-Asian
+cuisine under one brand.
         </p>
       </div>
 

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link"; // 1. Link import karein
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -11,7 +12,6 @@ import "swiper/css/pagination";
 const FeaturedProducts = () => {
   const brandPurple = "#4e1a51";
 
-  // Ab yahan sirf images ka data reh gaya hai, links ke slugs hatane ke baad
   const products = [
     { id: 1, src: "/featured.jpeg", alt: "Lychee Pulp" },
     { id: 2, src: "/feature-banner-2.webp", alt: "Coconut Water" },
@@ -45,32 +45,33 @@ const FeaturedProducts = () => {
           >
             {products.map((product) => (
               <SwiperSlide key={product.id}>
-                {/* Fixed: Link tag yahan se poora remove kar diya hai */}
-                <div 
-                  className="relative mt-2 w-full aspect-[21/9] md:aspect-[25/10] rounded-[40px] overflow-hidden isolate shadow-none"
-                  style={{ maskImage: "webkit-radial-gradient(white, black)" }} 
-                >
-                  <Image
-                    src={product.src}
-                    alt={product.alt}
-                    fill
-                    className="object-cover rounded-[40px]"
-                    priority
-                    sizes="(max-width: 1280px) 100vw, 1280px"
-                  />
-                </div>
+                {/* 2. Link component yahan use karein */}
+                <Link href="/feature_product" className="block outline-none">
+                  <div 
+                    className="relative mt-2 w-full aspect-[21/9] md:aspect-[25/10] rounded-[40px] overflow-hidden isolate shadow-none"
+                    style={{ maskImage: "webkit-radial-gradient(white, black)" }} 
+                  >
+                    <Image
+                      src={product.src}
+                      alt={product.alt}
+                      fill
+                      className="object-cover rounded-[40px]"
+                      priority
+                      sizes="(max-width: 1280px) 100vw, 1280px"
+                    />
+                  </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
       </div>
-
+      
       <style jsx global>{`
         .swiper {
             border-radius: 40px !important;
             overflow: hidden !important;
         }
-
         .swiper-pagination-bullet-active {
           background: #4e1a51 !important;
           width: 12px;

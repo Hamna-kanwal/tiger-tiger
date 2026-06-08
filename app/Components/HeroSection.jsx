@@ -46,7 +46,7 @@ const Herosection = () => {
             style={{ color: charcoalBlack }}
             className="eczar text-[22px] sm:text-[26px] md:text-[32px] font-black tracking-tighter leading-tight mb-6"
           >
-            Authentic Pan-Asian Ingredients for Restaurants, Retailers & Wholesalers
+            Authentic Pan Asian Ingredients for Restaurants, Retailers & Wholesalers
           </h2>
 
           <p style={{ color: charcoalBlack }} className="text-sm md:text-base leading-relaxed mb-6 opacity-90">
@@ -55,7 +55,7 @@ const Herosection = () => {
 
          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
   <Link 
-    href="/products" // 👈 Apna sahi route yahan likhein
+    href="/categories" // 👈 Apna sahi route yahan likhein
     onMouseEnter={() => setHoverExplore(true)}
     onMouseLeave={() => setHoverExplore(false)}
     style={{ 

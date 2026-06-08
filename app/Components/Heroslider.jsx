@@ -15,36 +15,36 @@ const slidesData = [
     id: 1,
     src: "/TT-hero-main.png",
     alt: "Tiger Tiger",
-    title: "Double Champions",
-    mainHeading: "Celebrating Back to Back Success",
-    subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
+    title: "Back-to-Back Winners",
+    mainHeading: " Pulp+ UK Soft Drinks Awards Champion, 2025 & 2026",
+    subText: "Real fruit. Real pulp. Real refreshment.",
     isVideo: false,
   },
   {
     id: 2,
     src: "/japanese-hero.webp",
     alt: "Japanese",
-    title: "Nature's Best in Every Sip",
-    mainHeading: "Leading Pan Asian Food Brand in the UK",
-    subText: "Your Thirst's New Weakness.",
+    title: "Made for Every Kitchen & Shelf",
+    mainHeading: "Leading Pan-Asian Food Brand in the UK",
+    subText: "Authentic Pan-Asian sauces and mayo to lift every dish you serve",
     isVideo: false,
   },
   {
     id: 3,
     src: "/koreann-wow.png",
     alt: "Korean",
-    title: "Nature's Best in Every Sip",
-    mainHeading: "Leading Pan Asian Food Brand in the UK",
-    subText: "Your Thirst's New Weakness.",
+    title: "Four Bold Flavours. Ready in 4 minutes",
+    mainHeading: "Where Authentic Taste Meets Exceptional Quality",
+    subText: " Add Wow to your Chow",
     isVideo: false,
   },
   {
     id: 4,
     src: "/testing.mp4",
     alt: "Brand Video",
-    title: "Experience the Taste",
-    mainHeading: "Authentic Asian Flavors Crafted For You",
-    subText: "Your Thirst's New Weakness.",
+    title: "Straight from Freezer",
+    mainHeading: "Your Trusted Name in Frozen Pan-Asian Food",
+    subText: "From pan to bamboo: taste the tradition",
     isVideo: true,
   },
 ];
@@ -78,7 +78,7 @@ const HeroSlider = () => {
         </p>
 
         <h1
-          className="eczar text-[28px] md:text-[45px] lg:text-[50px] m-0 p-0 font-bold leading-tight transition-all duration-500"
+          className="eczar text-[32px] md:text-[40px] lg:text-[50px] m-0 p-0 font-bold leading-tight transition-all duration-500"
           style={{ color: brandPurple }}
         >
           {slidesData[activeIndex]?.mainHeading}
@@ -118,11 +118,11 @@ const HeroSlider = () => {
           </Link>
 
           <Link
-            href="/products"
+            href="/categories"
             prefetch={true}
             onMouseEnter={() => {
               setHoverProducts(true);
-              router.prefetch("/products");
+              router.prefetch("/categories");
             }}
             onMouseLeave={() => setHoverProducts(false)}
             style={{
