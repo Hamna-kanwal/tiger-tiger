@@ -5,54 +5,47 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 
-// Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 
 const slidesData = [
-  { 
-    id: 1, 
-    src: "/TT-hero-main.png", 
-    alt: "Tiger Tiger", 
+  {
+    id: 1,
+    src: "/TT-hero-main.png",
+    alt: "Tiger Tiger",
     title: "Double Champions",
-    mainHeading: "Celebrating Back to Back Success ",
+    mainHeading: "Celebrating Back to Back Success",
     subText: "2025: Pulp+ Mango | 2026: Pulp+ Lychee",
-    className: "scale-[1.5] md:scale-140 md:translate-y-0 translate-y-8",
-    isVideo: false 
+    isVideo: false,
   },
-  { 
-    id: 2, 
-    src: "/japanese-hero.webp", 
-    alt: "Japanese", 
-    title: "Nature’s Best in Every Sip",
+  {
+    id: 2,
+    src: "/japanese-hero.webp",
+    alt: "Japanese",
+    title: "Nature's Best in Every Sip",
     mainHeading: "Leading Pan Asian Food Brand in the UK",
-    subText: "Your Thirst’s New Weakness.",
-    className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8",
-    isVideo: false 
+    subText: "Your Thirst's New Weakness.",
+    isVideo: false,
   },
-{ 
-  id: 3, 
-  src: "/koreann-wow.png", 
-  alt: "Korean", 
-  title: "Nature’s Best in Every Sip",
-  mainHeading: "Leading Pan Asian Food Brand in the UK",
-  subText: "Your Thirst’s New Weakness.",
-  className: "w-full h-full object-cover",
-  isVideo: false,
-  isBackground: true // Add this flag
-},
-  { 
-    id: 4, 
-    src: "/testing.mp4", 
-    alt: "Brand Video", 
+  {
+    id: 3,
+    src: "/koreann-wow.png",
+    alt: "Korean",
+    title: "Nature's Best in Every Sip",
+    mainHeading: "Leading Pan Asian Food Brand in the UK",
+    subText: "Your Thirst's New Weakness.",
+    isVideo: false,
+  },
+  {
+    id: 4,
+    src: "/testing.mp4",
+    alt: "Brand Video",
     title: "Experience the Taste",
     mainHeading: "Authentic Asian Flavors Crafted For You",
-    subText: "Your Thirst’s New Weakness.",
-    className: "w-full h-full object-cover", 
-    isVideo: true 
+    subText: "Your Thirst's New Weakness.",
+    isVideo: true,
   },
 ];
 
@@ -71,13 +64,13 @@ const HeroSlider = () => {
   const charcoalBlack = "#333333";
 
   return (
-    <section className="relative w-full bg-transparent flex flex-col items-center overflow-hidden !rounded-none">
-      {/* Header Spacing Section */}
+    <section className="relative w-full bg-transparent flex flex-col items-center overflow-hidden">
+
+      {/* Header Spacing */}
       <div className="w-full pt-[80px] md:pt-[20px] lg:pt-[60px]" />
 
-      {/* --- TEXT SECTION (Dynamic) --- */}
-      <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl h-[250px] md:h-[200px]">
-       
+      {/* TEXT SECTION */}
+      <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl w-full min-h-[220px] md:min-h-[200px]">
         <p
           style={{ color: charcoalBlack }}
           className="text-base lg:text-lg font-outfit mt-4 lg:mt-2 font-semibold mb-1 transition-all duration-500"
@@ -85,9 +78,8 @@ const HeroSlider = () => {
           {slidesData[activeIndex]?.title}
         </p>
 
-        {/* Main Heading */}
         <h1
-          className="eczar text-[30px] md:text-[45px] lg:text-[50px] m-0 p-0 font-bold leading-tight transition-all duration-500"
+          className="eczar text-[28px] md:text-[45px] lg:text-[50px] m-0 p-0 font-bold leading-tight transition-all duration-500"
           style={{ color: brandPurple }}
         >
           {slidesData[activeIndex]?.mainHeading}
@@ -97,21 +89,21 @@ const HeroSlider = () => {
           style={{ color: brandPurple }}
           className="text-sm md:text-lg font-outfit font-medium mt-1 transition-all duration-500"
         >
-          <span style={{ color: charcoalBlack }}>Your Thirst’s</span>{" "}
+          <span style={{ color: charcoalBlack }}>Your Thirst's</span>{" "}
           <span className="font-bold eczar text-lg md:text-2xl">
-            {slidesData[activeIndex]?.subText ? slidesData[activeIndex].subText.split(" ").slice(-2).join(" ") : ""}
-          </span>.
+            {slidesData[activeIndex]?.subText
+              ? slidesData[activeIndex].subText.split(" ").slice(-2).join(" ")
+              : ""}
+          </span>
+          .
         </p>
 
-        {/* Buttons Section */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-8 w-full px-4 sm:px-0">
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-6 w-full px-4 sm:px-0">
           <Link
             href="/tt-app"
             prefetch={true}
-            onMouseEnter={() => {
-              setHoverApp(true);
-              router.prefetch("/tt-app");
-            }}
+            onMouseEnter={() => { setHoverApp(true); router.prefetch("/tt-app"); }}
             onMouseLeave={() => setHoverApp(false)}
             style={{
               backgroundColor: hoverApp ? brandPurple : "transparent",
@@ -126,10 +118,7 @@ const HeroSlider = () => {
           <Link
             href="/products"
             prefetch={true}
-            onMouseEnter={() => {
-              setHoverProducts(true);
-              router.prefetch("/products");
-            }}
+            onMouseEnter={() => { setHoverProducts(true); router.prefetch("/products"); }}
             onMouseLeave={() => setHoverProducts(false)}
             style={{
               backgroundColor: hoverProducts ? "transparent" : brandPurple,
@@ -143,87 +132,72 @@ const HeroSlider = () => {
         </div>
       </div>
 
-      {/* --- CAROUSEL SECTION --- */}
-      <div className="w-full flex justify-center items-end mt-10 overflow-hidden !rounded-none">
-        <div className="relative w-full h-[320px] sm:h-[1000px] md:h-[550px] lg:h-[500px] bg-transparent !rounded-none">
+      {/* CAROUSEL SECTION - Height Controlled */}
+      <div className="w-full mt-6 overflow-hidden">
+        <div className="relative w-full h-[380px] sm:h-[460px] md:h-[520px] lg:h-[480px] xl:h-[520px]">
           <Swiper
-            modules={[Autoplay, Pagination, EffectFade]}
+            modules={[Autoplay, Pagination]}
             slidesPerView={1}
             loop={true}
             speed={1000}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             pagination={{ clickable: true }}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            className="h-full w-full pb-14 !rounded-none root-hero-swiper"
+            className="w-full h-full root-hero-swiper"
           >
             {slidesData.map((slide) => (
-              <SwiperSlide key={slide.id} className={`relative ${slide.id === 3 ? 'overflow-visible' : 'overflow-hidden'} !rounded-none`}>
-                <div className="relative w-full h-full !rounded-none">
-                  {slide.isVideo ? (
-                    <video
-                      src={slide.src}
-                      className={`${slide.className} !rounded-none border-0 block`}
-                      style={{ borderRadius: '0px !important' }}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    />
-                  ) : (
-                    <Image
-                      src={slide.src}
-                      alt={slide.alt}
-                      fill
-                      priority
-                      sizes="100vw"
-                      className={`object-contain object-bottom origin-bottom transition-transform duration-700 !rounded-none ${slide.className}`}
-                      style={{ borderRadius: '0px !important' }}
-                      quality={100}
-                    />
-                  )}
-                </div>
+              <SwiperSlide key={slide.id} className="relative w-full h-full overflow-hidden">
+                {slide.isVideo ? (
+                  <video
+                    src={slide.src}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover object-center"
+                    quality={100}
+                  />
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* --- CSS OVERRIDES FOR PURE SHARP SQUARES --- */}
-          <style jsx global>{`
-            /* Root layouts elements rounding crash bypass */
-            .root-hero-swiper, 
-            .root-hero-swiper * {
-              border-radius: 0px !important;
-              border-top-left-radius: 0px !important;
-              border-top-right-radius: 0px !important;
-              border-bottom-left-radius: 0px !important;
-              border-bottom-right-radius: 0px !important;
-              -webkit-border-radius: 0px !important;
-              mask-image: none !important;
-              -webkit-mask-image: none !important;
-              clip-path: none !important;
-            }
-
-            /* Active Dot Layout Settings */
-            .root-hero-swiper .swiper-pagination-bullet-active {
-              background: ${brandPurple} !important;
-              width: 24px !important;
-              border-radius: 0px !important;
-              height: 8px !important;
-            }
-            
-            /* Inactive Dot Layout Settings */
-            .root-hero-swiper .swiper-pagination-bullet {
-              background: ${brandPurple} !important;
-              opacity: 0.3;
-              border-radius: 0px !important;
-              height: 8px !important;
-              width: 8px !important;
-            }
-            
-            .root-hero-swiper .swiper-pagination {
-              bottom: 40px !important;
-            }
-          `}</style>
         </div>
+
+        {/* CSS Overrides */}
+        <style jsx global>{`
+          .root-hero-swiper,
+          .root-hero-swiper * {
+            border-radius: 0px !important;
+          }
+
+          .root-hero-swiper .swiper-pagination-bullet-active {
+            background: ${brandPurple} !important;
+            width: 24px !important;
+            height: 8px !important;
+            border-radius: 0px !important;
+          }
+
+          .root-hero-swiper .swiper-pagination-bullet {
+            background: ${brandPurple} !important;
+            opacity: 0.3;
+            width: 8px !important;
+            height: 8px !important;
+            border-radius: 0px !important;
+          }
+
+          .root-hero-swiper .swiper-pagination {
+            bottom: 20px !important;
+          }
+        `}</style>
       </div>
     </section>
   );
