@@ -44,7 +44,7 @@ const InnovationSection = () => {
             <UtensilsCrossed size={38} strokeWidth={1.2} className="text-[#4e1a51]" />
           </div>
           <h2 className="eczar text-[26px] md:text-[38px] font-bold text-[#4e1a51] tracking-tight leading-tight uppercase">
-            INNOVATION IN ASIAN FOOD DEVELOPMENT
+            DRIVING INNOVATION IN PAN-ASIAN FOOD
           </h2>
         </div>
 
