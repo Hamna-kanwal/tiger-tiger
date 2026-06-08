@@ -60,7 +60,7 @@ export default function Header() {
                 <Link
                   href={link.href}
                   className={`text-[15px] xl:text-[16px] flex items-center gap-1 transition-all duration-200 ${
-                    isActive(link.href) ? "font-bold text-[#4e1a51]" : "font-light text-[#4e1a51]/80 hover:text-[#1f2937]"
+                    isActive(link.href) ? "font-bold text-white" : "font-light text-white hover:text-white"
                   }`}
                 >
                   {link.name}
@@ -70,16 +70,11 @@ export default function Header() {
                 {/* Dropdown */}
                 {link.dropdown && (
                   <div className={`absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 transition-all duration-300 ${openDropdown === link.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}>
-                {/* Desktop Dropdown items */}
-{link.dropdown.map((subItem) => (
-  <Link 
-    key={subItem.name} 
-    href={subItem.href} 
-    className="block px-6 py-3 text-[#4e1a51] transition-colors duration-200 text-sm font-medium hover:bg-[#4e1a51] hover:text-white"
-  >
-    {subItem.name}
-  </Link>
-))}
+                    {link.dropdown.map((subItem) => (
+                      <Link key={subItem.name} href={subItem.href} className="block px-6 py-3 text-[#4e1a51] hover:bg-white hover:text-white transition-colors duration-200 text-sm font-medium">
+                        {subItem.name}
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
@@ -119,7 +114,7 @@ export default function Header() {
                         {openDropdown === link.name && (
                           <div className="flex flex-col pl-6 border-l-2 border-gray-100 ml-4 gap-1 mt-1">
                             {link.dropdown.map((subItem) => (
-                              <Link key={subItem.name} href={subItem.href} onClick={() => setIsMenuOpen(false)} className="py-2.5 px-4 text-[#4e1a51]/80 hover:text-[#1f2937] text-base font-normal rounded-lg hover:bg-gray-50 block">
+                              <Link key={subItem.name} href={subItem.href} onClick={() => setIsMenuOpen(false)} className="py-2.5 px-4 text-[#4e1a51]/80 hover:text-[#4e1a51] text-base font-normal rounded-lg hover:bg-gray-50 block">
                                 {subItem.name}
                               </Link>
                             ))}
@@ -127,7 +122,7 @@ export default function Header() {
                         )}
                       </>
                     ) : (
-                      <Link href={link.href} onClick={() => setIsMenuOpen(false)} className={`py-3 px-4 text-lg rounded-xl transition-all block ${isActive(link.href) ? "font-bold text-white bg-[#4e1a51]" : "font-medium text-[#4e1a51]/80 hover:text-[#1f2937] hover:bg-gray-50"}`}>
+                      <Link href={link.href} onClick={() => setIsMenuOpen(false)} className={`py-3 px-4 text-lg rounded-xl transition-all block ${isActive(link.href) ? "font-bold text-white bg-[#4e1a51]" : "font-medium text-[#4e1a51]/80 hover:text-[#4e1a51] hover:bg-gray-50"}`}>
                         {link.name}
                       </Link>
                     )}
