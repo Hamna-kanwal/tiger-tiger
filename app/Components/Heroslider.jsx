@@ -11,10 +11,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const slidesData = [
-  { id: 1, src: "/TT-hero-main.png", alt: "Tiger Tiger", title: "Back-to-Back Winners", mainHeading: " Pulp+ UK Soft Drinks Awards Champion, 2025 & 2026", subText: "Real fruit. Real pulp. Real refreshment.", isVideo: false },
-  { id: 2, src: "/japanese-hero.webp", alt: "Japanese", title: "Made for Every Kitchen & Shelf", mainHeading: "Leading Pan-Asian Food Brand in the UK", subText: "Authentic Pan-Asian sauces and mayo to lift every dish you serve", isVideo: false },
-  { id: 3, src: "/koreann-wow.png", alt: "Korean", title: "Four Bold Flavours. Ready in 4 minutes", mainHeading: "Where Authentic Taste Meets Exceptional Quality", subText: " Add Wow to your Chow", isVideo: false },
-  { id: 4, src: "/testing.mp4", alt: "Brand Video", title: "Straight from Freezer", mainHeading: "Your Trusted Name in Frozen Pan-Asian Food", subText: "From pan to bamboo: taste the tradition", isVideo: true },
+  { id: 1, src: "/TT-hero-main.png", alt: "Tiger Tiger", title: "Back-to-Back Winners", mainHeading: " Pulp+ UK Soft Drinks Awards Champion, 2025 & 2026", isVideo: false },
+  { id: 2, src: "/japanese-hero.webp", alt: "Japanese", title: "Made for Every Kitchen & Shelf", mainHeading: "Leading Pan-Asian Food Brand in the UK",  isVideo: false },
+  { id: 3, src: "/koreann-wow.png", alt: "Korean", title: "Four Bold Flavours. Ready in 4 minutes", mainHeading: "Where Authentic Taste Meets Exceptional Quality", isVideo: false },
+  { id: 4, src: "/testing.mp4", alt: "Brand Video", title: "Straight from Freezer", mainHeading: "Your Trusted Name in Frozen Pan-Asian Food",  isVideo: true },
 ];
 
 const HeroSlider = () => {
@@ -45,7 +45,7 @@ const HeroSlider = () => {
         </h1>
 
         <p style={{ color: brandPurple }} className="text-sm md:text-lg font-outfit font-medium mt-1 transition-all duration-500">
-          <span style={{ color: charcoalBlack }}>Your Thirst's</span>{" "}
+         
           <span className="font-bold eczar text-lg md:text-2xl">
             {slidesData[activeIndex]?.subText ? slidesData[activeIndex].subText.split(" ").slice(-2).join(" ") : ""}
           </span>.

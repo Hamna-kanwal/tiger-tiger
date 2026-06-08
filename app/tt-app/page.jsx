@@ -55,7 +55,7 @@ export default function AppLandingPage() {
           <div className="relative aspect-square w-full max-w-[420px] border-4 border-[#A8967D] rounded-2xl overflow-hidden">
             <Image src="/mobile_phone.webp" alt="Easy Searching" fill className="object-cover" />
           </div>
-          <div className="space-y-6">
+         <div className="space-y-6">
             <h3 className="text-3xl font-bold text-gray-900">Designed to Make Things Easier</h3>
             {[{t: "Easy Browsing", d: "Move through categories."}, {t: "Wide Range", d: "Broad selection."}, {t: "Quick Access", d: "Always within reach."}].map((item, i) => (
               <div key={i}>
