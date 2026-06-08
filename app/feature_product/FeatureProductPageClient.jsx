@@ -4,11 +4,21 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function FeatureProductPageClient({ sections = [] }) {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <main className="grow max-w-[1440px] mx-auto w-full px-6 py-12">
         {sections.map((section, idx) => (
-          <div key={idx} className="py-16 border-b border-gray-100 last:border-0">
+          <div id={section.id} key={idx} className="py-16 border-b border-gray-100 last:border-0">
             <h2 className="text-3xl md:text-4xl font-bold text-[#4e1a51] mb-10 uppercase tracking-tight">
               {section.title}
             </h2>

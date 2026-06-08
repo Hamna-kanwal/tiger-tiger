@@ -36,7 +36,7 @@ const FAQSection = () => {
   </h2>
   {/* Yahan 'mx-auto' add kiya hai taaki yeh container ke andar center ho jaye */}
   <p className="text-gray-500 text-center leading-relaxed text-base md:text-[17px] outfit font-light max-w-md mx-auto">
-    Find everything you need to know about our authentic Asian ingredients and wholesale services.
+    Find everything you need to know about our authentic Pan Asian ingredients and wholesale services.
   </p>
 </div>
 

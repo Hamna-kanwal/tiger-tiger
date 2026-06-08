@@ -14,7 +14,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null); // Kaunsa dropdown khula hai
 
-  const navLinks = [
+const navLinks = [
     { name: "Home", href: "/" },
     { 
       name: "Products", 
@@ -35,6 +35,7 @@ export default function Header() {
         { name: "Blogs", href: "/blogs" },
       ]
     },
+    { name: "Download Our App", href: "/tt-app", isButton: true },
   ];
 
   const isActive = (href) => path === href;

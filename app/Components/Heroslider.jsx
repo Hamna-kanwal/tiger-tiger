@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 
 const slidesData = [
   { id: 1, src: "/TT-hero-main.png", alt: "Tiger Tiger", title: "Back-to-Back Winners", mainHeading: " Pulp+ UK Soft Drinks Awards Champion, 2025 & 2026", isVideo: false },
-  { id: 2, src: "/japanese-hero.webp", alt: "Japanese", title: "Made for Every Kitchen & Shelf", mainHeading: "Leading Pan-Asian Food Brand in the UK",  isVideo: false },
+  { id: 2, src: "/japanese-hero.webp", alt: "Japanese", title: "Made for Every Kitchen & Shelf", mainHeading: "Leading Pan Asian Food Brand in the UK",  isVideo: false },
   { id: 3, src: "/koreann-wow.png", alt: "Korean", title: "Four Bold Flavours. Ready in 4 minutes", mainHeading: "Where Authentic Taste Meets Exceptional Quality", isVideo: false },
   { id: 4, src: "/testing.mp4", alt: "Brand Video", title: "Straight from Freezer", mainHeading: "Your Trusted Name in Frozen Pan-Asian Food",  isVideo: true },
 ];
@@ -52,11 +52,11 @@ const HeroSlider = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-6 w-full px-4 sm:px-0">
-          <Link href="/tt-app" prefetch={true} onMouseEnter={() => setHoverApp(true)} onMouseLeave={() => setHoverApp(false)} 
+          <Link href="/trade-register" prefetch={true} onMouseEnter={() => setHoverApp(true)} onMouseLeave={() => setHoverApp(false)} 
             style={{ backgroundColor: hoverApp ? brandPurple : "transparent", borderColor: brandPurple, color: hoverApp ? "white" : brandPurple }}
             className="border-2 px-6 md:px-10 py-2.5 md:py-3.5 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center active:scale-95 w-fit sm:w-auto min-w-[160px]"
           >
-            View Our App
+            Trade Register
           </Link>
 
           <Link href="/categories" prefetch={true} onMouseEnter={() => setHoverProducts(true)} onMouseLeave={() => setHoverProducts(false)}

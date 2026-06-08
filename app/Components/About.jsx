@@ -41,17 +41,11 @@ const AboutSection = () => {
   <FeatureItem brandPurple={brandPurple} title="The Mission" text="Bringing bold, authentic Pan-Asian flavour to every food business — wholesale, retail and foodservice alike." />
   
   {/* Button Section */}
-  <div className="pt-0">
+  <div className="pt-6">
     <p className="text-gray-800 font-medium mb-4">
       Trusted by retailers, wholesalers and kitchens across the UK
     </p>
-    <Link 
-      href="/categories" 
-      className="inline-block px-5 py-2 rounded-lg font-bold text-white transition-all hover:opacity-90"
-      style={{ backgroundColor: brandPurple }}
-    >
-      Explore the range
-    </Link>
+
   </div>
 </div>
 

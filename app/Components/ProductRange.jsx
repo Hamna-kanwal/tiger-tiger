@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"; // 1. Link import karein
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -13,9 +13,9 @@ const FeaturedProducts = () => {
   const brandPurple = "#4e1a51";
 
   const products = [
-    { id: 1, src: "/featured.jpeg", alt: "Lychee Pulp" },
-    { id: 2, src: "/feature-banner-2.webp", alt: "Coconut Water" },
-    { id: 3, src: "/feature-products-popping.webp", alt: "Guava Juice" },
+    { id: 1, src: "/featured.jpeg", alt: "Lychee Pulp", target: "coco-choo-coming-soon" },
+    { id: 2, src: "/feature-banner-2.webp", alt: "Coconut Water", target: "pulp-plus" },
+    { id: 3, src: "/feature-products-popping.webp", alt: "Guava Juice", target: "popping-candy" },
   ];
 
   return (
@@ -45,8 +45,8 @@ const FeaturedProducts = () => {
           >
             {products.map((product) => (
               <SwiperSlide key={product.id}>
-                {/* 2. Link component yahan use karein */}
-                <Link href="/feature_product" className="block outline-none">
+                {/* Yahan target ID ke saath link bind kiya gaya hai */}
+                <Link href={`/feature_product#${product.target}`} className="block outline-none">
                   <div 
                     className="relative mt-2 w-full aspect-[21/9] md:aspect-[25/10] rounded-[40px] overflow-hidden isolate shadow-none"
                     style={{ maskImage: "webkit-radial-gradient(white, black)" }} 

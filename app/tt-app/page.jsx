@@ -50,22 +50,25 @@ export default function AppLandingPage() {
       </section>
 
       {/* ================= SECTION 2: INTRO ================= */}
-      <section className="relative w-full bg-white py-20">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-square w-full max-w-[420px] border-4 border-[#A8967D] rounded-2xl overflow-hidden">
-            <Image src="/mobile_phone.webp" alt="Easy Searching" fill className="object-cover" />
-          </div>
-         <div className="space-y-6">
-            <h3 className="text-3xl font-bold text-gray-900">Designed to Make Things Easier</h3>
-            {[{t: "Easy Browsing", d: "Move through categories."}, {t: "Wide Range", d: "Broad selection."}, {t: "Quick Access", d: "Always within reach."}].map((item, i) => (
-              <div key={i}>
-                <h4 className="font-bold text-[#4e1a51] text-xl">{item.t}</h4>
-                <p className="text-gray-600">{item.d}</p>
-              </div>
-            ))}
-          </div>
+    <section className="relative w-full bg-white py-12">
+  <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+    {/* Image Container */}
+    <div className="relative aspect-square w-full max-w-[400px] border-4 border-[#A8967D] rounded-2xl overflow-hidden">
+      <Image src="/mobile_phone.webp" alt="Easy Searching" fill className="object-cover" />
+    </div>
+
+    {/* Content Container */}
+    <div className="space-y-4">
+      <h3 className="text-3xl font-bold text-gray-900 mb-2">Designed to Make Things Easier</h3>
+      {[{t: "Easy Browsing", d: "Move through categories without confusion."}, {t: "Wide Product Range", d: "Broad selection for home and business."}, {t: "Quick Access", d: "Frequently viewed products within reach."}].map((item, i) => (
+        <div key={i}>
+          <h4 className="font-bold text-[#4e1a51] text-lg">{item.t}</h4>
+          <p className="text-gray-600 text-sm">{item.d}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* ================= SECTION 4: SHOWCASE ================= */}
       <section className="w-full bg-white py-20 overflow-hidden">
@@ -81,21 +84,36 @@ export default function AppLandingPage() {
       </section>
 
       {/* ================= SECTION 5: TRUST ================= */}
-      <section className="w-full bg-white border-t border-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
-          <div className="w-full md:w-1/2">
-            <div className="relative bg-[#5B2956] rounded-[60px] w-full max-w-[420px] aspect-[4/5] flex items-center shadow-xl">
-              <div className="relative z-10 flex flex-col items-center pt-8">
-                <Image src="/image1.webp" alt="Reliable" width={500} height={500} className="object-contain" />
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/2 space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Simple, Practical, Reliable</h2>
-            <p className="text-gray-600 text-lg">We’ve kept things clear and functional.</p>
-          </div>
+   <section className="w-full bg-white border-t border-gray-50 py-12">
+  <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+    
+    {/* Left Side - Image Box */}
+    <div className="w-full md:w-1/2 flex justify-start">
+      <div className="relative bg-[#5B2956] rounded-[40px] w-full max-w-[360px] aspect-[4/5] flex items-center shadow-lg">
+        <div className="relative z-10 w-full px-4">
+          <Image 
+            src="/image1.webp" 
+            alt="Reliable" 
+            width={400} 
+            height={400} 
+            className="object-contain w-full h-auto" 
+          />
         </div>
-      </section>
+      </div>
+    </div>
+
+    {/* Right Side - Content */}
+    <div className="w-full md:w-1/2 space-y-3">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+        Simple, Practical, Reliable
+      </h2>
+      <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+        We’ve kept things clear and functional.
+      </p>
+    </div>
+
+  </div>
+</section>
 
       {/* ================= SECTION 6: FINAL CTA ================= */}
       <section className="relative w-full bg-white py-16 px-6 md:px-24 flex flex-col md:flex-row items-center justify-center gap-12 overflow-hidden">

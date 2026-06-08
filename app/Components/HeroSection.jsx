@@ -12,7 +12,7 @@ const Herosection = () => {
 
   const features = [
     {
-      icon: <Star className="w-6 h-6 fill-current" />,
+      icon: <Star className="w-6 h-6 " />,
       title: "200+",
       sub: "PRODUCTS",
       hasBorder: true
@@ -79,8 +79,7 @@ const Herosection = () => {
     }}
     className="w-fit min-w-[180px] sm:w-auto px-8 md:px-10 py-3 md:py-4 rounded-full border-2 font-bold text-sm md:text-base transition-all duration-300 active:scale-95 text-center block"
   >
-    Contact Us
-  </Link>
+    Trade Register  </Link>
 </div>
         </div>
 

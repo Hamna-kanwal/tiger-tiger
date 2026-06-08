@@ -60,7 +60,7 @@ const TigerAboutBody = () => {
     href="/trade-register" 
     className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold border-2 border-[#4B2452] hover:bg-transparent hover:text-[#4B2452] transition text-center"
   >
-    Contact Us
+    Trade Register
   </Link>
 </div>
 </section>
@@ -200,7 +200,7 @@ const TigerAboutBody = () => {
     href="/trade-register" 
     className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
   >
-    Contact Us
+    Trade Register
   </Link>
   
   <Link 

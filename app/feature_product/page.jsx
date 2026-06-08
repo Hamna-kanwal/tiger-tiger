@@ -91,6 +91,7 @@ export default function FeatureProductPage() {
 
   const sectionsWithLinks = sections.map((section) => ({
     ...section,
+    id: slugify(section.title),
     features: section.features.map((item) => mapItemToHref(item)),
     listings: section.listings.map((item) => mapItemToHref(item)),
   }));
