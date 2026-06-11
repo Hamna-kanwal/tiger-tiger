@@ -38,4 +38,4 @@ export default async function sitemap() {
   ];
 
   return [...staticPages, ...categoryEntries, ...uniqueProductUrls];
-}
+}     
