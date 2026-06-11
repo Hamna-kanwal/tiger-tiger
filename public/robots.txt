@@ -1,0 +1,6 @@
+# Allow crawlers to see everything
+User-agent: *
+Allow: /
+
+# Link to your sitemap (jab aap sitemap bana lein)
+Sitemap: https://www.tigertigerfoods.com/sitemap.xml

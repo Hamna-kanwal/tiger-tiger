@@ -8,6 +8,7 @@ const slugify = (s) =>
     .replace(/(^-|-$)/g, "");
 
 export default async function Page({ params }) {
+  const { slug, sku } = await params;
   // FIXED: Next.js 15+ ke rules ke mutabiq params ko pehle await kiya hy
   const resolvedParams = await params;
   

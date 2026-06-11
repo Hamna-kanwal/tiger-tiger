@@ -1,20 +1,26 @@
-import { getProductDetail, getRelatedProducts } from "../../../../action";
-import ProductDetail from "../../../../Components/ProductDetail"; // Sahi file import ki
+import { getProductDetail, getRelatedProducts, getAllProducts } from "../../../../action";
+import ProductDetail from "../../../../Components/ProductDetail";
 import { notFound } from "next/navigation";
 
+export async function generateStaticParams() {
+  const allProducts = await getAllProducts(); 
+  return allProducts.map((p) => ({
+    CategorySlug: p.categorySlug, 
+    ProductSlug: p.slug,
+    sku: String(p.SKU),
+  }));
+}
+
 export default async function Page({ params }) {
-  // Params ko await karna Next.js 15+ mein zaroori hai
+  const { slug, sku } = await params;
   const { CategorySlug, ProductSlug, sku } = await params;
   
-  // 1. Product details fetch karein SKU ke zariye
   const product = await getProductDetail(sku);
-  
-  // Safety Check: Agar product nahi milta toh 404 page dikhayein
-  if (!product || !product.id) {
+
+  if (!product) {
     return notFound();
   }
 
-  // 2. Related products mangwayein product ID se
   const relatedData = await getRelatedProducts(product.id);
 
   return (
