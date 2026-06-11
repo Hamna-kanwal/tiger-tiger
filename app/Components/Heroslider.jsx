@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
@@ -18,15 +17,9 @@ const slidesData = [
 ];
 
 const HeroSlider = () => {
-  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoverApp, setHoverApp] = useState(false);
   const [hoverProducts, setHoverProducts] = useState(false);
-
-  useEffect(() => {
-    router.prefetch("/tt-app");
-    router.prefetch("/categories");
-  }, [router]);
 
   const brandPurple = "#4e1a51";
   const charcoalBlack = "#333333";
@@ -52,14 +45,14 @@ const HeroSlider = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-6 w-full px-4 sm:px-0">
-          <Link href="/trade-register" prefetch={true} onMouseEnter={() => setHoverApp(true)} onMouseLeave={() => setHoverApp(false)} 
+          <Link href="/trade-register" onMouseEnter={() => setHoverApp(true)} onMouseLeave={() => setHoverApp(false)} 
             style={{ backgroundColor: hoverApp ? brandPurple : "transparent", borderColor: brandPurple, color: hoverApp ? "white" : brandPurple }}
             className="border-2 px-6 md:px-10 py-2.5 md:py-3.5 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center active:scale-95 w-fit sm:w-auto min-w-[160px]"
           >
             Trade Register
           </Link>
 
-          <Link href="/categories" prefetch={true} onMouseEnter={() => setHoverProducts(true)} onMouseLeave={() => setHoverProducts(false)}
+          <Link href="/categories" onMouseEnter={() => setHoverProducts(true)} onMouseLeave={() => setHoverProducts(false)}
             style={{ backgroundColor: hoverProducts ? "transparent" : brandPurple, borderColor: brandPurple, color: hoverProducts ? brandPurple : "white" }}
             className="border-2 px-6 md:px-10 py-2.5 md:py-3.5 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center active:scale-95 w-fit sm:w-auto min-w-[160px]"
           >

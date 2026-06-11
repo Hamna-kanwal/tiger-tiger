@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react"; 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,7 +10,6 @@ import SearchBox from "./SearchBox";
 
 export default function Header() {
   const path = usePathname();
-  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null); // Kaunsa dropdown khula hai
 
