@@ -25,6 +25,7 @@ const navLinks = [
       ]
     },
     { name: "About", href: "/about" },
+    { name: "Recipes", href: "/recipes" },
     { name: "Trade Register", href: "/trade-register" },
     { 
       name: "More", 
@@ -122,9 +123,17 @@ const navLinks = [
                         )}
                       </>
                     ) : (
-                      <Link href={link.href} onClick={() => setIsMenuOpen(false)} className={`py-3 px-4 text-lg rounded-xl transition-all block ${isActive(link.href) ? "font-bold text-white bg-[#4e1a51]" : "font-medium text-[#4e1a51]/80 hover:text-[#4e1a51] hover:bg-gray-50"}`}>
-                        {link.name}
-                      </Link>
+                      <Link 
+  href={link.href} 
+  onClick={() => setIsMenuOpen(false)} 
+  className={`py-3 px-4 text-lg rounded-xl transition-all block ${
+    isActive(link.href) 
+      ? "font-bold text-[#4e1a51] bg-white" // Yahan bg-white kar diya hai
+      : "font-medium text-[#4e1a51]/80 hover:text-[#4e1a51] hover:bg-gray-50"
+  }`}
+>
+  {link.name}
+</Link>
                     )}
                   </div>
                 ))}

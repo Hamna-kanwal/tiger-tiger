@@ -10,10 +10,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const slidesData = [
-  { id: 1, src: "/TT-hero-main.png", alt: "Tiger Tiger", title: "Back-to-Back Winners", mainHeading: " Pulp+ UK Soft Drinks Awards Champion, 2025 & 2026", isVideo: false },
-  { id: 2, src: "/japanese-hero.webp", alt: "Japanese", title: "Made for Every Kitchen & Shelf", mainHeading: "Leading Pan Asian Food Brand in the UK",  isVideo: false },
-  { id: 3, src: "/koreann-wow.png", alt: "Korean", title: "Four Bold Flavours. Ready in 4 minutes", mainHeading: "Where Authentic Taste Meets Exceptional Quality", isVideo: false },
-  { id: 4, src: "/testing.mp4", alt: "Brand Video", title: "Straight from Freezer", mainHeading: "Your Trusted Name in Frozen Pan-Asian Food",  isVideo: true },
+  { id: 1, src: "/TT-hero-main.png", alt: "Tiger Tiger", title: "Back-to-Back Winners", mainHeading: " Pulp+ UK Soft Drinks Awards Champion, 2025 & 2026", className: "scale-[1.5] md:scale-140 md:translate-y-0 translate-y-8", isVideo: false },
+  { id: 2, src: "/japanese-hero.webp", alt: "Japanese", title: "Made for Every Kitchen & Shelf", mainHeading: "Leading Pan Asian Food Brand in the UK",  className: "scale-[1.5] md:scale-140 translate-y-0 md:translate-y-8", isVideo: false },
+  { id: 3, src: "/koreann-wow.png", alt: "Korean", title: "Four Bold Flavours. Ready in 4 minutes", mainHeading: "Where Authentic Taste Meets Exceptional Quality", className: "w-full h-full object-cover object-bottom scale-[1.1]", isVideo: false },
+  { id: 4, src: "/testing.mp4", alt: "Brand Video", title: "Straight from Freezer", mainHeading: "Your Trusted Name in Frozen Pan-Asian Food",     className: "w-full h-full object-cover",  isVideo: true },
 ];
 
 const HeroSlider = () => {

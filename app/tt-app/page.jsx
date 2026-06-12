@@ -11,7 +11,7 @@ export default function AppLandingPage() {
       
       {/* ================= SECTION 1: HERO ================= */}
       <section className="relative w-full bg-[#4e1a51] min-h-[550px] flex items-center overflow-hidden">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-7">
           
           {/* --- LEFT CONTENT --- */}
           <div className="z-10 text-white max-w-2xl pl-4 md:pl-6 lg:pl-6">
