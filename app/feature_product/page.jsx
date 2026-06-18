@@ -65,7 +65,7 @@ export default function FeatureProductPage() {
       features: [
         { id: 8, img: "/popping feature 1.webp", name: "POPPING CANDY BISCUITS STICK MILK TEA" },
         { id: 9, img: "/popping feature 2.webp", name: "POPPING CANDY BISCUITS STICK BANANA" },
-        { id: 10, img: "/popping feature 3.webp", name: "POPPING CANDY BISCUITS STICK CAPPUCCINO" },
+      
       ],
       listings: [
         { id: 11, name: "POPPING CANDY BISCUITS STICK MILK TEA", img: "/feature_product.webp" },

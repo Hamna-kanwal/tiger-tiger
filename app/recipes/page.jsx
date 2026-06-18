@@ -70,7 +70,7 @@ export const allRecipes = [
   },
   { 
     id: "tteokguk-beef", 
-    title: "Non-Vegetarian Tteokguk (Classic Beef)", 
+    title: "classic Beef Tteokguk", 
     cuisine: "Korean", 
     product: "Rice", 
     time: "55-60 min", 

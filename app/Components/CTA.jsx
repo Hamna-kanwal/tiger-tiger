@@ -20,7 +20,7 @@ const DiscoverSection = () => {
       >
         {/* Background image: covers entire section */}
         <Image
-          src="/Authentic Asian Cuisine.jpg.jpeg"
+          src="/asian_cuisine.jpeg"
           alt="Sticks Background"
           fill
           priority

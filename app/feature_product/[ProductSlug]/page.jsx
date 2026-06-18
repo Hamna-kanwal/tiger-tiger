@@ -36,7 +36,7 @@ export default function Home() {
       features: [
         { id: 8, img: "/popping feature 1.webp" },
         { id: 9, img: "/popping feature 2.webp" },
-        { id: 10, img: "/popping feature 3.webp" },
+     
       ],
       listings: [
         { id: 11, name: "POPPING CANDY BISCUITS STICK MILK TEA", img: "/feature_product.webp" },
@@ -67,7 +67,7 @@ export default function Home() {
           <ProductRange />
         </div>
 
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1700px] mx-auto">
           {sections.map((section, idx) => (
             <div key={idx} className="py-16 border-b border-gray-100 last:border-0 last:pb-0">
               <h2 className="text-3xl md:text-4xl font-bold text-[#4e1a51] mb-10 uppercase tracking-tight">
@@ -76,7 +76,7 @@ export default function Home() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-start">
                 {section.features.map((item) => (
-                  <div key={item.id} className="overflow-hidden rounded-[30px] md:rounded-[40px] shadow-lg hover:shadow-2xl transition-all duration-500">
+                  <div key={item.id} className="overflow-hidden rounded-[30px] md:rounded-[0px] shadow-lg hover:shadow-2xl transition-all duration-500">
                     <img
                       src={item.img}
                       alt="Feature"

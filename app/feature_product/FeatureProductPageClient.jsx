@@ -44,7 +44,7 @@ export default function FeatureProductPageClient({ sections = [] }) {
   );
 }
 
-// Left side ka auto-playing slider
+// Left side ka slider (Link hata diya gaya hai)
 function FeatureSlider({ features }) {
   const [current, setCurrent] = useState(0);
 
@@ -57,11 +57,19 @@ function FeatureSlider({ features }) {
   }, [features.length]);
 
   return (
-    <div className="relative rounded-[2rem] overflow-hidden shadow-xl h-[350px] md:h-[450px]">
+    <div className="relative rounded-[2rem] overflow-hidden shadow-xl h-[350px] md:h-[460px]">
       {features.map((item, i) => (
-        <Link key={item.id} href={item.href} className={`absolute inset-0 transition-opacity duration-1000 ${current === i ? "opacity-100" : "opacity-0"}`}>
-          <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
-        </Link>
+        // Link ki jagah div use kiya, taake click hone par kahi na jaye
+        <div 
+          key={item.id} 
+          className={`absolute inset-0 transition-opacity duration-1000 ${current === i ? "opacity-100" : "opacity-0"}`}
+        >
+          <img 
+            src={item.img} 
+            alt={item.name} 
+            className="w-full h-full object-cover" 
+          />
+        </div>
       ))}
     </div>
   );
@@ -76,7 +84,7 @@ function ProductSlider({ listings }) {
   const visibleListings = [0, 1, 2].map(i => listings[(startIndex + i) % listings.length]);
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center mt-15">
       <button onClick={handlePrev} className="absolute -left-4 z-30 p-3 bg-[#4e1a51] text-white rounded-full shadow-lg hover:bg-black transition-colors"><ChevronLeft size={40} /></button>
       
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full px-4">
