@@ -58,7 +58,7 @@ function FeatureSlider({ features }) {
   }, [features.length]);
 
   return (
-    <div className="relative rounded-[2rem] overflow-hidden shadow-xl h-[350px] md:h-[460px]">
+    <div className="relative rounded-[2rem] overflow-hidden shadow-xl h-[350px] md:h-[550px]">
       {features.map((item, i) => (
         // Link ki jagah div use kiya, taake click hone par kahi na jaye
         <div 
