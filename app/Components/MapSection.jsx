@@ -7,7 +7,7 @@ const MapSection = () => {
   const [isClient, setIsClient] = useState(false);
   const [leafletLib, setLeafletLib] = useState(null);
   
-  const position = [52.9331258018539, -1.176996615343604]; 
+  const position = [52.93305760241794, -1.1750254423281978]; 
 
   useEffect(() => {
     setIsClient(true);
