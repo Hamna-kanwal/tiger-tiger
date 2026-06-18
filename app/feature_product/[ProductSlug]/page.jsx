@@ -4,6 +4,7 @@ import ProductRange from "../../Components/ProductRange";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from 'next/image'
 
 const slugify = (s) =>
   String(s)
@@ -20,42 +21,42 @@ export default function Home() {
     {
       title: "Pulp Plus",
       features: [
-        { id: 1, img: "/pulp-feature_1.webp" },
-        { id: 2, img: "/pulpfeature_2.webp" },
-        { id: 3, img: "/pulpfeature_3.webp" },
+        { id: 1, Image: "/pulp-feature_1.webp" },
+        { id: 2, Image: "/pulpfeature_2.webp" },
+        { id: 3, Image: "/pulpfeature_3.webp" },
       ],
       listings: [
-        { id: 4, name: "PULP+ LYCHEE JUICE", img: "/feature_guava.webp" },
-        { id: 5, name: "PULP+ MANGO JUICE", img: "/featured_guava.webp" },
-        { id: 6, name: "PULP+ PINK GUAVA JUICE", img: "/featured_mango.webp" },
-        { id: 7, name: "PULP+ COCONUT WATER", img: "/featured_coconut.webp" },
+        { id: 4, name: "PULP+ LYCHEE JUICE", Image: "/feature_guava.webp" },
+        { id: 5, name: "PULP+ MANGO JUICE", Image: "/featured_guava.webp" },
+        { id: 6, name: "PULP+ PINK GUAVA JUICE", Image: "/featured_mango.webp" },
+        { id: 7, name: "PULP+ COCONUT WATER", Image: "/featured_coconut.webp" },
       ],
     },
     {
       title: "Popping Candy",
       features: [
-        { id: 8, img: "/popping feature 1.webp" },
-        { id: 9, img: "/popping feature 2.webp" },
+        { id: 8, Image: "/popping feature 1.webp" },
+        { id: 9, Image: "/popping feature 2.webp" },
      
       ],
       listings: [
-        { id: 11, name: "POPPING CANDY BISCUITS STICK MILK TEA", img: "/feature_product.webp" },
-        { id: 12, name: "POPPING CANDY BISCUITS STICK BANANA", img: "/banana.webp" },
-        { id: 13, name: "POPPING CANDY BISCUITS STICK CAPPUCCINO", img: "/coffee.webp" },
-        { id: 14, name: "POPPING CANDY BISCUITS STICK COOKIES", img: "/biscuit.webp" },
+        { id: 11, name: "POPPING CANDY BISCUITS STICK MILK TEA", Image: "/feature_product.webp" },
+        { id: 12, name: "POPPING CANDY BISCUITS STICK BANANA", Image: "/banana.webp" },
+        { id: 13, name: "POPPING CANDY BISCUITS STICK CAPPUCCINO", Image: "/coffee.webp" },
+        { id: 14, name: "POPPING CANDY BISCUITS STICK COOKIES", Image: "/biscuit.webp" },
       ],
     },
     {
       title: "COCO CHOO",
       features: [
-        { id: 15, img: "/cocochoo-feature-1.webp" },
-        { id: 16, img: "/coco choo 2.webp" },
-        { id: 17, img: "/coco choo 3.webp" },
+        { id: 15, Image: "/cocochoo-feature-1.webp" },
+        { id: 16, Image: "/coco choo 2.webp" },
+        { id: 17, Image: "/coco choo 3.webp" },
       ],
       listings: [
-        { id: 18, name: "COCO CHOO CLASSIC", img: "/chow1.webp" },
-        { id: 19, name: "COCO CHOO HAZELNUT", img: "/chow2.webp" },
-        { id: 20, name: "COCO CHOO DARK", img: "/chow3.webp" },
+        { id: 18, name: "COCO CHOO CLASSIC", Image: "/chow1.webp" },
+        { id: 19, name: "COCO CHOO HAZELNUT", Image: "/chow2.webp" },
+        { id: 20, name: "COCO CHOO DARK", Image: "/chow3.webp" },
       ],
     },
   ];
@@ -77,8 +78,8 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-start">
                 {section.features.map((item) => (
                   <div key={item.id} className="overflow-hidden rounded-[30px] md:rounded-[0px] shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <img
-                      src={item.img}
+                    <Image
+                      src={item.Image}
                       alt="Feature"
                       className="w-full h-auto block transition-transform duration-700 hover:scale-105"
                     />
@@ -148,8 +149,8 @@ function ProductSlider({ listings, productSlug }) {
                 className="flex flex-col items-center group/card animate-fadeIn"
               >
                 <div className="relative w-full aspect-[3/4] overflow-hidden flex items-center justify-center mb-4 transition-all duration-500 group-hover/card:drop-shadow-3xl shadow-2xl rounded-[2.5rem] bg-white">
-                  <img
-                    src={item.img}
+                  <Image
+                    src={item.Image}
                     alt={item.name}
                     className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover/card:scale-110"
                   />

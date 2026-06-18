@@ -1,5 +1,5 @@
 import FeatureProductPageClient from "./FeatureProductPageClient";
-
+import Image from "next/image";
 const slugify = (s) =>
   String(s)
     .toLowerCase()
@@ -49,42 +49,42 @@ export default function FeatureProductPage() {
     {
       title: "Pulp Plus",
       features: [
-        { id: 1, img: "/pulp-feature_1.webp", name: "PULP+ LYCHEE JUICE" },
-        { id: 2, img: "/pulpfeature_2.webp", name: "PULP+ MANGO JUICE" },
-        { id: 3, img: "/pulpfeature_3.webp", name: "PULP+ PINK GUAVA JUICE" },
+        { id: 1, Image: "/pulp-feature_1.webp", name: "PULP+ LYCHEE JUICE" },
+        { id: 2, Image: "/pulpfeature_2.webp", name: "PULP+ MANGO JUICE" },
+        { id: 3, Image: "/pulpfeature_3.webp", name: "PULP+ PINK GUAVA JUICE" },
       ],
       listings: [
-        { id: 4, name: "PULP+ LYCHEE JUICE", img: "/feature_guava.webp" },
-        { id: 5, name: "PULP+ MANGO JUICE", img: "/featured_guava.webp" },
-        { id: 6, name: "PULP+ PINK GUAVA JUICE", img: "/featured_mango.webp" },
-        { id: 7, name: "PULP+ COCONUT WATER", img: "/featured_coconut.webp" },
+        { id: 4, name: "PULP+ LYCHEE JUICE", Image: "/feature_guava.webp" },
+        { id: 5, name: "PULP+ MANGO JUICE", Image: "/featured_guava.webp" },
+        { id: 6, name: "PULP+ PINK GUAVA JUICE", Image: "/featured_mango.webp" },
+        { id: 7, name: "PULP+ COCONUT WATER", Image: "/featured_coconut.webp" },
       ],
     },
     {
       title: "Popping Candy ",
       features: [
-        { id: 8, img: "/popping feature 1.webp", name: "POPPING CANDY BISCUITS STICK MILK TEA" },
-        { id: 9, img: "/popping feature 2.webp", name: "POPPING CANDY BISCUITS STICK BANANA" },
+        { id: 8, Image: "/popping feature 1.webp", name: "POPPING CANDY BISCUITS STICK MILK TEA" },
+        { id: 9, Image: "/popping feature 2.webp", name: "POPPING CANDY BISCUITS STICK BANANA" },
       
       ],
       listings: [
-        { id: 11, name: "POPPING CANDY BISCUITS STICK MILK TEA", img: "/feature_product.webp" },
-        { id: 12, name: "POPPING CANDY BISCUITS STICK BANANA", img: "/banana.webp" },
-        { id: 13, name: "POPPING CANDY BISCUITS STICK CAPPUCCINO", img: "/coffee.webp" },
-        { id: 14, name: "POPPING CANDY BISCUITS STICK COOKIES", img: "/biscuit.webp" },
+        { id: 11, name: "POPPING CANDY BISCUITS STICK MILK TEA", Image: "/feature_product.webp" },
+        { id: 12, name: "POPPING CANDY BISCUITS STICK BANANA", Image: "/banana.webp" },
+        { id: 13, name: "POPPING CANDY BISCUITS STICK CAPPUCCINO", Image: "/coffee.webp" },
+        { id: 14, name: "POPPING CANDY BISCUITS STICK COOKIES", Image: "/biscuit.webp" },
       ],
     },
     {
       title: "COCO CHOO (Coming Soon)",
       features: [
-        { id: 15, img: "/cocochoo-feature-1.webp", name: "COCO CHOO CLASSIC" },
-        { id: 16, img: "/coco choo 2.webp", name: "COCO CHOO HAZELNUT" },
-        { id: 17, img: "/coco choo 3.webp", name: "COCO CHOO DARK" },
+        { id: 15, Image: "/cocochoo-feature-1.webp", name: "COCO CHOO CLASSIC" },
+        { id: 16, Image: "/coco choo 2.webp", name: "COCO CHOO HAZELNUT" },
+        { id: 17, Image: "/coco choo 3.webp", name: "COCO CHOO DARK" },
       ],
       listings: [
-        { id: 18, name: "COCO CHOO CLASSIC", img: "/chow1.webp" },
-        { id: 19, name: "COCO CHOO HAZELNUT", img: "/chow2.webp" },
-        { id: 20, name: "COCO CHOO DARK", img: "/chow3.webp" },
+        { id: 18, name: "COCO CHOO CLASSIC", Image: "/chow1.webp" },
+        { id: 19, name: "COCO CHOO HAZELNUT", Image: "/chow2.webp" },
+        { id: 20, name: "COCO CHOO DARK", Image: "/chow3.webp" },
       ],
     },
   ];

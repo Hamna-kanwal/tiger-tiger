@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 export default function FeatureProductPageClient({ sections = [] }) {
   useEffect(() => {
@@ -64,10 +65,13 @@ function FeatureSlider({ features }) {
           key={item.id} 
           className={`absolute inset-0 transition-opacity duration-1000 ${current === i ? "opacity-100" : "opacity-0"}`}
         >
-          <img 
-            src={item.img} 
+          <Image
+            src={item.Image} 
             alt={item.name} 
-            className="w-full h-full object-cover" 
+            fill
+            className="w-full h-full object-cover"
+            priority={i === 0}
+            loading={i === 0 ? "eager" : "lazy"}
           />
         </div>
       ))}
@@ -91,7 +95,14 @@ function ProductSlider({ listings }) {
         {visibleListings.map((item, i) => (
           <Link key={i} href={item.href} className="flex flex-col items-center group">
              <div className="relative w-full aspect-[3/4] bg-white shadow-md rounded-[2rem] flex items-center justify-center p-6 border border-gray-100 group-hover:shadow-2xl transition-all">
-                <img src={item.img} alt={item.name} className="max-h-full object-contain" />
+             <Image 
+  src={item.Image} 
+  alt={item.name} 
+  fill 
+  className="object-contain"
+  priority={true}
+  loading="eager"
+/>
                 {item.isComingSoon && <div className="absolute inset-0 bg-black/5 flex items-center justify-center font-black text-sm">SOON</div>}
              </div>
              <h3 className="mt-4 text-xs font-black uppercase text-[#431A4F] text-center">{item.name}</h3>
