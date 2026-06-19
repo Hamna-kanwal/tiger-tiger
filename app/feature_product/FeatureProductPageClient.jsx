@@ -100,8 +100,9 @@ function ProductSlider({ listings }) {
   alt={item.name} 
   fill 
   className="object-contain"
-  priority={true}
-  loading="eager"
+  loading="lazy"
+  priority={false}
+  sizes="(max-width: 768px) 100vw, 33vw"
 />
                 {item.isComingSoon && <div className="absolute inset-0 bg-black/5 flex items-center justify-center font-black text-sm">SOON</div>}
              </div>
