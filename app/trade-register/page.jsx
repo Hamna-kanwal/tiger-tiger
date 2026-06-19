@@ -234,26 +234,30 @@ export default function TradeRegisterPage() {
 
   return (
     <>
-  <div className="relative h-[600px] md:h-[400px] w-full overflow-hidden">
-  {/* Optimization ke liye Next/Image use karein */}
-  <Image 
-    src="/bg.png" 
-    alt="Background" 
-    fill 
-    priority={true} // Hero section hai isliye priority true rakhein
-    className="object-cover" 
-    sizes="100vw"
-    quality={75} // Size kam karne ke liye
-  />
-  
-  {/* Overlay aur Content */}
-  <div className="absolute inset-0 bg-black/40 z-10"></div>
-  <div className="relative z-20 flex items-center justify-center h-full">
-    <h1 className="text-4xl md:text-5xl font-bold text-white text-center">
-      Complete Your Registration
-    </h1>
-  </div>
-</div>
+<div className="relative w-full h-80 md:h-[400px] overflow-hidden mt-7">
+      
+      {/* Next.js Standard Optimized Image */}
+      <Image 
+        src="/bg.png" 
+        alt="Registration Background" 
+        fill 
+        priority={true} // Hero ya top section ke liye hamesha true rakhein
+        className="object-cover object-center" 
+        sizes="100vw"
+        quality={80} 
+      />
+      
+      {/* Dark Overlay - Text readability ke liye */}
+      <div className="absolute inset-0 bg-black/40 z-10" />
+      
+      {/* Content Section */}
+      <div className="relative z-20 flex items-center justify-center h-full px-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center leading-tight tracking-tight">
+          Complete Your Registration
+        </h1>
+      </div>
+
+    </div>
 
       <section className="py-12 bg-[#F8FAFC]">
         <form onSubmit={handleSubmit}>

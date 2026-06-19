@@ -17,7 +17,7 @@ export default function FeatureProductPageClient({ sections = [] }) {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <main className="grow max-w-[1440px] mx-auto w-full px-6 py-12">
+      <main className="grow max-w-[1440px] mx-auto w-full px-4 py-12">
         {sections.map((section, idx) => (
           <div id={section.id} key={idx} className="py-16 border-b border-gray-100 last:border-0">
             <h2 className="text-3xl md:text-4xl font-bold text-[#4e1a51] mb-10 uppercase tracking-tight">
@@ -58,7 +58,7 @@ function FeatureSlider({ features }) {
   }, [features.length]);
 
   return (
-    <div className="relative rounded-[2rem] overflow-hidden shadow-xl h-[350px] md:h-[550px]">
+    <div className="relative rounded-[2rem] overflow-hidden shadow-xl h-[500px] md:h-[550px]">
       {features.map((item, i) => (
         // Link ki jagah div use kiya, taake click hone par kahi na jaye
         <div 
@@ -89,37 +89,20 @@ function ProductSlider({ listings }) {
 
   return (
     <div className="relative flex items-center mt-15">
-      <button onClick={handlePrev} className="absolute -left-4 z-30 p-3 bg-[#4e1a51] text-white rounded-full shadow-lg hover:bg-black transition-colors"><ChevronLeft size={40} /></button>
+      <button onClick={handlePrev} className="absolute -left-2 sm:-left-4 z-30 p-2 sm:p-3 bg-[#4e1a51] text-white rounded-full shadow-lg hover:bg-black transition-colors"><ChevronLeft className="w-5 h-5 sm:w-10 sm:h-10" /></button>
       
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full px-4">
         {visibleListings.map((item, i) => (
-          <Link
-            key={i}
-            href={item.href}
-            className="flex flex-col items-center group"
-            onMouseEnter={() => {
-              // Warm-up image cache for faster navigation
-              if (typeof window !== "undefined" && item?.Image) {
-                try {
-                  const img = new window.Image();
-                  img.src = item.Image;
-                } catch (e) {
-                  // ignore
-                }
-              }
-            }}
-          >
+          <Link key={i} href={item.href} className={`flex flex-col items-center group ${i === 2 ? "hidden md:flex" : ""}`}>
              <div className="relative w-full aspect-[3/4] bg-white shadow-md rounded-[2rem] flex items-center justify-center p-6 border border-gray-100 group-hover:shadow-2xl transition-all">
              <Image 
   src={item.Image} 
   alt={item.name} 
   fill 
   className="object-contain"
-  loading="lazy"
-  priority={false}
-  sizes="(max-width: 768px) 100vw, 33vw"
-/
->
+  priority={true}
+  loading="eager"
+/>
                 {item.isComingSoon && <div className="absolute inset-0 bg-black/5 flex items-center justify-center font-black text-sm">SOON</div>}
              </div>
              <h3 className="mt-4 text-xs font-black uppercase text-[#431A4F] text-center">{item.name}</h3>
@@ -127,7 +110,7 @@ function ProductSlider({ listings }) {
         ))}
       </div>
 
-      <button onClick={handleNext} className="absolute -right-4 z-50 p-3 bg-[#4e1a51] text-white rounded-full shadow-lg hover:bg-black transition-colors"><ChevronRight size={40} /></button>
+      <button onClick={handleNext} className="absolute -right-2 sm:-right-4 z-50 p-2 sm:p-3 bg-[#4e1a51] text-white rounded-full shadow-lg hover:bg-black transition-colors"><ChevronRight className="w-5 h-5 sm:w-10 sm:h-10" /></button>
     </div>
   );
 }

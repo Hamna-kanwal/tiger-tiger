@@ -26,43 +26,43 @@ const HeroSlider = () => {
 
   return (
     <section className="relative w-full bg-transparent flex flex-col items-center overflow-hidden">
-      <div className="w-full pt-[40px] sm:pt-[60px] md:pt-[20px] lg:pt-[60px]" />
+      <div className="w-full pt-[80px] md:pt-[20px] lg:pt-[60px]" />
 
-      <div className="relative z-20 flex flex-col items-center text-center px-2 sm:px-4 max-w-5xl w-full min-h-[120px] sm:min-h-[160px] md:min-h-[200px]">
-        <p style={{ color: charcoalBlack }} className="text-[10px] sm:text-sm lg:text-lg font-outfit mt-1 sm:mt-3 lg:mt-2 font-semibold mb-0.5 transition-all duration-500">
+      <div className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl w-full min-h-[220px] md:min-h-[200px]">
+        <p style={{ color: charcoalBlack }} className="text-base lg:text-lg font-outfit mt-4 lg:mt-2 font-semibold mb-1 transition-all duration-500">
           {slidesData[activeIndex]?.title}
         </p>
 
-        <h1 className="eczar text-[22px] sm:text-[28px] md:text-[40px] lg:text-[50px] m-0 p-0 font-bold leading-snug transition-all duration-500" style={{ color: brandPurple }}>
+        <h1 className="eczar text-[32px] md:text-[40px] lg:text-[50px] m-0 p-0 font-bold leading-tight transition-all duration-500" style={{ color: brandPurple }}>
           {slidesData[activeIndex]?.mainHeading}
         </h1>
 
-        <p style={{ color: brandPurple }} className="text-[9px] sm:text-xs md:text-lg font-outfit font-medium mt-0.5 transition-all duration-500">
+        <p style={{ color: brandPurple }} className="text-sm md:text-lg font-outfit font-medium mt-1 transition-all duration-500">
          
-          <span className="font-bold eczar text-xs sm:text-sm md:text-2xl">
+          <span className="font-bold eczar text-lg md:text-2xl">
             {slidesData[activeIndex]?.subText ? slidesData[activeIndex].subText.split(" ").slice(-2).join(" ") : ""}
           </span>
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-1.5 sm:gap-3 mt-2 sm:mt-4 md:mt-6 w-full px-2 sm:px-0">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-6 w-full px-4 sm:px-0">
           <Link href="/trade-register" onMouseEnter={() => setHoverApp(true)} onMouseLeave={() => setHoverApp(false)} 
             style={{ backgroundColor: hoverApp ? brandPurple : "transparent", borderColor: brandPurple, color: hoverApp ? "white" : brandPurple }}
-            className="border-2 px-3 sm:px-6 md:px-10 py-1.5 sm:py-2.5 md:py-3.5 rounded-full font-bold transition-all duration-300 text-[11px] sm:text-sm md:text-base shadow-sm text-center active:scale-95 w-full sm:w-auto min-w-[120px] sm:min-w-[160px]"
+            className="border-2 px-6 md:px-10 py-2.5 md:py-3.5 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center active:scale-95 w-fit sm:w-auto min-w-[160px]"
           >
             Trade Register
           </Link>
 
           <Link href="/categories" onMouseEnter={() => setHoverProducts(true)} onMouseLeave={() => setHoverProducts(false)}
             style={{ backgroundColor: hoverProducts ? "transparent" : brandPurple, borderColor: brandPurple, color: hoverProducts ? brandPurple : "white" }}
-            className="border-2 px-3 sm:px-6 md:px-10 py-1.5 sm:py-2.5 md:py-3.5 rounded-full font-bold transition-all duration-300 text-[11px] sm:text-sm md:text-base shadow-sm text-center active:scale-95 w-full sm:w-auto min-w-[120px] sm:min-w-[160px]"
+            className="border-2 px-6 md:px-10 py-2.5 md:py-3.5 rounded-full font-bold transition-all duration-300 text-sm md:text-base shadow-sm text-center active:scale-95 w-fit sm:w-auto min-w-[160px]"
           >
             Discover all products
           </Link>
         </div>
       </div>
 
-      <div className="w-full mt-2 sm:mt-4 md:mt-6 overflow-hidden">
-        <div className="relative w-full h-[320px] sm:h-[400px] md:h-[580px] lg:h-[560px] xl:h-[600px]">
+      <div className="w-full mt-6 overflow-hidden">
+        <div className="relative w-full h-[420px] sm:h-[500px] md:h-[580px] lg:h-[560px] xl:h-[600px]">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
@@ -78,14 +78,7 @@ const HeroSlider = () => {
                 {slide.isVideo ? (
                   <video src={slide.src} className="absolute inset-0 w-full h-full object-cover" autoPlay muted loop playsInline />
                 ) : (
-                 <Image 
-  src={slide.src} 
-  alt={slide.alt} 
-  fill 
-  priority 
-  sizes="100vw" 
-  className="object-cover object-center md:object-bottom" 
-/>
+                  <Image src={slide.src} alt={slide.alt} fill priority sizes="100vw" className="object-cover object-bottom" />
                 )}
               </SwiperSlide>
             ))}
