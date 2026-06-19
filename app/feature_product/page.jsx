@@ -9,8 +9,8 @@ const slugify = (s) =>
 const manualProductLinkMap = {
   "PULP+ LYCHEE JUICE": { slug: "pulp-lychee-juice", sku: "800769" },
   "PULP+ MANGO JUICE": { slug: "pulp-mango-juice", sku: "800770" },
-  "PULP+ PINK GUAVA JUICE": { slug: "pulp-pink-guava-juice", sku: "800771" },
-  "PULP+ COCONUT WATER": { slug: "pulp-coconut-water", sku: "800772" },
+  "PULP+ PINK GUAVA JUICE": { slug: "pulp-pink-guava-juice", sku: "801064" },
+  "PULP+ COCONUT WATER": { slug: "pulp-coconut-water", sku: "800768" },
   "POPPING CANDY BISCUITS STICK MILK TEA": { slug: "popping-candy-biscuits-stick-milk-tea", sku: "800981" },
   "POPPING CANDY BISCUITS STICK BANANA": { slug: "popping-candy-biscuits-stick-banana", sku: "800978" },
   "POPPING CANDY BISCUITS STICK CAPPUCCINO": { slug: "popping-candy-biscuits-stick-cappuccino", sku: "800979" },
