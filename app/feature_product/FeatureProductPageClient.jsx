@@ -93,7 +93,22 @@ function ProductSlider({ listings }) {
       
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full px-4">
         {visibleListings.map((item, i) => (
-          <Link key={i} href={item.href} className="flex flex-col items-center group">
+          <Link
+            key={i}
+            href={item.href}
+            className="flex flex-col items-center group"
+            onMouseEnter={() => {
+              // Warm-up image cache for faster navigation
+              if (typeof window !== "undefined" && item?.Image) {
+                try {
+                  const img = new window.Image();
+                  img.src = item.Image;
+                } catch (e) {
+                  // ignore
+                }
+              }
+            }}
+          >
              <div className="relative w-full aspect-[3/4] bg-white shadow-md rounded-[2rem] flex items-center justify-center p-6 border border-gray-100 group-hover:shadow-2xl transition-all">
              <Image 
   src={item.Image} 
@@ -103,7 +118,8 @@ function ProductSlider({ listings }) {
   loading="lazy"
   priority={false}
   sizes="(max-width: 768px) 100vw, 33vw"
-/>
+/
+>
                 {item.isComingSoon && <div className="absolute inset-0 bg-black/5 flex items-center justify-center font-black text-sm">SOON</div>}
              </div>
              <h3 className="mt-4 text-xs font-black uppercase text-[#431A4F] text-center">{item.name}</h3>
