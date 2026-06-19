@@ -56,6 +56,9 @@ const LatestBlog = () => {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  priority={index === 0}
+                  unoptimized={typeof blog.image === 'string' && blog.image.startsWith('http')}
                 />
                 {/* Title ab hamesha dikhega (Opacity 100) */}
                 <div className="absolute inset-0 bg-[#431A4F]/70 flex items-center justify-center p-6 text-center transition-all">

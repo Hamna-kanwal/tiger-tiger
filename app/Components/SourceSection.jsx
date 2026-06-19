@@ -14,7 +14,6 @@ const GlobalSourcing = () => {
     "Ethical & sustainable sourcing",
   ];
 
-  // Updated sizes for better visibility on mobile
   const locations = [
     { name: "Korea", code: "kr", style: "top-[15%] right-[5%] w-7 md:w-12" },
     { name: "China", code: "cn", style: "top-[38%] right-[22%] w-8 md:w-12" },
@@ -30,6 +29,7 @@ const GlobalSourcing = () => {
         style={{ backgroundColor: brandPurple }}
       >
         
+        {/* Text Section */}
         <div className="w-full md:w-1/2 z-10 text-left">
           <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold text-white mb-2 tracking-wide uppercase leading-tight">
             GLOBAL SOURCING FOR <br />
@@ -57,6 +57,7 @@ const GlobalSourcing = () => {
           </div>
         </div>
 
+        {/* Map Section */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0 relative flex justify-center items-center h-full">
           <div className="relative w-full lg:scale-110 transition-transform">
             
@@ -65,9 +66,13 @@ const GlobalSourcing = () => {
               alt="World Map" 
               width={600} 
               height={400}
+              loading="lazy"
+              quality={70} // Reduced quality to make it load much faster
               className="w-full h-auto object-contain" 
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
 
+            {/* Flags */}
             {locations.map((loc, index) => (
               <div 
                 key={index} 
@@ -76,10 +81,9 @@ const GlobalSourcing = () => {
                 <Image
                   src={`https://flagcdn.com/w80/${loc.code}.png`} 
                   alt={`${loc.name} flag`}
-                  width={80} 
-                  height={50}
-                  priority
-                  loading="eager"
+                  width={40} // Smaller size to reduce request weight
+                  height={30}
+                  loading="lazy" // Changed to lazy so it doesn't block the page load
                   className="rounded-sm shadow-lg border border-white/20 h-auto w-full"
                 />
                 <span className="hidden md:block text-[10px] text-white text-center mt-0.5 font-bold uppercase">
