@@ -41,7 +41,7 @@ const HeroSlider = () => {
          
           <span className="font-bold eczar text-lg md:text-2xl">
             {slidesData[activeIndex]?.subText ? slidesData[activeIndex].subText.split(" ").slice(-2).join(" ") : ""}
-          </span>.
+          </span>
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mt-6 w-full px-4 sm:px-0">
