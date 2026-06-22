@@ -55,7 +55,7 @@ export default function Header() {
               <div key={link.name} className="group relative">
                 <Link
                   href={link.href}
-                  prefetch={false}
+                  prefetch={link.href !== "#"}
                   className={`text-[15px] xl:text-[16px] flex items-center gap-1 transition-all duration-200 ${
                     isActive(link.href) ? "font-bold text-white" : "font-light text-white hover:text-white"
                   }`}
@@ -68,7 +68,7 @@ export default function Header() {
                 {link.dropdown && (
                   <div className="absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300">
                     {link.dropdown.map((subItem) => (
-                      <Link key={subItem.name} href={subItem.href} prefetch={false} className="block px-6 py-3 text-[#4e1a51] hover:bg-gray-50 transition-colors duration-200 text-sm font-medium">
+                      <Link key={subItem.name} href={subItem.href} prefetch={subItem.href !== "#"} className="block px-6 py-3 text-[#4e1a51] hover:bg-gray-50 transition-colors duration-200 text-sm font-medium">
                         {subItem.name}
                       </Link>
                     ))}
@@ -111,7 +111,7 @@ export default function Header() {
                         {openDropdown === link.name && (
                           <div className="flex flex-col pl-6 border-l-2 border-gray-100 ml-4 gap-1 mt-1">
                             {link.dropdown.map((subItem) => (
-                              <Link key={subItem.name} href={subItem.href} prefetch={false} onClick={() => setIsMenuOpen(false)} className="py-2.5 px-4 text-[#4e1a51]/80 hover:text-[#4e1a51] text-base font-normal rounded-lg hover:bg-gray-50 block">
+                              <Link key={subItem.name} href={subItem.href} prefetch={subItem.href !== "#"} onClick={() => setIsMenuOpen(false)} className="py-2.5 px-4 text-[#4e1a51]/80 hover:text-[#4e1a51] text-base font-normal rounded-lg hover:bg-gray-50 block">
                                 {subItem.name}
                               </Link>
                             ))}
@@ -119,7 +119,7 @@ export default function Header() {
                         )}
                       </>
                     ) : (
-                      <Link href={link.href} prefetch={false} onClick={() => setIsMenuOpen(false)} className={`py-3 px-4 text-lg rounded-xl transition-all block ${isActive(link.href) ? "font-bold text-[#4e1a51] bg-white" : "font-medium text-[#4e1a51]/80 hover:text-[#4e1a51] hover:bg-gray-50"}`}>
+                      <Link href={link.href} prefetch={link.href !== "#"} onClick={() => setIsMenuOpen(false)} className={`py-3 px-4 text-lg rounded-xl transition-all block ${isActive(link.href) ? "font-bold text-[#4e1a51] bg-white" : "font-medium text-[#4e1a51]/80 hover:text-[#4e1a51] hover:bg-gray-50"}`}>
                         {link.name}
                       </Link>
                     )}
