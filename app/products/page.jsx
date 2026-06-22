@@ -29,14 +29,15 @@ export default async function AllProductsPage({ searchParams }) {
           <div key={product.id || index} className="group bg-white rounded-3xl p-4 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
             <Link href={`/products/${product.slug}/${product.SKU}`}>
               <div className="aspect-square relative mb-4">
-                <Image
-                  src={product.images || "/placeholder.png"}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-2 group-hover:scale-105 transition-transform"
-                  unoptimized
-                  priority={index < 4}
-                />
+             <Image
+  src={product.images || "/placeholder.png"}
+  alt={product.name}
+  fill
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+  className="object-contain p-2 group-hover:scale-105 transition-transform"
+  // unoptimized={true} <--- Isey HATA dein
+  priority={index < 4}
+/>
               </div>
               <h2 className="text-lg font-bold text-[#431A4F] uppercase line-clamp-2 leading-tight">
                 {product.name}
@@ -47,7 +48,7 @@ export default async function AllProductsPage({ searchParams }) {
         ))}
       </div>
 
-      {/* --- PAGINATION --- */}
+      
      {/* --- PAGINATION --- */}
 {totalPages > 1 && (
   <div className="mt-12 w-full font-outfit">
@@ -75,6 +76,7 @@ export default async function AllProductsPage({ searchParams }) {
           <Link 
             key={i} 
             href={`/products?page=${i}`} 
+            prefetch={false}
             className={`min-w-[40px] h-9 px-3 flex items-center justify-center rounded-xl text-base font-black transition-all ${
               isActive 
                 ? "bg-[#431A4F] text-white shadow-md scale-105" 
