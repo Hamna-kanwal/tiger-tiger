@@ -18,7 +18,7 @@ export default async function AllProductsPage({ searchParams }) {
   const currentProducts = allProducts?.slice(startIndex, endIndex);
 
   return (
-    <div className="container mx-auto px-4 py-20 bg-[#F9F9F7] font-outfit">
+    <div className="container mx-auto px-4 py-20  font-outfit">
       <h1 className="text-4xl font-black text-center text-[#431A4F] mb-4 uppercase italic">
         Our Collection
       </h1>
