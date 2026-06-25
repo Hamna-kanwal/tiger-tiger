@@ -229,8 +229,8 @@ export async function getBlogsAction() {
       headers: {
         "Content-Type": "application/json",
       },
-      // Cache management: 3600 seconds (1 hour) tak data cache rahega (ISR)
-      next: { revalidate: 3600 }, 
+      // Cache management: 60 seconds tak data cache rahega (ISR)
+      next: { revalidate: 60 }, 
     });
 
     // Agar response ok nahi hai (e.g. 404 or 500)
@@ -274,7 +274,7 @@ export async function getBlogsAction() {
 export async function getSingleBlogAction(slug) {
   try {
     const res = await fetch(`https://backend.tigertigerfoods.com/api/get-blog/${slug}`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
     const data = await res.json();
     return data.success ? { success: true, data: data.data } : { success: false };
@@ -287,7 +287,7 @@ export async function getSingleBlogAction(slug) {
 export async function getLatestSidebarBlogsAction(currentSlug) {
   try {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-blogs", {
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
     const data = await res.json();
 
