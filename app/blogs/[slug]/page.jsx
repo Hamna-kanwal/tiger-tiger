@@ -104,7 +104,7 @@ const BlogDetail = () => {
               {relatedBlogs.map((item) => (
                 <Link 
                   key={item._id || item.slug} 
-                  href={`/blogs/${item.slug}`}
+                  href={`/blogs/${blog.slug.replace(/^\/+/, '')}`}
                   className="group flex flex-col bg-[#431A4F] rounded-[1.5rem] overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="relative w-full h-40 overflow-hidden bg-[#35153f]">

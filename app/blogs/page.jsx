@@ -93,7 +93,7 @@ const LatestBlog = () => {
                   {stripHtml(blog.description || blog.desc) || "Explore our latest culinary insights."}
                 </p>
                 <Link 
-                  href={`/blogs/${blog.slug}`}
+                  href={`/blogs/${blog.slug.replace(/^\/+/, '')}`}
                   className="flex items-center gap-2 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:gap-4 hover:text-[#D2B57B]"
                   style={{ color: brandPurple }}
                 >
