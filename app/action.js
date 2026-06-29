@@ -159,6 +159,7 @@ export async function getCategories() {
     return [];
   }
 }
+
 export async function getProductsByCategory(slug) {
   if (!slug) return { success: false, data: [] };
 
@@ -168,9 +169,8 @@ export async function getProductsByCategory(slug) {
       { next: { revalidate: 3600 } }
     );
 
-    // --- Yahan change karein ---
     if (!res.ok) {
-      const errorText = await res.text(); // Server ka error message read karein
+      const errorText = await res.text();
       console.error(`Fetch failed with status ${res.status}:`, errorText);
       throw new Error(`API error: ${res.status}`);
     }
@@ -185,18 +185,16 @@ export async function getProductsByCategory(slug) {
     return { success: false, data: [] };
   }
 }
+
 export async function getProductDetail(sku) {
   if (!sku) return null;
   try {
-    // 1. Pehle list mangwayein taaki ID mil sake
     const resList = await fetch(`https://backend.tigertigerfoods.com/api/get-products`, { next: { revalidate: 3600 } });
     const listData = await resList.json();
 
-    // SKU match karke product dhoondein
     const found = listData.data.find(p => String(p.SKU).trim() === String(sku).trim());
     if (!found) return null;
 
-    // 2. Ab asli API call karein jo JSON data deti hai
     const resDetail = await fetch(`https://backend.tigertigerfoods.com/api/get-product-detail/${found.id}/${found.SKU}`, { next: { revalidate: 3600 } });
     const finalData = await resDetail.json();
 
@@ -207,12 +205,11 @@ export async function getProductDetail(sku) {
   }
 }
 
-
 export async function getRelatedProducts(productId) {
   try {
     const res = await fetch(
       `https://backend.tigertigerfoods.com/api/get-related-product/${productId}`,
-      { next: { revalidate: 3600 } } // 1 ghante tak data cache rahega
+      { next: { revalidate: 3600 } }
     );
     const response = await res.json();
     return response?.data || [];
@@ -229,11 +226,9 @@ export async function getBlogsAction() {
       headers: {
         "Content-Type": "application/json",
       },
-      // Cache management: 60 seconds tak data cache rahega (ISR)
       next: { revalidate: 60 }, 
     });
 
-    // Agar response ok nahi hai (e.g. 404 or 500)
     if (!response.ok) {
       return {
         success: false,
@@ -244,7 +239,6 @@ export async function getBlogsAction() {
 
     const result = await response.json();
 
-    // API ke 'success' field ko check karna
     if (result.success) {
       return {
         success: true,
@@ -269,8 +263,6 @@ export async function getBlogsAction() {
   }
 }
 
-
-// ✅ Single Blog fetch function
 export async function getSingleBlogAction(slug) {
   try {
     const res = await fetch(`https://backend.tigertigerfoods.com/api/get-blog/${slug}`, {
@@ -283,7 +275,6 @@ export async function getSingleBlogAction(slug) {
   }
 }
 
-// ✅ Latest 5 Blogs for Sidebar (Logic Fixed)
 export async function getLatestSidebarBlogsAction(currentSlug) {
   try {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-blogs", {
@@ -292,9 +283,6 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
     const data = await res.json();
 
     if (data.success) {
-      // 1. Data ko copy karke reverse kiya taake latest blogs upar aaein
-      // 2. Current parhay jane walay blog ko list se nikala
-      // 3. .slice(0, 5) laga kar limit fix kar di
       const limitedBlogs = data.data
         .slice()
         .reverse() 
@@ -309,8 +297,6 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
     return { success: false, data: [] };
   }
 }
-
-
 
 export async function fetchProductsPage(page = 1, limit = 20) {
   const pageNumber = Number(page) || 1;
@@ -357,31 +343,31 @@ export async function fetchProductsPage(page = 1, limit = 20) {
   }
 }
 
+// --- 14. FETCH ALL PRODUCTS (FIXED LOGIC WITH LOGS) ---
 export async function fetchAllProducts() {
   try {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
       next: { revalidate: 3600 },
     });
 
-    // 1. Check karein ke response status 200 hai ya nahi
-    if (!res.ok) {
-      console.error(`API Error: Received status ${res.status}`);
-      return []; 
-    }
-
-    // 2. Check karein ke response ka content-type JSON hai ya nahi
-    const contentType = res.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      console.error("API Error: Expected JSON but received:", contentType);
-      // Agar JSON nahi hai, to error nahi denge, bas empty array return karenge
-      return [];
-    }
+    if (!res.ok) return [];
 
     const data = await res.json();
-    return data?.data || []; // Agar data field empty hai to fallback
+    const rawProducts = data?.data || [];
+
+    // Unique filter logic using SKU mapping
+    const uniqueProducts = Array.from(
+      new Map(rawProducts.map(item => [String(item.SKU).trim(), item])).values()
+    );
+
+    // Terminal console pe logs check karne ke liye
+    console.log(`Total API Products: ${rawProducts.length}`);
+    console.log(`Unique Products after filtering: ${uniqueProducts.length}`);
+
+    return uniqueProducts; 
     
   } catch (error) {
     console.error("Critical API Fetch Error:", error.message);
-    return []; // Build ke dauran app crash nahi hogi
+    return [];
   }
 }
