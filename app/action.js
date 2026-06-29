@@ -362,15 +362,26 @@ export async function fetchAllProducts() {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
       next: { revalidate: 3600 },
     });
-    
+
+    // 1. Check karein ke response status 200 hai ya nahi
     if (!res.ok) {
-      throw new Error("Data fetch nahi ho saka");
+      console.error(`API Error: Received status ${res.status}`);
+      return []; 
+    }
+
+    // 2. Check karein ke response ka content-type JSON hai ya nahi
+    const contentType = res.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+      console.error("API Error: Expected JSON but received:", contentType);
+      // Agar JSON nahi hai, to error nahi denge, bas empty array return karenge
+      return [];
     }
 
     const data = await res.json();
-    return data.data; 
+    return data?.data || []; // Agar data field empty hai to fallback
+    
   } catch (error) {
-    console.error("API Error:", error);
-    return [];
+    console.error("Critical API Fetch Error:", error.message);
+    return []; // Build ke dauran app crash nahi hogi
   }
 }

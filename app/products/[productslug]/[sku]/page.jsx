@@ -2,43 +2,46 @@ import ProductDetailClient from "../../../Components/ProductDetail";
 import { fetchAllProducts } from "../../../action";
 import { notFound } from "next/navigation";
 
-// 1. ISR: Page har 1 ghante mein revalidate hoga
+// Page revalidation for ISR (1 hour)
 export const revalidate = 3600;
 
-// 2. Static Paths pre-generate karne ke liye
-export async function generateStaticParams() {
-  const allProducts = await fetchAllProducts();
-  return allProducts.map((product) => ({
-    slug: product.slug,
-    sku: String(product.SKU),
-  }));
+// Helper function to get product data
+async function getProductData(sku) {
+  const allProducts = await fetchAllProducts() || [];
+  return allProducts.find(p => String(p.SKU) === String(sku));
 }
 
-// 3. SEO Metadata
 export async function generateMetadata({ params }) {
   const { sku } = await params;
-  const allProducts = await fetchAllProducts();
-  const product = allProducts?.find(p => String(p.SKU) === String(sku));
+  const product = await getProductData(sku);
 
   if (!product) return { title: "Product Not Found" };
 
   return {
     title: `${product.name} | Tiger Tiger Foods`,
     description: product.description?.slice(0, 150),
-    alternates: { canonical: `https://www.tigertigerfoods.com/products/${product.slug}/${sku}/` }
+    alternates: { 
+      canonical: `https://www.tigertigerfoods.com/products/${product.slug}/${sku}/` 
+    }
   };
 }
 
 export default async function Page({ params }) {
   const { slug, sku } = await params;
-  const allProducts = await fetchAllProducts();
-  const currentProduct = allProducts?.find(p => String(p.SKU) === String(sku));
+  const allProducts = await fetchAllProducts() || [];
+  const currentProduct = await getProductData(sku);
 
-  if (!currentProduct) notFound();
+  // Agar product nahi mila to 404 show karein
+  if (!currentProduct) {
+    notFound();
+  }
 
-  const related = allProducts?.filter(p => p.SKU !== sku).slice(0, 4);
+  // Related products ka logic (Current product ko chor kar baaki 4 products)
+  const related = allProducts
+    .filter(p => String(p.SKU) !== String(sku))
+    .slice(0, 4);
 
-  // 4. JSON-LD Schema (Server-rendered)
+  // JSON-LD Schema (Google SEO ke liye)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
