@@ -14,7 +14,7 @@ export default function RelatedProductsSlider({ initialProducts = [] }) {
     setMounted(true);
   }, []);
 
-  const [sliderRef, instanceRef] = useKeenSlider({
+  const [sliderRef] = useKeenSlider({
     initial: 0,
     loop: count > 4,
     slides: { perView: 4, spacing: 20 },
@@ -37,16 +37,12 @@ export default function RelatedProductsSlider({ initialProducts = [] }) {
       <div ref={sliderRef} key={count} className="keen-slider !overflow-visible px-2">
         {initialProducts.map((product, index) => (
           <div key={product?.id ?? index} className="keen-slider__slide group pb-10">
-            {/* 
-               Ye Link tag image_e33a68.png wali shadow create karega. 
-               Maine shadow-black hata kar custom soft shadow lagai hai.
-            */}
-           <Link 
-  // Brackets hata kar variables use karein
-  href={`/categories/${product.categoryslug}/${product.slug}/${product.SKU}`} 
-  prefetch={false}
-  className="block bg-white rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-gray-50 transition-all duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] group-hover:-translate-y-1"
->
+            <Link 
+              // Yahan check karein: Agar property missing hai to 'n-a' ya default value use hogi
+              href={`/categories/${product.categoryslug || 'all'}/${product.slug || 'product'}/${product.SKU || '0'}`} 
+              prefetch={false}
+              className="block bg-white rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-gray-50 transition-all duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] group-hover:-translate-y-1"
+            >
               <div className="relative aspect-square mb-4 overflow-hidden rounded-lg">
                 <Image
                   src={product.images || "/placeholder.png"}

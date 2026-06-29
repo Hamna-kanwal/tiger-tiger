@@ -160,46 +160,46 @@ export async function getCategories() {
   }
 }
 export async function getProductsByCategory(slug) {
-  if (!slug) return { success: false, data: [] };
+  // Defensive check
+  if (!slug || slug === "undefined") {
+    console.warn("Category slug is undefined/missing");
+    return { success: false, data: [] };
+  }
 
   try {
     const res = await fetch(
-      `https://backend.tigertigerfoods.com/api/get-product-by-category?category=${slug}`,
+      `https://backend.tigertigerfoods.com/api/get-product-by-category?category=${encodeURIComponent(slug)}`,
       { next: { revalidate: 3600 } }
     );
 
-    // --- Yahan change karein ---
-    if (!res.ok) {
-      const errorText = await res.text(); // Server ka error message read karein
-      console.error(`Fetch failed with status ${res.status}:`, errorText);
-      throw new Error(`API error: ${res.status}`);
-    }
+    if (!res.ok) throw new Error("Fetch failed");
     
     const data = await res.json();
-    return {
-      success: data.success || false,
-      data: data.data || []
-    };
+    return { success: data.success || false, data: data.data || [] };
   } catch (error) {
-    console.error(`Error fetching products for category ${slug}:`, error);
+    console.error(`Error for category ${slug}:`, error);
     return { success: false, data: [] };
   }
 }
 export async function getProductDetail(sku) {
-  if (!sku) return null;
+  // Agar SKU undefined hai, toh function execute hi mat hone do
+  if (!sku || sku === "undefined") {
+    console.error("getProductDetail: SKU is missing or undefined");
+    return null;
+  }
+
   try {
-    // 1. Pehle list mangwayein taaki ID mil sake
     const resList = await fetch(`https://backend.tigertigerfoods.com/api/get-products`, { next: { revalidate: 3600 } });
     const listData = await resList.json();
 
-    // SKU match karke product dhoondein
-    const found = listData.data.find(p => String(p.SKU).trim() === String(sku).trim());
+    const found = listData.data?.find(p => String(p.SKU).trim() === String(sku).trim());
     if (!found) return null;
 
-    // 2. Ab asli API call karein jo JSON data deti hai
-    const resDetail = await fetch(`https://backend.tigertigerfoods.com/api/get-product-detail/${found.id}/${found.SKU}`, { next: { revalidate: 3600 } });
+    // Yahan ensure karein ki ID aur SKU sahi hain
+    const url = `https://backend.tigertigerfoods.com/api/get-product-detail/${found.id}/${found.SKU}`;
+    const resDetail = await fetch(url, { next: { revalidate: 3600 } });
+    
     const finalData = await resDetail.json();
-
     return finalData.success ? finalData.data : null;
   } catch (e) {
     console.error("Action Error:", e);
