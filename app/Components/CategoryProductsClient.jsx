@@ -57,11 +57,16 @@ export default function CategoryProductsClient({ slug, initialData }) {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
             {products.map((product, i) => (
-              <Link 
-                href={slug && product.slug ? `/categories/${slug}/${product.slug}/${product.SKU}` : "#"} 
-                key={product._id || i} 
-                className="group block"
-              >
+             // Link ka href change karke ye rakhein
+<Link 
+  href={
+    (slug && slug !== 'undefined' && product.slug) 
+      ? `/categories/${slug}/${product.slug}/${product.SKU}` 
+      : `/products/${product.slug || ''}`
+  } 
+  key={product._id || i} 
+  className="group block"
+>
                 <div className="relative aspect-square flex items-center justify-center bg-transparent">
                   <div className="relative w-full h-full transform transition-all duration-500 group-hover:scale-110 bg-transparent">
                     <Image

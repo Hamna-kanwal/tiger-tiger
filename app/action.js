@@ -348,14 +348,22 @@ export async function fetchAllProducts() {
     const data = await res.json();
     const rawProducts = data?.data || [];
 
-    // Unique filter logic using SKU mapping
+    // DATA CLEANING:
+    // Yahan hum wo products filter kar rahe hain jinka slug ya sku missing hai
+    // Aur hum 'categorySlug' ko ensure kar rahe hain ke wo undefined na ho
+    const cleanProducts = rawProducts
+      .filter(p => p.slug && p.SKU)
+      .map(p => ({
+        ...p,
+        categorySlug: p.categorySlug || 'general' // Agar slug missing hai to 'general' default de dein
+      }));
+
     const uniqueProducts = Array.from(
-      new Map(rawProducts.map(item => [String(item.SKU).trim(), item])).values()
+      new Map(cleanProducts.map(item => [String(item.SKU).trim(), item])).values()
     );
 
     return uniqueProducts; 
   } catch (error) {
-    console.error("Critical API Fetch Error:", error.message);
     return [];
   }
 }
