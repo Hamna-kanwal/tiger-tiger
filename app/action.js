@@ -159,7 +159,6 @@ export async function getCategories() {
     return [];
   }
 }
-
 export async function getProductsByCategory(slug) {
   if (!slug) return { success: false, data: [] };
 
@@ -169,8 +168,9 @@ export async function getProductsByCategory(slug) {
       { next: { revalidate: 3600 } }
     );
 
+    // --- Yahan change karein ---
     if (!res.ok) {
-      const errorText = await res.text();
+      const errorText = await res.text(); // Server ka error message read karein
       console.error(`Fetch failed with status ${res.status}:`, errorText);
       throw new Error(`API error: ${res.status}`);
     }
@@ -185,16 +185,18 @@ export async function getProductsByCategory(slug) {
     return { success: false, data: [] };
   }
 }
-
 export async function getProductDetail(sku) {
   if (!sku) return null;
   try {
+    // 1. Pehle list mangwayein taaki ID mil sake
     const resList = await fetch(`https://backend.tigertigerfoods.com/api/get-products`, { next: { revalidate: 3600 } });
     const listData = await resList.json();
 
+    // SKU match karke product dhoondein
     const found = listData.data.find(p => String(p.SKU).trim() === String(sku).trim());
     if (!found) return null;
 
+    // 2. Ab asli API call karein jo JSON data deti hai
     const resDetail = await fetch(`https://backend.tigertigerfoods.com/api/get-product-detail/${found.id}/${found.SKU}`, { next: { revalidate: 3600 } });
     const finalData = await resDetail.json();
 
@@ -205,11 +207,12 @@ export async function getProductDetail(sku) {
   }
 }
 
+
 export async function getRelatedProducts(productId) {
   try {
     const res = await fetch(
       `https://backend.tigertigerfoods.com/api/get-related-product/${productId}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 3600 } } // 1 ghante tak data cache rahega
     );
     const response = await res.json();
     return response?.data || [];
@@ -226,9 +229,11 @@ export async function getBlogsAction() {
       headers: {
         "Content-Type": "application/json",
       },
+      // Cache management: 60 seconds tak data cache rahega (ISR)
       next: { revalidate: 60 }, 
     });
 
+    // Agar response ok nahi hai (e.g. 404 or 500)
     if (!response.ok) {
       return {
         success: false,
@@ -239,6 +244,7 @@ export async function getBlogsAction() {
 
     const result = await response.json();
 
+    // API ke 'success' field ko check karna
     if (result.success) {
       return {
         success: true,
@@ -263,6 +269,8 @@ export async function getBlogsAction() {
   }
 }
 
+
+// ✅ Single Blog fetch function
 export async function getSingleBlogAction(slug) {
   try {
     const res = await fetch(`https://backend.tigertigerfoods.com/api/get-blog/${slug}`, {
@@ -275,6 +283,7 @@ export async function getSingleBlogAction(slug) {
   }
 }
 
+// ✅ Latest 5 Blogs for Sidebar (Logic Fixed)
 export async function getLatestSidebarBlogsAction(currentSlug) {
   try {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-blogs", {
@@ -283,6 +292,9 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
     const data = await res.json();
 
     if (data.success) {
+      // 1. Data ko copy karke reverse kiya taake latest blogs upar aaein
+      // 2. Current parhay jane walay blog ko list se nikala
+      // 3. .slice(0, 5) laga kar limit fix kar di
       const limitedBlogs = data.data
         .slice()
         .reverse() 
@@ -297,6 +309,9 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
     return { success: false, data: [] };
   }
 }
+
+
+
 export async function fetchProductsPage(page = 1, limit = 20) {
   const pageNumber = Number(page) || 1;
   const pageSize = Number(limit) || 20;
@@ -307,27 +322,33 @@ export async function fetchProductsPage(page = 1, limit = 20) {
       { next: { revalidate: 3600 } }
     );
 
-    let rawProducts = [];
     if (res.ok) {
       const data = await res.json();
-      rawProducts = Array.isArray(data.data) ? data.data : [];
-    } else {
-      // Fallback
-      const fallbackRes = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
-        next: { revalidate: 3600 },
-      });
-      const fallbackData = await fallbackRes.json();
-      rawProducts = Array.isArray(fallbackData.data) ? fallbackData.data : [];
+      const products = Array.isArray(data.data) ? data.data : [];
+      let total = Number(data.total || data.count || 0);
+
+      if (!total && products.length < pageSize) {
+        total = (pageNumber - 1) * pageSize + products.length;
+      }
+
+      return {
+        products,
+        total,
+        pageSize,
+      };
     }
 
-    // UNIQUE FILTERING YAHAN APPLY KI HAI
-    const uniqueProducts = Array.from(
-      new Map(rawProducts.map(item => [String(item.SKU).trim(), item])).values()
-    );
+    const fallbackRes = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
+      next: { revalidate: 3600 },
+    });
+    const fallbackData = await fallbackRes.json();
+    const allProducts = Array.isArray(fallbackData.data) ? fallbackData.data : [];
+    const total = allProducts.length;
+    const startIndex = (pageNumber - 1) * pageSize;
 
     return {
-      products: uniqueProducts.slice(0, pageSize), // Slice after filtering
-      total: uniqueProducts.length,
+      products: allProducts.slice(startIndex, startIndex + pageSize),
+      total,
       pageSize,
     };
   } catch (error) {
@@ -336,7 +357,6 @@ export async function fetchProductsPage(page = 1, limit = 20) {
   }
 }
 
-// --- 14. FETCH ALL PRODUCTS (FIXED LOGIC WITH LOGS) ---
 export async function fetchAllProducts() {
   try {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
@@ -346,24 +366,18 @@ export async function fetchAllProducts() {
     if (!res.ok) return [];
 
     const data = await res.json();
-    const rawProducts = data?.data || [];
+    const rawProducts = Array.isArray(data?.data) ? data.data : [];
 
-    // DATA CLEANING:
-    // Yahan hum wo products filter kar rahe hain jinka slug ya sku missing hai
-    // Aur hum 'categorySlug' ko ensure kar rahe hain ke wo undefined na ho
-    const cleanProducts = rawProducts
-      .filter(p => p.slug && p.SKU)
-      .map(p => ({
-        ...p,
-        categorySlug: p.categorySlug || 'general' // Agar slug missing hai to 'general' default de dein
-      }));
-
+    // SKU based unique filtering
     const uniqueProducts = Array.from(
-      new Map(cleanProducts.map(item => [String(item.SKU).trim(), item])).values()
+      new Map(rawProducts.map(item => [String(item.SKU).trim(), item])).values()
     );
 
-    return uniqueProducts; 
+    console.log(`Total API Products: ${rawProducts.length} | Unique: ${uniqueProducts.length}`);
+
+    return uniqueProducts;
   } catch (error) {
+    console.error("Critical API Fetch Error:", error.message);
     return [];
   }
 }
