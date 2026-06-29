@@ -27,11 +27,7 @@ export default async function AllProductsPage({ searchParams }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
         {currentProducts?.map((product, index) => (
           <div key={product.id || index} className="group bg-white rounded-3xl p-4 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
-    {product.slug && product.SKU ? (
-  <Link href={`/products/${product.slug}/${product.SKU}`}>
-    {product.name} 
-  </Link>
-) : null}
+            <Link href={`/products/${product.slug}/${product.SKU}`}>
               <div className="aspect-square relative mb-4">
              <Image
   src={product.images || "/placeholder.png"}
@@ -47,7 +43,7 @@ export default async function AllProductsPage({ searchParams }) {
                 {product.name}
               </h2>
               <p className="text-gray-400 mt-2 text-sm font-semibold">SKU: {product.SKU}</p>
-    
+            </Link>
           </div>
         ))}
       </div>
