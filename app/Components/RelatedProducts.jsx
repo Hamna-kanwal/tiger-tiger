@@ -35,32 +35,39 @@ export default function RelatedProductsSlider({ initialProducts = [] }) {
       </div>
 
       <div ref={sliderRef} key={count} className="keen-slider !overflow-visible px-2">
-        {initialProducts.map((product, index) => (
-          <div key={product?.id ?? index} className="keen-slider__slide group pb-10">
-            <Link 
-              // Yahan check karein: Agar property missing hai to 'n-a' ya default value use hogi
-              href={`/categories/${product.categoryslug || 'all'}/${product.slug || 'product'}/${product.SKU || '0'}`} 
-              prefetch={false}
-              className="block bg-white rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-gray-50 transition-all duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] group-hover:-translate-y-1"
-            >
-              <div className="relative aspect-square mb-4 overflow-hidden rounded-lg">
-                <Image
-                  src={product.images || "/placeholder.png"}
-                  alt={product.name || "Product"}
-                  fill
-                  className="object-contain transition-transform duration-500 group-hover:scale-105"
-                  sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
-                />
-              </div>
-              <span 
-                className="text-center block font-bold text-sm uppercase tracking-tight line-clamp-2 min-h-[40px]" 
-                style={{ color: themeColor }}
+        {initialProducts.map((product, index) => {
+          // Logic: Check karein kya data valid hai
+          const hasValidData = product.categoryslug && product.slug && product.SKU;
+          const href = hasValidData 
+            ? `/categories/${product.categoryslug}/${product.slug}/${product.SKU}` 
+            : "/404";
+
+          return (
+            <div key={product?.id ?? index} className="keen-slider__slide group pb-10">
+              <Link 
+                href={href} 
+                prefetch={false}
+                className="block bg-white rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-gray-50 transition-all duration-300 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] group-hover:-translate-y-1"
               >
-                {product.name}
-              </span>
-            </Link>
-          </div>
-        ))}
+                <div className="relative aspect-square mb-4 overflow-hidden rounded-lg">
+                  <Image
+                    src={product.images || "/placeholder.png"}
+                    alt={product.name || "Product"}
+                    fill
+                    className="object-contain transition-transform duration-500 group-hover:scale-105"
+                    sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
+                  />
+                </div>
+                <span 
+                  className="text-center block font-bold text-sm uppercase tracking-tight line-clamp-2 min-h-[40px]" 
+                  style={{ color: themeColor }}
+                >
+                  {product.name || "Unnamed Product"}
+                </span>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
