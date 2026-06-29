@@ -297,7 +297,6 @@ export async function getLatestSidebarBlogsAction(currentSlug) {
     return { success: false, data: [] };
   }
 }
-
 export async function fetchProductsPage(page = 1, limit = 20) {
   const pageNumber = Number(page) || 1;
   const pageSize = Number(limit) || 20;
@@ -308,33 +307,27 @@ export async function fetchProductsPage(page = 1, limit = 20) {
       { next: { revalidate: 3600 } }
     );
 
+    let rawProducts = [];
     if (res.ok) {
       const data = await res.json();
-      const products = Array.isArray(data.data) ? data.data : [];
-      let total = Number(data.total || data.count || 0);
-
-      if (!total && products.length < pageSize) {
-        total = (pageNumber - 1) * pageSize + products.length;
-      }
-
-      return {
-        products,
-        total,
-        pageSize,
-      };
+      rawProducts = Array.isArray(data.data) ? data.data : [];
+    } else {
+      // Fallback
+      const fallbackRes = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
+        next: { revalidate: 3600 },
+      });
+      const fallbackData = await fallbackRes.json();
+      rawProducts = Array.isArray(fallbackData.data) ? fallbackData.data : [];
     }
 
-    const fallbackRes = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
-      next: { revalidate: 3600 },
-    });
-    const fallbackData = await fallbackRes.json();
-    const allProducts = Array.isArray(fallbackData.data) ? fallbackData.data : [];
-    const total = allProducts.length;
-    const startIndex = (pageNumber - 1) * pageSize;
+    // UNIQUE FILTERING YAHAN APPLY KI HAI
+    const uniqueProducts = Array.from(
+      new Map(rawProducts.map(item => [String(item.SKU).trim(), item])).values()
+    );
 
     return {
-      products: allProducts.slice(startIndex, startIndex + pageSize),
-      total,
+      products: uniqueProducts.slice(0, pageSize), // Slice after filtering
+      total: uniqueProducts.length,
       pageSize,
     };
   } catch (error) {
@@ -360,12 +353,7 @@ export async function fetchAllProducts() {
       new Map(rawProducts.map(item => [String(item.SKU).trim(), item])).values()
     );
 
-    // Terminal console pe logs check karne ke liye
-    console.log(`Total API Products: ${rawProducts.length}`);
-    console.log(`Unique Products after filtering: ${uniqueProducts.length}`);
-
     return uniqueProducts; 
-    
   } catch (error) {
     console.error("Critical API Fetch Error:", error.message);
     return [];
