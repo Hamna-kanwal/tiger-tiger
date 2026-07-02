@@ -1,18 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: true,
+
   images: {
-    // 1. Sabse pehle qualities define karein (Taaki wo yellow warnings khatam ho jayein)
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    formats: ['image/webp'],
+    formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    
-    // Aapki mangi hui qualities yahan hain
-    qualities: [25, 50, 75, 85, 100], 
-
-    // 2. Remote Patterns (Backend se images allow karne ke liye)
+    qualities: [75, 80, 85, 100],
     remotePatterns: [
       {
         protocol: 'https',
@@ -25,9 +21,44 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'backend.tigertigerfoods.com',
-        pathname: '/**', // Double star taaki sare sub-folders cover ho jayein
+        pathname: '/**',
       },
     ],
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/cuisine',
+        destination: '/cuisines',
+        permanent: true,
+      },
+      {
+        source: '/cuisine/:path*',
+        destination: '/cuisines/:path*',
+        permanent: true,
+      },
+      {
+        source: '/product_detail/:slug',
+        destination: '/products/:slug',
+        permanent: true,
+      },
+      {
+        source: '/product_detail/:slug/:path*',
+        destination: '/products/:slug/:path*',
+        permanent: true,
+      },
+      {
+        source: '/categories/:category/:slug/:sku',
+        destination: '/products/:slug/:sku/',
+        permanent: true,
+      },
+      {
+        source: '/categories/undefined/:slug/:sku',
+        destination: '/products/:slug/:sku/',
+        permanent: true,
+      },
+    ];
   },
 };
 
