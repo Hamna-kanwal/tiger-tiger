@@ -9,8 +9,7 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     qualities: [75, 80, 85, 100],
-    remotePatterns: [
-      {
+    remotePatterns: [{
         protocol: 'https',
         hostname: 'flagcdn.com',
       },
@@ -27,7 +26,16 @@ const nextConfig = {
   },
 
   async redirects() {
-    return [
+    return [{
+        source: '/products/asia',
+        destination: '/products',
+        permanent: true,
+      },
+      {
+        source: '/products/asia/',
+        destination: '/products',
+        permanent: true,
+      },
       {
         source: '/cuisine',
         destination: '/cuisines',

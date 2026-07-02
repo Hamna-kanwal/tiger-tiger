@@ -36,11 +36,8 @@ export default function RelatedProductsSlider({ initialProducts = [] }) {
 
       <div ref={sliderRef} key={count} className="keen-slider !overflow-visible px-2">
         {initialProducts.map((product, index) => {
-          // Logic: Check karein kya data valid hai
-          const hasValidData = product.categoryslug && product.slug && product.SKU;
-          const href = hasValidData 
-            ? `/categories/${product.categoryslug}/${product.slug}/${product.SKU}` 
-            : "/404";
+          const isValid = product?.slug && product?.SKU;
+          const href = isValid ? `/products/${product.slug}/${product.SKU}/` : "#";
 
           return (
             <div key={product?.id ?? index} className="keen-slider__slide group pb-10">

@@ -34,7 +34,7 @@ export default async function sitemap() {
     { url: `${baseUrl}/`, lastModified: new Date(), priority: 1 },
     { url: `${baseUrl}/about/`, lastModified: new Date(), priority: 0.7 },
     { url: `${baseUrl}/contact/`, lastModified: new Date(), priority: 0.6 },
-    { url: `${baseUrl}/privacy-policy/`, lastModified: new Date(), priority: 0.4 },
+    // { url: `${baseUrl}/privacy-policy/`, lastModified: new Date(), priority: 0.4 },
   ];
 
   return [...staticPages, ...categoryEntries, ...uniqueProductUrls];
