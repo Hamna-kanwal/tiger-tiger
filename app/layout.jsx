@@ -16,13 +16,8 @@ const eczar = Eczar({
   display: "swap",
 });
 
-// export const metadata = {
-//   title: "Tiger Tiger Foods",
-//   description: "Nature's best in every sip",
-// };
-
-
 export const metadata = {
+  metadataBase: new URL('https://www.tigertigerfoods.com'),
   title: {
     template: '%s | Tiger Tiger Foods',
     default: 'Tiger Tiger Foods',
