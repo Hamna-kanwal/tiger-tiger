@@ -18,6 +18,12 @@ const eczar = Eczar({
 
 export const metadata = {
   metadataBase: new URL('https://www.tigertigerfoods.com'),
+  
+  // Google Search Console verification tag added here
+  verification: {
+    google: 'sKKl2tFhmm86qK8VvZZG5Mr5JWtX20tygvOo7cLuvWU',
+  },
+
   title: {
     template: '%s | Tiger Tiger Foods',
     default: 'Tiger Tiger Foods',
@@ -63,7 +69,6 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
       </head>
-      {/* outfit.className use karne se font foran apply ho jayega */}
       <body className={`${outfit.className} antialiased`}>
         <Header />
         <main>
