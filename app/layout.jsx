@@ -19,7 +19,6 @@ const eczar = Eczar({
 export const metadata = {
   metadataBase: new URL('https://www.tigertigerfoods.com'),
   
-  // Google Search Console verification tag added here
   verification: {
     google: 'sKKl2tFhmm86qK8VvZZG5Mr5JWtX20tygvOo7cLuvWU',
   },
@@ -63,11 +62,85 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // Sitewide Organization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.tigertigerfoods.com/#organization",
+    "name": "Tiger Tiger Foods",
+    "alternateName": "Tiger Tiger",
+    "url": "https://www.tigertigerfoods.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.tigertigerfoods.com/logo.webp",
+      "width": 1200,
+      "height": 630
+    },
+    "image": "https://www.tigertigerfoods.com/logo.webp",
+    "description": "Tiger Tiger Foods is a premium pan-Asian food brand and wholesale supplier in the UK, supplying sauces, noodles, rice, frozen foods, drinks and spices to restaurants, retailers and food businesses.",
+    "email": "customer.service@tigertigerfoods.com",
+    "telephone": "+44 115 985 1301",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bull Close Road, Lenton Industrial Estate",
+      "addressLocality": "Nottingham",
+      "postalCode": "NG7 2UT",
+      "addressCountry": "GB"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+44 115 985 1301",
+      "email": "customer.service@tigertigerfoods.com",
+      "contactType": "customer service",
+      "areaServed": "GB",
+      "availableLanguage": "English"
+    },
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "JK Foods UK",
+      "url": "https://jkfoods.co.uk/",
+      "founder": {
+        "@type": "Person",
+        "name": "Mark Johal"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/jkfoodsuk"
+      ]
+    }
+  };
+
+  // Sitewide WebSite Schema
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.tigertigerfoods.com/#website",
+    "url": "https://www.tigertigerfoods.com/",
+    "name": "Tiger Tiger Foods",
+    "inLanguage": "en-GB",
+    "publisher": {
+      "@id": "https://www.tigertigerfoods.com/#organization"
+    }
+  };
+
   return (
     <html lang="en" className={`${outfit.variable} ${eczar.variable}`}>
       <head>
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
+        
+        {/* Sitewide JSON-LD Schemas */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body className={`${outfit.className} antialiased`}>
         <Header />
