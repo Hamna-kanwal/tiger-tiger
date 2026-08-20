@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
+import Script from 'next/script';
 import { Search } from 'lucide-react'; 
 import { useSearchParams } from 'next/navigation';
 
@@ -143,7 +144,7 @@ export const allRecipes = [
   },
 
   // --- THAI ---
-{ 
+  { 
     id: "chicken-thai-green-curry", 
     title: "Chicken Thai Green Curry", 
     cuisine: "Thai", 
@@ -407,8 +408,50 @@ const RecipeContent = () => {
     });
   }, [activeCuisine, activeProduct, searchQuery]);
 
+  // Schema Markup JSON object
+  const recipesPageSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.tigertigerfoods.com/recipes/#webpage",
+        "url": "https://www.tigertigerfoods.com/recipes/",
+        "name": "Recipes | Tiger Tiger Foods",
+        "description": "Pan-Asian recipes across Japanese, Chinese, Korean, Thai and Vietnamese cuisines using Tiger Tiger ingredients.",
+        "isPartOf": {
+          "@id": "https://www.tigertigerfoods.com/#website"
+        },
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.tigertigerfoods.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Recipes",
+            "item": "https://www.tigertigerfoods.com/recipes/"
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <> 
+      {/* --- SCHEMA SCRIPT --- */}
+      <Script
+        id="recipes-collection-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(recipesPageSchema) }}
+      />
+
       {/* --- HERO SECTION --- */}
       <section className="max-w-7xl mx-auto px-4 py-6 md:py-10 mt-20 md:mt-30">
         <div className="relative h-[400px] md:h-[600px] rounded-[20px] md:rounded-[30px] overflow-hidden">
@@ -516,9 +559,6 @@ const RecipeContent = () => {
           )}
         </div>
       </section>
-
-      {/* --- BANNER SECTION --- */}
-      {/* ... (Wahi banner ka code jo pehle tha) ... */}
     </>
   );
 };

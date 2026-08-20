@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Script from "next/script";
 
 export default function TradeRegisterPage() {
   const router = useRouter();
@@ -146,7 +147,7 @@ export default function TradeRegisterPage() {
       return;
     }
     
-    setLoading(true); // ✅ Fixed crash: changing from loading(true) to setLoading(true)
+    setLoading(true);
 
     try {
       // Step 1: Register User (Always)
@@ -232,41 +233,78 @@ export default function TradeRegisterPage() {
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Schema Markup JSON object
+  const tradeRegisterSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://www.tigertigerfoods.com/trade-register/#webpage",
+        "url": "https://www.tigertigerfoods.com/trade-register/",
+        "name": "Trade Register | Tiger Tiger Foods",
+        "description": "Open a Tiger Tiger trade account for wholesale pan-Asian supply, bulk orders and competitive trade pricing.",
+        "isPartOf": {
+          "@id": "https://www.tigertigerfoods.com/#website"
+        },
+        "about": {
+          "@id": "https://www.tigertigerfoods.com/#organization"
+        },
+        "inLanguage": "en-GB",
+        "significantLink": "https://www.tigertigerfoods.com/trade-register/"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.tigertigerfoods.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Trade Register",
+            "item": "https://www.tigertigerfoods.com/trade-register/"
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <>
-<div className="relative w-full h-80 md:h-[400px] overflow-hidden mt-7">
-      
-      {/* Next.js Standard Optimized Image */}
-      <Image 
-        src="/bg.png" 
-        alt="Registration Background" 
-        fill 
-        priority={true} // Hero ya top section ke liye hamesha true rakhein
-        className="object-cover object-center" 
-        sizes="100vw"
-        quality={80} 
+      {/* --- SCHEMA SCRIPT --- */}
+      <Script
+        id="trade-register-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tradeRegisterSchema) }}
       />
-      
-      {/* Dark Overlay - Text readability ke liye */}
-      <div className="absolute inset-0 bg-black/40 z-10" />
-      
-      {/* Content Section */}
-      <div className="relative z-20 flex items-center justify-center h-full px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center leading-tight tracking-tight">
-          Complete Your Registration
-        </h1>
-      </div>
 
-    </div>
+      <div className="relative w-full h-80 md:h-[400px] overflow-hidden mt-7">
+        <Image 
+          src="/bg.png" 
+          alt="Registration Background" 
+          fill 
+          priority={true}
+          className="object-cover object-center" 
+          sizes="100vw"
+          quality={80} 
+        />
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="relative z-20 flex items-center justify-center h-full px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center leading-tight tracking-tight">
+            Complete Your Registration
+          </h1>
+        </div>
+      </div>
 
       <section className="py-12 bg-[#F8FAFC]">
         <form onSubmit={handleSubmit}>
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            {/* Two Column Layout */}
             <div className="flex flex-col lg:flex-row gap-8">
               
-              {/* LEFT: Form Container (Bigger Size) */}
+              {/* LEFT: Form Container */}
                <div className="w-full lg:w-3/4">
                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                   <div className="bg-[#40023F] px-6 py-4">
@@ -425,8 +463,7 @@ export default function TradeRegisterPage() {
                 </div>
               </div>
 
-
-              {/* RIGHT: Inquiry/Cart Summary Sidebar (Smaller Size) */}
+              {/* RIGHT: Inquiry/Cart Summary Sidebar */}
               <div className="w-full lg:w-1/4 lg:sticky lg:top-8">
                 <div className="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
                   <div className="bg-[#f8f1e2] px-6 py-4 flex justify-between items-center border-b border-yellow-200/40">
@@ -440,12 +477,12 @@ export default function TradeRegisterPage() {
                     {cart.length === 0 ? (
                       <div className="text-center py-14 flex flex-col items-center justify-center">
                            <Image
-                                       src="/cart.png"
-                                       alt="Empty Cart"
-                                       width={50}
-                                       height={50}
-                                       className="mb-6"
-                                     />
+                               src="/cart.png"
+                               alt="Empty Cart"
+                               width={50}
+                               height={50}
+                               className="mb-6"
+                             />
                         <p className="text-gray-400 font-medium text-sm">No products in enquiry</p>
                         <button type="button" onClick={() => router.push("/")} className="mt-3 text-xs text-[#40023F] font-bold tracking-wide uppercase hover:underline">
                           Browse Products →
@@ -504,33 +541,32 @@ export default function TradeRegisterPage() {
             </div>
 
             {/* Submit Action Block Container */}
-       {/* Submit Action Block Container */}
-<div className="mt-8">
-  <button 
-    type="submit" 
-    disabled={loading}
-    className={`w-full font-extrabold uppercase tracking-wider py-4 px-6 rounded-xl transition duration-200 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed text-sm 
-    ${cart.length === 0 
-      ? "bg-[#40023F] hover:bg-[#5a1b59] text-white shadow-[0_4px_20px_rgba(78,26,81,0.3)]" 
-      : "bg-[#40023F] hover:bg-[#5a1b59] text-white shadow-[0_4px_20px_rgba(78,26,81,0.3)]"
-    }`}
-  >
-    {loading ? (
-      <span className="flex items-center justify-center gap-2">
-        <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        Processing...
-      </span>
-    ) : (
-      cart.length === 0 ? "Register " : "Register & Submit Enquiry" 
-    )}
-  </button>
-  <p className="text-center text-[11px] font-medium text-gray-400 mt-3.5 tracking-wide">
-    By submitting, you agree to our terms and conditions
-  </p>
-</div>
+            <div className="mt-8">
+              <button 
+                type="submit" 
+                disabled={loading}
+                className={`w-full font-extrabold uppercase tracking-wider py-4 px-6 rounded-xl transition duration-200 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed text-sm 
+                ${cart.length === 0 
+                  ? "bg-[#40023F] hover:bg-[#5a1b59] text-white shadow-[0_4px_20px_rgba(78,26,81,0.3)]" 
+                  : "bg-[#40023F] hover:bg-[#5a1b59] text-white shadow-[0_4px_20px_rgba(78,26,81,0.3)]"
+                }`}
+              >
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : (
+                  cart.length === 0 ? "Register " : "Register & Submit Enquiry" 
+                )}
+              </button>
+              <p className="text-center text-[11px] font-medium text-gray-400 mt-3.5 tracking-wide">
+                By submitting, you agree to our terms and conditions
+              </p>
+            </div>
           </div>
         </form>
         <ToastContainer position="top-right" autoClose={5000} />

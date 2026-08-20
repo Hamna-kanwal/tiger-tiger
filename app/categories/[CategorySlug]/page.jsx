@@ -1,10 +1,11 @@
+import Script from 'next/script';
 import CategoryProductsClient from "../../Components/CategoryProductsClient";
 import { getProductsByCategory, getCategories } from "../../action"; 
 import { notFound } from "next/navigation";
 
 export const revalidate = 3600;
 
-// Exact description mapping for Canned, Drinks, and Frozen as you provided
+// All category schemas and descriptions mapped accurately
 const categorySchemaMap = {
   canned: {
     name: "Canned",
@@ -17,15 +18,27 @@ const categorySchemaMap = {
   frozen: {
     name: "Frozen",
     description: "Frozen Asian foods: spring rolls, bao buns, dumplings and party starters in case quantities."
+  },
+  noodles: {
+    name: "Noodles",
+    description: "Asian noodles wholesale: udon, rice noodles, egg noodles and more for restaurants and retailers."
+  },
+  rice: {
+    name: "Rice",
+    description: "Asian rice wholesale: jasmine, sushi, glutinous and long-grain rice by the sack."
   }
 };
 
 export async function generateMetadata({ params }) {
   const { CategorySlug } = await params;
-  const formattedName = CategorySlug.replace(/-/g, ' ').toUpperCase();
+  const schemaInfo = categorySchemaMap[CategorySlug.toLowerCase()] || {
+    name: CategorySlug.charAt(0).toUpperCase() + CategorySlug.slice(1),
+    description: `Browse our ${CategorySlug.replace(/-/g, ' ')} collection. Premium Asian food ingredients for trade in the UK.`
+  };
+  
   return {
-    title: `${formattedName} | Tiger Tiger Foods`,
-    description: `Browse our ${CategorySlug.replace(/-/g, ' ')} collection. Premium Asian food ingredients for trade in the UK.`,
+    title: `${schemaInfo.name} | Tiger Tiger Foods`,
+    description: schemaInfo.description,
     alternates: { canonical: `https://www.tigertigerfoods.com/categories/${CategorySlug}/` }
   };
 }
@@ -82,7 +95,7 @@ export default async function CategoryProductsPage({ params }) {
             "@type": "ListItem",
             "position": 2,
             "name": "Categories",
-            "item": "https://www.tigertigerfoods.com/categories/"
+            "item": "https://www.tigertigerfoods.com/"
           },
           {
             "@type": "ListItem",
@@ -97,8 +110,10 @@ export default async function CategoryProductsPage({ params }) {
 
   return (
     <>
-      <script
+      <Script
+        id={`category-schema-${CategorySlug}`}
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(subCategorySchema) }}
       />
       <CategoryProductsClient slug={CategorySlug} initialData={initialData} />

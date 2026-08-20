@@ -1,69 +1,110 @@
 import React from 'react';
 import Link from "next/link";
+import Script from 'next/script';
 
 const TigerAboutBody = () => {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://www.tigertigerfoods.com/about/#webpage",
+        "url": "https://www.tigertigerfoods.com/about/",
+        "name": "About | Tiger Tiger Foods",
+        "description": "Tiger Tiger is a premium pan-Asian food brand crafted by JK Foods UK, sourcing authentic ingredients direct from Asia for UK trade partners.",
+        "isPartOf": {
+          "@id": "https://www.tigertigerfoods.com/#website"
+        },
+        "about": {
+          "@id": "https://www.tigertigerfoods.com/#organization"
+        },
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.tigertigerfoods.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://www.tigertigerfoods.com/about/"
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <main className="bg-[#FFFDF9]">
+      <Script
+        id="about-page-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
       
       {/* 1. Who We Are Section */}
-     <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[20px] md:mt-6">
+      <section className="my-20 px-6 text-center max-w-7xl mx-auto sm:mt-[20px] md:mt-6">
+        <span className="text-[#4B2452] font-bold tracking-widest text-[20px]">ABOUT US</span>
+        
+        <h1 className="text-[32px] md:text-[50px] text-[#4B2452] mt-4 mb-4 font-black uppercase">
+            Who We Are
+        </h1>
 
-    
-    <span className="text-[#4B2452] font-bold tracking-widest text-[20px]">ABOUT US</span>
-    
-    <h1 className="text-[32px] md:text-[50px] text-[#4B2452] mt-4 mb-4 font-black uppercase">
-        Who We Are
-    </h1>
+        <div className="space-y-6 text-[#333333] leading-relaxed text-lg text-center">
+            <p>
+                Tiger Tiger has been a developer and supplier of Pan Asian foods and services to major hubs, 
+                including supermarkets, retailers, restaurants and direct customers, for a long time. 
+                Our parent company, JK FOODS UK, with nearly five decades of experience, is widely 
+                recognised in the market for providing authenticity in products. Founded by Mark Johal, 
+                who recognised the demand for high-quality, authentic Pan Asian flavours, he sought out 
+                the very best-tasting, quality Pan Asian foods from the Far East. He began by introducing 
+                exceptional quality and taste preferred across the UK, Europe, and the Americas. 
+                To this day, the brand is well-known for its dedication to delivering taste and 
+                quality to customers at manageable prices.
+            </p>
+            <p>
+                At Tiger Tiger, we redefine value without compromising on the flavours that make every 
+                bite memorable. Our consistent quality and recognition for a taste appreciated by 
+                individuals and professional kitchens alike let us lead developers of Pan Asian food. 
+                We keep offering a deep variety of food products that spans Japanese, Thai, Chinese, 
+                and Indian cuisines and commit to keeping up the trend. By providing a range of tasty 
+                possibilities with top quality, we only aim to support businesses and elevate dishes 
+                for the desired effect. With this approach and commitment, we will continue bringing 
+                the combination of quality, irresistible taste, and competition.
+            </p>
+            <p>
+                Across the UK’s kitchens! Try Tiger Tiger, the UK’s leading developers of Pan Asian food, 
+                and fill your kitchens with the texture and aroma you recall at events. 
+                Within a single supplier, you will have multiple options dedicated to being delivered across 
+                Japanese, Thai, Chinese, Korean, Vietnamese, and Others cuisines.
+            </p>
+        </div>
 
-    <div className="space-y-6 text-[#333333] leading-relaxed text-lg text-center">
-        {/* Yahan md:text-center ko hata kar sirf text-center rakha hai taaki har screen par text center rahe */}
-        <p>
-            Tiger Tiger has been a developer and supplier of Pan Asian foods and services to major hubs, 
-            including supermarkets, retailers, restaurants and direct customers, for a long time. 
-            Our parent company, JK FOODS UK, with nearly five decades of experience, is widely 
-            recognised in the market for providing authenticity in products. Founded by Mark Johal, 
-            who recognised the demand for high-quality, authentic Pan Asian flavours, he sought out 
-            the very best-tasting, quality Pan Asian foods from the Far East. He began by introducing 
-            exceptional quality and taste preferred across the UK, Europe, and the Americas. 
-            To this day, the brand is well-known for its dedication to delivering taste and 
-            quality to customers at manageable prices.
-        </p>
-        <p>
-            At Tiger Tiger, we redefine value without compromising on the flavours that make every 
-            bite memorable. Our consistent quality and recognition for a taste appreciated by 
-            individuals and professional kitchens alike let us lead developers of Pan Asian food. 
-            We keep offering a deep variety of food products that spans Japanese, Thai, Chinese, 
-            and Indian cuisines and commit to keeping up the trend. By providing a range of tasty 
-            possibilities with top quality, we only aim to support businesses and elevate dishes 
-            for the desired effect. With this approach and commitment, we will continue bringing 
-            the combination of quality, irresistible taste, and competition.
-        </p>
-        <p>
-            Across the UK’s kitchens! Try Tiger Tiger, the UK’s leading developers of Pan Asian food, 
-            and fill your kitchens with the texture and aroma you recall at events. 
-            Within a single supplier, you will have multiple options dedicated to being delivered across 
-            Japanese, Thai, Chinese, Korean, Vietnamese, and Others cuisines.
-        </p>
-    </div>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          {/* View Products Link */}
+          <Link 
+            href="/categories" 
+            className="px-8 py-3 rounded-full border-2 border-[#4B2452] text-[#4B2452] font-bold hover:bg-[#4B2452] hover:text-white transition text-center"
+          >
+            View Products
+          </Link>
 
-   <div className="mt-10 flex flex-wrap justify-center gap-4">
-  {/* View Products Link */}
-  <Link 
-    href="/categories" 
-    className="px-8 py-3 rounded-full border-2 border-[#4B2452] text-[#4B2452] font-bold hover:bg-[#4B2452] hover:text-white transition text-center"
-  >
-    View Products
-  </Link>
-
-  {/* Contact Us Link */}
-  <Link 
-    href="/trade-register" 
-    className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold border-2 border-[#4B2452] hover:bg-transparent hover:text-[#4B2452] transition text-center"
-  >
-    Trade Register
-  </Link>
-</div>
-</section>
+          {/* Contact Us Link */}
+          <Link 
+            href="/trade-register" 
+            className="px-8 py-3 rounded-full bg-[#4B2452] text-white font-bold border-2 border-[#4B2452] hover:bg-transparent hover:text-[#4B2452] transition text-center"
+          >
+            Trade Register
+          </Link>
+        </div>
+      </section>
 
       {/* 2. Our Food Section */}
       <section className="max-w-7xl mx-auto my-20 px-4">
@@ -165,7 +206,7 @@ const TigerAboutBody = () => {
           <div className="bg-[#F8F1E2] p-8 rounded-sm">
             <h3 className="text-lg font-bold text-[#4B2452] mb-4 uppercase">Cultural understanding & expertise</h3>
             <p className="text-[#4B2452] text-[14px] leading-relaxed text-justify">
-              We have highly inspired food enthusiasts in our team that work more interestingly than just to fulfill the responsibility. Their cultural understanding and deep passion for Pan Asian cuisines sure the rich tapestry of Pan  Asian culinary traditions. We immerse ourselves in exploring diverse flavours, ingredients, and cooking techniques that keep us innovation drivers for keeping the culinary alive and lasting.
+              We have highly inspired food enthusiasts in our team that work more interestingly than just to fulfill the responsibility. Their cultural understanding and deep passion for Pan Asian cuisines sure the rich tapestry of Pan Asian culinary traditions. We immerse ourselves in exploring diverse flavours, ingredients, and cooking techniques that keep us innovation drivers for keeping the culinary alive and lasting.
             </p>
           </div>
           <div className="bg-[#F5F5F5] p-8 rounded-sm">
@@ -195,24 +236,23 @@ const TigerAboutBody = () => {
           <h2 className="text-xl md:text-2xl font-semibold text-white leading-relaxed mb-10">
             Tiger Tiger are explorers and ambassadors of Pan Asian cuisine. Our customer-first approach in Pan Asian food supply and passion for discovery keep us committed to making stories real. We are dedicated to satisfying our customers while sharing the vibrant and diverse flavours of Asia with the world.
           </h2>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-  <Link 
-    href="/trade-register" 
-    className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
-  >
-    Trade Register
-  </Link>
-  
-  <Link 
-    href="/categories" 
-    className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
-  >
-    Discover Products
-  </Link>
-</div>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link 
+              href="/trade-register" 
+              className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
+            >
+              Trade Register
+            </Link>
+            
+            <Link 
+              href="/categories" 
+              className="bg-white px-10 py-3 rounded-full font-bold text-[#4E1A51] shadow-sm hover:bg-gray-100 transition text-center"
+            >
+              Discover Products
+            </Link>
+          </div>
         </div>
       </section>
-
     </main>
   );
 };

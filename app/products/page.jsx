@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import { fetchProductsPage } from "../action"; 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,8 +13,53 @@ export default async function AllProductsPage({ searchParams }) {
   const { products: currentProducts, total } = await fetchProductsPage(currentPage, itemsPerPage);
   const totalPages = Math.ceil(total / itemsPerPage);
 
+  // All Products Page Schema Markup
+  const allProductsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.tigertigerfoods.com/products/#webpage",
+        "url": "https://www.tigertigerfoods.com/products/",
+        "name": "All Products | Tiger Tiger Foods",
+        "description": "The full Tiger Tiger pan-Asian product range for trade, retail and foodservice.",
+        "isPartOf": {
+          "@id": "https://www.tigertigerfoods.com/#website"
+        },
+        "about": {
+          "@id": "https://www.tigertigerfoods.com/#organization"
+        },
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.tigertigerfoods.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "All Products",
+            "item": "https://www.tigertigerfoods.com/products/"
+          }
+        ]
+      }
+    ]
+  };
+
   return (
     <div className="container mx-auto px-4 py-20 font-outfit">
+      <Script
+        id="all-products-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(allProductsSchema) }}
+      />
+
       <h1 className="text-4xl font-black text-center text-[#431A4F] mb-4 uppercase italic">
         Our Collection
       </h1>

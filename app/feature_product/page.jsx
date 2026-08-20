@@ -1,5 +1,7 @@
+import Script from 'next/script';
 import FeatureProductPageClient from "./FeatureProductPageClient";
 import Image from "next/image";
+
 const slugify = (s) =>
   String(s)
     .toLowerCase()
@@ -45,6 +47,43 @@ const mapItemToHref = (item) => {
 };
 
 export default function FeatureProductPage() {
+  const featuredProductsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.tigertigerfoods.com/feature_product/#webpage",
+        "url": "https://www.tigertigerfoods.com/feature_product/",
+        "name": "Featured Products | Tiger Tiger Foods",
+        "description": "Award-winning and standout Tiger Tiger products, including Pulp+, Coco Choo and Wow Chow.",
+        "isPartOf": {
+          "@id": "https://www.tigertigerfoods.com/#website"
+        },
+        "about": {
+          "@id": "https://www.tigertigerfoods.com/#organization"
+        },
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.tigertigerfoods.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Featured Products",
+            "item": "https://www.tigertigerfoods.com/feature_product/"
+          }
+        ]
+      }
+    ]
+  };
+
   const sections = [
     {
       title: "Pulp Plus",
@@ -65,7 +104,6 @@ export default function FeatureProductPage() {
       features: [
         { id: 8, Image: "/popping feature 1.webp", name: "POPPING CANDY BISCUITS STICK MILK TEA" },
         { id: 9, Image: "/popping feature 2.webp", name: "POPPING CANDY BISCUITS STICK BANANA" },
-      
       ],
       listings: [
         { id: 11, name: "POPPING CANDY BISCUITS STICK MILK TEA", Image: "/feature_product.webp" },
@@ -96,5 +134,15 @@ export default function FeatureProductPage() {
     listings: section.listings.map((item) => mapItemToHref(item)),
   }));
 
-  return <FeatureProductPageClient sections={sectionsWithLinks} />;
+  return (
+    <>
+      <Script
+        id="featured-products-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(featuredProductsSchema) }}
+      />
+      <FeatureProductPageClient sections={sectionsWithLinks} />
+    </>
+  );
 }
