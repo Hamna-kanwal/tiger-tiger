@@ -61,27 +61,25 @@ const BlogDetail = () => {
       {/* Header Banner */}
       <div className="pt-32 pb-44 px-6 text-center bg-gray-50">
         <div className="max-w-5xl mx-auto">
-      
           <h1 className="text-3xl md:text-5xl font-black text-[#431A4F] uppercase leading-tight tracking-tighter">
             {blog.title}
           </h1>
         </div>
       </div>
 
-  <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
-  <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white bg-white">
-    {/* Container ko fixed height mat dein, balkay image ko khud height lenay dein */}
-    <Image 
-      src={blog.image || "/fallback.png"} 
-      alt={blog.title} 
-      width={1200}    // Max width jo aap chahte hain
-      height={675}   // Base height (ye placeholder ka kaam karegi)
-      priority
-      className="w-full h-auto object-contain" // h-auto se image apni asli shape mein rahegi
-      sizes="(max-width: 768px) 100vw, 1200px"
-    />
-  </div>
-</div>
+      <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
+        <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white bg-white">
+          <Image 
+            src={blog.image || "/fallback.png"} 
+            alt={blog.title} 
+            width={1200}
+            height={675}
+            priority
+            className="w-full h-auto object-contain"
+            sizes="(max-width: 768px) 100vw, 1200px"
+          />
+        </div>
+      </div>
 
       {/* Main Content & Sidebar */}
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -104,7 +102,7 @@ const BlogDetail = () => {
               {relatedBlogs.map((item) => (
                 <Link 
                   key={item._id || item.slug} 
-                  href={`/blogs/${blog.slug.replace(/^\/+/, '')}`}
+                  href={`/blogs/${item.slug.replace(/^\/+/, '')}`}
                   className="group flex flex-col bg-[#431A4F] rounded-[1.5rem] overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="relative w-full h-40 overflow-hidden bg-[#35153f]">
@@ -131,15 +129,98 @@ const BlogDetail = () => {
         </aside>
       </div>
 
-      {/* Scoped Styles for Rich Text */}
+      {/* Scoped Styles for Rich Text - Compact Spacing */}
       <style jsx global>{`
-        .blog-rich-text h2 { color: #431A4F; font-weight: 900; margin-top: 2.5rem; font-size: 1.75rem; text-transform: uppercase; margin-bottom: 1rem; }
-        .blog-rich-text h3 { color: #431A4F; font-weight: 800; margin-top: 2rem; font-size: 1.5rem; }
-        .blog-rich-text p { margin-bottom: 1.25rem; font-size: 1.1rem; color: #374151; line-height: 1.8; }
-        .blog-rich-text strong { color: #431A4F; font-weight: 800; }
-        .blog-rich-text img { border-radius: 1.5rem; margin: 2rem 0; width: 100%; height: auto; }
-        .blog-rich-text ul, .blog-rich-text ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
-        .blog-rich-text li { margin-bottom: 0.5rem; list-style-position: outside; }
+        .blog-rich-text h2 { 
+          color: #431A4F; 
+          font-weight: 900; 
+          margin-top: 1.5rem; 
+          font-size: 1.5rem; 
+          text-transform: uppercase; 
+          margin-bottom: 0.5rem; 
+        }
+        .blog-rich-text h3 { 
+          color: #431A4F; 
+          font-weight: 800; 
+          margin-top: 1.25rem; 
+          font-size: 1.25rem; 
+          margin-bottom: 0.5rem; 
+        }
+        .blog-rich-text p { 
+          margin-bottom: 0.75rem; 
+          font-size: 1.05rem; 
+          color: #374151; 
+          line-height: 1.6; 
+        }
+        .blog-rich-text strong { 
+          color: #431A4F; 
+          font-weight: 800; 
+        }
+        .blog-rich-text img { 
+          border-radius: 1rem; 
+          margin: 1rem 0; 
+          width: 100%; 
+          height: auto; 
+        }
+        
+        {/* --- Internal Links Styling --- */}
+        .blog-rich-text a {
+          color: #431A4F;
+          font-weight: 700;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .blog-rich-text a:hover {
+          color: #D2B57B;
+        }
+
+        {/* --- Lists Styling --- */}
+        .blog-rich-text ul { 
+          list-style-type: disc; 
+          margin-bottom: 0.75rem; 
+          padding-left: 1.25rem; 
+        }
+        .blog-rich-text ol { 
+          list-style-type: decimal; 
+          margin-bottom: 0.75rem; 
+          padding-left: 1.25rem; 
+        }
+        .blog-rich-text li { 
+          margin-bottom: 0.25rem; 
+          color: #374151; 
+          line-height: 1.5; 
+        }
+
+        {/* --- Table Formatting Support --- */}
+        .blog-rich-text table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1rem 0;
+          font-size: 0.95rem;
+          text-align: left;
+          overflow-x: auto;
+          display: block;
+        }
+        .blog-rich-text th, 
+        .blog-rich-text td {
+          border: 1px solid #e5e7eb;
+          padding: 8px 12px;
+        }
+        .blog-rich-text th {
+          background-color: #431A4F !important;
+          color: #ffffff !important;
+          font-weight: 800;
+        }
+        .blog-rich-text th * {
+          color: #ffffff !important;
+        }
+        .blog-rich-text td {
+          color: #374151;
+          background-color: #ffffff;
+        }
+        .blog-rich-text tr:nth-child(even) td {
+          background-color: #f9fafb;
+        }
       `}</style>
     </article>
   );
