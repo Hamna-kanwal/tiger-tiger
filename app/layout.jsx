@@ -132,6 +132,8 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
         
+      <script src="https://analytics.ahrefs.com/analytics.js" data-key="8feY//JL4PXBAzy7AIuVZQ" async></script>
+        
         {/* Sitewide JSON-LD Schemas */}
         <script
           type="application/ld+json"
