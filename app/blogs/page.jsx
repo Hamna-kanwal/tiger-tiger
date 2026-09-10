@@ -101,9 +101,9 @@ const LatestBlog = () => {
       <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8 mt-8">
-            <h2 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
-              Latest Blog
-            </h2>
+            <h1 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
+              Asian Food Blog
+            </h1>
             <p className="text-sm md:text-base leading-relaxed text-[#431A4F] mb-6 opacity-90">
               Read news, blogs and latest articles from Tiger Tiger Foods
             </p>
