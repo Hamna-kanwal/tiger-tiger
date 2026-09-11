@@ -8,24 +8,52 @@ export const revalidate = 3600;
 // All category schemas and descriptions mapped accurately
 const categorySchemaMap = {
   canned: {
-    name: "Canned",
+    name: "Canned Asian Foods",
     description: "Canned pan-Asian ingredients: coconut milk, water chestnuts, bamboo shoots, sauces and pastes in bulk for trade."
   },
   drinks: {
-    name: "Drinks",
+    name: "Asian Beverages & Drinks",
     description: "Asian drinks in bulk: lychee, guava, coconut water, aloe vera and more for retail and foodservice."
   },
   frozen: {
-    name: "Frozen",
+    name: "Frozen Asian Foods",
     description: "Frozen Asian foods: spring rolls, bao buns, dumplings and party starters in case quantities."
   },
   noodles: {
-    name: "Noodles",
+    name: "Authentic Asian Noodles",
     description: "Asian noodles wholesale: udon, rice noodles, egg noodles and more for restaurants and retailers."
   },
   rice: {
-    name: "Rice",
+    name: "Authentic Asian Rice",
     description: "Asian rice wholesale: jasmine, sushi, glutinous and long-grain rice by the sack."
+  },
+  sauces: {
+    name: "Asian Cooking Sauces",
+    description: "Premium Asian cooking sauces: soy sauce, oyster sauce, fish sauce and specialty sauces for authentic Asian cooking."
+  },
+  "dried-products": {
+    name: "Dried Asian Ingredients",
+    description: "Dried Asian ingredients: mushrooms, seafood, vegetables and herbs for authentic recipes."
+  },
+  "coconut-products": {
+    name: "Coconut Products",
+    description: "Coconut products: coconut milk, cream, desiccated coconut and coconut-based ingredients for Asian cuisine."
+  },
+  pastes: {
+    name: "Asian Curry & Cooking Pastes",
+    description: "Asian curry and cooking pastes: curry paste, chili paste, miso and specialty pastes for restaurants and retailers."
+  },
+  "preserve-and-pickles": {
+    name: "Asian Preserves & Pickles",
+    description: "Asian preserves and pickles: kimchi, pickled vegetables, preserved fruits and specialty condiments."
+  },
+  "instant-noodles": {
+    name: "Instant Asian Noodles",
+    description: "Instant Asian noodles: quick-cook ramen, udon, and specialty noodle products for convenient meals."
+  },
+  spices: {
+    name: "Asian Seasonings & Spices",
+    description: "Asian seasonings and spices: premium spice blends, curry powders, and specialty seasonings for authentic cooking."
   }
 };
 
@@ -116,7 +144,7 @@ export default async function CategoryProductsPage({ params }) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(subCategorySchema) }}
       />
-      <CategoryProductsClient slug={CategorySlug} initialData={initialData} />
+      <CategoryProductsClient slug={CategorySlug} categoryName={schemaInfo.name} initialData={initialData} />
     </>
   );
 }

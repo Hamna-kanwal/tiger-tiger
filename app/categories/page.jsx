@@ -58,12 +58,12 @@ export default async function CategorySection() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(categoriesPageSchema) }}
       />
 
-      <section className="max-w-7xl mx-auto px-4 py-12 md:py-20 mt-10">
+      <section className="max-w-7xl mx-auto px-4 py-12 md:py-20">
         {/* Header Row */}
-        <div className="mb-8 mt-8">
-          <h2 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
-            Product Categories
-          </h2>
+        <div >
+          <h1 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
+          All Product Categories
+          </h1>
           <p className="text-sm md:text-base leading-relaxed text-[#431A4F] mb-6 opacity-90">
             We have wide variety of products ranging from drinks to noodles and frozen. You name it, we got it.
           </p>

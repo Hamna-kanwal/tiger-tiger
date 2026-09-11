@@ -15,13 +15,17 @@ export default function AppLandingPage() {
           
           {/* --- LEFT CONTENT --- */}
           <div className="z-10 text-white max-w-2xl pl-4 md:pl-6 lg:pl-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight eczar">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8 leading-tight eczar">
+              Tiger Tiger Mobile App
+            </h1>
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 leading-tight eczar">
               Effortless Access to Authentic <br /> Pan Asian Products for Your Business
+               Explore the full Tiger Tiger range in one place.
             </h2>
 
             <div className="space-y-4 mb-10">
               <h3 className="text-xl md:text-2xl font-semibold opacity-90">
-                Explore the full Tiger Tiger range in one place.
+               
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-lg opacity-85">

@@ -388,6 +388,14 @@ const RecipeContent = () => {
 
   const productTypes = ["All", "Sauces", "Noodles", "Spices & Seasonings", "Rice", "Frozen"];
 
+  const cuisineHeadings = {
+    "Japanese": "Authentic Japanese Recipes",
+    "Korean": "Authentic Korean Recipes",
+    "Thai": "Authentic Thai Recipes",
+    "Chinese": "Authentic Chinese Recipes",
+    "Others": "Specialty & Global Recipes"
+  };
+
   const [activeCuisine, setActiveCuisine] = useState("Japanese");
   const [activeProduct, setActiveProduct] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -453,7 +461,13 @@ const RecipeContent = () => {
       />
 
       {/* --- HERO SECTION --- */}
-      <section className="max-w-7xl mx-auto px-4 py-6 md:py-10 mt-20 md:mt-30">
+      <section className="max-w-7xl mx-auto px-4 py-6 md:py-10  md:mt-10">
+         <div>
+          <h1 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
+          Authentic Asian Recipes
+          </h1>
+          
+        </div>
         <div className="relative h-[400px] md:h-[600px] rounded-[20px] md:rounded-[30px] overflow-hidden">
           <Image src="/receipes.png" alt="Hero" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black/40 md:bg-gradient-to-r md:from-black/80 md:via-black/20 md:to-transparent" />
@@ -502,6 +516,10 @@ const RecipeContent = () => {
             </button>
           ))}
         </div>
+
+        <h2 className="text-3xl md:text-4xl font-black mb-8 uppercase tracking-tighter text-[#431A4F]">
+          {cuisineHeadings[activeCuisine]}
+        </h2>
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
           <div className="flex items-center gap-3 overflow-x-auto no-scrollbar py-1">

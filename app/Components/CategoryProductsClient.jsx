@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Ab humein SWR ki zaroorat nahi kyunki data initialData props mein aa raha hai
-export default function CategoryProductsClient({ slug, initialData }) {
+export default function CategoryProductsClient({ slug, categoryName, initialData }) {
   const pathname = usePathname();
   const [headerHeight, setHeaderHeight] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -38,7 +38,7 @@ export default function CategoryProductsClient({ slug, initialData }) {
     return `https://backend.tigertigerfoods.com${path.startsWith('/') ? '' : '/'}${path}`;
   };
 
-  const displayTitle = slug ? slug.replace(/-/g, ' ') : "Products";
+  const displayTitle = categoryName || (slug ? slug.replace(/-/g, ' ') : "Products");
 
   return (
     <section 
@@ -47,7 +47,7 @@ export default function CategoryProductsClient({ slug, initialData }) {
     >
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-4xl font-black mb-12 uppercase tracking-tighter text-[#431A4F]">
-          {displayTitle} Collection
+          {displayTitle}
         </h1>
 
         {products.length === 0 ? (
