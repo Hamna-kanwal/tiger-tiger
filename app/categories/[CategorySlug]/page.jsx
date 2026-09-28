@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import CategoryProductsClient from "../../Components/CategoryProductsClient";
 import { getProductsByCategory, getCategories } from "../../action"; 
 import { notFound } from "next/navigation";
@@ -70,7 +69,7 @@ export async function generateMetadata({ params }) {
     title: `${schemaInfo.name} | Tiger Tiger Foods`,
     description: schemaInfo.description,
     openGraph: {
-      url: pageUrl, // Yeh line add karni hai taaki og:url dynamic ho jaye
+      url: pageUrl,
     },
     alternates: { 
       canonical: pageUrl 
@@ -130,7 +129,7 @@ export default async function CategoryProductsPage({ params }) {
             "@type": "ListItem",
             "position": 2,
             "name": "Categories",
-            "item": "https://www.tigertigerfoods.com/"
+            "item": "https://www.tigertigerfoods.com/categories/" // Fixed URL path here
           },
           {
             "@type": "ListItem",
@@ -145,10 +144,8 @@ export default async function CategoryProductsPage({ params }) {
 
   return (
     <>
-      <Script
-        id={`category-schema-${CategorySlug}`}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(subCategorySchema) }}
       />
       <CategoryProductsClient slug={CategorySlug} categoryName={schemaInfo.name} initialData={initialData} />

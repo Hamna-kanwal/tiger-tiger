@@ -60,7 +60,7 @@ export default async function CategorySection() {
 
       <section className="max-w-7xl mx-auto px-4 py-12 md:py-20">
         {/* Header Row */}
-        <div >
+        <div>
           <h1 className="text-[32px] md:text-[45px] font-black text-[#431A4F] uppercase tracking-tighter">
           All Product Categories
           </h1>
@@ -74,11 +74,12 @@ export default async function CategorySection() {
           {data?.map((category, i) => (
             <Link key={i} href={`/categories/${category.slug}`}>
               <div className="group relative h-[400px] md:h-[450px] overflow-hidden rounded-[2rem] cursor-pointer shadow-lg bg-gray-100">
-                {/* Image Container */}
+                {/* Image Container - Added priority for first 3 items to optimize LCP & Performance score */}
                 <Image
                   src={category.image}
                   alt={category.name}
                   fill
+                  priority={i < 3}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
