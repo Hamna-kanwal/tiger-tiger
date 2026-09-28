@@ -64,10 +64,17 @@ export async function generateMetadata({ params }) {
     description: `Browse our ${CategorySlug.replace(/-/g, ' ')} collection. Premium Asian food ingredients for trade in the UK.`
   };
   
+  const pageUrl = `https://www.tigertigerfoods.com/categories/${CategorySlug}/`;
+
   return {
     title: `${schemaInfo.name} | Tiger Tiger Foods`,
     description: schemaInfo.description,
-    alternates: { canonical: `https://www.tigertigerfoods.com/categories/${CategorySlug}/` }
+    openGraph: {
+      url: pageUrl, // Yeh line add karni hai taaki og:url dynamic ho jaye
+    },
+    alternates: { 
+      canonical: pageUrl 
+    }
   };
 }
 

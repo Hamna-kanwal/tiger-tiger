@@ -96,13 +96,7 @@ export default function EnquiryPage() {
 
           {cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 bg-gray-50 rounded-2xl shadow-inner">
-              <Image
-                src="/cart.png"
-                alt="Empty Cart"
-                width={50}
-                height={50}
-                className="mb-6"
-              />
+             <Image src="/cart.webp" width={40} height={40} alt="Cart Icon" />
               <p className="text-gray-600 text-lg">No products found</p>
             </div>
           ) : (

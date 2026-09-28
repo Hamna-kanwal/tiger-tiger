@@ -25,6 +25,16 @@ const nextConfig = {
     ],
   },
 
+  async headers() {
+    return [{
+      source: '/categories/rice',
+      headers: [{
+        key: 'Link',
+        value: '</_next/static/css/06gm_knwcliz-x.css>; rel=preload; as=style',
+      }],
+    }];
+  },
+
   async redirects() {
     return [{
         source: '/products/asia',

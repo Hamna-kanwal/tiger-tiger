@@ -4,16 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function AllProductsPage({ searchParams }) {
-  // 1. Params ko await karna Next.js 15+ ke liye zaroori hai
   const resolvedSearchParams = await searchParams;
   const currentPage = Number(resolvedSearchParams.page) || 1;
   const itemsPerPage = 20;
 
-  // 2. Action se filtered data fetch karein
   const { products: currentProducts, total } = await fetchProductsPage(currentPage, itemsPerPage);
   const totalPages = Math.ceil(total / itemsPerPage);
 
-  // All Products Page Schema Markup
   const allProductsSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -79,9 +76,10 @@ export default async function AllProductsPage({ searchParams }) {
                   priority={index < 4}
                 />
               </div>
-              <h2 className="text-lg font-bold text-[#431A4F] uppercase line-clamp-2 leading-tight">
+              {/* FIXED: h2 ki jagah h3 kar diya hai taaki heading hierarchy theek rahe */}
+              <h3 className="text-lg font-bold text-[#431A4F] uppercase line-clamp-2 leading-tight">
                 {product.name}
-              </h2>
+              </h3>
               <p className="text-gray-400 mt-2 text-sm font-semibold">SKU: {product.SKU}</p>
             </Link>
           </div>

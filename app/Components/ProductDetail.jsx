@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify"; // Success message ke liye
 import "react-toastify/dist/ReactToastify.css";
 import RelatedProducts from "../Components/RelatedProducts"; 
+import Image from "next/image"; // Next/Image import kiya
 
 export default function ProductDetailClient({ product, relatedProducts }) {
   const [selectedUnit, setSelectedUnit] = useState(null);
@@ -66,11 +67,15 @@ export default function ProductDetailClient({ product, relatedProducts }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left: Product Image */}
         <div className="flex flex-col gap-6">
-          <div className="bg-white rounded-[20px] p-12 flex justify-center border border-gray-100 shadow-lg">
-            <img 
+          {/* Next/Image with priority to fix LCP / Priority performance issue */}
+          <div className="bg-white rounded-[20px] p-6 flex justify-center items-center border border-gray-100 shadow-lg relative aspect-square w-full">
+            <Image 
               src={mainImageSrc} 
               alt={product.name}
-              className="max-h-[550px] w-auto object-contain"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-contain p-6"
+              priority
             />
           </div>
           <div className="flex justify-start">

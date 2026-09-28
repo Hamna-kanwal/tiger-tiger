@@ -22,7 +22,7 @@
 
 /* Body font fallback */
 body {
-  font-family: var(--font-outfit), sans-serif;
+ font-family: var(--font-outfit), sans-serif;
 }
 
 /* Headings aur Eczar class ke liye 'fields' font (Adobe Typekit wala) */

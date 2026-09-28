@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
@@ -91,20 +92,21 @@ export default function SearchBox() {
               onClick={() => setResults([])} 
               className="flex items-center gap-3 p-2 hover:bg-gray-100 rounded-xl text-[#4e1a51] transition-all"
             >
-              <div className="w-12 h-12 shrink-0 bg-white rounded-lg overflow-hidden border border-gray-100">
-                <img
-                  src={
-                    item.images && item.images !== "NULL" && item.images.length > 0
-                      ? (item.images.startsWith('http') ? item.images : `https://backend.tigertigerfoods.com${item.images}`)
-                      : item.featured_image && item.featured_image !== "NULL"
-                        ? (item.featured_image.startsWith('http') ? item.featured_image : `https://backend.tigertigerfoods.com${item.featured_image}`)
-                        : "https://via.placeholder.com/80?text=No+Image"
-                  }
-                  alt={item.name}
-                  className="w-full h-full object-contain"
-                  onError={(e) => { e.target.src = "https://via.placeholder.com/80?text=Error"; }}
-                />
-              </div>
+              <div className="w-12 h-12 shrink-0 bg-white rounded-lg overflow-hidden border border-gray-100 relative">
+  <Image
+    src={
+      item.images && item.images !== "NULL" && item.images.length > 0
+        ? (item.images.startsWith('http') ? item.images : `https://backend.tigertigerfoods.com${item.images}`)
+        : item.featured_image && item.featured_image !== "NULL"
+          ? (item.featured_image.startsWith('http') ? item.featured_image : `https://backend.tigertigerfoods.com${item.featured_image}`)
+          : "/placeholder.png"
+    }
+    alt={item.name || "Product thumbnail"}
+    width={48}
+    height={48}
+    className="w-full h-full object-contain"
+  />
+</div>
               <div className="flex flex-col min-w-0">
                 <span className="text-xs font-bold truncate leading-tight">{item.name}</span>
                 {/* Choti sub-text details taake pata chale product hai ya blog */}

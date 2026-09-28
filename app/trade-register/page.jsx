@@ -476,13 +476,7 @@ export default function TradeRegisterPage() {
                   <div className="p-5 max-h-[460px] overflow-y-auto custom-scroll bg-white">
                     {cart.length === 0 ? (
                       <div className="text-center py-14 flex flex-col items-center justify-center">
-                           <Image
-                               src="/cart.png"
-                               alt="Empty Cart"
-                               width={50}
-                               height={50}
-                               className="mb-6"
-                             />
+                          <Image src="/cart.webp" width={40} height={40} alt="Cart Icon" />
                         <p className="text-gray-400 font-medium text-sm">No products in enquiry</p>
                         <button type="button" onClick={() => router.push("/")} className="mt-3 text-xs text-[#40023F] font-bold tracking-wide uppercase hover:underline">
                           Browse Products →

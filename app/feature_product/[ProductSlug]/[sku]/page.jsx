@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation"; // Navigation ke liye
 import { toast, ToastContainer } from "react-toastify"; // Success message ke liye
 import "react-toastify/dist/ReactToastify.css";
-import RelatedProducts from "../../../Components/RelatedProducts"; 
+import RelatedProducts from "../../../Components/RelatedProducts";
+import Image from "next/image"; 
 
 export default function ProductDetailClient({ product, relatedProducts }) {
   const [selectedUnit, setSelectedUnit] = useState(null);
@@ -142,19 +143,16 @@ export default function ProductDetailClient({ product, relatedProducts }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left: Product Image */}
         <div className="flex flex-col gap-6">
-          <div className="bg-white rounded-[20px] p-12 flex justify-center border border-gray-100 shadow-lg">
-            <img
-              src={imageUrl}
-              alt={normalized?.name || product?.name}
-              onError={(e) => {
-                try {
-                  e.currentTarget.src = "/product_image.png";
-                } catch (err) {}
-              }}
-              className="w-auto object-contain"
-              style={{ maxHeight: 550 }}
-            />
-          </div>
+       <div className="bg-white rounded-[20px] p-12 flex justify-center border border-gray-100 shadow-lg relative">
+  <Image
+    src={imageUrl || "/product_image.png"}
+    alt={normalized?.name || product?.name || "Product image"}
+    width={500}
+    height={550}
+    className="w-auto object-contain max-h-[550px]"
+    priority
+  />
+</div>
           <div className="flex justify-start">
             <span className="text-white px-6 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider" style={{ backgroundColor: themeColor }}>
               {normalized.categories || "Drinks"}

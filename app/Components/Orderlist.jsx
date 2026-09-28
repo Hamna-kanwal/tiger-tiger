@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useEffect, useState } from "react";
 
@@ -111,12 +112,15 @@ export default function OrdersList() {
                 >
                   {/* Product Image */}
                   <div className="w-24 h-24 shrink-0 bg-white rounded-xl overflow-hidden border border-gray-100 p-1">
-                    <img
-                      src={getSafeImageUrl(item.images)}
-                      alt={item.name}
-                      className="w-full h-full object-contain"
-                      onError={(e) => { e.target.src = "https://via.placeholder.com/150?text=Error"; }}
-                    />
+                <div className="relative w-full h-full">
+  <Image
+    src={getSafeImageUrl(item.images)}
+    alt={item.name || "Product image"}
+    fill
+    sizes="(max-width: 768px) 100vw, 33vw"
+    className="object-contain"
+  />
+</div>
                   </div>
 
                   {/* Product Details */}

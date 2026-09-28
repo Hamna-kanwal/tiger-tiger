@@ -2,6 +2,7 @@ import ProductDetailClient from "../../../Components/ProductDetail";
 import { fetchAllProducts } from "../../../action";
 import { notFound } from "next/navigation";
 
+
 // Page revalidation for ISR (1 hour)
 export const revalidate = 3600;
 
@@ -12,16 +13,21 @@ async function getProductData(sku) {
 }
 
 export async function generateMetadata({ params }) {
-  const { sku } = await params;
+  const { productslug, sku } = await params; // Yahan productslug ko bhi destructure karlein
   const product = await getProductData(sku);
 
   if (!product) return { title: "Product Not Found" };
 
+  const pageUrl = `https://www.tigertigerfoods.com/products/${product.slug || productslug}/${sku}/`;
+
   return {
     title: `${product.name} | Tiger Tiger Foods`,
     description: product.description?.slice(0, 150),
+    openGraph: {
+      url: pageUrl, // Yeh line add karni hai
+    },
     alternates: { 
-      canonical: `https://www.tigertigerfoods.com/products/${product.slug}/${sku}/` 
+      canonical: pageUrl 
     }
   };
 }

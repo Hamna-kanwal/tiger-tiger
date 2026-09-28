@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import Image from 'next/image';
 
 export default function FloatingCart() {
   const [open, setOpen] = useState(false);
@@ -67,11 +68,7 @@ export default function FloatingCart() {
           zIndex: 99999 
         }}
       >
-        <img 
-          src="/cart.png" 
-          alt="Cart Icon" 
-          className="w-10 h-10 object-contai" 
-        />
+      <Image src="/cart.webp" width={40} height={40} alt="Cart Icon" />
 
         {count > 0 && (
           <span

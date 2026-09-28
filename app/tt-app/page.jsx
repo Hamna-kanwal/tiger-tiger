@@ -161,9 +161,16 @@ It works the way you expect it to, every time.
       {/* ================= SECTION 6: FINAL CTA ================= */}
       <section className="relative w-full bg-white py-16 px-6 md:px-24 flex flex-col md:flex-row items-center justify-center gap-12 overflow-hidden">
         <div className="absolute top-0 left-0 w-1 h-full bg-[#1E90FF] hidden md:block" />
-        <div className="relative z-10 max-w-[450px] w-full drop-shadow-2xl">
-          <img src="/mobile_image.webp" alt="Tiger Tiger App" className="w-full h-auto object-contain" />
-        </div>
+     <div className="relative z-10 max-w-[450px] w-full drop-shadow-2xl">
+  <Image 
+    src="/mobile_image.webp" 
+    alt="Tiger Tiger App" 
+    width={450} 
+    height={600} 
+    className="w-full h-auto object-contain" 
+  />
+</div>
+    
         <div className="flex flex-col items-start max-w-xl z-10">
           <h2 className="text-3xl lg:text-5xl font-bold text-[#5B2956] mb-4">Download Our New App</h2>
           <p className="text-gray-600 mb-8">Download the Tiger Tiger app and make ordering easier.</p>
