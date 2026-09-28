@@ -1,34 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-// Ab humein SWR ki zaroorat nahi kyunki data initialData props mein aa raha hai
 export default function CategoryProductsClient({ slug, categoryName, initialData }) {
-  const pathname = usePathname();
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const header = document.getElementById("header");
-    if (header) setHeaderHeight(header.offsetHeight);
-    
-    const handleResize = () => {
-      if (header) setHeaderHeight(header.offsetHeight);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Hydration error se bachne ke liye
-  if (!mounted) return null;
-
-  // Data ab initialData se aayega jo Server Action ne fetch kiya hai
+  // Data initialData se aayega jo Server Action ne fetch kiya hai
   const products = initialData?.success ? initialData.data : [];
-  const shouldOffset = pathname !== "/";
 
   const getFullImageUrl = (imgField) => {
     if (!imgField || imgField === "null") return "/placeholder.png";
@@ -41,10 +18,7 @@ export default function CategoryProductsClient({ slug, categoryName, initialData
   const displayTitle = categoryName || (slug ? slug.replace(/-/g, ' ') : "Products");
 
   return (
-    <section 
-      style={{ marginTop: shouldOffset ? `${headerHeight}px` : undefined }}
-      className="min-h-screen pt-32 pb-20 bg-transparent"
-    >
+    <section className="min-h-screen pt-36 pb-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-4xl font-black mb-12 uppercase tracking-tighter text-[#431A4F]">
           {displayTitle}
@@ -57,16 +31,15 @@ export default function CategoryProductsClient({ slug, categoryName, initialData
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
             {products.map((product, i) => (
-             // Link ka href change karke ye rakhein
-<Link 
-  href={
-    (slug && slug !== 'undefined' && product.slug) 
-      ? `/categories/${slug}/${product.slug}/${product.SKU}` 
-      : `/products/${product.slug || ''}`
-  } 
-  key={product._id || i} 
-  className="group block"
->
+              <Link 
+                href={
+                  (slug && slug !== 'undefined' && product.slug) 
+                    ? `/categories/${slug}/${product.slug}/${product.SKU}` 
+                    : `/products/${product.slug || ''}`
+                } 
+                key={product._id || i} 
+                className="group block"
+              >
                 <div className="relative aspect-square flex items-center justify-center bg-transparent">
                   <div className="relative w-full h-full transform transition-all duration-500 group-hover:scale-110 bg-transparent">
                     <Image
