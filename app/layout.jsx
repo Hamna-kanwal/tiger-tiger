@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "./Components/Header"; 
 import Footer from "./Components/Footer";
 import FloatingCart from "./Components/FloatingCart";
-import PerformanceOptimizer from "./Components/PerformanceOptimizer"; // <-- Yahan import kiya hai
+import PerformanceOptimizer from "./Components/PerformanceOptimizer";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -130,6 +130,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${outfit.variable} ${eczar.variable}`}>
       <head>
+        {/* Typekit Fonts Integration */}
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
+
+        {/* Analytics Script */}
         <script src="https://analytics.ahrefs.com/analytics.js" data-key="8feY//JL4PXBAzy7AIuVZQ" async></script>
         
         {/* Sitewide JSON-LD Schemas */}
@@ -149,7 +154,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <FloatingCart />
-        <PerformanceOptimizer /> {/* <-- Yahan render kar diya hai */}
+        <PerformanceOptimizer />
       </body>
     </html>
   );
