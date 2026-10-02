@@ -1,7 +1,7 @@
 import ProductDetailClient from "../../../Components/ProductDetail"; 
 import { fetchAllProducts } from "../../../action";
 import { notFound } from "next/navigation";
-
+import { buildMeta } from "@/lib/seo";
 
 // Page revalidation for ISR (1 hour)
 export const revalidate = 3600;
@@ -13,27 +13,23 @@ async function getProductData(sku) {
 }
 
 export async function generateMetadata({ params }) {
-  const { productslug, sku } = await params; // Yahan productslug ko bhi destructure karlein
+  const { productslug, sku } = await params;
   const product = await getProductData(sku);
 
-  if (!product) return { title: "Product Not Found" };
+  if (!product) return { title: "Product Not Found | Tiger Tiger Foods" };
 
-  const pageUrl = `https://www.tigertigerfoods.com/products/${product.slug || productslug}/${sku}/`;
+  const pagePath = `/products/${product.slug || productslug}/${sku}/`;
 
-  return {
-    title: `${product.name} | Tiger Tiger Foods`,
+  return buildMeta({
+    title: product.name,
     description: product.description?.slice(0, 150),
-    openGraph: {
-      url: pageUrl, // Yeh line add karni hai
-    },
-    alternates: { 
-      canonical: pageUrl 
-    }
-  };
+    path: pagePath,
+    image: product.images?.[0] || product.image,
+  });
 }
 
 export default async function Page({ params }) {
-  const { slug, sku } = await params;
+  const { productslug, sku } = await params;
   const allProducts = await fetchAllProducts() || [];
   const currentProduct = await getProductData(sku);
 

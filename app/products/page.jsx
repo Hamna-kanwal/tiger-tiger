@@ -2,6 +2,14 @@ import Script from 'next/script';
 import { fetchProductsPage } from "../action"; 
 import Image from 'next/image';
 import Link from 'next/link';
+import { buildMeta } from '@/lib/seo';
+
+export const metadata = buildMeta({
+  title: 'All Products',
+  description: 'Sample product description between 120 to 155 characters explaining the product features and wholesale details.',
+  path: '/products/',
+  image: '/og-default.png',
+});
 
 export default async function AllProductsPage({ searchParams }) {
   const resolvedSearchParams = await searchParams;
@@ -19,7 +27,7 @@ export default async function AllProductsPage({ searchParams }) {
         "@id": "https://www.tigertigerfoods.com/products/#webpage",
         "url": "https://www.tigertigerfoods.com/products/",
         "name": "All Products | Tiger Tiger Foods",
-        "description": "The full Tiger Tiger pan-Asian product range for trade, retail and foodservice.",
+        "description": "Browse the full Tiger Tiger range of Pan Asian ingredients, from sauces and noodles to drinks, frozen lines and canned goods.",
         "isPartOf": {
           "@id": "https://www.tigertigerfoods.com/#website"
         },
@@ -33,15 +41,15 @@ export default async function AllProductsPage({ searchParams }) {
         "itemListElement": [
           {
             "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.tigertigerfoods.com/"
+            "@position": 1,
+            "@name": "Home",
+            "@item": "https://www.tigertigerfoods.com/"
           },
           {
             "@type": "ListItem",
-            "position": 2,
-            "name": "All Products",
-            "item": "https://www.tigertigerfoods.com/products/"
+            "@position": 2,
+            "@name": "All Products",
+            "@item": "https://www.tigertigerfoods.com/products/"
           }
         ]
       }
@@ -76,7 +84,6 @@ export default async function AllProductsPage({ searchParams }) {
                   priority={index < 4}
                 />
               </div>
-              {/* FIXED: h2 ki jagah h3 kar diya hai taaki heading hierarchy theek rahe */}
               <h3 className="text-lg font-bold text-[#431A4F] uppercase line-clamp-2 leading-tight">
                 {product.name}
               </h3>

@@ -28,16 +28,20 @@ export const metadata = {
     template: '%s | Tiger Tiger Foods',
     default: 'Tiger Tiger Foods',
   },
-  description: "Nature's best in every sip - Premium Asian food wholesale supplier in UK.",
+  description: "Pan Asian food wholesale supplier in the UK. Sauces, noodles, drinks, frozen and canned goods for restaurants, retailers and distributors.",
+  
+  alternates: {
+    canonical: '/',
+  },
   
   openGraph: {
     title: 'Tiger Tiger Foods',
-    description: "Nature's best in every sip - Premium Asian food wholesale supplier in UK.",
+    description: "Pan Asian food wholesale supplier in the UK. Sauces, noodles, drinks, frozen and canned goods for restaurants, retailers and distributors.",
     url: 'https://www.tigertigerfoods.com',
     siteName: 'Tiger Tiger Foods',
     images: [
       {
-        url: '/logo.webp',
+        url: '/og-default.png',
         width: 1200,
         height: 630,
         alt: 'Tiger Tiger Foods',
@@ -49,8 +53,8 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Tiger Tiger Foods',
-    description: "Nature's best in every sip - Premium Asian food wholesale supplier in UK.",
-    images: ['/logo.webp'], 
+    description: "Pan Asian food wholesale supplier in the UK. Sauces, noodles, drinks, frozen and canned goods for restaurants, retailers and distributors.",
+    images: ['/og-default.png'], 
   },
   robots: {
     index: true,

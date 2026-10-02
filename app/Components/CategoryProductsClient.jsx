@@ -1,9 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 
-export default function CategoryProductsClient({ slug, categoryName, initialData }) {
+export default function CategoryProductsClient({ slug, categoryName, categoryIntro, initialData }) {
   // Data initialData se aayega jo Server Action ne fetch kiya hai
   const products = initialData?.success ? initialData.data : [];
 
@@ -18,11 +16,18 @@ export default function CategoryProductsClient({ slug, categoryName, initialData
   const displayTitle = categoryName || (slug ? slug.replace(/-/g, ' ') : "Products");
 
   return (
-    <section className="min-h-screen pt-36 pb-20 bg-transparent">
+    // Yahan pt-36 ko kam karke pt-24 kar diya hai (aap ise pt-20 bhi kar sakte hain agar aur upar chahiye)
+    <section className="min-h-screen pt-24 pb-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-black mb-12 uppercase tracking-tighter text-[#431A4F]">
+        <h1 className="text-4xl font-black mb-4 uppercase tracking-tighter text-[#431A4F]">
           {displayTitle}
         </h1>
+
+        {categoryIntro && (
+          <p className="mb-12 w-full text-left text-base md:text-lg leading-relaxed text-gray-600">
+            {categoryIntro}
+          </p>
+        )}
 
         {products.length === 0 ? (
           <div className="text-center py-20">

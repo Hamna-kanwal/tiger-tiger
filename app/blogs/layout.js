@@ -1,11 +1,11 @@
-export const metadata = {
-  title: "Tiger Tiger Blog | Asian Food Guides & Recipes",
-  description: "Guides, explainers and recipes on pan-Asian ingredients, sauces, noodles, rice and more. Discover authentic Asian cooking tips and techniques.",
-  alternates: {
-    canonical: "https://www.tigertigerfoods.com/blogs/"
-  }
-};
+import { buildMeta } from '@/lib/seo';
 
+export const metadata = buildMeta({
+  title: 'Blog',
+  description: 'Articles on Pan Asian ingredients, sourcing and trends for food businesses in the UK.',
+  path: '/blogs/',
+  image: '/og-default.png',
+})
 export default function BlogsLayout({ children }) {
   return children;
 }
