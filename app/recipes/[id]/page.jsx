@@ -1,5 +1,5 @@
 import { buildMeta } from '@/lib/seo';
-import { allRecipes } from '../../page';
+import { allRecipes } from '../page';
 import RecipeDetailContent from './RecipeDetailContent';
 
 export async function generateMetadata({ params }) {

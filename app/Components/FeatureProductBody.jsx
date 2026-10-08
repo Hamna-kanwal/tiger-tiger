@@ -1,5 +1,5 @@
 import Script from 'next/script';
-import FeatureProductPageClient from "./FeatureProductPageClient";
+import FeatureProductPageClient from '../../app/feature_product/FeatureProductPageClient';
 
 const slugify = (s) =>
   String(s)

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { allRecipes } from '../../page'; 
+import { allRecipes } from '../page';
 
 export default function RecipeDetailContent({ id }) {
   const recipe = allRecipes.find((r) => r.id === id) || allRecipes[0];

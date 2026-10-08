@@ -1,7 +1,5 @@
-import TradeRegisterClient from "./TradeRegisterClient";
+import TradeRegisterClient from "../Components/TradeRegisterClient";
 import { buildMeta } from "@/lib/seo";
-
-import { buildMeta } from '@/lib/seo'
 
 export const metadata = buildMeta({
   title: 'Trade Register',
