@@ -360,7 +360,7 @@ export async function fetchProductsPage(page = 1, limit = 20) {
 export async function fetchAllProducts() {
   try {
     const res = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 },
     });
 
     if (!res.ok) return [];
@@ -379,5 +379,30 @@ export async function fetchAllProducts() {
   } catch (error) {
     console.error("Critical API Fetch Error:", error.message);
     return [];
+  }
+}
+// Fallback: find a single product directly by SKU through the search endpoint
+export async function fetchProductBySku(sku) {
+  if (!sku || sku === "undefined") return null;
+
+  try {
+    const res = await fetch(
+      `https://backend.tigertigerfoods.com/api/get-products?search=${encodeURIComponent(sku)}`,
+      { next: { revalidate: 300 } }
+    );
+
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    const list = Array.isArray(data?.data) ? data.data : [];
+
+    return (
+      list.find(
+        (p) => p.type !== "blog" && String(p.SKU).trim() === String(sku).trim()
+      ) || null
+    );
+  } catch (error) {
+    console.error("fetchProductBySku error:", error.message);
+    return null;
   }
 }
