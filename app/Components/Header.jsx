@@ -73,7 +73,7 @@ export default function Header() {
               <div key={link.name} className="group relative">
                 {link.dropdown ? (
                   // Dropdown parents are not real links, so no navigation happens on click
-                  <span className="text-[15px] xl:text-[16px] flex items-center gap-1 cursor-pointer font-light text-white">
+                  <span className="text-[15px] xl:text-[16px] flex items-center gap-1 cursor-pointer font-light text-[#4e1a51]">
                     {link.name}
                     <ChevronDown
                       size={14}
