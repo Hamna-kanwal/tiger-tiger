@@ -19,6 +19,22 @@ export default async function AllProductsPage({ searchParams }) {
   const { products: currentProducts, total } = await fetchProductsPage(currentPage, itemsPerPage);
   const totalPages = Math.ceil(total / itemsPerPage);
 
+  const getProductImage = (product) => {
+    const image = Array.isArray(product.images)
+      ? product.images[0]
+      : product.images || product.image;
+
+    if (typeof image !== "string" || !image.trim()) {
+      return "/placeholder.png";
+    }
+
+    if (/^https?:\/\//i.test(image)) {
+      return image;
+    }
+
+    return `https://backend.tigertigerfoods.com${image.startsWith("/") ? "" : "/"}${image}`;
+  };
+
   const allProductsSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -70,28 +86,34 @@ export default async function AllProductsPage({ searchParams }) {
       </h1>
       
       {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-        {currentProducts?.map((product, index) => (
-          <div key={product.SKU || index} className="group bg-white rounded-3xl p-4 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
-            <Link href={`/products/${product.slug}/${product.SKU}`}>
-              <div className="aspect-square relative mb-4">
-                <Image
-                  src={product.images || "/placeholder.png"}
-                  alt={product.name || "Product Image"}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  className="object-contain p-2 group-hover:scale-105 transition-transform"
-                  priority={index < 4}
-                />
-              </div>
-              <h3 className="text-lg font-bold text-[#431A4F] uppercase line-clamp-2 leading-tight">
-                {product.name}
-              </h3>
-              <p className="text-gray-400 mt-2 text-sm font-semibold">SKU: {product.SKU}</p>
-            </Link>
-          </div>
-        ))}
-      </div>
+      {currentProducts.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          {currentProducts.map((product, index) => (
+            <div key={product.SKU || index} className="group bg-white rounded-3xl p-4 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
+              <Link href={`/products/${product.slug}/${product.SKU}`}>
+                <div className="aspect-square relative mb-4">
+                  <Image
+                    src={getProductImage(product)}
+                    alt={product.name || "Product Image"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-contain p-2 group-hover:scale-105 transition-transform"
+                    priority={index < 4}
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-[#431A4F] uppercase line-clamp-2 leading-tight">
+                  {product.name}
+                </h3>
+                <p className="text-gray-400 mt-2 text-sm font-semibold">SKU: {product.SKU}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="py-16 text-center text-lg font-semibold text-gray-500">
+          No products are available right now. Please check back soon.
+        </p>
+      )}
 
       {/* --- PAGINATION --- */}
       {totalPages > 1 && (

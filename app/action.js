@@ -331,16 +331,22 @@ export async function fetchProductsPage(page = 1, limit = 20) {
         total = (pageNumber - 1) * pageSize + products.length;
       }
 
-      return {
-        products,
-        total,
-        pageSize,
-      };
+      if (products.length > 0 || pageNumber > 1) {
+        return {
+          products,
+          total,
+          pageSize,
+        };
+      }
     }
 
     const fallbackRes = await fetch("https://backend.tigertigerfoods.com/api/get-products", {
       next: { revalidate: 3600 },
     });
+    if (!fallbackRes.ok) {
+      throw new Error(`Product API returned ${fallbackRes.status}`);
+    }
+
     const fallbackData = await fallbackRes.json();
     const allProducts = Array.isArray(fallbackData.data) ? fallbackData.data : [];
     const total = allProducts.length;
