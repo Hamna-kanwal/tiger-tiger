@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
@@ -12,6 +12,51 @@ const media = [
   { src: "/reels/5.mp4", alt: "Wow Chow Red Curry" },
   { src: "/reels/6.mp4", alt: "Wow Chow Tom Yum" },
 ];
+
+// Video sirf tab load hoti hai jab woh screen ke qareeb aaye
+const LazyVideo = ({ src, title }) => {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // src lagne ke baad video play karwao
+  useEffect(() => {
+    if (visible && ref.current) {
+      ref.current.play().catch(() => {});
+    }
+  }, [visible]);
+
+  return (
+    <video
+      ref={ref}
+      src={visible ? src : undefined}
+      title={title}
+      preload="none"
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  );
+};
 
 const ProductGallerySlider = () => {
   const [loaded, setLoaded] = useState(false);
@@ -52,16 +97,14 @@ const ProductGallerySlider = () => {
     <section className="py-10 md:py-20 bg-white">
       {/* Centered Heading */}
       <div className="max-w-6xl mx-auto mb-10 px-6">
-        <h2 
+        <h2
           style={{ color: brandPurple }}
           className="eczar font-bold text-[32px] md:text-[52px] leading-tight text-center md:text-left"
         >
           Explore Our Social Media
         </h2>
-        
-        <p 
-          className="text-black text-[16px] md:text-[18px] font-normal mt-3 text-center md:text-left max-w-lg md:max-w-full mx-auto md:mx-0 subHeading"
-        >
+
+        <p className="text-black text-[16px] md:text-[18px] font-normal mt-3 text-center md:text-left max-w-lg md:max-w-full mx-auto md:mx-0 subHeading">
           Discover our social media and connect with us
         </p>
       </div>
@@ -80,22 +123,12 @@ const ProductGallerySlider = () => {
               key={index}
             >
               {/* Video Card with Gold Border on Hover */}
-              <div 
-                className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group cursor-pointer"
-              >
-                <video
-                  src={item.src}
-                  title={item.alt}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                
+              <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group cursor-pointer bg-gray-100">
+                <LazyVideo src={item.src} title={item.alt} />
+
                 {/* Brand Overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                
+
                 {/* Subtle bottom gradient for text readability */}
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
@@ -107,4 +140,4 @@ const ProductGallerySlider = () => {
   );
 };
 
-export default ProductGallerySlider
+export default ProductGallerySlider;
