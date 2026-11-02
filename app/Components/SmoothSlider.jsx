@@ -13,9 +13,18 @@ const media = [
   { src: "/reels/6.mp4", alt: "Wow Chow Tom Yum" },
 ];
 
-// Pehla frame foran dikhta hai (metadata), poori video screen par aane par play hoti hai
-const LazyVideo = ({ src, title }) => {
+// index < allowed ho to poori video load hoti hai, warna sirf pehla frame (metadata)
+const QueuedVideo = ({ src, title, index, allowed, onReady }) => {
   const ref = useRef(null);
+  const inView = useRef(false);
+  const canPlay = useRef(false);
+
+  const tryPlay = () => {
+    const el = ref.current;
+    if (el && inView.current && canPlay.current) {
+      el.play().catch(() => {});
+    }
+  };
 
   useEffect(() => {
     const el = ref.current;
@@ -23,9 +32,9 @@ const LazyVideo = ({ src, title }) => {
 
     const io = new IntersectionObserver(
       ([entry]) => {
+        inView.current = entry.isIntersecting;
         if (entry.isIntersecting) {
-          el.preload = "auto";
-          el.play().catch(() => {});
+          tryPlay();
         } else {
           el.pause();
         }
@@ -42,10 +51,15 @@ const LazyVideo = ({ src, title }) => {
       ref={ref}
       src={`${src}#t=0.1`}
       title={title}
-      preload="metadata"
+      preload={index < allowed ? "auto" : "metadata"}
       muted
       loop
       playsInline
+      onCanPlay={() => {
+        canPlay.current = true;
+        onReady(index);
+        tryPlay();
+      }}
       className="absolute inset-0 w-full h-full object-cover"
     />
   );
@@ -53,10 +67,16 @@ const LazyVideo = ({ src, title }) => {
 
 const ProductGallerySlider = () => {
   const [loaded, setLoaded] = useState(false);
+  const [allowed, setAllowed] = useState(2); // shuru mein 2 videos poori load hongi
   const timer = useRef(null);
 
   // Brand Colors
   const brandPurple = "#4e1a51";
+
+  // Jaise hi ek video chalne ke qabil ho, agli video ko load ki ijazat do
+  const handleReady = (index) => {
+    setAllowed((prev) => Math.max(prev, index + 2));
+  };
 
   const [sliderRef] = useKeenSlider({
     loop: true,
@@ -117,7 +137,13 @@ const ProductGallerySlider = () => {
             >
               {/* Video Card with Gold Border on Hover */}
               <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group cursor-pointer bg-gray-100">
-                <LazyVideo src={item.src} title={item.alt} />
+                <QueuedVideo
+                  src={item.src}
+                  title={item.alt}
+                  index={index}
+                  allowed={allowed}
+                  onReady={handleReady}
+                />
 
                 {/* Brand Overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
