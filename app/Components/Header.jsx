@@ -18,25 +18,25 @@ export default function Header() {
     {
       name: "Products",
       dropdown: [
-        { name: "All", href: "/products" },
-        { name: "Featured", href: "/feature_product" },
-        { name: "Categories", href: "/categories" },
+        { name: "All", href: "/products/" },
+        { name: "Featured", href: "/feature_product/" },
+        { name: "Categories", href: "/categories/" },
       ],
     },
-    { name: "About", href: "/about" },
-    { name: "Recipes", href: "/recipes" },
-    { name: "Trade Register", href: "/trade-register" },
+    { name: "About", href: "/about/" },
+    { name: "Recipes", href: "/recipes/" },
+    { name: "Trade Register", href: "/trade-register/" },
     {
       name: "More",
       dropdown: [
-        { name: "Contact", href: "/contact" },
-        { name: "Blogs", href: "/blogs" },
+        { name: "Contact", href: "/contact/" },
+        { name: "Blogs", href: "/blogs/" },
       ],
     },
-    { name: "Download Our App", href: "/tt-app", isButton: true },
+    { name: "Download Our App", href: "/tt-app/", isButton: true },
   ];
 
-  const isActive = (href) => path === href;
+  const isActive = (href) => path === href || path === href.replace(/\/$/, "");
 
   // Close the mobile drawer whenever the route changes
   useEffect(() => {
