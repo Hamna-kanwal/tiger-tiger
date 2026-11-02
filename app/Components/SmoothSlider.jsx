@@ -13,10 +13,9 @@ const media = [
   { src: "/reels/6.mp4", alt: "Wow Chow Tom Yum" },
 ];
 
-// Video sirf tab load hoti hai jab woh screen ke qareeb aaye
+// Pehla frame foran dikhta hai (metadata), poori video screen par aane par play hoti hai
 const LazyVideo = ({ src, title }) => {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -25,31 +24,25 @@ const LazyVideo = ({ src, title }) => {
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
+          el.preload = "auto";
+          el.play().catch(() => {});
+        } else {
+          el.pause();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "100px", threshold: 0.1 }
     );
 
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  // src lagne ke baad video play karwao
-  useEffect(() => {
-    if (visible && ref.current) {
-      ref.current.play().catch(() => {});
-    }
-  }, [visible]);
-
   return (
     <video
       ref={ref}
-      src={visible ? src : undefined}
+      src={`${src}#t=0.1`}
       title={title}
-      preload="none"
-      autoPlay
+      preload="metadata"
       muted
       loop
       playsInline
