@@ -13,18 +13,10 @@ const media = [
   { src: "/reels/6.mp4", alt: "Wow Chow Tom Yum" },
 ];
 
-// index < allowed ho to poori video load hoti hai, warna sirf pehla frame (metadata)
-const QueuedVideo = ({ src, title, index, allowed, onReady }) => {
+// Video sirf tab load hoti hai jab woh screen ke qareeb aaye
+const LazyVideo = ({ src, title }) => {
   const ref = useRef(null);
-  const inView = useRef(false);
-  const canPlay = useRef(false);
-
-  const tryPlay = () => {
-    const el = ref.current;
-    if (el && inView.current && canPlay.current) {
-      el.play().catch(() => {});
-    }
-  };
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -32,34 +24,35 @@ const QueuedVideo = ({ src, title, index, allowed, onReady }) => {
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        inView.current = entry.isIntersecting;
         if (entry.isIntersecting) {
-          tryPlay();
-        } else {
-          el.pause();
+          setVisible(true);
+          io.disconnect();
         }
       },
-      { rootMargin: "100px", threshold: 0.1 }
+      { rootMargin: "200px" }
     );
 
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
+  // src lagne ke baad video play karwao
+  useEffect(() => {
+    if (visible && ref.current) {
+      ref.current.play().catch(() => {});
+    }
+  }, [visible]);
+
   return (
     <video
       ref={ref}
-      src={`${src}#t=0.1`}
+      src={visible ? src : undefined}
       title={title}
-      preload={index < allowed ? "auto" : "metadata"}
+      preload="none"
+      autoPlay
       muted
       loop
       playsInline
-      onCanPlay={() => {
-        canPlay.current = true;
-        onReady(index);
-        tryPlay();
-      }}
       className="absolute inset-0 w-full h-full object-cover"
     />
   );
@@ -67,16 +60,10 @@ const QueuedVideo = ({ src, title, index, allowed, onReady }) => {
 
 const ProductGallerySlider = () => {
   const [loaded, setLoaded] = useState(false);
-  const [allowed, setAllowed] = useState(2); // shuru mein 2 videos poori load hongi
   const timer = useRef(null);
 
   // Brand Colors
   const brandPurple = "#4e1a51";
-
-  // Jaise hi ek video chalne ke qabil ho, agli video ko load ki ijazat do
-  const handleReady = (index) => {
-    setAllowed((prev) => Math.max(prev, index + 2));
-  };
 
   const [sliderRef] = useKeenSlider({
     loop: true,
@@ -137,13 +124,7 @@ const ProductGallerySlider = () => {
             >
               {/* Video Card with Gold Border on Hover */}
               <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group cursor-pointer bg-gray-100">
-                <QueuedVideo
-                  src={item.src}
-                  title={item.alt}
-                  index={index}
-                  allowed={allowed}
-                  onReady={handleReady}
-                />
+                <LazyVideo src={item.src} title={item.alt} />
 
                 {/* Brand Overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
