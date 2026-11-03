@@ -367,6 +367,8 @@ export const allRecipes = [
 }
 ];
 
+const CUISINE_ORDER = ["Japanese", "Korean", "Thai", "Chinese", "Others"];
+
 const RecipeContent = () => {
   const searchParams = useSearchParams();
   const cuisineFromUrl = searchParams.get('cuisine');
@@ -382,7 +384,7 @@ const RecipeContent = () => {
     { name: "Japanese", count: 1},
     { name: "Korean", count: 3 },
     { name: "Thai", count: 2},
-    { name: "Chinese", count: 3 },
+    { name: "Chinese", count: 2 },
     { name: "Others", count: 1 },
   ];
 
@@ -474,10 +476,10 @@ const RecipeContent = () => {
 
           <div className="relative h-full flex flex-col justify-center px-6 md:px-16 lg:px-20 z-10">
             <div className="max-w-xl">
-              <h1 className="text-white text-3xl md:text-5xl font-bold leading-tight mb-2">
+              <h2 className="text-white text-3xl md:text-5xl font-bold leading-tight mb-2">
                 Cook Bold. <br />
                 Cook Authentic.
-              </h1>
+              </h2>
               <p className="text-white/90 text-sm md:text-lg font-light mb-8 md:mb-12 max-w-md leading-relaxed">
                 Each recipe is crafted around a Tiger Tiger product discover flavours from Japan, China, Korea, Thai and Many more.
               </p>
@@ -575,6 +577,83 @@ const RecipeContent = () => {
               No recipes found for this selection.
             </div>
           )}
+        </div>
+      </section>
+
+      {/* --- ALL TIGER TIGER RECIPES --- */}
+      <section className="w-full max-w-7xl mx-auto px-4 pb-20">
+        <div className="rounded-[20px] md:rounded-[30px] bg-[#F7F1E5] px-5 py-10 md:px-12 md:py-14">
+
+          {/* Heading */}
+          <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+            <p className="text-[#431A4F] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-3">
+              Browse the full collection
+            </p>
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-[#431A4F]">
+              All Tiger Tiger Recipes
+            </h2>
+            <div className="mx-auto mt-4 h-[3px] w-16 rounded-full bg-[#D0B989]" />
+          </div>
+
+          {/* Groups by cuisine */}
+          <div className="space-y-10">
+            {CUISINE_ORDER.map((cuisine) => {
+              const items = allRecipes.filter((r) => r.cuisine === cuisine);
+              if (items.length === 0) return null;
+
+              return (
+                <div key={cuisine}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <h3 className="text-[#431A4F] text-base md:text-xl font-bold">{cuisine}</h3>
+                    <span className="text-[11px] font-bold text-[#431A4F] bg-[#E5D5BC] rounded-full px-3 py-1 whitespace-nowrap">
+                      {items.length} {items.length === 1 ? 'recipe' : 'recipes'}
+                    </span>
+                    <div className="h-px flex-1 bg-[#D0B989]/60" />
+                  </div>
+
+                  <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {items.map((recipe) => (
+                      <li key={recipe.id}>
+                        <Link
+                          href={`/recipes/${recipe.id}/`}
+                          className="group flex items-center gap-4 bg-white rounded-2xl p-3 border border-[#E5D5BC] shadow-sm hover:shadow-lg hover:border-[#431A4F]/30 md:hover:-translate-y-0.5 transition-all duration-300"
+                        >
+                          <div className="relative h-16 w-16 md:h-20 md:w-20 shrink-0 rounded-xl overflow-hidden">
+                            <Image
+                              src={recipe.image}
+                              alt=""
+                              fill
+                              sizes="80px"
+                              className="object-cover"
+                            />
+                          </div>
+
+                          <div className="min-w-0 flex-1">
+                            <p className="text-gray-900 font-bold text-sm md:text-base leading-snug group-hover:text-[#431A4F] transition-colors line-clamp-2">
+                              {recipe.title}
+                            </p>
+                            <p className="mt-1 text-gray-400 text-[11px] md:text-xs">
+                              {recipe.time} · {recipe.servings}
+                            </p>
+                          </div>
+
+                          <svg
+                            className="w-5 h-5 shrink-0 text-[#431A4F]/40 group-hover:text-[#431A4F] group-hover:translate-x-1 transition-all"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </>

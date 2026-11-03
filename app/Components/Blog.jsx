@@ -1,40 +1,26 @@
-"use client";
-
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getBlogsAction } from '../action';
 
-const LatestBlog = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const brandPurple = "#431A4F";
+const brandPurple = "#431A4F";
 
-  const stripHtml = (html) => {
-    if (!html) return "";
-    return html.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
-  };
+const stripHtml = (html) => {
+  if (!html) return "";
+  return html.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
+};
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        setLoading(true);
-        const result = await getBlogsAction();
-        if (result.success) {
-          setBlogs(result.data);
-        }
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlogs();
-  }, []);
-
-  if (loading) {
-    return <div className="flex justify-center py-20"><Loader2 className="animate-spin text-[#431A4F]" size={40} /></div>;
+const LatestBlog = async () => {
+  // Blogs are fetched on the server, so the section is part of the initial HTML
+  let blogs = [];
+  try {
+    const result = await getBlogsAction();
+    if (result?.success) {
+      blogs = result.data;
+    }
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
   }
 
   return (
@@ -60,7 +46,7 @@ const LatestBlog = () => {
                   priority={index === 0}
                   unoptimized={typeof blog.image === 'string' && blog.image.startsWith('http')}
                 />
-                {/* Title ab hamesha dikhega (Opacity 100) */}
+                {/* Title is always visible (opacity 100) */}
                 <div className="absolute inset-0 bg-[#431A4F]/70 flex items-center justify-center p-6 text-center transition-all">
                   <h3 className="text-white font-black text-xl line-clamp-3">{blog.title}</h3>
                 </div>
@@ -71,7 +57,7 @@ const LatestBlog = () => {
                 <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
                   {stripHtml(blog.description || blog.desc)}
                 </p>
-                <Link 
+                <Link
                   href={`/blogs/${blog.slug}`}
                   className="flex items-center gap-2 font-black text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:gap-4"
                   style={{ color: brandPurple }}
@@ -83,13 +69,13 @@ const LatestBlog = () => {
           ))}
         </div>
 
-        {/* View All Blogs button - Hamesha Purple background */}
+        {/* View All Blogs button - always purple background */}
         {blogs.length > 0 && (
           <div className="text-center mt-16">
-            <Link 
+            <Link
               href="/blogs"
               className="inline-block px-12 py-4 rounded-full border-2 font-black uppercase tracking-widest text-sm transition-all duration-300 shadow-md hover:scale-105 active:scale-95"
-              style={{ 
+              style={{
                 backgroundColor: brandPurple,
                 borderColor: brandPurple,
                 color: "#FFFFFF"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
@@ -13,48 +13,48 @@ const media = [
   { src: "/reels/6.mp4", alt: "Wow Chow Tom Yum" },
 ];
 
-// Video sirf tab load hoti hai jab woh screen ke qareeb aaye
-const LazyVideo = ({ src, title }) => {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  // src lagne ke baad video play karwao
-  useEffect(() => {
-    if (visible && ref.current) {
-      ref.current.play().catch(() => {});
-    }
-  }, [visible]);
+// High Quality & Silent Reel Card Component
+const VideoReelCard = ({ src, title }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <video
-      ref={ref}
-      src={visible ? src : undefined}
-      title={title}
-      preload="none"
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover"
-    />
+    <div 
+      className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group cursor-pointer bg-black"
+      onClick={() => setIsPlaying(true)}
+    >
+      {!isPlaying ? (
+        <>
+          {/* Initial high-quality static frame preview without quality loss */}
+          <video
+            src={`${src}#t=0.1`}
+            preload="metadata"
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          />
+          {/* Play Icon Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+            <div className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-black shadow-lg group-hover:scale-110 transition-transform">
+              ▶
+            </div>
+          </div>
+          <span className="absolute bottom-3 left-3 right-3 text-white text-xs font-medium truncate drop-shadow">
+            {title}
+          </span>
+        </>
+      ) : (
+        /* Playing state: High Quality, Muted, No Controls (Silent Reel style) */
+        <video
+          src={src}
+          title={title}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+    </div>
   );
 };
 
@@ -86,7 +86,7 @@ const ProductGallerySlider = () => {
       setLoaded(true);
       timer.current = setInterval(() => {
         s.next();
-      }, 3500);
+      }, 4000);
     },
     destroyed: () => {
       if (timer.current) clearInterval(timer.current);
@@ -122,16 +122,10 @@ const ProductGallerySlider = () => {
               className="keen-slider__slide flex justify-center items-center p-1"
               key={index}
             >
-              {/* Video Card with Gold Border on Hover */}
-              <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-sm border-2 border-transparent hover:border-[#d2bf7f] transition-all duration-500 group cursor-pointer bg-gray-100">
-                <LazyVideo src={item.src} title={item.alt} />
-
-                {/* Brand Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-
-                {/* Subtle bottom gradient for text readability */}
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
+              <VideoReelCard 
+                src={item.src} 
+                title={item.alt} 
+              />
             </div>
           ))}
         </div>
