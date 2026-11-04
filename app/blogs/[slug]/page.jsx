@@ -5,18 +5,52 @@ import { buildMeta } from '@/lib/seo';
 import { getSingleBlogAction, getLatestSidebarBlogsAction } from '../../action';
 import './blog-rich-text.css';
 
+const DEFAULT_DESCRIPTION =
+  'Articles on Pan Asian ingredients, sourcing and trends for food businesses in the UK.';
+
+// HTML tags aur entities saaf karta hai
+const stripHtml = (html) => {
+  if (!html) return '';
+  return html
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+// Saaf text ko 155 characters tak lafz ki hadd par kaatta hai
+const toMetaDescription = (html, max = 155) => {
+  const text = stripHtml(html);
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  const safe = lastSpace > 100 ? cut.slice(0, lastSpace) : cut;
+  return safe.replace(/[\s,.;:\-–]+$/, '') + '…';
+};
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const blogResult = await getSingleBlogAction(slug);
   const blog = blogResult?.success ? blogResult.data : null;
 
+  // 1) SEO team ki page_description  2) body se bani description  3) default
+  const description =
+    blog?.page_description?.trim() ||
+    toMetaDescription(blog?.description || blog?.desc) ||
+    DEFAULT_DESCRIPTION;
+
   return buildMeta({
-    title: blog?.title || 'Blog Details',
-    description: blog?.excerpt || blog?.description?.substring(0, 155) || 'Articles on Pan Asian ingredients, sourcing and trends for food businesses in the UK.',
+    title: blog?.page_title?.trim() || blog?.title || 'Blog Details',
+    description,
     path: `/blogs/${slug}/`,
     image: blog?.image || '/og-default.png',
     type: 'article',
-    publishedTime: blog?.publishedAt || blog?.createdAt, // Article publish date
+    publishedTime: blog?.created_at, // Article publish date
   });
 }
 
@@ -52,7 +86,7 @@ export default async function Page({ params }) {
         <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white bg-white">
           <Image
             src={blog.image || "/fallback.png"}
-            alt={blog.title}
+            alt={blog.image_alt_text || blog.title}
             width={1200}
             height={675}
             priority

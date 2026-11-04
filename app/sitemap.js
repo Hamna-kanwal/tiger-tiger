@@ -1,15 +1,17 @@
-import { fetchAllProducts, getCategories } from "./action";
+import { fetchAllProducts, getCategories, getBlogsAction } from "./action";
+import { allRecipes } from "../app/recipes/app/recipes/recipes-data";
 
 export default async function sitemap() {
   const baseUrl = "https://www.tigertigerfoods.com";
 
-  const [products, categories] = await Promise.all([
+  const [products, categories, blogsResult] = await Promise.all([
     fetchAllProducts(),
     getCategories(),
+    getBlogsAction(),
   ]);
 
   // 2. Product URLs (Unique)
-  const productEntries = products
+  const productEntries = (products || [])
     .filter((p) => p?.slug && p?.SKU)
     .map((p) => ({
       url: `${baseUrl}/products/${p.slug}/${p.SKU}/`,
@@ -22,13 +24,32 @@ export default async function sitemap() {
   );
 
   // 3. Category URLs
-  const categoryEntries = categories.map((cat) => ({
+  const categoryEntries = (categories || []).map((cat) => ({
     url: `${baseUrl}/categories/${cat.slug}/`,
     lastModified: new Date(),
     priority: 0.9,
   }));
 
-  // 4. Static Pages (Build output ke mutabiq)
+  // 4. Blog URLs (79 posts)
+  const blogs = blogsResult?.success ? blogsResult.data : [];
+  const blogEntries = (blogs || [])
+    .filter((b) => b?.slug)
+    .map((b) => ({
+      url: `${baseUrl}/blogs/${b.slug.replace(/^\/+/, "").replace(/\/+$/, "")}/`,
+      lastModified: b.updated_at || b.created_at ? new Date(b.updated_at || b.created_at) : new Date(),
+      priority: 0.6,
+    }));
+
+  // 5. Recipe URLs
+  const recipeEntries = (allRecipes || [])
+    .filter((r) => r?.id)
+    .map((r) => ({
+      url: `${baseUrl}/recipes/${r.id}/`,
+      lastModified: new Date(),
+      priority: 0.6,
+    }));
+
+  // 6. Static Pages (Build output ke mutabiq)
   const staticPages = [
     { url: `${baseUrl}/`, lastModified: new Date(), priority: 1.0 },
     { url: `${baseUrl}/about/`, lastModified: new Date(), priority: 0.7 },
@@ -40,5 +61,11 @@ export default async function sitemap() {
     { url: `${baseUrl}/recipes/`, lastModified: new Date(), priority: 0.7 },
   ];
 
-  return [...staticPages, ...categoryEntries, ...uniqueProductUrls];
+  return [
+    ...staticPages,
+    ...categoryEntries,
+    ...uniqueProductUrls,
+    ...blogEntries,
+    ...recipeEntries,
+  ];
 }
