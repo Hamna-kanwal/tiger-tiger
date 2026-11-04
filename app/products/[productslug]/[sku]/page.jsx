@@ -6,6 +6,18 @@ import { buildMeta } from "@/lib/seo";
 // Page revalidation for ISR (1 hour)
 export const revalidate = 3600;
 
+// Removes HTML tags and collapses whitespace
+const stripHtml = (text) =>
+  typeof text === "string"
+    ? text.replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim()
+    : "";
+
+// Best available plain-text description for meta and schema
+const getProductDescription = (product) =>
+  stripHtml(product.page_description) ||
+  stripHtml(product.description) ||
+  stripHtml(product.body_text);
+
 // Helper function to get product data
 async function getProductData(sku) {
   const allProducts = await fetchAllProducts() || [];
@@ -22,34 +34,48 @@ export async function generateMetadata({ params }) {
 
   return buildMeta({
     title: product.name,
-    description: product.description?.slice(0, 150),
+    description: getProductDescription(product).slice(0, 155),
     path: pagePath,
     image: product.images?.[0] || product.image,
   });
 }
 
 export default async function Page({ params }) {
-  const { productslug, sku } = await params;
+  const { sku } = await params;
   const allProducts = await fetchAllProducts() || [];
-  const currentProduct = await getProductData(sku);
+  const currentProduct = allProducts.find(p => String(p.SKU) === String(sku));
 
-  // Agar product nahi mila to 404 show karein
+  // Show 404 if the product is not found
   if (!currentProduct) {
     notFound();
   }
 
-  // Related products ka logic (Current product ko chor kar baaki 4 products)
-  const related = allProducts
-    .filter(p => String(p.SKU) !== String(sku))
-    .slice(0, 4);
+  // Related products: same category first, then fill up to 4.
+  // Only the fields the slider needs are sent to the client component.
+  const others = allProducts.filter(p => String(p.SKU) !== String(sku));
+  const sameCategory = others.filter(
+    p => p.categories && p.categories === currentProduct.categories
+  );
+  const related = [...sameCategory, ...others.filter(p => !sameCategory.includes(p))]
+    .slice(0, 4)
+    .map(p => ({
+      id: p.id,
+      SKU: p.SKU,
+      slug: p.slug,
+      name: p.name,
+      images: p.images,
+      image: p.image,
+      quantity: p.quantity,
+      categories: p.categories,
+    }));
 
-  // JSON-LD Schema (Google SEO ke liye)
+  // JSON-LD Schema (for Google SEO)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": currentProduct.name,
     "sku": String(currentProduct.SKU),
-    "description": currentProduct.description,
+    "description": getProductDescription(currentProduct),
     "image": currentProduct.images
   };
 
@@ -59,7 +85,7 @@ export default async function Page({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
+
       <ProductDetailClient 
         product={currentProduct} 
         relatedProducts={related} 

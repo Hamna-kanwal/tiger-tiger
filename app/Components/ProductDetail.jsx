@@ -1,13 +1,19 @@
 "use client";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify"; // Success message ke liye
+import { toast, ToastContainer } from "react-toastify"; // Success message toasts
 import "react-toastify/dist/ReactToastify.css";
 import RelatedProducts from "../Components/RelatedProducts"; 
-import Image from "next/image"; // Next/Image import kiya
+import Image from "next/image";
+
+// Detects whether the description contains HTML tags
+const hasHtmlTags = (text) => /<\/?[a-z][\s\S]*?>/i.test(text);
 
 export default function ProductDetailClient({ product, relatedProducts }) {
   const [selectedUnit, setSelectedUnit] = useState(null);
   const themeColor = "#431A4F";
+
+  // Product description coming from the backend (body_text)
+  const bodyText = typeof product.body_text === "string" ? product.body_text.trim() : "";
 
   const handleAddToCart = () => {
     if (typeof window === "undefined") return;
@@ -55,7 +61,7 @@ export default function ProductDetailClient({ product, relatedProducts }) {
     }
   };
 
-  // Helper function to extract correct single image url from array or string
+  // Helper to extract a single image url from array or string
   const mainImageSrc = Array.isArray(product.images) && product.images.length > 0 
     ? product.images[0] 
     : (product.images || "/placeholder.png");
@@ -155,6 +161,28 @@ export default function ProductDetailClient({ product, relatedProducts }) {
           </div>
         </div>
       </div>
+
+      {/* Product Description (body_text) */}
+      {bodyText && (
+        <section className="mt-16 pt-10 border-t border-gray-100">
+          <h2 className="text-2xl font-bold mb-6 border-b-2 pb-2 inline-block" style={{ borderBottomColor: `${themeColor}20` }}>
+            Product Description
+          </h2>
+
+          {hasHtmlTags(bodyText) ? (
+            <div
+              className="text-gray-700 text-[16px] leading-relaxed max-w-4xl [&_p]:mb-4 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-2 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:mt-5 [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1 [&_strong]:font-bold [&_a]:font-bold [&_a]:underline [&_a]:underline-offset-4"
+              dangerouslySetInnerHTML={{ __html: bodyText }}
+            />
+          ) : (
+            <div className="text-gray-700 text-[16px] leading-relaxed max-w-4xl space-y-4">
+              {bodyText.split(/\n{2,}/).map((paragraph, index) => (
+                <p key={index}>{paragraph.trim()}</p>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       {/* Related Products Slider Section */}
       <div className="mt-10 pt-10">

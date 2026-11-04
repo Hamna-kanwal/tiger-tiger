@@ -374,12 +374,19 @@ export async function fetchAllProducts() {
     const data = await res.json();
     const rawProducts = Array.isArray(data?.data) ? data.data : [];
 
-    // SKU based unique filtering
-    const uniqueProducts = Array.from(
-      new Map(rawProducts.map(item => [String(item.SKU).trim(), item])).values()
+    // Keep only real products: skip blog entries and items without a SKU
+    const productsOnly = rawProducts.filter(
+      (item) => item?.type !== "blog" && item?.SKU && String(item.SKU).trim()
     );
 
-    console.log(`Total API Products: ${rawProducts.length} | Unique: ${uniqueProducts.length}`);
+    // SKU based unique filtering
+    const uniqueProducts = Array.from(
+      new Map(productsOnly.map((item) => [String(item.SKU).trim(), item])).values()
+    );
+
+    if (process.env.NODE_ENV !== "production") {
+      console.log(`Total API Items: ${rawProducts.length} | Unique products: ${uniqueProducts.length}`);
+    }
 
     return uniqueProducts;
   } catch (error) {
