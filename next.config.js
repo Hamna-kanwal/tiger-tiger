@@ -46,14 +46,9 @@ const nextConfig = {
         destination: '/products',
         permanent: true,
       },
-      {
-        source: '/cuisine',
-        destination: '/cuisines',
-        permanent: true,
-      },
-      {
-        source: '/cuisine/:path*',
-        destination: '/cuisines/:path*',
+            {
+        source: '/cuisines',
+        destination: '/recipes/',
         permanent: true,
       },
       {
@@ -74,6 +69,38 @@ const nextConfig = {
       {
         source: '/categories/undefined/:slug/:sku',
         destination: '/products/:slug/:sku/',
+        permanent: true,
+      },
+
+      // Duplicate featured product URLs -> real product pages
+      {
+        source: '/feature_product/products/:slug/:sku',
+        destination: '/products/:slug/:sku/',
+        permanent: true,
+      },
+            // Old blog detail URLs -> new blog pages
+      {
+        source: '/blog-details/:slug',
+        destination: '/blogs/:slug/',
+        permanent: true,
+      },
+      // Old blog list URL -> blog list
+      {
+        source: '/blog-details',
+        destination: '/blogs/',
+        permanent: true,
+      },
+      
+      // Featured products list duplicate -> featured page
+      {
+        source: '/feature_product/products',
+        destination: '/feature_product/',
+        permanent: true,
+      },
+      // Old single-segment featured product pages -> products list
+      {
+        source: '/feature_product/:ProductSlug',
+        destination: '/products/',
         permanent: true,
       },
     ];

@@ -1,7 +1,6 @@
 "use client";
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import Script from 'next/script';
 
 const MapSection = dynamic(() => import('./MapSection'), { 
   ssr: false,
@@ -33,15 +32,15 @@ const ContactSection = () => {
         "itemListElement": [
           {
             "@type": "ListItem",
-            "@position": 1,
-            "@name": "Home",
-            "@item": "https://www.tigertigerfoods.com/"
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.tigertigerfoods.com/"
           },
           {
             "@type": "ListItem",
-            "@position": 2,
-            "@name": "Contact",
-            "@item": "https://www.tigertigerfoods.com/contact/"
+            "position": 2,
+            "name": "Contact",
+            "item": "https://www.tigertigerfoods.com/contact/"
           }
         ]
       }
@@ -50,10 +49,9 @@ const ContactSection = () => {
 
   return (
     <>
-      <Script
-        id="contact-page-schema"
+      {/* Plain script tag so the schema is part of the server HTML */}
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
 

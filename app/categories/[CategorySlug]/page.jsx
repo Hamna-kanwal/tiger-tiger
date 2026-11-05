@@ -2,6 +2,7 @@ import Link from "next/link";
 import CategoryProductsClient from "../../Components/CategoryProductsClient";
 import { getProductsByCategory, getCategories } from "../../action"; 
 import { notFound } from "next/navigation";
+import { buildMeta } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -125,10 +126,10 @@ function renderIntroWithLinks(text, categorySlug, products) {
       const product = products.find((p) => p.slug === productSlug);
       out.push(
         product ? (
-          <Link
+                  <Link
             key={`${productSlug}-${i}`}
-            href={`/categories/${categorySlug}/${product.slug}/${product.SKU}`}
-                       className="font-semibold text-[#431A4F]"
+            href={`/products/${product.slug}/${product.SKU}/`}
+            className="font-semibold text-[#431A4F]"
           >
             {label}
           </Link>
@@ -143,25 +144,20 @@ function renderIntroWithLinks(text, categorySlug, products) {
 
 export async function generateMetadata({ params }) {
   const { CategorySlug } = await params;
-  const schemaInfo = categorySchemaMap[CategorySlug.toLowerCase()] || {
-    name: CategorySlug.charAt(0).toUpperCase() + CategorySlug.slice(1),
-    metaTitle: CategorySlug.charAt(0).toUpperCase() + CategorySlug.slice(1) + " Wholesale | Tiger Tiger",
-    description: `Browse our ${CategorySlug.replace(/-/g, ' ')} collection. Premium Asian food ingredients for trade in the UK.`,
-    intro: `Explore our premium range of ${CategorySlug.replace(/-/g, ' ')} ingredients supplied in bulk across the UK.`
-  };
-  
-  const pageUrl = `https://www.tigertigerfoods.com/categories/${CategorySlug}/`;
+  const readable = CategorySlug.replace(/-/g, ' ');
+  const prettyName = readable.charAt(0).toUpperCase() + readable.slice(1);
 
-  return {
+  const schemaInfo = categorySchemaMap[CategorySlug.toLowerCase()] || {
+    metaTitle: `${prettyName} Wholesale`,
+    description: `Browse our ${readable} collection. Premium Asian food ingredients for trade in the UK.`,
+  };
+
+  // buildMeta adds the full OG and Twitter tags and the canonical URL
+  return buildMeta({
     title: schemaInfo.metaTitle,
     description: schemaInfo.description,
-    openGraph: {
-      url: pageUrl,
-    },
-    alternates: { 
-      canonical: pageUrl 
-    }
-  };
+    path: `/categories/${CategorySlug}/`,
+  });
 }
 
 export async function generateStaticParams() {

@@ -5,10 +5,13 @@ import { buildMeta } from '@/lib/seo';
 import { getSingleBlogAction, getLatestSidebarBlogsAction } from '../../action';
 import './blog-rich-text.css';
 
+const SITE_URL = 'https://www.tigertigerfoods.com';
+const BACKEND_URL = 'https://backend.tigertigerfoods.com';
+
 const DEFAULT_DESCRIPTION =
   'Articles on Pan Asian ingredients, sourcing and trends for food businesses in the UK.';
 
-// HTML tags aur entities saaf karta hai
+// Removes HTML tags and entities
 const stripHtml = (html) => {
   if (!html) return '';
   return html
@@ -23,7 +26,7 @@ const stripHtml = (html) => {
     .trim();
 };
 
-// Saaf text ko 155 characters tak lafz ki hadd par kaatta hai
+// Trims clean text to 155 characters at a word boundary
 const toMetaDescription = (html, max = 155) => {
   const text = stripHtml(html);
   if (text.length <= max) return text;
@@ -33,12 +36,26 @@ const toMetaDescription = (html, max = 155) => {
   return safe.replace(/[\s,.;:\-–]+$/, '') + '…';
 };
 
+// Converts a relative image path into an absolute URL
+const toAbsoluteUrl = (value) => {
+  if (typeof value !== 'string' || !value.trim()) return null;
+  if (/^https?:\/\//i.test(value)) return value;
+  return `${BACKEND_URL}${value.startsWith('/') ? '' : '/'}${value}`;
+};
+
+// Returns an ISO date string, or null when the value is missing or invalid
+const toIsoDate = (value) => {
+  if (!value) return null;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
+};
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const blogResult = await getSingleBlogAction(slug);
   const blog = blogResult?.success ? blogResult.data : null;
 
-  // 1) SEO team ki page_description  2) body se bani description  3) default
+  // 1) SEO team's page_description  2) description built from the body  3) default
   const description =
     blog?.page_description?.trim() ||
     toMetaDescription(blog?.description || blog?.desc) ||
@@ -71,8 +88,55 @@ export default async function Page({ params }) {
     notFound();
   }
 
+  // --- Structured data (BlogPosting + Breadcrumbs) ---
+  const postUrl = `${SITE_URL}/blogs/${slug}/`;
+  const bodyText = stripHtml(blog.description || blog.desc);
+  const schemaDescription =
+    blog.page_description?.trim() || toMetaDescription(blog.description || blog.desc) || DEFAULT_DESCRIPTION;
+  const schemaImage = toAbsoluteUrl(blog.image);
+  const datePublished = toIsoDate(blog.created_at);
+  const dateModified = toIsoDate(blog.updated_at) || datePublished;
+  const headline = String(blog.page_title?.trim() || blog.title || '').slice(0, 110);
+
+  const blogPostSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        '@id': `${postUrl}#article`,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+        url: postUrl,
+        headline,
+        description: schemaDescription,
+        ...(schemaImage ? { image: [schemaImage] } : {}),
+        ...(datePublished ? { datePublished } : {}),
+        ...(dateModified ? { dateModified } : {}),
+        ...(bodyText ? { wordCount: bodyText.split(' ').length } : {}),
+        inLanguage: 'en-GB',
+        isPartOf: { '@id': `${SITE_URL}/blogs/#blog` },
+        author: { '@id': `${SITE_URL}/#organization` },
+        publisher: { '@id': `${SITE_URL}/#organization` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${postUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blogs/` },
+          { '@type': 'ListItem', position: 3, name: blog.title, item: postUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <article className="min-h-screen bg-white">
+      {/* Plain script tag so the schema is part of the server HTML */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostSchema) }}
+      />
+
       {/* Header Banner */}
       <div className="pt-32 pb-44 px-6 text-center bg-gray-50">
         <div className="max-w-5xl mx-auto">

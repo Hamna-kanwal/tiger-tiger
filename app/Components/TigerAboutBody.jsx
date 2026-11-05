@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from "next/link";
-import Script from 'next/script';
 
 const TigerAboutBody = () => {
   const aboutSchema = {
@@ -42,10 +41,8 @@ const TigerAboutBody = () => {
 
   return (
     <main className="bg-[#FFFDF9]">
-      <Script
-        id="about-page-schema"
+           <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
       

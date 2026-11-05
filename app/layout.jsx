@@ -112,9 +112,11 @@ export default function RootLayout({ children }) {
         "@type": "Person",
         "name": "Mark Johal"
       },
-      "sameAs": [
-        "https://www.linkedin.com/company/jkfoodsuk"
-      ]
+       "sameAs": [
+      "https://www.facebook.com/tigertigerfoodsofficial/",
+      "https://www.twitter.com/tigertigerfoodsofficial",
+      "https://www.tiktok.com/@tigertigerfoodsofficial1?_t=8rkFatEOb71&_r=1"
+    ]
     }
   };
 

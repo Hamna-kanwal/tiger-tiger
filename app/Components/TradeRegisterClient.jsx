@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Script from "next/script";
 
 export default function TradeRegisterClient() {
   const router = useRouter();
@@ -261,8 +260,7 @@ export default function TradeRegisterClient() {
 
   return (
     <>
-      <Script
-        id="trade-register-schema"
+          <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(tradeRegisterSchema) }}
       />
