@@ -260,11 +260,11 @@ export default function SearchBox() {
         />
       </div>
 
-      {/* Search results dropdown, aligned to the right edge */}
+      {/* Search results dropdown, bounded strictly within container width */}
       {showDropdown && (
         <div
           className="
-            absolute top-full right-0 mt-3 w-[300px] md:w-[350px] bg-white rounded-2xl shadow-2xl z-[100] border p-2
+            absolute top-full left-0 right-0 mt-3 w-full bg-white rounded-2xl shadow-2xl z-[100] border p-2
             max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-[#4e1a51]
           "
         >
@@ -288,7 +288,6 @@ export default function SearchBox() {
                     <span className="text-xs font-bold truncate leading-tight">
                       {item.name}
                     </span>
-                    {/* Small sub-text to show whether it is a product or a blog */}
                     <span className="text-[10px] text-gray-400 mt-0.5">
                       {item.type === "blog" ? "Blog Article" : `SKU: ${item.SKU || ""}`}
                     </span>
