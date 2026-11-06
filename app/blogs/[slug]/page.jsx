@@ -55,7 +55,6 @@ export async function generateMetadata({ params }) {
   const blogResult = await getSingleBlogAction(slug);
   const blog = blogResult?.success ? blogResult.data : null;
 
-  // 1) SEO team's page_description  2) description built from the body  3) default
   const description =
     blog?.page_description?.trim() ||
     toMetaDescription(blog?.description || blog?.desc) ||
@@ -67,7 +66,7 @@ export async function generateMetadata({ params }) {
     path: `/blogs/${slug}/`,
     image: blog?.image || '/og-default.png',
     type: 'article',
-    publishedTime: blog?.created_at, // Article publish date
+    publishedTime: blog?.created_at,
   });
 }
 
@@ -88,11 +87,18 @@ export default async function Page({ params }) {
     notFound();
   }
 
+  // --- FIX FOR MULTIPLE H1 TAGS (Priority 5) ---
+  // CMS ke andar se aane wale body content mein agar <h1> tags hain toh unhe <h2> mein badalna
+  const rawHtmlContent = blog.description || blog.desc || '';
+  const cleanedBlogContent = rawHtmlContent
+    .replace(/<h1\b([^>]*)>/gi, '<h2$1>')
+    .replace(/<\/h1>/gi, '</h2>');
+
   // --- Structured data (BlogPosting + Breadcrumbs) ---
   const postUrl = `${SITE_URL}/blogs/${slug}/`;
-  const bodyText = stripHtml(blog.description || blog.desc);
+  const bodyText = stripHtml(rawHtmlContent);
   const schemaDescription =
-    blog.page_description?.trim() || toMetaDescription(blog.description || blog.desc) || DEFAULT_DESCRIPTION;
+    blog.page_description?.trim() || toMetaDescription(rawHtmlContent) || DEFAULT_DESCRIPTION;
   const schemaImage = toAbsoluteUrl(blog.image);
   const datePublished = toIsoDate(blog.created_at);
   const dateModified = toIsoDate(blog.updated_at) || datePublished;
@@ -146,7 +152,7 @@ export default async function Page({ params }) {
         </div>
       </div>
 
-      {/* Image container and the content grid below share the same width (max-w-6xl) */}
+      {/* Image container */}
       <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
         <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl bg-white">
           <Image
@@ -167,7 +173,7 @@ export default async function Page({ params }) {
         <div className="lg:col-span-8">
           <div
             className="blog-rich-text prose prose-lg prose-purple max-w-none text-gray-800 leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: blog.description || blog.desc }}
+            dangerouslySetInnerHTML={{ __html: cleanedBlogContent }}
           />
         </div>
 
