@@ -146,8 +146,9 @@ export default async function Page({ params }) {
         </div>
       </div>
 
+      {/* Image container and the content grid below share the same width (max-w-6xl) */}
       <div className="max-w-6xl mx-auto px-6 -mt-32 relative z-10">
-        <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white bg-white">
+        <div className="w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl bg-white">
           <Image
             src={blog.image || "/fallback.png"}
             alt={blog.image_alt_text || blog.title}
@@ -161,7 +162,7 @@ export default async function Page({ params }) {
       </div>
 
       {/* Main Content & Sidebar */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Blog Content */}
         <div className="lg:col-span-8">
           <div
