@@ -5,7 +5,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import SearchBox from "./SearchBox";
 
 export default function Header() {
@@ -61,7 +60,7 @@ export default function Header() {
               src="/logo.webp"
               width={150}
               height={50}
-              alt="logo"
+              alt="Tiger Tiger Foods"
               priority
               className="w-[100px] h-auto"
             />
@@ -127,94 +126,85 @@ export default function Header() {
         </header>
       </div>
 
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 bg-black/40 z-50 lg:hidden"
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
-              className="fixed right-0 top-0 bottom-0 w-full max-w-[320px] bg-white z-50 lg:hidden p-6 shadow-2xl flex flex-col gap-6 overflow-y-auto"
-            >
-              <div className="flex items-center justify-between border-b pb-4 border-gray-100">
-                <Image src="/logo.webp" width={80} height={30} alt="logo" />
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="p-1 rounded-full bg-gray-50 text-[#4e1a51]"
-                  aria-label="Close menu"
-                >
-                  <X size={24} />
-                </button>
-              </div>
+      {/* Mobile Drawer - CSS transitions, no animation library */}
+      <div
+        onClick={() => setIsMenuOpen(false)}
+        aria-hidden="true"
+        className={`fixed inset-0 bg-black/40 z-50 lg:hidden transition-opacity duration-300 ${
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      />
+      <div
+        aria-hidden={!isMenuOpen}
+        className={`fixed right-0 top-0 bottom-0 w-full max-w-[320px] bg-white z-50 lg:hidden p-6 shadow-2xl flex flex-col gap-6 overflow-y-auto transition-all duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0 visible" : "translate-x-full invisible"
+        }`}
+      >
+        <div className="flex items-center justify-between border-b pb-4 border-gray-100">
+          <Image src="/logo.webp" width={80} height={30} alt="Tiger Tiger Foods" />
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="p-1 rounded-full bg-gray-50 text-[#4e1a51]"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
 
-              {/* Mobile search inside the hamburger menu (hidden on md+ because the header already shows it) */}
-              <div className="md:hidden">
-                <SearchBox />
-              </div>
+        {/* Mobile search inside the hamburger menu (hidden on md+ because the header already shows it) */}
+        <div className="md:hidden">{isMenuOpen && <SearchBox />}</div>
 
-              <nav className="flex flex-col gap-2">
-                {navLinks.map((link) => (
-                  <div key={link.name} className="flex flex-col w-full">
-                    {link.dropdown ? (
-                      <>
-                        <button
-                          onClick={() =>
-                            setOpenDropdown(openDropdown === link.name ? null : link.name)
-                          }
-                          className="flex items-center justify-between w-full py-3 px-4 text-[#4e1a51] font-medium text-lg rounded-xl hover:bg-gray-50"
+        <nav className="flex flex-col gap-2">
+          {navLinks.map((link) => (
+            <div key={link.name} className="flex flex-col w-full">
+              {link.dropdown ? (
+                <>
+                  <button
+                    onClick={() =>
+                      setOpenDropdown(openDropdown === link.name ? null : link.name)
+                    }
+                    className="flex items-center justify-between w-full py-3 px-4 text-[#4e1a51] font-medium text-lg rounded-xl hover:bg-gray-50"
+                  >
+                    {link.name}
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-200 ${
+                        openDropdown === link.name ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openDropdown === link.name && (
+                    <div className="flex flex-col pl-6 border-l-2 border-gray-100 ml-4 gap-1 mt-1">
+                      {link.dropdown.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="py-2.5 px-4 text-[#4e1a51]/80 hover:text-[#4e1a51] text-base font-normal rounded-lg hover:bg-gray-50 block"
                         >
-                          {link.name}
-                          <ChevronDown
-                            size={18}
-                            className={`transition-transform duration-200 ${
-                              openDropdown === link.name ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-                        {openDropdown === link.name && (
-                          <div className="flex flex-col pl-6 border-l-2 border-gray-100 ml-4 gap-1 mt-1">
-                            {link.dropdown.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                href={subItem.href}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="py-2.5 px-4 text-[#4e1a51]/80 hover:text-[#4e1a51] text-base font-normal rounded-lg hover:bg-gray-50 block"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`py-3 px-4 text-lg rounded-xl transition-all block ${
-                          isActive(link.href)
-                            ? "font-bold text-[#4e1a51] bg-white"
-                            : "font-medium text-[#4e1a51]/80 hover:text-[#4e1a51] hover:bg-gray-50"
-                        }`}
-                      >
-                        {link.name}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </nav>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`py-3 px-4 text-lg rounded-xl transition-all block ${
+                    isActive(link.href)
+                      ? "font-bold text-[#4e1a51] bg-white"
+                      : "font-medium text-[#4e1a51]/80 hover:text-[#4e1a51] hover:bg-gray-50"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )}
+            </div>
+          ))}
+        </nav>
+      </div>
     </>
   );
 }

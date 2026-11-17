@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "./Components/Header"; 
 import Footer from "./Components/Footer";
 import FloatingCart from "./Components/FloatingCart";
-import PerformanceOptimizer from "./Components/PerformanceOptimizer";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -136,9 +135,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${outfit.variable} ${eczar.variable}`}>
       <head>
-        {/* Typekit Fonts Integration */}
+        {/* Typekit Fonts Integration (non-blocking) */}
         <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
-        <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
+        <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://use.typekit.net/wry2bcj.css';document.head.appendChild(l);})();`,
+          }}
+        />
+        <noscript>
+          <link rel="stylesheet" href="https://use.typekit.net/wry2bcj.css" />
+        </noscript>
 
         {/* Analytics Script */}
         <script src="https://analytics.ahrefs.com/analytics.js" data-key="8feY//JL4PXBAzy7AIuVZQ" async></script>
@@ -160,7 +167,6 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <FloatingCart />
-        <PerformanceOptimizer />
       </body>
     </html>
   );
