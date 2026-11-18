@@ -1,7 +1,6 @@
 import { getBlogsAction } from '../action';
 import BlogListClient from './BlogListClient';
 
-// Schema Markup JSON object
 const blogPageSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -39,13 +38,26 @@ const blogPageSchema = {
   ]
 };
 
+const createExcerpt = (html) => {
+  if (!html) return "";
+  return html
+    .replace(/<[^>]*>?/gm, '')
+    .replace(/&nbsp;/g, ' ')
+    .trim();
+};
+
 export default async function BlogsPage() {
-  // Blogs are fetched on the server, so the full HTML is sent without any client-side loading state
   let blogs = [];
   try {
     const result = await getBlogsAction();
-    if (result?.success) {
-      blogs = result.data;
+    if (result?.success && Array.isArray(result.data)) {
+      blogs = result.data.map((blog) => ({
+        _id: blog._id,
+        slug: blog.slug,
+        title: blog.title,
+        image: blog.image,
+        excerpt: createExcerpt(blog.description || blog.desc),
+      }));
     }
   } catch (error) {
     console.error("Error fetching blogs:", error);
@@ -53,7 +65,6 @@ export default async function BlogsPage() {
 
   return (
     <>
-      {/* --- SCHEMA SCRIPT --- */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPageSchema) }}
@@ -70,7 +81,6 @@ export default async function BlogsPage() {
             </p>
           </div>
 
-          {/* Server renders all cards; the client component only handles Load More */}
           <BlogListClient blogs={blogs} />
         </div>
       </section>
